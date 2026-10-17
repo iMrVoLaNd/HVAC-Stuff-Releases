@@ -9,6 +9,12 @@
   <a href="https://github.com/iMrVoLaNd/HVAC-Stuff-Releases/releases"><img src="https://img.shields.io/github/downloads/iMrVoLaNd/HVAC-Stuff-Releases/total?label=%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B5%D0%BD%D1%8C&color=8C96A0" alt="Завантаження"></a>
 </p>
 
+<!-- ribbon:start -->
+<p align="center">
+<a href="manuals/QuickFlexConnect-uk.pdf" title="З’єднати гофрою — гнучкий повітропровід між двома конекторами за два кліки. Однакові розміри — одразу, різні — вікно з розміром і живим переглядом. Серія пар до Esc.  [Посібник (PDF)]"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/ribbon/img/col-QuickFlexConnect-uk-dark.svg"><img src="docs/ribbon/img/col-QuickFlexConnect-uk-light.svg" alt="З’єднати гофрою"></picture></a><a href="manuals/FlexTail-uk.pdf" title="Врізати гофру — кінець жорсткого повітроводу біля елемента стає гнучким. Швидкі значення 500–2500 мм, «Вся ділянка», серія елементів.  [Посібник (PDF)]"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/ribbon/img/col-FlexTail-uk-dark.svg"><img src="docs/ribbon/img/col-FlexTail-uk-light.svg" alt="Врізати гофру"></picture></a><a href="https://github.com/iMrVoLaNd/HVAC-Stuff-Releases/releases/latest" title="Налаштування — мова інтерфейсу, колір і стиль контуру попереднього перегляду, перевірка оновлень, посилання на посібники й журнали."><picture><source media="(prefers-color-scheme: dark)" srcset="docs/ribbon/img/col-Settings-uk-dark.svg"><img src="docs/ribbon/img/col-Settings-uk-light.svg" alt="Налаштування"></picture></a><picture><source media="(prefers-color-scheme: dark)" srcset="docs/ribbon/img/col-rest-uk-dark.svg"><img src="docs/ribbon/img/col-rest-uk-light.svg" alt="Скоро більше кнопок"></picture>
+</p>
+<!-- ribbon:end -->
+
 **HVAC Stuff** — надбудова Revit для проєктувальників вентиляції. Вона бере на себе рутину з гнучкими повітроводами: з’єднує
 конектори гофрою за два кліки й перетворює кінець жорсткого повітроводу на гнучку ділянку одним кліком. Інтерфейс — українською,
 англійською та російською.
