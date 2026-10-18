@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="360" viewBox="0 0 1280 360" role="img" aria-label="HVAC Stuff — надбудова Revit для проєктувальників вентиляції">
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="360" viewBox="0 0 1280 360" role="img" aria-label="HVAC Stuff — набір плагінів Revit для спеціалістів систем ОВ">
   <rect width="1280" height="360" rx="20" fill="#14213D"/>
-  <text x="72" y="96" fill="#F2A93B" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="600" letter-spacing="4">НАДБУДОВА REVIT 2023–2027</text>
+  <text x="72" y="96" fill="#F2A93B" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="600" letter-spacing="4">НАБІР ПЛАГІНІВ REVIT 2023–2027</text>
   <text x="72" y="190" fill="#FBFAF6" font-family="Segoe UI, Arial, sans-serif" font-size="84" font-weight="700">HVAC Stuff</text>
-  <text x="72" y="248" fill="#C9D3E6" font-family="Segoe UI, Arial, sans-serif" font-size="30">Гнучкі повітропроводи — за один-два кліки</text>
+  <text x="72" y="248" fill="#C9D3E6" font-family="Segoe UI, Arial, sans-serif" font-size="30">Плагіни для спеціалістів систем ОВ</text>
   <text x="72" y="300" fill="#9AA7BF" font-family="Segoe UI, Arial, sans-serif" font-size="22">З’єднати гофрою · Врізати гофру</text>
   <rect x="760" y="210" width="170" height="64" rx="4" fill="none" stroke="#5BB6E8" stroke-width="5"/>
   <rect x="1090" y="72" width="120" height="84" rx="4" fill="none" stroke="#5BB6E8" stroke-width="5"/>
