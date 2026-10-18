@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>HVAC Stuff — Revit add-in</title>
-<meta name="description" content="HVAC Stuff — Revit add-in for HVAC designers: flex ducts in one or two clicks.">
+<meta name="description" content="HVAC Stuff — a growing set of free Revit plugins for HVAC designers.">
 <meta name="theme-color" content="#14213D">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2314213D'/%3E%3Cpath d='M10 44 C26 44 22 20 38 20 L54 20' fill='none' stroke='%23F2A93B' stroke-width='6' stroke-dasharray='12 5 3 5' stroke-linecap='round'/%3E%3C/svg%3E">
 <style>
@@ -162,6 +162,20 @@ footer a { color: #fff; }
 .pager button svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
 .pager button[hidden] { display: none; }
 @media (max-width: 700px) { .wrap { width: calc(100% - 56px); margin-left: 16px; margin-right: auto; } .pager { bottom: 12px; right: 10px; } .dots { right: 6px; } }
+/* набор плагинов */
+.plugs { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.plug { position: relative; display: flex; flex-direction: column; gap: 10px; }
+.plug .tile { width: 64px; height: 64px; border-radius: 16px; background: var(--navy); display: grid; place-items: center; box-shadow: 0 10px 24px -10px rgba(20,33,61,.7); transition: transform .35s; }
+.plug .tile svg { width: 44px; height: 44px; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.plug:hover .tile { transform: rotate(-6deg) scale(1.06); }
+.plug h3 { margin: 4px 0 0; font-size: 21px; }
+.plug .en { color: var(--muted); font-size: 14px; margin: -6px 0 0; }
+.plug .badge { position: absolute; top: 22px; right: 22px; font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 99px; background: var(--amber); color: var(--navy); letter-spacing: .04em; }
+.plug .since { color: var(--muted); font-size: 13.5px; margin-top: auto; padding-top: 6px; }
+.plug .go { color: var(--text); font-weight: 600; text-decoration: none; border-bottom: 2px solid var(--amber); width: fit-content; }
+.plug.next { border-style: dashed; border-width: 2px; background: transparent; box-shadow: none; }
+.plug.next .tile { background: transparent; border: 2px dashed var(--muted); box-shadow: none; color: var(--muted); font-size: 34px; font-weight: 300; animation: pulse 3s ease-in-out infinite; }
+.plug.next .badge { background: transparent; border: 1.5px solid var(--muted); color: var(--muted); }
 /* появление героя */
 .hero .grid > div:first-child > * { animation: rise .8s cubic-bezier(.2,.7,.2,1) backwards; }
 .hero .grid > div:first-child > :nth-child(2) { animation-delay: .1s; } .hero .grid > div:first-child > :nth-child(3) { animation-delay: .2s; }
@@ -224,7 +238,7 @@ section.seen h2::after { width: 64px; }
       <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#1c2d52"/><path d="M10 44 C26 44 22 20 38 20 L54 20" fill="none" stroke="#F2A93B" stroke-width="6" stroke-dasharray="12 5 3 5" stroke-linecap="round"/></svg>
       HVAC Stuff
     </a>
-    <a class="lnk" href="#features" data-i18n="nav.features"></a>
+    <a class="lnk" href="#plugins" data-i18n="nav.plugins"></a>
     <a class="lnk" href="#commands" data-i18n="nav.commands"></a>
     <a class="lnk" href="#videos" data-i18n="nav.videos"></a>
     <a class="lnk" href="#manuals" data-i18n="nav.manuals"></a>
@@ -272,6 +286,40 @@ section.seen h2::after { width: 64px; }
     <div class="ribbon-strip">
       <p class="cap" data-i18n="hero.ribbon"></p>
       <div class="imgs" id="ribbon"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PLUGINS -->
+<section id="plugins">
+  <div class="wrap">
+    <p class="eyebrow" data-i18n="plug.eyebrow"></p>
+    <h2 data-i18n="plug.title"></h2>
+    <p class="lead" data-i18n="plug.lead"></p>
+    <div class="plugs">
+      <article class="card plug reveal">
+        <span class="badge" data-i18n="plug.new"></span>
+        <div class="tile"><svg viewBox="0 0 32 32" aria-hidden="true"><path stroke="#E8ECF2" d="M1 4.5H9.5M1 13.5H9.5M9.5 3V15"/><path stroke="#E8ECF2" d="M31 18.5H22.5M31 27.5H22.5M22.5 17V29"/><path stroke="#F2A93B" stroke-width="3" d="M10.5 8.5H14C19 8.5 13 23.5 18 23.5H21.5"/></svg></div>
+        <h3 data-i18n="qfc.name"></h3><p class="en">Quick FlexConnect</p>
+        <p data-i18n="qfc.p"></p>
+        <a class="go" href="#commands" data-i18n="plug.more"></a>
+        <span class="since"><span data-i18n="plug.since"></span> 1.0.0</span>
+      </article>
+      <article class="card plug reveal">
+        <span class="badge" data-i18n="plug.new"></span>
+        <div class="tile"><svg viewBox="0 0 32 32" aria-hidden="true"><path stroke="#E8ECF2" d="M1 11H9.5M1 21H9.5M9.5 9.5V22.5"/><path stroke="#F2A93B" stroke-width="3" d="M10.5 16q1.84-7 3.67 0t3.67 0t3.66 0"/><path stroke="#6CBDEB" d="M22.5 6V26H30V6ZM22.5 12H30M22.5 16H30M22.5 20H30"/></svg></div>
+        <h3 data-i18n="ft.name"></h3><p class="en">Flex Tail</p>
+        <p data-i18n="ft.p"></p>
+        <a class="go" href="#commands" data-i18n="plug.more"></a>
+        <span class="since"><span data-i18n="plug.since"></span> 1.0.0</span>
+      </article>
+      <article class="card plug next reveal">
+        <span class="badge" data-i18n="plug.soon"></span>
+        <div class="tile" aria-hidden="true">+</div>
+        <h3 data-i18n="plug.next.t"></h3>
+        <p data-i18n="plug.next.p"></p>
+        <a class="go" href="mailto:habrahabrtank@gmail.com?subject=HVAC%20Stuff%20idea" data-i18n="plug.idea"></a>
+      </article>
     </div>
   </div>
 </section>
@@ -401,6 +449,7 @@ section.seen h2::after { width: 64px; }
     <details><summary data-i18n="q3.q"></summary><p data-i18n="q3.a"></p></details>
     <details><summary data-i18n="q4.q"></summary><p data-i18n="q4.a"></p></details>
     <details><summary data-i18n="q5.q"></summary><p data-i18n="q5.a"></p></details>
+    <details><summary data-i18n="q6.q"></summary><p data-i18n="q6.a"></p></details>
   </div>
 </section>
 </main>
@@ -425,10 +474,10 @@ section.seen h2::after { width: 64px; }
   /* ---------- тексты ---------- */
   var T = {
     uk: {
-      "nav.home": "Головна", "nav.features": "Переваги", "nav.faq": "Питання", "nav.commands": "Команди", "nav.videos": "Відео", "nav.manuals": "Посібники", "nav.install": "Встановлення",
-      "hero.eyebrow": "Надбудова Revit для вентиляції",
-      "hero.title": "Гнучкі повітропроводи — <em>за два кліки</em>",
-      "hero.sub": "З’єднайте два конектори гофрою або замініть кінець жорсткого повітроводу гнучким. Без ручного підбору довжин, переходів і зайвих діалогів.",
+      "nav.plugins": "Плагіни", "plug.eyebrow": "Набір плагінів", "plug.title": "Останні додані плагіни", "plug.lead": "HVAC Stuff росте: нові плагіни з’являються в тому ж інсталяторі й на тій самій вкладці Revit. Ось що вже є.", "plug.new": "Новий", "plug.soon": "Скоро", "plug.more": "Докладніше →", "plug.since": "З версії", "plug.next.t": "Наступний плагін", "plug.next.p": "Над ним уже йде робота. Є ідея, чого бракує у вашій рутині? Напишіть — додам у чергу.", "plug.idea": "Запропонувати ідею →", "q6.q": "Чи будуть нові плагіни?", "q6.a": "Так: набір поповнюється. Новий плагін з’являється в тому ж інсталяторі, на вкладці «HVAC Stuff». Оновлення приходить звичайним оновленням надбудови.", "nav.home": "Головна", "nav.features": "Переваги", "nav.faq": "Питання", "nav.commands": "Команди", "nav.videos": "Відео", "nav.manuals": "Посібники", "nav.install": "Встановлення",
+      "hero.eyebrow": "Набір плагінів Revit для вентиляції",
+      "hero.title": "Набір плагінів, що прибирає <em>рутину вентиляції</em>",
+      "hero.sub": "HVAC Stuff — безкоштовний набір плагінів для проєктувальників вентиляції. Зараз у ньому два плагіни для гнучких повітроводів, нові з’являтимуться регулярно. Одна установка — усі плагіни.",
       "hero.download": "Завантажити", "hero.watch": "Дивитись відео", "hero.version": "Версія", "hero.free": "Безкоштовно",
       "hero.ribbon": "Вкладка «HVAC Stuff» у стрічці Revit",
       "feat.eyebrow": "Чому саме так", "feat.title": "Менше рутини — більше проєктування",
@@ -470,10 +519,10 @@ section.seen h2::after { width: 64px; }
       "foot.copy": "© 2026 Maliuhin Volodymyr. Безкоштовна надбудова для Autodesk Revit.", "foot.license": "Ліцензія", "foot.third": "Сторонні компоненти", "foot.releases": "Усі релізи"
     },
     en: {
-      "nav.home": "Home", "nav.features": "Features", "nav.faq": "FAQ", "nav.commands": "Commands", "nav.videos": "Videos", "nav.manuals": "Manuals", "nav.install": "Install",
-      "hero.eyebrow": "Revit add-in for HVAC design",
-      "hero.title": "Flex ducts in <em>two clicks</em>",
-      "hero.sub": "Join two connectors with a flex duct, or turn the end of a rigid duct into a flex one. No manual lengths, transitions, or extra dialogs.",
+      "nav.plugins": "Plugins", "plug.eyebrow": "The plugin set", "plug.title": "Latest added plugins", "plug.lead": "HVAC Stuff keeps growing: new plugins arrive in the same installer and on the same Revit tab. Here is what is in the set already.", "plug.new": "New", "plug.soon": "Soon", "plug.more": "Details →", "plug.since": "Since version", "plug.next.t": "The next plugin", "plug.next.p": "Work on it is under way. Know what your routine is missing? Write to me and I will add it to the queue.", "plug.idea": "Suggest an idea →", "q6.q": "Will there be more plugins?", "q6.a": "Yes: the set keeps growing. A new plugin comes in the same installer, on the “HVAC Stuff” tab. It arrives as a regular add-in update.", "nav.home": "Home", "nav.features": "Features", "nav.faq": "FAQ", "nav.commands": "Commands", "nav.videos": "Videos", "nav.manuals": "Manuals", "nav.install": "Install",
+      "hero.eyebrow": "A set of Revit plugins for HVAC design",
+      "hero.title": "A plugin set that takes the <em>routine out of HVAC design</em>",
+      "hero.sub": "HVAC Stuff is a free set of plugins for HVAC designers. It has two plugins for flex ducts today, and new ones keep coming. One installer, all the plugins.",
       "hero.download": "Download", "hero.watch": "Watch the videos", "hero.version": "Version", "hero.free": "Free",
       "hero.ribbon": "The “HVAC Stuff” tab in the Revit ribbon",
       "feat.eyebrow": "Why it feels different", "feat.title": "Less routine, more design",
@@ -515,10 +564,10 @@ section.seen h2::after { width: 64px; }
       "foot.copy": "© 2026 Maliuhin Volodymyr. A free add-in for Autodesk Revit.", "foot.license": "License", "foot.third": "Third-party notices", "foot.releases": "All releases"
     },
     ru: {
-      "nav.home": "Главная", "nav.features": "Преимущества", "nav.faq": "Вопросы", "nav.commands": "Команды", "nav.videos": "Видео", "nav.manuals": "Руководства", "nav.install": "Установка",
-      "hero.eyebrow": "Надстройка Revit для вентиляции",
-      "hero.title": "Гибкие воздуховоды — <em>за два клика</em>",
-      "hero.sub": "Соедините два коннектора гофрой или замените конец жёсткого воздуховода гибким. Без ручного подбора длин, переходов и лишних диалогов.",
+      "nav.plugins": "Плагины", "plug.eyebrow": "Набор плагинов", "plug.title": "Последние добавленные плагины", "plug.lead": "HVAC Stuff растёт: новые плагины появляются в том же установщике и на той же вкладке Revit. Вот что уже есть.", "plug.new": "Новый", "plug.soon": "Скоро", "plug.more": "Подробнее →", "plug.since": "С версии", "plug.next.t": "Следующий плагин", "plug.next.p": "Работа над ним уже идёт. Есть идея, чего не хватает в вашей рутине? Напишите — добавлю в очередь.", "plug.idea": "Предложить идею →", "q6.q": "Будут ли новые плагины?", "q6.a": "Да: набор пополняется. Новый плагин приходит в том же установщике, на вкладке «HVAC Stuff». Он появляется обычным обновлением надстройки.", "nav.home": "Главная", "nav.features": "Преимущества", "nav.faq": "Вопросы", "nav.commands": "Команды", "nav.videos": "Видео", "nav.manuals": "Руководства", "nav.install": "Установка",
+      "hero.eyebrow": "Набор плагинов Revit для вентиляции",
+      "hero.title": "Набор плагинов, который убирает <em>рутину вентиляции</em>",
+      "hero.sub": "HVAC Stuff — бесплатный набор плагинов для проектировщиков вентиляции. Сейчас в нём два плагина для гибких воздуховодов, новые будут появляться регулярно. Одна установка — все плагины.",
       "hero.download": "Скачать", "hero.watch": "Смотреть видео", "hero.version": "Версия", "hero.free": "Бесплатно",
       "hero.ribbon": "Вкладка «HVAC Stuff» на ленте Revit",
       "feat.eyebrow": "Чем удобно", "feat.title": "Меньше рутины — больше проектирования",
@@ -651,7 +700,7 @@ section.seen h2::after { width: 64px; }
   applyLang(pickLang());
 
   /* ---------- навигация по разделам: точки справа, подсветка сверху, стрелки вверх/вниз, полоса прогресса ---------- */
-  var KEYS = ["home", "features", "commands", "videos", "manuals", "install", "faq"];
+  var KEYS = ["home", "plugins", "features", "commands", "videos", "manuals", "install", "faq"];
   var secs = KEYS.map(function (k) { return document.getElementById(k); });
   var dots = document.getElementById("dots"), cur = 0;
   function renderDots() {
