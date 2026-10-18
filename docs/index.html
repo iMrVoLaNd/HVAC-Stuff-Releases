@@ -162,6 +162,66 @@ footer a { color: #fff; }
 .pager button svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
 .pager button[hidden] { display: none; }
 @media (max-width: 700px) { .wrap { width: calc(100% - 56px); margin-left: 16px; margin-right: auto; } .pager { bottom: 12px; right: 10px; } .dots { right: 6px; } }
+/* лента Revit 2026 (тёмная тема): размеры и цвета сняты с живого экрана, масштаб — через zoom */
+.revit { background: #222933; border-radius: 12px; overflow: hidden; box-shadow: 0 30px 70px -30px rgba(0,0,0,.65); font: 12px/1 "Segoe UI", system-ui, sans-serif; color: #f5f5f5; position: relative; max-width: 980px; margin: 0 auto; }
+.rv-bar { display: flex; gap: 6px; padding: 8px 12px 0; }
+.rv-bar i { width: 10px; height: 10px; border-radius: 50%; background: #3b4453; }
+.rv-tabs { display: flex; padding: 6px 4px 0; zoom: 1.25; }
+.rv-tab { height: 20px; line-height: 20px; padding: 0 12px; background: #3b4453; color: #f5f5f5; }
+.rv-ribbon { background: #3b4453; margin: 0 4px; display: flex; zoom: 1.25; height: 97px; position: relative; }
+.rv-group { position: relative; display: flex; padding: 0 1px; }
+.rv-group .ttl { position: absolute; left: 0; right: 0; bottom: 6px; text-align: center; white-space: nowrap; pointer-events: none; }
+.rv-sep { width: 1px; background: #485363; margin: 4px 0 4px; }
+.rv-btn { all: unset; box-sizing: border-box; cursor: default; display: flex; flex-direction: column; align-items: center; padding: 8px 3px 0; height: 78px; min-width: 52px; text-align: center; line-height: 12px; border: 1px solid transparent; transition: background .12s, border-color .12s; }
+.rv-btn:hover { background: #4b566a; border-color: #6a778c; }
+.rv-btn:active, .rv-btn.on { background: #2e3644; border-color: #6a778c; }
+.rv-btn:focus-visible { outline: 2px solid #73c5ff; outline-offset: -2px; }
+.rv-btn svg { width: 32px; height: 32px; margin-bottom: 7px; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform .2s; }
+.rv-btn:hover svg { transform: translateY(-2px); }
+.rv-btn .l { display: block; }
+.rv-tip { position: absolute; z-index: 5; width: 270px; background: #2a313c; border: 1px solid #6d7580; padding: 8px 10px 9px; box-shadow: 0 8px 22px rgba(0,0,0,.55); pointer-events: none; opacity: 0; transform: translateY(4px); transition: opacity .15s, transform .15s; font-size: 12px; line-height: 1.35; }
+.rv-tip.on { opacity: 1; transform: none; }
+.rv-tip b { display: block; font-size: 13px; margin-bottom: 4px; }
+.rv-tip hr { border: 0; border-top: 1px solid #4d535b; margin: 8px 0 6px; }
+.rv-tip .f1 { color: #9aa7bf; }
+.rv-stage { position: relative; background: #fff; margin: 4px 4px 0; min-height: 320px; color: #14213D; overflow: hidden; }
+.stg { display: none; width: 100%; height: auto; }
+.stg.on { display: block; }
+.pane { display: none; padding: 26px; min-height: 320px; align-items: center; justify-content: center; }
+.pane.on { display: flex; }
+.win { width: min(460px, 100%); border: 1px solid #c9ced8; box-shadow: 0 18px 40px -16px rgba(20,33,61,.5); background: #FBFAF6; border-radius: 6px; overflow: hidden; animation: rise .5s backwards; }
+.win header { background: #14213D; color: #fff; padding: 10px 14px; font-size: 14px; font-weight: 600; display: flex; justify-content: space-between; }
+.win .bd { padding: 16px 18px 18px; font-size: 14px; line-height: 1.5; }
+.win .row { margin: 0 0 14px; }
+.win label { display: block; font-size: 12px; color: #5d6881; margin-bottom: 6px; }
+.win .seg { display: inline-flex; border: 1.5px solid #14213D; border-radius: 8px; overflow: hidden; }
+.win .seg button { all: unset; cursor: pointer; padding: 6px 16px; font-size: 13px; font-weight: 600; color: #14213D; }
+.win .seg button[aria-pressed="true"] { background: #F2A93B; }
+.win .sw { display: flex; gap: 8px; flex-wrap: wrap; }
+.win .sw button { all: unset; cursor: pointer; width: 26px; height: 26px; border-radius: 6px; border: 2px solid transparent; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); transition: transform .15s; }
+.win .sw button:hover { transform: scale(1.12); }
+.win .sw button[aria-pressed="true"] { border-color: #14213D; }
+.win .hint { font-size: 12.5px; color: #5d6881; margin: 0; }
+.win .upd { all: unset; cursor: pointer; background: #14213D; color: #fff; padding: 7px 14px; border-radius: 8px; font-size: 13px; font-weight: 600; }
+.win .upd:hover { background: #1c2d52; }
+.win .ok { color: #1c7c4b; font-weight: 600; margin-left: 10px; font-size: 13px; }
+.replay { position: absolute; right: 12px; bottom: 12px; all: unset; cursor: pointer; background: #14213D; color: #fff; font: 600 13px "Segoe UI", system-ui, sans-serif; padding: 7px 14px; border-radius: 99px; z-index: 2; box-shadow: 0 6px 16px -6px rgba(0,0,0,.5); }
+.replay:hover { background: #1c2d52; }
+.replay[hidden] { display: none; }
+.rv-status { display: flex; justify-content: space-between; padding: 5px 10px; color: #c9d3e6; min-height: 24px; }
+.chips2 { position: absolute; left: 14px; top: 12px; display: flex; gap: 6px; align-items: center; font-size: 12px; color: #5d6881; pointer-events: none; }
+.chips2 span.c { border: 1.5px solid #c9ced8; border-radius: 6px; padding: 3px 8px; color: #14213D; background: #fff; transition: all .25s; }
+.chips2 span.c.hi { background: #F2A93B; border-color: #F2A93B; font-weight: 700; transform: scale(1.1); }
+.chips2[hidden] { display: none; }
+/* сцены на холсте */
+.cur { transform: translate(60px, 260px); transition: transform .9s cubic-bezier(.5,0,.2,1), opacity .4s; }
+.ring { opacity: 0; transform-box: fill-box; transform-origin: center; }
+.ring.go { animation: ringo .5s ease-out; }
+@keyframes ringo { from { opacity: .9; transform: scale(.3); } to { opacity: 0; transform: scale(2.4); } }
+.mk { opacity: 0; transition: opacity .25s; } .mk.on { opacity: 1; }
+.clip rect { transition: width .9s cubic-bezier(.4,0,.2,1); }
+.flexcol { stroke: var(--flex, #F2A93B); }
+@media (max-width: 700px) { .rv-tabs, .rv-ribbon { zoom: 1.1; } .rv-stage { min-height: 220px; } .pane { min-height: 220px; padding: 14px; } .chips2 { display: none; } }
 /* набор плагинов */
 .plugs { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
 .plug { position: relative; display: flex; flex-direction: column; gap: 10px; }
@@ -239,6 +299,7 @@ section.seen h2::after { width: 64px; }
       HVAC Stuff
     </a>
     <a class="lnk" href="#plugins" data-i18n="nav.plugins"></a>
+    <a class="lnk" href="#ribbon" data-i18n="nav.ribbon"></a>
     <a class="lnk" href="#commands" data-i18n="nav.commands"></a>
     <a class="lnk" href="#videos" data-i18n="nav.videos"></a>
     <a class="lnk" href="#manuals" data-i18n="nav.manuals"></a>
@@ -254,7 +315,7 @@ section.seen h2::after { width: 64px; }
 
 <main id="top">
 <!-- HERO -->
-<section class="hero" id="home" style="padding-bottom:0">
+<section class="hero" id="home">
   <div class="wrap">
     <div class="grid">
       <div>
@@ -282,10 +343,6 @@ section.seen h2::after { width: 64px; }
         <text x="40" y="360" fill="#9AA7BF" font-size="16" font-family="Segoe UI, Arial">Ø250</text>
         <text x="372" y="168" fill="#9AA7BF" font-size="16" font-family="Segoe UI, Arial">Ø160</text>
       </svg>
-    </div>
-    <div class="ribbon-strip">
-      <p class="cap" data-i18n="hero.ribbon"></p>
-      <div class="imgs" id="ribbon"></div>
     </div>
   </div>
 </section>
@@ -320,6 +377,84 @@ section.seen h2::after { width: 64px; }
         <p data-i18n="plug.next.p"></p>
         <a class="go" href="mailto:habrahabrtank@gmail.com?subject=HVAC%20Stuff%20idea" data-i18n="plug.idea"></a>
       </article>
+    </div>
+  </div>
+</section>
+
+<!-- RIBBON -->
+<section id="ribbon" class="alt">
+  <div class="wrap">
+    <p class="eyebrow" data-i18n="rb.eyebrow"></p>
+    <h2 data-i18n="rb.title"></h2>
+    <p class="lead" data-i18n="rb.lead"></p>
+    <div class="revit reveal z" id="revit">
+      <div class="rv-bar" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="rv-tabs"><span class="rv-tab">HVAC Stuff</span></div>
+      <div class="rv-ribbon">
+        <div class="rv-group">
+          <button class="rv-btn" data-cmd="qfc" type="button">
+            <svg viewBox="0 0 32 32" aria-hidden="true"><path stroke="#E8ECF2" d="M1 4.5H9.5M1 13.5H9.5M9.5 3V15"/><path stroke="#E8ECF2" d="M31 18.5H22.5M31 27.5H22.5M22.5 17V29"/><path stroke="#F2A93B" stroke-width="3" d="M10.5 8.5H14C19 8.5 13 23.5 18 23.5H21.5"/></svg>
+            <span class="l" data-i18n-html="rb.qfc"></span></button>
+          <button class="rv-btn" data-cmd="ft" type="button">
+            <svg viewBox="0 0 32 32" aria-hidden="true"><path stroke="#E8ECF2" d="M1 11H9.5M1 21H9.5M9.5 9.5V22.5"/><path stroke="#F2A93B" stroke-width="3" d="M10.5 16q1.84-7 3.67 0t3.67 0t3.66 0"/><path stroke="#6CBDEB" d="M22.5 6V26H30V6ZM22.5 12H30M22.5 16H30M22.5 20H30"/></svg>
+            <span class="l" data-i18n-html="rb.ft"></span></button>
+          <span class="ttl" data-i18n="rb.g1"></span>
+        </div>
+        <div class="rv-sep"></div>
+        <div class="rv-group">
+          <button class="rv-btn" data-cmd="set" type="button">
+            <svg viewBox="0 0 32 32" aria-hidden="true"><path stroke="#E8ECF2" d="M4 7H16M26 7H28M4 16H6M16 16H28M4 25H14M24 25H28"/><circle stroke="#F2A93B" cx="21" cy="7" r="3.2"/><circle stroke="#E8ECF2" cx="11" cy="16" r="3.2"/><circle stroke="#E8ECF2" cx="19" cy="25" r="3.2"/></svg>
+            <span class="l" data-i18n="rb.set"></span></button>
+          <button class="rv-btn" data-cmd="about" type="button">
+            <svg viewBox="0 0 32 32" aria-hidden="true"><circle stroke="#E8ECF2" cx="16" cy="16" r="12"/><path stroke="#F2A93B" stroke-width="3" d="M16 14.5V22M16 10V10.1"/></svg>
+            <span class="l" data-i18n="rb.about"></span></button>
+          <span class="ttl" data-i18n="rb.g2"></span>
+        </div>
+      </div>
+      <div class="rv-tip" id="rvtip" role="tooltip"></div>
+      <div class="rv-stage" id="stage" data-cmd="qfc">
+        <svg class="stg stg-qfc on" viewBox="0 0 800 320" aria-hidden="true">
+          <defs>
+            <linearGradient id="dg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a6fa8"/><stop offset=".5" stop-color="#3f5185"/><stop offset="1" stop-color="#2b3a66"/></linearGradient>
+            <clipPath id="clipQ"><rect class="clipq" x="250" y="40" width="0" height="240"/></clipPath>
+          </defs>
+          <rect x="30" y="150" width="220" height="44" rx="3" fill="url(#dg)"/><ellipse cx="250" cy="172" rx="9" ry="22" fill="#26335a"/>
+          <rect x="560" y="68" width="210" height="44" rx="3" fill="url(#dg)"/><ellipse cx="560" cy="90" rx="9" ry="22" fill="#26335a"/>
+          <g clip-path="url(#clipQ)"><path class="flexcol" d="M250 172 C370 172 440 90 560 90" fill="none" stroke-width="34" stroke-linecap="butt"/><path d="M250 172 C370 172 440 90 560 90" fill="none" stroke="#8a5a0a" stroke-opacity=".55" stroke-width="34" stroke-dasharray="2 7"/></g>
+          <circle class="mk mk1" cx="250" cy="172" r="19" fill="none" stroke="#F2A93B" stroke-width="3.5"/><circle class="mk mk2" cx="560" cy="90" r="19" fill="none" stroke="#F2A93B" stroke-width="3.5"/>
+          <circle class="ring ring1" cx="250" cy="172" r="14" fill="none" stroke="#14213D" stroke-width="2"/><circle class="ring ring2" cx="560" cy="90" r="14" fill="none" stroke="#14213D" stroke-width="2"/>
+          <text x="40" y="228" fill="#8a93a8" font-size="15">Ø250</text><text x="700" y="140" fill="#8a93a8" font-size="15">Ø160</text>
+          <g class="cur"><path d="M0 0V17L4.5 13 8 20.5 10.7 19.3 7.2 12H13Z" fill="#fff" stroke="#111" stroke-width="1.2" stroke-linejoin="round"/></g>
+        </svg>
+        <svg class="stg stg-ft" viewBox="0 0 800 320" aria-hidden="true">
+          <defs><clipPath id="clipF"><rect class="clipf" x="400" y="80" width="0" height="140"/></clipPath></defs>
+          <rect x="30" y="130" width="370" height="40" rx="3" fill="url(#dg)"/>
+          <rect class="rigid2" x="400" y="130" width="220" height="40" fill="url(#dg)"/>
+          <g clip-path="url(#clipF)"><line class="flexcol" x1="400" y1="150" x2="620" y2="150" stroke-width="36"/><line x1="400" y1="150" x2="620" y2="150" stroke="#8a5a0a" stroke-opacity=".55" stroke-width="36" stroke-dasharray="2 7"/></g>
+          <g class="dim" opacity="0"><path d="M400 98H620M400 92V104M620 92V104" stroke="#14213D" stroke-width="1.5" fill="none"/><text x="510" y="88" text-anchor="middle" font-size="14" fill="#14213D" font-weight="600">1500</text></g>
+          <rect x="620" y="95" width="90" height="110" fill="#a9bce6" fill-opacity=".7" stroke="#3a55c8" stroke-width="2.5"/><path d="M620 132H710M620 150H710M620 168H710" stroke="#3a55c8" stroke-width="2"/>
+          <circle class="mk mk1" cx="620" cy="150" r="20" fill="none" stroke="#F2A93B" stroke-width="3.5"/>
+          <circle class="ring ring1" cx="620" cy="150" r="14" fill="none" stroke="#14213D" stroke-width="2"/>
+          <g class="cur"><path d="M0 0V17L4.5 13 8 20.5 10.7 19.3 7.2 12H13Z" fill="#fff" stroke="#111" stroke-width="1.2" stroke-linejoin="round"/></g>
+        </svg>
+        <div class="chips2" id="chips" hidden><span data-i18n="rb.len"></span><span class="c">500</span><span class="c">1000</span><span class="c">1500</span><span class="c">2000</span><span class="c">2500</span></div>
+        <div class="pane" id="pane-set">
+          <div class="win"><header><span data-i18n="rb.set"></span><span>×</span></header><div class="bd">
+            <div class="row"><label data-i18n="rb.set.lang"></label><div class="seg" id="seglang"><button data-l="uk" aria-pressed="false">Українська</button><button data-l="en" aria-pressed="false">English</button><button data-l="ru" aria-pressed="false">Русский</button></div></div>
+            <div class="row"><label data-i18n="rb.set.color"></label><div class="sw" id="swatches"></div></div>
+            <p class="hint" data-i18n="rb.set.hint"></p>
+          </div></div>
+        </div>
+        <div class="pane" id="pane-about">
+          <div class="win"><header><span data-i18n="rb.about"></span><span>×</span></header><div class="bd">
+            <div class="row"><b style="font-size:18px">HVAC Stuff</b><br><span data-i18n="hero.version"></span> <b class="verx">1.1.1</b></div>
+            <div class="row"><button class="upd" id="updbtn" type="button" data-i18n="rb.about.upd"></button><span class="ok" id="updok" hidden></span></div>
+            <p class="hint">© 2026 Maliuhin Volodymyr · <a href="https://github.com/iMrVoLaNd/HVAC-Stuff-Releases/blob/main/LICENSE.md" data-i18n="foot.license"></a></p>
+          </div></div>
+        </div>
+        <button class="replay" id="replay" type="button" data-i18n="rb.replay"></button>
+      </div>
+      <div class="rv-status"><span id="rvstatus"></span><span>HVAC Stuff</span></div>
     </div>
   </div>
 </section>
@@ -474,7 +609,7 @@ section.seen h2::after { width: 64px; }
   /* ---------- тексты ---------- */
   var T = {
     uk: {
-      "nav.plugins": "Плагіни", "plug.eyebrow": "Набір плагінів", "plug.title": "Останні додані плагіни", "plug.lead": "HVAC Stuff росте: нові плагіни з’являються в тому ж інсталяторі й на тій самій вкладці Revit. Ось що вже є.", "plug.new": "Новий", "plug.soon": "Скоро", "plug.more": "Докладніше →", "plug.since": "З версії", "plug.next.t": "Наступний плагін", "plug.next.p": "Над ним уже йде робота. Є ідея, чого бракує у вашій рутині? Напишіть — додам у чергу.", "plug.idea": "Запропонувати ідею →", "q6.q": "Чи будуть нові плагіни?", "q6.a": "Так: набір поповнюється. Новий плагін з’являється в тому ж інсталяторі, на вкладці «HVAC Stuff». Оновлення приходить звичайним оновленням надбудови.", "nav.home": "Головна", "nav.features": "Переваги", "nav.faq": "Питання", "nav.commands": "Команди", "nav.videos": "Відео", "nav.manuals": "Посібники", "nav.install": "Встановлення",
+      "nav.plugins": "Плагіни", "plug.eyebrow": "Набір плагінів", "plug.title": "Останні додані плагіни", "plug.lead": "HVAC Stuff росте: нові плагіни з’являються в тому ж інсталяторі й на тій самій вкладці Revit. Ось що вже є.", "plug.new": "Новий", "plug.soon": "Скоро", "plug.more": "Докладніше →", "plug.since": "З версії", "plug.next.t": "Наступний плагін", "plug.next.p": "Над ним уже йде робота. Є ідея, чого бракує у вашій рутині? Напишіть — додам у чергу.", "plug.idea": "Запропонувати ідею →", "q6.q": "Чи будуть нові плагіни?", "q6.a": "Так: набір поповнюється. Новий плагін з’являється в тому ж інсталяторі, на вкладці «HVAC Stuff». Оновлення приходить звичайним оновленням надбудови.", "nav.ribbon": "Вкладка", "rb.eyebrow": "Спробуйте", "rb.title": "Наша вкладка в Revit — натисніть кнопку", "rb.lead": "Це копія стрічки Revit (темна тема), але лише з нашою вкладкою. Наведіть курсор — з’явиться підказка, як у Revit. Натисніть — побачите, що робить команда.", "rb.g1": "Повітропроводи", "rb.g2": "Програма", "rb.qfc": "З’єднати<br>гофрою", "rb.ft": "Врізати<br>гофру", "rb.set": "Налаштування", "rb.about": "Про програму", "rb.f1": "Натисніть F1 для довідки", "rb.s0": "Готово", "rb.q1": "Виберіть перший конектор", "rb.q2": "Виберіть другий конектор", "rb.q3": "Готово: гнучкий повітропровід створено", "rb.f1s": "Виберіть елемент із жорстким повітропроводом", "rb.f2s": "Готово: кінець повітроводу замінено гнучким, 1500 мм", "rb.replay": "↻ Повторити", "rb.len": "Довжина, мм", "rb.set.lang": "Мова", "rb.set.color": "Колір гофри", "rb.set.hint": "Мова змінюється одразу — спробуйте. Колір фарбує гофру в демонстрації.", "rb.about.upd": "Перевірити оновлення", "rb.about.ok": "Остання версія: ", "rb.tip.qfc": "З’єднати гофрою — гнучкий повітропровід між двома конекторами за два кліки. Однакові розміри — одразу, різні — вікно з розміром і живим переглядом. Серія пар до Esc.", "rb.tip.ft": "Врізати гофру — кінець жорсткого повітроводу біля елемента стає гнучким. Швидкі значення 500–2500 мм, «Вся ділянка», серія елементів.", "rb.tip.set": "Налаштування — мова інтерфейсу, колір і вигляд гнучкого повітроводу при попередньому перегляді, параметри кожної команди.", "rb.tip.about": "Про програму — версія й перевірка оновлень, посібники, папка з налаштуваннями й журналами, автор, ліцензія та подяки.", "nav.home": "Головна", "nav.features": "Переваги", "nav.faq": "Питання", "nav.commands": "Команди", "nav.videos": "Відео", "nav.manuals": "Посібники", "nav.install": "Встановлення",
       "hero.eyebrow": "Набір плагінів Revit для вентиляції",
       "hero.title": "Набір плагінів, що прибирає <em>рутину вентиляції</em>",
       "hero.sub": "HVAC Stuff — безкоштовний набір плагінів для проєктувальників вентиляції. Зараз у ньому два плагіни для гнучких повітроводів, нові з’являтимуться регулярно. Одна установка — усі плагіни.",
@@ -519,7 +654,7 @@ section.seen h2::after { width: 64px; }
       "foot.copy": "© 2026 Maliuhin Volodymyr. Безкоштовна надбудова для Autodesk Revit.", "foot.license": "Ліцензія", "foot.third": "Сторонні компоненти", "foot.releases": "Усі релізи"
     },
     en: {
-      "nav.plugins": "Plugins", "plug.eyebrow": "The plugin set", "plug.title": "Latest added plugins", "plug.lead": "HVAC Stuff keeps growing: new plugins arrive in the same installer and on the same Revit tab. Here is what is in the set already.", "plug.new": "New", "plug.soon": "Soon", "plug.more": "Details →", "plug.since": "Since version", "plug.next.t": "The next plugin", "plug.next.p": "Work on it is under way. Know what your routine is missing? Write to me and I will add it to the queue.", "plug.idea": "Suggest an idea →", "q6.q": "Will there be more plugins?", "q6.a": "Yes: the set keeps growing. A new plugin comes in the same installer, on the “HVAC Stuff” tab. It arrives as a regular add-in update.", "nav.home": "Home", "nav.features": "Features", "nav.faq": "FAQ", "nav.commands": "Commands", "nav.videos": "Videos", "nav.manuals": "Manuals", "nav.install": "Install",
+      "nav.plugins": "Plugins", "plug.eyebrow": "The plugin set", "plug.title": "Latest added plugins", "plug.lead": "HVAC Stuff keeps growing: new plugins arrive in the same installer and on the same Revit tab. Here is what is in the set already.", "plug.new": "New", "plug.soon": "Soon", "plug.more": "Details →", "plug.since": "Since version", "plug.next.t": "The next plugin", "plug.next.p": "Work on it is under way. Know what your routine is missing? Write to me and I will add it to the queue.", "plug.idea": "Suggest an idea →", "q6.q": "Will there be more plugins?", "q6.a": "Yes: the set keeps growing. A new plugin comes in the same installer, on the “HVAC Stuff” tab. It arrives as a regular add-in update.", "nav.ribbon": "Ribbon", "rb.eyebrow": "Try it", "rb.title": "Our tab in Revit — press a button", "rb.lead": "This is a copy of the Revit ribbon (dark theme) with only our tab. Hover a button for a Revit-style tooltip. Press it to see what the command does.", "rb.g1": "Ductwork", "rb.g2": "Program", "rb.qfc": "Quick Flex<br>Connect", "rb.ft": "Flex<br>Tail", "rb.set": "Settings", "rb.about": "About", "rb.f1": "Press F1 for more help", "rb.s0": "Ready", "rb.q1": "Pick the first connector", "rb.q2": "Pick the second connector", "rb.q3": "Done: flex duct created", "rb.f1s": "Pick an element with a rigid duct", "rb.f2s": "Done: duct end replaced by a flex duct, 1500 mm", "rb.replay": "↻ Replay", "rb.len": "Length, mm", "rb.set.lang": "Language", "rb.set.color": "Flex duct color", "rb.set.hint": "The language changes at once, try it. The color paints the flex duct in the demo.", "rb.about.upd": "Check for updates", "rb.about.ok": "Latest version: ", "rb.tip.qfc": "Quick FlexConnect — a flex duct between two connectors in two clicks. Equal sizes: built at once; different sizes: a window with the size and a live preview. Series of pairs until Esc.", "rb.tip.ft": "Flex Tail — the end of a rigid duct at an element becomes flex. Quick lengths 500–2500 mm, the whole segment, a series of elements.", "rb.tip.set": "Settings — interface language, preview color, the look of the flex duct during preview, and the options of each command.", "rb.tip.about": "About — the version and the update check, the user guides, the folder with settings and logs, the author, the license, and the credits.", "nav.home": "Home", "nav.features": "Features", "nav.faq": "FAQ", "nav.commands": "Commands", "nav.videos": "Videos", "nav.manuals": "Manuals", "nav.install": "Install",
       "hero.eyebrow": "A set of Revit plugins for HVAC design",
       "hero.title": "A plugin set that takes the <em>routine out of HVAC design</em>",
       "hero.sub": "HVAC Stuff is a free set of plugins for HVAC designers. It has two plugins for flex ducts today, and new ones keep coming. One installer, all the plugins.",
@@ -564,7 +699,7 @@ section.seen h2::after { width: 64px; }
       "foot.copy": "© 2026 Maliuhin Volodymyr. A free add-in for Autodesk Revit.", "foot.license": "License", "foot.third": "Third-party notices", "foot.releases": "All releases"
     },
     ru: {
-      "nav.plugins": "Плагины", "plug.eyebrow": "Набор плагинов", "plug.title": "Последние добавленные плагины", "plug.lead": "HVAC Stuff растёт: новые плагины появляются в том же установщике и на той же вкладке Revit. Вот что уже есть.", "plug.new": "Новый", "plug.soon": "Скоро", "plug.more": "Подробнее →", "plug.since": "С версии", "plug.next.t": "Следующий плагин", "plug.next.p": "Работа над ним уже идёт. Есть идея, чего не хватает в вашей рутине? Напишите — добавлю в очередь.", "plug.idea": "Предложить идею →", "q6.q": "Будут ли новые плагины?", "q6.a": "Да: набор пополняется. Новый плагин приходит в том же установщике, на вкладке «HVAC Stuff». Он появляется обычным обновлением надстройки.", "nav.home": "Главная", "nav.features": "Преимущества", "nav.faq": "Вопросы", "nav.commands": "Команды", "nav.videos": "Видео", "nav.manuals": "Руководства", "nav.install": "Установка",
+      "nav.plugins": "Плагины", "plug.eyebrow": "Набор плагинов", "plug.title": "Последние добавленные плагины", "plug.lead": "HVAC Stuff растёт: новые плагины появляются в том же установщике и на той же вкладке Revit. Вот что уже есть.", "plug.new": "Новый", "plug.soon": "Скоро", "plug.more": "Подробнее →", "plug.since": "С версии", "plug.next.t": "Следующий плагин", "plug.next.p": "Работа над ним уже идёт. Есть идея, чего не хватает в вашей рутине? Напишите — добавлю в очередь.", "plug.idea": "Предложить идею →", "q6.q": "Будут ли новые плагины?", "q6.a": "Да: набор пополняется. Новый плагин приходит в том же установщике, на вкладке «HVAC Stuff». Он появляется обычным обновлением надстройки.", "nav.ribbon": "Вкладка", "rb.eyebrow": "Попробуйте", "rb.title": "Наша вкладка в Revit — нажмите кнопку", "rb.lead": "Это копия ленты Revit (тёмная тема), но только с нашей вкладкой. Наведите курсор — появится подсказка, как в Revit. Нажмите — увидите, что делает команда.", "rb.g1": "Воздуховоды", "rb.g2": "Программа", "rb.qfc": "Соединить<br>гофрой", "rb.ft": "Врезать<br>гофру", "rb.set": "Настройки", "rb.about": "О программе", "rb.f1": "Нажмите F1 для получения справки", "rb.s0": "Готово", "rb.q1": "Выберите первый коннектор", "rb.q2": "Выберите второй коннектор", "rb.q3": "Готово: гибкий воздуховод создан", "rb.f1s": "Выберите элемент с жёстким воздуховодом", "rb.f2s": "Готово: конец воздуховода заменён гибким, 1500 мм", "rb.replay": "↻ Повторить", "rb.len": "Длина, мм", "rb.set.lang": "Язык", "rb.set.color": "Цвет гофры", "rb.set.hint": "Язык меняется сразу — попробуйте. Цвет окрашивает гофру в демонстрации.", "rb.about.upd": "Проверить обновления", "rb.about.ok": "Последняя версия: ", "rb.tip.qfc": "Соединить гофрой — гибкий воздуховод между двумя коннекторами за два клика. Одинаковые размеры — сразу, разные — окно с размером и живым предпросмотром. Серия пар до Esc.", "rb.tip.ft": "Врезать гофру — конец жёсткого воздуховода у элемента становится гибким. Быстрые значения 500–2500 мм, «Весь участок», серия элементов.", "rb.tip.set": "Настройки — язык интерфейса, цвет и вид гибкого воздуховода при предпросмотре, параметры каждой команды.", "rb.tip.about": "О программе — версия и проверка обновлений, руководства, папка с настройками и журналами, автор, лицензия и благодарности.", "nav.home": "Главная", "nav.features": "Преимущества", "nav.faq": "Вопросы", "nav.commands": "Команды", "nav.videos": "Видео", "nav.manuals": "Руководства", "nav.install": "Установка",
       "hero.eyebrow": "Набор плагинов Revit для вентиляции",
       "hero.title": "Набор плагинов, который убирает <em>рутину вентиляции</em>",
       "hero.sub": "HVAC Stuff — бесплатный набор плагинов для проектировщиков вентиляции. Сейчас в нём два плагина для гибких воздуховодов, новые будут появляться регулярно. Одна установка — все плагины.",
@@ -639,13 +774,6 @@ section.seen h2::after { width: 64px; }
     if (f) return f;
     return window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
   }
-  function renderRibbon() {
-    var names = ["QuickFlexConnect", "FlexTail", "Settings", "About", "rest"];
-    var box = document.getElementById("ribbon"), sc = scheme();
-    box.innerHTML = names.map(function (n) {
-      return '<img style="--i:' + names.indexOf(n) + '" src="ribbon/img/col-' + n + "-" + lang + "-" + (sc === "dark" ? "dark" : "light") + '.svg" alt="' + n + '" loading="lazy">';
-    }).join("");
-  }
   function renderPdfs() {
     document.querySelectorAll("[data-pdf]").forEach(function (el) {
       el.innerHTML = ["uk", "en", "ru"].map(function (l) {
@@ -677,19 +805,19 @@ section.seen h2::after { width: 64px; }
     document.querySelectorAll("[data-i18n-html]").forEach(function (el) { el.innerHTML = t(el.dataset.i18nHtml); });
     document.querySelectorAll(".lang button").forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.lang === l); });
     document.title = "HVAC Stuff — " + t("hero.eyebrow");
-    renderRibbon(); renderVideos(); renderPdfs(); renderDots();
+    renderVideos(); renderPdfs(); renderDots(); if (window.rvRefresh) rvRefresh();
   }
 
   document.querySelectorAll(".lang button").forEach(function (b) { b.addEventListener("click", function () { applyLang(b.dataset.lang); }); });
   document.getElementById("vtabs").addEventListener("click", function (e) {
     var b = e.target.closest("button"); if (b) { filter = b.dataset.g; renderVideos(); }
   });
-  if (window.matchMedia) matchMedia("(prefers-color-scheme: dark)").addEventListener("change", renderRibbon);
 
   /* версия и прямые ссылки на MSI из последнего релиза; без сети остаётся ссылка на страницу релизов */
   function setVersion(v) {
     version = v;
     document.getElementById("ver").textContent = v;
+    document.querySelectorAll(".verx").forEach(function (e) { e.textContent = v; });
     var u = "https://github.com/" + REPO + "/releases/download/" + v + "/HVAC.Stuff-" + v;
     document.getElementById("dl-single").href = u + "-SingleUser.msi";
     document.getElementById("dl-multi").href = u + "-MultiUser.msi";
@@ -700,7 +828,7 @@ section.seen h2::after { width: 64px; }
   applyLang(pickLang());
 
   /* ---------- навигация по разделам: точки справа, подсветка сверху, стрелки вверх/вниз, полоса прогресса ---------- */
-  var KEYS = ["home", "plugins", "features", "commands", "videos", "manuals", "install", "faq"];
+  var KEYS = ["home", "plugins", "ribbon", "features", "commands", "videos", "manuals", "install", "faq"];
   var secs = KEYS.map(function (k) { return document.getElementById(k); });
   var dots = document.getElementById("dots"), cur = 0;
   function renderDots() {
@@ -744,6 +872,100 @@ section.seen h2::after { width: 64px; }
   var io = "IntersectionObserver" in window ? new IntersectionObserver(function (es) {
     es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
   }, { threshold: .12 }) : null;
+
+  /* ---------- интерактивная лента Revit ---------- */
+  var rv = document.getElementById("revit"), stage = document.getElementById("stage");
+  var tip = document.getElementById("rvtip"), stat = document.getElementById("rvstatus"), timers = [], cmd = "qfc", tipT = 0;
+  var COLORS = ["#F2A93B", "#E4572E", "#2E9E6B", "#5BB6E8", "#8E6BD9", "#8C96A0"];
+  function later(f, ms) { timers.push(setTimeout(f, ms)); }
+  function cls(sel, c, on) { var e = stage.querySelector(sel); if (e) e.classList[on ? "add" : "remove"](c); }
+  function reset() {
+    timers.forEach(clearTimeout); timers = [];
+    stage.querySelectorAll(".mk,.chips2 .c").forEach(function (e) { e.classList.remove("on", "hi"); });
+    stage.querySelectorAll(".ring").forEach(function (e) { e.classList.remove("go"); });
+    stage.querySelectorAll(".clip rect, .clipq, .clipf").forEach(function (e) { e.setAttribute("width", 0); });
+    var r2 = stage.querySelector(".rigid2"); if (r2) { r2.style.transition = "none"; r2.style.transform = ""; r2.style.opacity = 1; }
+    var dim = stage.querySelector(".dim"); if (dim) dim.setAttribute("opacity", 0);
+    stage.querySelectorAll(".cur").forEach(function (c) { c.style.transition = "none"; c.style.opacity = 1; c.style.transform = ""; void c.getBoundingClientRect(); c.style.transition = ""; });
+  }
+  function go(el, x, y) { el.style.transform = "translate(" + x + "px," + y + "px)"; }
+  function click(sel) { var e = stage.querySelector(sel); e.classList.remove("go"); void e.getBoundingClientRect(); e.classList.add("go"); }
+  function playQ() {
+    var svg = stage.querySelector(".stg-qfc"), cur = svg.querySelector(".cur");
+    stat.textContent = t("rb.q1"); go(cur, 60, 262);
+    later(function () { go(cur, 250, 172); }, 350);
+    later(function () { click(".stg-qfc .ring1"); svg.querySelector(".mk1").classList.add("on"); stat.textContent = t("rb.q2"); }, 1350);
+    later(function () { go(cur, 560, 90); }, 1800);
+    later(function () { click(".stg-qfc .ring2"); svg.querySelector(".mk2").classList.add("on"); }, 2800);
+    later(function () { svg.querySelector(".clipq").setAttribute("width", 320); cur.style.opacity = 0; }, 3150);
+    later(function () { stat.textContent = t("rb.q3"); svg.querySelectorAll(".mk").forEach(function (m) { m.classList.remove("on"); }); }, 4200);
+  }
+  function playF() {
+    var svg = stage.querySelector(".stg-ft"), cur = svg.querySelector(".cur"), chips = stage.querySelectorAll(".chips2 .c");
+    stat.textContent = t("rb.f1s"); go(cur, 60, 262);
+    later(function () { go(cur, 620, 150); }, 350);
+    later(function () { click(".stg-ft .ring1"); svg.querySelector(".mk1").classList.add("on"); }, 1350);
+    later(function () { chips[0].classList.add("hi"); }, 1700);
+    later(function () { chips[0].classList.remove("hi"); chips[1].classList.add("hi"); }, 2050);
+    later(function () { chips[1].classList.remove("hi"); chips[2].classList.add("hi"); }, 2400);
+    later(function () {
+      var r2 = svg.querySelector(".rigid2"); r2.style.transformOrigin = "620px 150px"; r2.style.transition = "transform .9s cubic-bezier(.4,0,.2,1)"; r2.style.transform = "scaleX(0)";
+      svg.querySelector(".clipf").setAttribute("width", 220); cur.style.opacity = 0; svg.querySelector(".dim").setAttribute("opacity", 1);
+    }, 2900);
+    later(function () { stat.textContent = t("rb.f2s"); svg.querySelector(".mk1").classList.remove("on"); }, 3900);
+  }
+  function show(c) {
+    cmd = c; stage.dataset.cmd = c;
+    rv.querySelectorAll(".rv-btn").forEach(function (b) { b.classList.toggle("on", b.dataset.cmd === c); });
+    stage.querySelectorAll(".stg").forEach(function (e) { e.classList.remove("on"); });
+    stage.querySelectorAll(".pane").forEach(function (e) { e.classList.remove("on"); });
+    document.getElementById("chips").hidden = c !== "ft";
+    document.getElementById("replay").hidden = c !== "qfc" && c !== "ft";
+    reset();
+    if (c === "qfc") { stage.querySelector(".stg-qfc").classList.add("on"); playQ(); }
+    else if (c === "ft") { stage.querySelector(".stg-ft").classList.add("on"); playF(); }
+    else { stage.querySelector("#pane-" + c).classList.add("on"); stat.textContent = t("rb.s0"); }
+  }
+  function tipShow(b) {
+    var c = b.dataset.cmd, name = b.querySelector(".l").textContent.replace(/\s+/g, " ").trim();
+    var txt = t("rb.tip." + c).replace(/^[^—]+—\s*/, "");
+    tip.innerHTML = "<b>" + name + "</b>" + txt + '<hr><span class="f1">' + t("rb.f1") + "</span>";
+    var rr = rv.getBoundingClientRect(), br = b.getBoundingClientRect();
+    tip.style.left = Math.max(6, Math.min(br.left - rr.left, rr.width - 280)) + "px";
+    tip.style.top = (br.bottom - rr.top + 6) + "px";
+    tip.classList.add("on");
+  }
+  function tipHide() { clearTimeout(tipT); tip.classList.remove("on"); }
+  rv.querySelectorAll(".rv-btn").forEach(function (b) {
+    b.addEventListener("mouseenter", function () { clearTimeout(tipT); tipT = setTimeout(function () { tipShow(b); }, 350); });
+    b.addEventListener("mouseleave", tipHide);
+    b.addEventListener("focus", function () { tipShow(b); });
+    b.addEventListener("blur", tipHide);
+    b.addEventListener("click", function () { tipHide(); show(b.dataset.cmd); });
+  });
+  document.getElementById("replay").addEventListener("click", function () { show(cmd); });
+  document.getElementById("seglang").addEventListener("click", function (e) { var b = e.target.closest("button"); if (b) applyLang(b.dataset.l); });
+  var sw = document.getElementById("swatches");
+  sw.innerHTML = COLORS.map(function (c, i) { return '<button type="button" aria-pressed="' + (i === 0) + '" aria-label="' + c + '" style="background:' + c + '" data-c="' + c + '"></button>'; }).join("");
+  sw.addEventListener("click", function (e) {
+    var b = e.target.closest("button"); if (!b) return;
+    sw.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-pressed", x === b); });
+    stage.style.setProperty("--flex", b.dataset.c);
+  });
+  document.getElementById("updbtn").addEventListener("click", function () {
+    var ok = document.getElementById("updok"); ok.hidden = false; ok.textContent = t("rb.about.ok") + version;
+  });
+  window.rvRefresh = function () {
+    document.querySelectorAll("#seglang button").forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.l === lang); });
+    document.querySelectorAll(".verx").forEach(function (e) { e.textContent = version; });
+    if (!timers.length || cmd === "set" || cmd === "about") stat.textContent = t("rb.s0");
+  };
+  var rvio = "IntersectionObserver" in window ? new IntersectionObserver(function (es) {
+    if (es[0].isIntersecting) { rvio.disconnect(); show("qfc"); }
+  }, { threshold: .45 }) : null;
+  if (rvio) rvio.observe(rv); else show("qfc");
+  rvRefresh();
+
   /* лесенка: дочерние карточки появляются по очереди */
   document.querySelectorAll(".grid3, .man, .dl, .steps").forEach(function (g) {
     Array.prototype.forEach.call(g.children, function (c, i) { c.style.setProperty("--d", i * 90 + "ms"); });
