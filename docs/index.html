@@ -174,7 +174,7 @@ footer a { color: #fff; }
 .pager button[hidden] { display: none; }
 @media (max-width: 700px) { .wrap { width: calc(100% - 56px); margin-left: 16px; margin-right: auto; } .pager { bottom: 12px; right: 10px; } .dots { right: 6px; } }
 /* лента Revit 2026 (тёмная тема): размеры и цвета сняты с живого экрана, масштаб — через zoom */
-.revit { --win: #222933; --pan: #3b4453; --txt: #f5f5f5; --sep: #485363; --hov: #4b566a; --hovb: #6a778c; --act: #2e3644; --ink: #E8ECF2; --blu: #6CBDEB; --tipbg: #2a313c; --tipb: #6d7580; --tipl: #4d535b; --f1: #9aa7bf; background: var(--win); border-radius: 12px; overflow: hidden; box-shadow: 0 30px 70px -30px rgba(0,0,0,.65); font: 12px/1 "Segoe UI", system-ui, sans-serif; color: var(--txt); position: relative; max-width: 980px; margin: 0 auto; }
+.revit { --win: #222933; --pan: #3b4453; --txt: #f5f5f5; --sep: #485363; --hov: #4b566a; --hovb: #6a778c; --act: #2e3644; --ink: #E8ECF2; --blu: #6CBDEB; --tipbg: #2a313c; --tipb: #6d7580; --tipl: #4d535b; --f1: #9aa7bf; --canvas: #222933; --stg-ink: #E8ECF2; --stg-line: #3b4453; --stg-muted: #9aa7bf; background: var(--win); border-radius: 12px; overflow: hidden; box-shadow: 0 30px 70px -30px rgba(0,0,0,.65); font: 12px/1 "Segoe UI", system-ui, sans-serif; color: var(--txt); position: relative; max-width: 980px; margin: 0 auto; }
 .rv-bar { display: flex; gap: 6px; padding: 8px 12px 0; align-items: center; }
 .rv-bar i { width: 10px; height: 10px; border-radius: 50%; background: var(--pan); }
 .rv-theme { margin-left: auto; display: inline-flex; border: 1px solid var(--hovb); border-radius: 6px; overflow: hidden; }
@@ -198,7 +198,7 @@ footer a { color: #fff; }
 .rv-tip b { display: block; font-size: 13px; margin-bottom: 4px; }
 .rv-tip hr { border: 0; border-top: 1px solid var(--tipl); margin: 8px 0 6px; }
 .rv-tip .f1 { color: var(--f1); }
-.rv-stage { position: relative; background: #fff; margin: 4px 4px 0; min-height: 320px; color: #14213D; overflow: hidden; }
+.rv-stage { position: relative; background: var(--canvas); margin: 4px 4px 0; min-height: 320px; color: var(--stg-ink); overflow: hidden; transition: background .3s, color .3s; }
 .stg { display: none; width: 100%; height: auto; }
 .stg.on { display: block; }
 .pane { display: none; padding: 26px; min-height: 320px; align-items: center; justify-content: center; }
@@ -223,9 +223,9 @@ footer a { color: #fff; }
 .replay:hover { background: #1c2d52; }
 .replay[hidden] { display: none; }
 .rv-status { display: flex; justify-content: space-between; padding: 5px 10px; color: var(--txt); min-height: 24px; }
-.chips2 { position: absolute; left: 14px; top: 12px; display: flex; gap: 6px; align-items: center; font-size: 12px; color: #5d6881; pointer-events: none; }
-.chips2 span.c { border: 1.5px solid #c9ced8; border-radius: 6px; padding: 3px 8px; color: #14213D; background: #fff; transition: all .25s; }
-.chips2 span.c.hi { background: #F2A93B; border-color: #F2A93B; font-weight: 700; transform: scale(1.1); }
+.chips2 { position: absolute; left: 14px; top: 12px; display: flex; gap: 6px; align-items: center; font-size: 12px; color: var(--stg-muted); pointer-events: none; }
+.chips2 span.c { border: 1.5px solid var(--stg-line); border-radius: 6px; padding: 3px 8px; color: var(--stg-ink); background: var(--canvas); transition: all .25s; }
+.chips2 span.c.hi { background: #F2A93B; border-color: #F2A93B; color: #14213D; font-weight: 700; transform: scale(1.1); }
 .chips2[hidden] { display: none; }
 /* сцены на холсте */
 .cur { transform: translate(60px, 260px); transition: transform .9s cubic-bezier(.5,0,.2,1), opacity .4s; }
@@ -236,7 +236,7 @@ footer a { color: #fff; }
 .clip rect { transition: width .9s cubic-bezier(.4,0,.2,1); }
 .flexcol { stroke: var(--flex, #F2A93B); }
 @media (max-width: 700px) { .rv-tabs, .rv-ribbon { zoom: 1.1; } .rv-stage { min-height: 220px; } .pane { min-height: 220px; padding: 14px; } .chips2 { display: none; } }
-.revit[data-theme="light"] { --win: #d9d9d9; --pan: #f5f5f5; --txt: #3c3c3c; --sep: #e2e2e2; --hov: #e3ecf6; --hovb: #9fb7d0; --act: #d2e1f1; --ink: #14213D; --blu: #3E9AD0; --tipbg: #f5f5f5; --tipb: #8c8c8c; --tipl: #cfcfcf; --f1: #666; }
+.revit[data-theme="light"] { --win: #d9d9d9; --pan: #f5f5f5; --txt: #3c3c3c; --sep: #e2e2e2; --hov: #e3ecf6; --hovb: #9fb7d0; --act: #d2e1f1; --ink: #14213D; --blu: #3E9AD0; --tipbg: #f5f5f5; --tipb: #8c8c8c; --tipl: #cfcfcf; --f1: #666; --canvas: #ffffff; --stg-ink: #14213D; --stg-line: #c9ced8; --stg-muted: #5d6881; }
 .revit .ink { stroke: var(--ink); } .revit .blu { stroke: var(--blu); }
 /* логотип в шапке и анимированный герой */
 .brand img { width: 32px; height: 32px; border-radius: 50%; transition: transform .35s; box-shadow: 0 0 0 2px rgba(242,169,59,.55); }
@@ -458,7 +458,7 @@ section.seen h2::after { width: 64px; }
           <rect x="560" y="68" width="210" height="44" rx="3" fill="url(#dg)"/><ellipse cx="560" cy="90" rx="9" ry="22" fill="#26335a"/>
           <g clip-path="url(#clipQ)"><path class="flexcol" d="M250 172 C370 172 440 90 560 90" fill="none" stroke-width="34" stroke-linecap="butt"/><path d="M250 172 C370 172 440 90 560 90" fill="none" stroke="#8a5a0a" stroke-opacity=".55" stroke-width="34" stroke-dasharray="2 7"/></g>
           <circle class="mk mk1" cx="250" cy="172" r="19" fill="none" stroke="#F2A93B" stroke-width="3.5"/><circle class="mk mk2" cx="560" cy="90" r="19" fill="none" stroke="#F2A93B" stroke-width="3.5"/>
-          <circle class="ring ring1" cx="250" cy="172" r="14" fill="none" stroke="#14213D" stroke-width="2"/><circle class="ring ring2" cx="560" cy="90" r="14" fill="none" stroke="#14213D" stroke-width="2"/>
+          <circle class="ring ring1" cx="250" cy="172" r="14" fill="none" stroke="currentColor" stroke-width="2"/><circle class="ring ring2" cx="560" cy="90" r="14" fill="none" stroke="currentColor" stroke-width="2"/>
           <text x="40" y="228" fill="#8a93a8" font-size="15">Ø250</text><text x="700" y="140" fill="#8a93a8" font-size="15">Ø160</text>
           <g class="cur"><path d="M0 0V17L4.5 13 8 20.5 10.7 19.3 7.2 12H13Z" fill="#fff" stroke="#111" stroke-width="1.2" stroke-linejoin="round"/></g>
         </svg>
@@ -467,10 +467,10 @@ section.seen h2::after { width: 64px; }
           <rect x="30" y="130" width="370" height="40" rx="3" fill="url(#dg)"/>
           <rect class="rigid2" x="400" y="130" width="220" height="40" fill="url(#dg)"/>
           <g clip-path="url(#clipF)"><line class="flexcol" x1="400" y1="150" x2="620" y2="150" stroke-width="36"/><line x1="400" y1="150" x2="620" y2="150" stroke="#8a5a0a" stroke-opacity=".55" stroke-width="36" stroke-dasharray="2 7"/></g>
-          <g class="dim" opacity="0"><path d="M400 98H620M400 92V104M620 92V104" stroke="#14213D" stroke-width="1.5" fill="none"/><text x="510" y="88" text-anchor="middle" font-size="14" fill="#14213D" font-weight="600">1500</text></g>
+          <g class="dim" opacity="0"><path d="M400 98H620M400 92V104M620 92V104" stroke="currentColor" stroke-width="1.5" fill="none"/><text x="510" y="88" text-anchor="middle" font-size="14" fill="currentColor" font-weight="600">1500</text></g>
           <rect x="620" y="95" width="90" height="110" fill="#a9bce6" fill-opacity=".7" stroke="#3a55c8" stroke-width="2.5"/><path d="M620 132H710M620 150H710M620 168H710" stroke="#3a55c8" stroke-width="2"/>
           <circle class="mk mk1" cx="620" cy="150" r="20" fill="none" stroke="#F2A93B" stroke-width="3.5"/>
-          <circle class="ring ring1" cx="620" cy="150" r="14" fill="none" stroke="#14213D" stroke-width="2"/>
+          <circle class="ring ring1" cx="620" cy="150" r="14" fill="none" stroke="currentColor" stroke-width="2"/>
           <g class="cur"><path d="M0 0V17L4.5 13 8 20.5 10.7 19.3 7.2 12H13Z" fill="#fff" stroke="#111" stroke-width="1.2" stroke-linejoin="round"/></g>
         </svg>
         <div class="chips2" id="chips" hidden><span data-i18n="rb.len"></span><span class="c">500</span><span class="c">1000</span><span class="c">1500</span><span class="c">2000</span><span class="c">2500</span></div>
