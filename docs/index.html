@@ -219,6 +219,8 @@ footer a { color: #fff; }
 .win .upd { all: unset; cursor: pointer; background: #14213D; color: #fff; padding: 7px 14px; border-radius: 8px; font-size: 13px; font-weight: 600; }
 .win .upd:hover { background: #1c2d52; }
 .win .ok { color: #1c7c4b; font-weight: 600; margin-left: 10px; font-size: 13px; }
+.dr { transition: transform .9s cubic-bezier(.4,0,.2,1); }
+.dm { transition: opacity .4s; }
 .replay { all: unset; position: absolute; right: 12px; bottom: 12px; cursor: pointer; background: #14213D; color: #fff; font: 600 13px "Segoe UI", system-ui, sans-serif; padding: 7px 14px; border-radius: 99px; z-index: 2; box-shadow: 0 6px 16px -6px rgba(0,0,0,.5); }
 .replay:hover { background: #1c2d52; }
 .replay[hidden] { display: none; }
@@ -363,7 +365,7 @@ section.seen h2::after { width: 64px; }
           <a class="btn ghost" href="#videos" data-i18n="hero.watch"></a>
         </div>
         <div class="meta">
-          <span class="chip"><span data-i18n="hero.version"></span> <b id="ver">1.1.1</b></span>
+          <span class="chip"><span data-i18n="hero.version"></span> <b id="ver">1.3.0</b></span>
           <span class="chip">Revit <b>2023–2027</b></span>
           <span class="chip">UA · EN · RU</span>
           <span class="chip" data-i18n="hero.free"></span>
@@ -406,6 +408,16 @@ section.seen h2::after { width: 64px; }
         <a class="go" href="#commands" data-i18n="plug.more"></a>
         <span class="since"><span data-i18n="plug.since"></span> 1.0.0</span>
       </article>
+      <article class="card plug reveal">
+        <span class="badge" data-i18n="plug.new"></span>
+        <div class="tile"><svg viewBox="0 0 32 32" aria-hidden="true"><path stroke="#6CBDEB" d="M2 11H7V25H2ZM12 11H20V25H12ZM25 11H30V25H25Z"/>
+  
+  <path stroke="#E8ECF2" d="M7 6V9M12 6V9M7 7.5H12M20 6V9M25 6V9M20 7.5H25"/></svg></div>
+        <h3 data-i18n="dist.name"></h3><p class="en">Distribute</p>
+        <p data-i18n="dist.p"></p>
+        <a class="go" href="#commands" data-i18n="plug.more"></a>
+        <span class="since"><span data-i18n="plug.since"></span> 1.3.0</span>
+      </article>
       <article class="card plug next reveal">
         <span class="badge" data-i18n="plug.soon"></span>
         <div class="tile" aria-hidden="true">+</div>
@@ -435,6 +447,34 @@ section.seen h2::after { width: 64px; }
             <svg viewBox="0 0 32 32" aria-hidden="true"><path class="ink" d="M1 11H9.5M1 21H9.5M9.5 9.5V22.5"/><path stroke="#F2A93B" stroke-width="3" d="M10.5 16q1.84-7 3.67 0t3.67 0t3.66 0"/><path class="blu" d="M22.5 6V26H30V6ZM22.5 12H30M22.5 16H30M22.5 20H30"/></svg>
             <span class="l" data-i18n-html="rb.ft"></span></button>
           <span class="ttl" data-i18n="rb.g1"></span>
+        </div>
+        <div class="rv-sep"></div>
+        <div class="rv-group">
+          <button class="rv-btn" data-cmd="dhg" type="button">
+            <svg viewBox="0 0 32 32" aria-hidden="true"><path class="blu" d="M2 11H7V25H2ZM12 11H20V25H12ZM25 11H30V25H25Z"/>
+  
+  <path class="ink" d="M7 6V9M12 6V9M7 7.5H12M20 6V9M25 6V9M20 7.5H25"/></svg>
+            <span class="l" data-i18n-html="rb.dhg"></span></button>
+          <button class="rv-btn" data-cmd="dhc" type="button">
+            <svg viewBox="0 0 32 32" aria-hidden="true"><path class="blu" d="M3 11H8V25H3ZM12 11H20V25H12ZM24 11H29V25H24Z"/>
+  
+  <path class="ink" d="M5.5 5V8M16 5V8M26.5 5V8M5.5 6.5H26.5"/></svg>
+            <span class="l" data-i18n-html="rb.dhc"></span></button>
+          <button class="rv-btn" data-cmd="dvg" type="button">
+            <svg viewBox="0 0 32 32" aria-hidden="true"><g transform="rotate(90 16 16)">
+<path class="blu" d="M2 11H7V25H2ZM12 11H20V25H12ZM25 11H30V25H25Z"/>
+  
+  <path class="ink" d="M7 6V9M12 6V9M7 7.5H12M20 6V9M25 6V9M20 7.5H25"/>
+</g></svg>
+            <span class="l" data-i18n-html="rb.dvg"></span></button>
+          <button class="rv-btn" data-cmd="dvc" type="button">
+            <svg viewBox="0 0 32 32" aria-hidden="true"><g transform="rotate(90 16 16)">
+<path class="blu" d="M3 11H8V25H3ZM12 11H20V25H12ZM24 11H29V25H24Z"/>
+  
+  <path class="ink" d="M5.5 5V8M16 5V8M26.5 5V8M5.5 6.5H26.5"/>
+</g></svg>
+            <span class="l" data-i18n-html="rb.dvc"></span></button>
+          <span class="ttl" data-i18n="rb.g3"></span>
         </div>
         <div class="rv-sep"></div>
         <div class="rv-group">
@@ -473,6 +513,7 @@ section.seen h2::after { width: 64px; }
           <circle class="ring ring1" cx="620" cy="150" r="14" fill="none" stroke="currentColor" stroke-width="2"/>
           <g class="cur"><path d="M0 0V17L4.5 13 8 20.5 10.7 19.3 7.2 12H13Z" fill="#fff" stroke="#111" stroke-width="1.2" stroke-linejoin="round"/></g>
         </svg>
+        <svg class="stg stg-dist" viewBox="0 0 800 320" aria-hidden="true"></svg>
         <div class="chips2" id="chips" hidden><span data-i18n="rb.len"></span><span class="c">500</span><span class="c">1000</span><span class="c">1500</span><span class="c">2000</span><span class="c">2500</span></div>
         <div class="pane" id="pane-set">
           <div class="win"><header><span data-i18n="rb.set"></span><span>×</span></header><div class="bd">
@@ -483,7 +524,7 @@ section.seen h2::after { width: 64px; }
         </div>
         <div class="pane" id="pane-about">
           <div class="win"><header><span data-i18n="rb.about"></span><span>×</span></header><div class="bd">
-            <div class="row"><b style="font-size:18px">HVAC Stuff</b><br><span data-i18n="hero.version"></span> <b class="verx">1.1.1</b></div>
+            <div class="row"><b style="font-size:18px">HVAC Stuff</b><br><span data-i18n="hero.version"></span> <b class="verx">1.3.0</b></div>
             <div class="row"><button class="upd" id="updbtn" type="button" data-i18n="rb.about.upd"></button><span class="ok" id="updok" hidden></span></div>
             <p class="hint">© 2026 Maliuhin Volodymyr · <a href="https://github.com/iMrVoLaNd/HVAC-Stuff-Releases/blob/main/LICENSE.md" data-i18n="foot.license"></a></p>
           </div></div>
@@ -546,7 +587,7 @@ section.seen h2::after { width: 64px; }
         <p class="en">Flex Tail</p>
         <p data-i18n="ft.p"></p>
         <ul>
-          <li data-i18n="ft.l1"></li><li data-i18n="ft.l2"></li><li data-i18n="ft.l3"></li><li data-i18n="ft.l4"></li>
+          <li data-i18n="ft.l1"></li><li data-i18n="ft.l2"></li><li data-i18n="ft.l3"></li><li data-i18n="ft.l5"></li><li data-i18n="ft.l4"></li>
         </ul>
         <div class="btns"><span data-i18n="man.pdf"></span><span class="pdfs" data-pdf="FlexTail"></span></div>
       </div>
@@ -557,6 +598,31 @@ section.seen h2::after { width: 64px; }
           <path class="fl" d="M144 100 C190 100 190 100 215 100 C240 100 235 118 258 100 C275 88 280 100 300 100" fill="none" stroke="#F2A93B" stroke-width="6" stroke-dasharray="26 8 5 8" stroke-linecap="round"/>
           <path d="M144 70v60M300 70v60" stroke="#F2A93B" stroke-width="3"/>
           <text x="150" y="160" fill="#9AA7BF" font-size="13" font-family="Segoe UI, Arial">500 – 2500 mm</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="cmd">
+      <div class="txt reveal l">
+        <h3 data-i18n="dist.name"></h3>
+        <p class="en">Distribute</p>
+        <p data-i18n="dist.p"></p>
+        <ul>
+          <li data-i18n="dist.l1"></li><li data-i18n="dist.l2"></li><li data-i18n="dist.l3"></li><li data-i18n="dist.l4"></li>
+        </ul>
+        <div class="btns"><span data-i18n="man.pdf"></span><span class="pdfs" data-pdf="Distribute"></span></div>
+      </div>
+      <div class="shot demo reveal z">
+        <svg viewBox="0 0 400 200" width="100%" aria-hidden="true">
+          <path d="M30 40V170M370 40V170" stroke="#9AA7BF" stroke-width="3"/>
+          <rect x="66" y="90" width="44" height="50" rx="3" fill="none" stroke="#5BB6E8" stroke-width="4"/>
+          <rect x="144" y="90" width="82" height="50" rx="3" fill="none" stroke="#5BB6E8" stroke-width="4"/>
+          <rect x="262" y="90" width="64" height="50" rx="3" fill="none" stroke="#5BB6E8" stroke-width="4"/>
+          <g stroke="#F2A93B" stroke-width="3" fill="none" stroke-linecap="round">
+            <path class="pl" d="M30 66H66M30 58V74M66 58V74"/><path class="pl" d="M110 66H144M110 58V74M144 58V74" style="animation-delay:.3s"/>
+            <path class="pl" d="M226 66H262M226 58V74M262 58V74" style="animation-delay:.6s"/><path class="pl" d="M326 66H370M326 58V74M370 58V74" style="animation-delay:.9s"/>
+          </g>
+          <text x="30" y="190" fill="#9AA7BF" font-size="13" font-family="Segoe UI, Arial">Shift · Ctrl · Alt</text>
         </svg>
       </div>
     </div>
@@ -583,6 +649,7 @@ section.seen h2::after { width: 64px; }
     <div class="man">
       <div class="card reveal"><div class="ico"><svg><use href="#i-pdf"/></svg></div><h3 data-i18n="qfc.name"></h3><p data-i18n="man.qfc"></p><div class="pdfs" data-pdf="QuickFlexConnect"></div></div>
       <div class="card reveal"><div class="ico"><svg><use href="#i-pdf"/></svg></div><h3 data-i18n="ft.name"></h3><p data-i18n="man.ft"></p><div class="pdfs" data-pdf="FlexTail"></div></div>
+      <div class="card reveal"><div class="ico"><svg><use href="#i-pdf"/></svg></div><h3 data-i18n="dist.name"></h3><p data-i18n="man.dist"></p><div class="pdfs" data-pdf="Distribute"></div></div>
     </div>
     <p class="note" data-i18n="man.note"></p>
   </div>
@@ -645,10 +712,11 @@ section.seen h2::after { width: 64px; }
   /* ---------- тексты ---------- */
   var T = {
     uk: {
+      "dist.name": "Розстановка", "dist.p": "Рівномірно розставляє виділені елементи між двома межами: рівні проміжки або рівні кроки між осями.", "dist.l1": "Чотири кнопки: горизонтальні й вертикальні проміжки, горизонтальні й вертикальні осі.", "dist.l2": "Межі вибираються наведенням, як конектори: грань, лінія креслення, стіна зв’язаної моделі чи вісь.", "dist.l3": "Shift — ставить розміри між елементами; Ctrl — вирівнює їх в одну лінію; Alt — вільні точки (підкладка PDF).", "dist.l4": "З’єднані елементи (бокс із дифузором) рухаються як один; усе — одним кроком скасування.", "ft.l5": "Через відводи: гофра замінює повітропровід, відвід і наступні повітропроводи, а довжина виходить точною.", "man.dist": "Проміжки й осі, межі, клавіші Alt/Shift/Ctrl, розміри, повідомлення.", "rb.g3": "Розстановка", "rb.dhg": "Горизонт.<br>проміжки", "rb.dhc": "Горизонт.<br>осі", "rb.dvg": "Вертик.<br>проміжки", "rb.dvc": "Вертик.<br>осі", "rb.tip.dhg": "Горизонтальні проміжки — розставляє виділені елементи вздовж горизонталі виду так, щоб проміжки між їхніми краями були рівні. Дві точки — межі вільного місця. Shift — розміри, Ctrl — вирівняти, Alt — вільні точки.", "rb.tip.dhc": "Горизонтальні осі — розставляє виділені елементи вздовж горизонталі виду так, щоб відстані між їхніми центрами були рівні. Shift — розміри, Ctrl — вирівняти, Alt — вільні точки.", "rb.tip.dvg": "Вертикальні проміжки — розставляє виділені елементи вздовж вертикалі виду так, щоб проміжки між їхніми краями були рівні. Дві точки — межі вільного місця. Shift — розміри, Ctrl — вирівняти, Alt — вільні точки.", "rb.tip.dvc": "Вертикальні осі — розставляє виділені елементи вздовж вертикалі виду так, щоб відстані між їхніми центрами були рівні. Shift — розміри, Ctrl — вирівняти, Alt — вільні точки.", "rb.d1": "Виділіть елементи, вкажіть дві межі", "rb.d2g": "Готово: проміжки між краями рівні", "rb.d2c": "Готово: кроки між осями рівні", 
       "nav.plugins": "Плагіни", "plug.eyebrow": "Набір плагінів", "plug.title": "Останні додані плагіни", "plug.lead": "HVAC Stuff росте: нові плагіни з’являються в тому ж інсталяторі й на тій самій вкладці Revit. Ось що вже є.", "plug.new": "Новий", "plug.soon": "Скоро", "plug.more": "Докладніше →", "plug.since": "З версії", "plug.next.t": "Наступний плагін", "plug.next.p": "Над ним уже йде робота. Є ідея, чого бракує у вашій рутині? Напишіть — додам у чергу.", "plug.idea": "Запропонувати ідею →", "q6.q": "Чи будуть нові плагіни?", "q6.a": "Так: набір поповнюється. Новий плагін з’являється в тому ж інсталяторі, на вкладці «HVAC Stuff». Оновлення приходить звичайним оновленням надбудови.", "rb.dark": "Темна", "rb.light": "Світла", "nav.ribbon": "Вкладка", "rb.eyebrow": "Спробуйте", "rb.title": "Наша вкладка в Revit — натисніть кнопку", "rb.lead": "Це копія стрічки Revit (темна й світла теми), але лише з нашою вкладкою. Наведіть курсор — з’явиться підказка, як у Revit. Натисніть — побачите, що робить команда.", "rb.g1": "Повітропроводи", "rb.g2": "Програма", "rb.qfc": "З’єднати<br>гофрою", "rb.ft": "Врізати<br>гофру", "rb.set": "Налаштування", "rb.about": "Про програму", "rb.f1": "Натисніть F1 для довідки", "rb.s0": "Готово", "rb.q1": "Виберіть перший конектор", "rb.q2": "Виберіть другий конектор", "rb.q3": "Готово: гнучкий повітропровід створено", "rb.f1s": "Виберіть елемент із жорстким повітропроводом", "rb.f2s": "Готово: кінець повітроводу замінено гнучким, 1500 мм", "rb.replay": "↻ Повторити", "rb.len": "Довжина, мм", "rb.set.lang": "Мова", "rb.set.color": "Колір гофри", "rb.set.hint": "Мова змінюється одразу — спробуйте. Колір фарбує гофру в демонстрації.", "rb.about.upd": "Перевірити оновлення", "rb.about.ok": "Остання версія: ", "rb.tip.qfc": "З’єднати гофрою — гнучкий повітропровід між двома конекторами за два кліки. Однакові розміри — одразу, різні — вікно з розміром і живим переглядом. Серія пар до Esc.", "rb.tip.ft": "Врізати гофру — кінець жорсткого повітроводу біля елемента стає гнучким. Швидкі значення 500–2500 мм, «Вся ділянка», серія елементів.", "rb.tip.set": "Налаштування — мова інтерфейсу, колір і вигляд гнучкого повітроводу при попередньому перегляді, параметри кожної команди.", "rb.tip.about": "Про програму — версія й перевірка оновлень, посібники, папка з налаштуваннями й журналами, автор, ліцензія та подяки.", "nav.home": "Головна", "nav.features": "Переваги", "nav.faq": "Питання", "nav.commands": "Команди", "nav.videos": "Відео", "nav.manuals": "Посібники", "nav.install": "Встановлення",
       "hero.eyebrow": "Revit · Опалення, вентиляція, кондиціонування",
       "hero.title": "Набір плагінів, що прибирає <em>рутину проєктування</em>",
-      "hero.sub": "HVAC Stuff — безкоштовний набір плагінів для спеціалістів систем опалення, вентиляції та кондиціонування. Зараз у ньому два плагіни для гнучких повітроводів, нові з’являтимуться регулярно. Одна установка — усі плагіни.",
+      "hero.sub": "HVAC Stuff — безкоштовний набір плагінів для спеціалістів систем опалення, вентиляції та кондиціонування. Зараз у ньому три плагіни: два для гнучких повітроводів і один для рівномірної розстановки елементів; нові з’являтимуться регулярно. Одна установка — усі плагіни.",
       "hero.download": "Завантажити", "hero.watch": "Дивитись відео", "hero.version": "Версія", "hero.free": "Безкоштовно",
       "hero.ribbon": "Вкладка «HVAC Stuff» у стрічці Revit",
       "feat.eyebrow": "Чому саме так", "feat.title": "Менше рутини — більше проєктування",
@@ -659,8 +727,8 @@ section.seen h2::after { width: 64px; }
       "f4.t": "План, розріз, 3D", "f4.p": "Працює на планах, розрізах і 3D-видах без перспективи. Де не має сенсу — кнопки сірі.",
       "f5.t": "Три мови", "f5.p": "Українська, англійська, російська. Мова змінюється в налаштуваннях і діє одразу, разом зі стрічкою.",
       "f6.t": "Швидкий запуск", "f6.p": "Revit стартує, як і раніше: важке завантажується лише при першому натисканні.",
-      "cmd.eyebrow": "Команди", "cmd.title": "Дві команди — і рутина зникає",
-      "cmd.lead": "Обидві працюють у серії: наступна пара або елемент — одразу, без вікна, до натискання Esc.",
+      "cmd.eyebrow": "Команди", "cmd.title": "Три плагіни — і рутина зникає",
+      "cmd.lead": "Гофри працюють у серії: наступна пара або елемент — одразу, без вікна, до натискання Esc. Розстановка — два кліки по межах.",
       "qfc.name": "З’єднати гофрою",
       "qfc.p": "Гнучкий повітровід між двома конекторами за два кліки.",
       "qfc.l1": "Однакові розміри — гофра будується одразу.", "qfc.l2": "Різні розміри — вікно з розміром і живим переглядом, переходи стають самі.",
@@ -668,17 +736,17 @@ section.seen h2::after { width: 64px; }
       "ft.name": "Врізати гофру",
       "ft.p": "Кінець жорсткого повітроводу біля елемента стає гнучким потрібної довжини.",
       "ft.l1": "Працює на будь-яких категоріях: розподільники, камери, обладнання, деталі.", "ft.l2": "Швидкі значення 500–2500 мм або своя довжина.",
-      "ft.l3": "«Вся ділянка» — короткий повітровід замінюється гофрою повністю.", "ft.l4": "Цикл: наступний елемент з тією ж довжиною й типом — без вікна.",
+      "ft.l3": "«Вся ділянка» — уся траса до трійника чи переходу стає гнучкою.", "ft.l4": "Цикл: наступний елемент з тією ж довжиною й типом — без вікна.",
       "vid.eyebrow": "Відео", "vid.title": "Подивіться, як це працює",
       "vid.lead": "Кожен ролик — одна функція. Пояснення на екрані — одразу трьома мовами: англійською, українською, російською.",
       "vid.all": "Усі", "vid.soon": "Незабаром",
       "man.eyebrow": "Посібники", "man.title": "Докладно про кожну команду", "man.pdf": "Посібник (PDF):",
-      "man.lead": "Короткий PDF на кожну команду: призначення, кроки, усі опції й типові повідомлення. Три мови.",
-      "man.qfc": "Два кліки, вікно розміру, переходи, тип гнучкого, серія.", "man.ft": "Довжина, «Вся ділянка», цикл, категорії елементів.",
+      "man.lead": "Короткий PDF на кожен плагін: призначення, кроки, усі опції й типові повідомлення. Три мови.",
+      "man.qfc": "Два кліки, вікно розміру, переходи, тип гнучкого, серія.", "man.ft": "Довжина, відводи, точна довжина, «Вся ділянка», цикл, категорії елементів.",
       "man.note": "Також посібник відкривається в Revit: наведіть курсор на кнопку й натисніть F1.",
       "ins.eyebrow": "Встановлення", "ins.title": "Готово за хвилину", "ins.lead": "Інсталятор сам знайде встановлені версії Revit.",
       "ins.s1": "Завантажте інсталятор нижче.", "ins.s2": "Закрийте Revit і запустіть .msi, виберіть версії Revit.",
-      "ins.s3": "Запустіть Revit. На питання про непідписану надбудову виберіть «Завжди завантажувати».", "ins.s4": "Вкладка «HVAC Stuff» → панель «Повітропроводи».",
+      "ins.s3": "Запустіть Revit. На питання про непідписану надбудову виберіть «Завжди завантажувати».", "ins.s4": "Вкладка «HVAC Stuff» → панелі «Повітропроводи» і «Розстановка».",
       "ins.single": "Лише для вашого облікового запису Windows. Права адміністратора не потрібні.", "ins.multi": "Для всіх користувачів комп’ютера. Потрібні права адміністратора.",
       "ins.req": "Потрібен тип гнучкого повітроводу в проєкті",
       "faq.eyebrow": "Питання", "faq.title": "Часті питання",
@@ -690,10 +758,11 @@ section.seen h2::after { width: 64px; }
       "foot.copy": "© 2026 Maliuhin Volodymyr. Безкоштовна надбудова для Autodesk Revit.", "foot.license": "Ліцензія", "foot.third": "Сторонні компоненти", "foot.releases": "Усі релізи"
     },
     en: {
+      "dist.name": "Distribute", "dist.p": "Spreads the selected elements evenly between two borders: equal gaps or equal steps between centers.", "dist.l1": "Four buttons: horizontal and vertical gaps, horizontal and vertical centers.", "dist.l2": "Borders are picked by hovering, like connectors: a face, a drawing line, a linked-model wall or a grid.", "dist.l3": "Shift places dimensions between the elements; Ctrl aligns them in one line; Alt picks free points (a PDF underlay).", "dist.l4": "Joined elements (a box with its diffuser) move as one; everything is one undo step.", "ft.l5": "Through elbows: the flex duct replaces the duct, the elbow and the next ducts, and the length comes out exact.", "man.dist": "Gaps and centers, borders, the Alt/Shift/Ctrl keys, dimensions, messages.", "rb.g3": "Distribute", "rb.dhg": "Horizontal<br>Gaps", "rb.dhc": "Horizontal<br>Centers", "rb.dvg": "Vertical<br>Gaps", "rb.dvc": "Vertical<br>Centers", "rb.tip.dhg": "Horizontal Gaps — spreads the selected elements along the horizontal of the view so that the gaps between their edges are equal. The two points are the borders of the free space. Shift: dimensions, Ctrl: align, Alt: free points.", "rb.tip.dhc": "Horizontal Centers — spreads the selected elements along the horizontal of the view so that the distances between their centers are equal. Shift: dimensions, Ctrl: align, Alt: free points.", "rb.tip.dvg": "Vertical Gaps — spreads the selected elements along the vertical of the view so that the gaps between their edges are equal. The two points are the borders of the free space. Shift: dimensions, Ctrl: align, Alt: free points.", "rb.tip.dvc": "Vertical Centers — spreads the selected elements along the vertical of the view so that the distances between their centers are equal. Shift: dimensions, Ctrl: align, Alt: free points.", "rb.d1": "Select the elements, pick two borders", "rb.d2g": "Done: the gaps between edges are equal", "rb.d2c": "Done: the steps between centers are equal", 
       "nav.plugins": "Plugins", "plug.eyebrow": "The plugin set", "plug.title": "Latest added plugins", "plug.lead": "HVAC Stuff keeps growing: new plugins arrive in the same installer and on the same Revit tab. Here is what is in the set already.", "plug.new": "New", "plug.soon": "Soon", "plug.more": "Details →", "plug.since": "Since version", "plug.next.t": "The next plugin", "plug.next.p": "Work on it is under way. Know what your routine is missing? Write to me and I will add it to the queue.", "plug.idea": "Suggest an idea →", "q6.q": "Will there be more plugins?", "q6.a": "Yes: the set keeps growing. A new plugin comes in the same installer, on the “HVAC Stuff” tab. It arrives as a regular add-in update.", "rb.dark": "Dark", "rb.light": "Light", "nav.ribbon": "Ribbon", "rb.eyebrow": "Try it", "rb.title": "Our tab in Revit — press a button", "rb.lead": "This is a copy of the Revit ribbon (dark and light themes) with only our tab. Hover a button for a Revit-style tooltip. Press it to see what the command does.", "rb.g1": "Ductwork", "rb.g2": "Program", "rb.qfc": "Quick Flex<br>Connect", "rb.ft": "Flex<br>Tail", "rb.set": "Settings", "rb.about": "About", "rb.f1": "Press F1 for more help", "rb.s0": "Ready", "rb.q1": "Pick the first connector", "rb.q2": "Pick the second connector", "rb.q3": "Done: flex duct created", "rb.f1s": "Pick an element with a rigid duct", "rb.f2s": "Done: duct end replaced by a flex duct, 1500 mm", "rb.replay": "↻ Replay", "rb.len": "Length, mm", "rb.set.lang": "Language", "rb.set.color": "Flex duct color", "rb.set.hint": "The language changes at once, try it. The color paints the flex duct in the demo.", "rb.about.upd": "Check for updates", "rb.about.ok": "Latest version: ", "rb.tip.qfc": "Quick FlexConnect — a flex duct between two connectors in two clicks. Equal sizes: built at once; different sizes: a window with the size and a live preview. Series of pairs until Esc.", "rb.tip.ft": "Flex Tail — the end of a rigid duct at an element becomes flex. Quick lengths 500–2500 mm, the whole segment, a series of elements.", "rb.tip.set": "Settings — interface language, preview color, the look of the flex duct during preview, and the options of each command.", "rb.tip.about": "About — the version and the update check, the user guides, the folder with settings and logs, the author, the license, and the credits.", "nav.home": "Home", "nav.features": "Features", "nav.faq": "FAQ", "nav.commands": "Commands", "nav.videos": "Videos", "nav.manuals": "Manuals", "nav.install": "Install",
       "hero.eyebrow": "Revit · Heating, ventilation, air conditioning",
       "hero.title": "A plugin set that takes the <em>routine out of HVAC design</em>",
-      "hero.sub": "HVAC Stuff is a free set of plugins for specialists in heating, ventilation, and air conditioning systems. It has two plugins for flex ducts today, and new ones keep coming. One installer, all the plugins.",
+      "hero.sub": "HVAC Stuff is a free set of plugins for specialists in heating, ventilation, and air conditioning systems. It has three plugins today: two for flex ducts and one that spreads elements evenly, and new ones keep coming. One installer, all the plugins.",
       "hero.download": "Download", "hero.watch": "Watch the videos", "hero.version": "Version", "hero.free": "Free",
       "hero.ribbon": "The “HVAC Stuff” tab in the Revit ribbon",
       "feat.eyebrow": "Why it feels different", "feat.title": "Less routine, more design",
@@ -704,8 +773,8 @@ section.seen h2::after { width: 64px; }
       "f4.t": "Plan, section, 3D", "f4.p": "Works on plans, sections, and non-perspective 3D views. Where it makes no sense, the buttons are gray.",
       "f5.t": "Three languages", "f5.p": "English, Ukrainian, Russian. Change it in Settings; it applies at once, including the ribbon.",
       "f6.t": "Fast start", "f6.p": "Revit starts as before: the heavy parts load on the first click only.",
-      "cmd.eyebrow": "Commands", "cmd.title": "Two commands, no more routine",
-      "cmd.lead": "Both run as a series: the next pair or element goes straight on, without a window, until you press Esc.",
+      "cmd.eyebrow": "Commands", "cmd.title": "Three plugins, no more routine",
+      "cmd.lead": "The flex-duct commands run as a series: the next pair or element goes straight on, without a window, until you press Esc. Distribute needs two clicks on the borders.",
       "qfc.name": "Quick FlexConnect",
       "qfc.p": "A flex duct between two duct connectors in two clicks.",
       "qfc.l1": "Equal sizes: the flex duct is built at once.", "qfc.l2": "Different sizes: a window with the size and a live preview; transitions are added for you.",
@@ -713,17 +782,17 @@ section.seen h2::after { width: 64px; }
       "ft.name": "Flex Tail",
       "ft.p": "The end of a rigid duct at an element becomes a flex duct of the length you need.",
       "ft.l1": "Works on any category: terminals, plenums, equipment, fittings.", "ft.l2": "Quick lengths 500–2500 mm, or your own value.",
-      "ft.l3": "Whole segment: a short duct is replaced by a flex duct entirely.", "ft.l4": "Loop: the next element gets the same length and type, no window.",
+      "ft.l3": "Whole segment: the whole route up to a tee or a transition becomes flex.", "ft.l4": "Loop: the next element gets the same length and type, no window.",
       "vid.eyebrow": "Videos", "vid.title": "See it in action",
       "vid.lead": "One video, one feature. The on-screen notes come in three languages at once: English, Ukrainian, Russian.",
       "vid.all": "All", "vid.soon": "Coming soon",
       "man.eyebrow": "Manuals", "man.title": "Every command in detail", "man.pdf": "Manual (PDF):",
-      "man.lead": "A short PDF for each command: purpose, steps, every option, and common messages. Three languages.",
-      "man.qfc": "Two clicks, the size window, transitions, flex type, series.", "man.ft": "Length, whole segment, loop, element categories.",
+      "man.lead": "A short PDF for each plugin: purpose, steps, every option and the usual messages. Three languages.",
+      "man.qfc": "Two clicks, the size window, transitions, flex type, series.", "man.ft": "Length, elbows, exact length, Whole segment, the loop, element categories.",
       "man.note": "The manual also opens inside Revit: hover a command button and press F1.",
       "ins.eyebrow": "Install", "ins.title": "Ready in a minute", "ins.lead": "The installer finds your Revit versions by itself.",
       "ins.s1": "Download an installer below.", "ins.s2": "Close Revit, run the .msi, and pick the Revit versions.",
-      "ins.s3": "Start Revit. When asked about an unsigned add-in, choose “Always Load”.", "ins.s4": "The “HVAC Stuff” tab → the “Ductwork” panel.",
+      "ins.s3": "Start Revit. When asked about an unsigned add-in, choose “Always Load”.", "ins.s4": "The “HVAC Stuff” tab → the “Ductwork” and “Distribute” panels.",
       "ins.single": "For your Windows account only. No administrator rights needed.", "ins.multi": "For every user of the computer. Administrator rights needed.",
       "ins.req": "A flex duct type is needed in the project",
       "faq.eyebrow": "FAQ", "faq.title": "Frequently asked questions",
@@ -735,10 +804,11 @@ section.seen h2::after { width: 64px; }
       "foot.copy": "© 2026 Maliuhin Volodymyr. A free add-in for Autodesk Revit.", "foot.license": "License", "foot.third": "Third-party notices", "foot.releases": "All releases"
     },
     ru: {
+      "dist.name": "Расстановка", "dist.p": "Равномерно расставляет выделенные элементы между двумя границами: равные зазоры или равные шаги между осями.", "dist.l1": "Четыре кнопки: горизонтальные и вертикальные зазоры, горизонтальные и вертикальные оси.", "dist.l2": "Границы выбираются наведением, как коннекторы: грань, линия чертежа, стена связанной модели или ось.", "dist.l3": "Shift — ставит размеры между элементами; Ctrl — выравнивает их в одну линию; Alt — свободные точки (подложка PDF).", "dist.l4": "Соединённые элементы (бокс с диффузором) двигаются как один; всё — одним шагом отмены.", "ft.l5": "Через отводы: гофра заменяет воздуховод, отвод и следующие воздуховоды, а длина получается точной.", "man.dist": "Зазоры и оси, границы, клавиши Alt/Shift/Ctrl, размеры, сообщения.", "rb.g3": "Расстановка", "rb.dhg": "Горизонт.<br>зазоры", "rb.dhc": "Горизонт.<br>оси", "rb.dvg": "Вертик.<br>зазоры", "rb.dvc": "Вертик.<br>оси", "rb.tip.dhg": "Горизонтальные зазоры — расставляет выделенные элементы вдоль горизонтали вида так, чтобы зазоры между их краями были равны. Две точки — границы свободного места. Shift — размеры, Ctrl — выровнять, Alt — свободные точки.", "rb.tip.dhc": "Горизонтальные оси — расставляет выделенные элементы вдоль горизонтали вида так, чтобы расстояния между их центрами были равны. Shift — размеры, Ctrl — выровнять, Alt — свободные точки.", "rb.tip.dvg": "Вертикальные зазоры — расставляет выделенные элементы вдоль вертикали вида так, чтобы зазоры между их краями были равны. Две точки — границы свободного места. Shift — размеры, Ctrl — выровнять, Alt — свободные точки.", "rb.tip.dvc": "Вертикальные оси — расставляет выделенные элементы вдоль вертикали вида так, чтобы расстояния между их центрами были равны. Shift — размеры, Ctrl — выровнять, Alt — свободные точки.", "rb.d1": "Выделите элементы, укажите две границы", "rb.d2g": "Готово: зазоры между краями равны", "rb.d2c": "Готово: шаги между осями равны", 
       "nav.plugins": "Плагины", "plug.eyebrow": "Набор плагинов", "plug.title": "Последние добавленные плагины", "plug.lead": "HVAC Stuff растёт: новые плагины появляются в том же установщике и на той же вкладке Revit. Вот что уже есть.", "plug.new": "Новый", "plug.soon": "Скоро", "plug.more": "Подробнее →", "plug.since": "С версии", "plug.next.t": "Следующий плагин", "plug.next.p": "Работа над ним уже идёт. Есть идея, чего не хватает в вашей рутине? Напишите — добавлю в очередь.", "plug.idea": "Предложить идею →", "q6.q": "Будут ли новые плагины?", "q6.a": "Да: набор пополняется. Новый плагин приходит в том же установщике, на вкладке «HVAC Stuff». Он появляется обычным обновлением надстройки.", "rb.dark": "Тёмная", "rb.light": "Светлая", "nav.ribbon": "Вкладка", "rb.eyebrow": "Попробуйте", "rb.title": "Наша вкладка в Revit — нажмите кнопку", "rb.lead": "Это копия ленты Revit (тёмная и светлая темы), но только с нашей вкладкой. Наведите курсор — появится подсказка, как в Revit. Нажмите — увидите, что делает команда.", "rb.g1": "Воздуховоды", "rb.g2": "Программа", "rb.qfc": "Соединить<br>гофрой", "rb.ft": "Врезать<br>гофру", "rb.set": "Настройки", "rb.about": "О программе", "rb.f1": "Нажмите F1 для получения справки", "rb.s0": "Готово", "rb.q1": "Выберите первый коннектор", "rb.q2": "Выберите второй коннектор", "rb.q3": "Готово: гибкий воздуховод создан", "rb.f1s": "Выберите элемент с жёстким воздуховодом", "rb.f2s": "Готово: конец воздуховода заменён гибким, 1500 мм", "rb.replay": "↻ Повторить", "rb.len": "Длина, мм", "rb.set.lang": "Язык", "rb.set.color": "Цвет гофры", "rb.set.hint": "Язык меняется сразу — попробуйте. Цвет окрашивает гофру в демонстрации.", "rb.about.upd": "Проверить обновления", "rb.about.ok": "Последняя версия: ", "rb.tip.qfc": "Соединить гофрой — гибкий воздуховод между двумя коннекторами за два клика. Одинаковые размеры — сразу, разные — окно с размером и живым предпросмотром. Серия пар до Esc.", "rb.tip.ft": "Врезать гофру — конец жёсткого воздуховода у элемента становится гибким. Быстрые значения 500–2500 мм, «Весь участок», серия элементов.", "rb.tip.set": "Настройки — язык интерфейса, цвет и вид гибкого воздуховода при предпросмотре, параметры каждой команды.", "rb.tip.about": "О программе — версия и проверка обновлений, руководства, папка с настройками и журналами, автор, лицензия и благодарности.", "nav.home": "Главная", "nav.features": "Преимущества", "nav.faq": "Вопросы", "nav.commands": "Команды", "nav.videos": "Видео", "nav.manuals": "Руководства", "nav.install": "Установка",
       "hero.eyebrow": "Revit · Отопление, вентиляция, кондиционирование",
       "hero.title": "Набор плагинов, который убирает <em>рутину проектирования</em>",
-      "hero.sub": "HVAC Stuff — бесплатный набор плагинов для специалистов систем отопления, вентиляции и кондиционирования. Сейчас в нём два плагина для гибких воздуховодов, новые будут появляться регулярно. Одна установка — все плагины.",
+      "hero.sub": "HVAC Stuff — бесплатный набор плагинов для специалистов систем отопления, вентиляции и кондиционирования. Сейчас в нём три плагина: два для гибких воздуховодов и один для равномерной расстановки элементов; новые будут появляться регулярно. Одна установка — все плагины.",
       "hero.download": "Скачать", "hero.watch": "Смотреть видео", "hero.version": "Версия", "hero.free": "Бесплатно",
       "hero.ribbon": "Вкладка «HVAC Stuff» на ленте Revit",
       "feat.eyebrow": "Чем удобно", "feat.title": "Меньше рутины — больше проектирования",
@@ -749,8 +819,8 @@ section.seen h2::after { width: 64px; }
       "f4.t": "План, разрез, 3D", "f4.p": "Работает на планах, разрезах и 3D-видах без перспективы. Где не имеет смысла — кнопки серые.",
       "f5.t": "Три языка", "f5.p": "Украинский, английский, русский. Язык меняется в настройках и действует сразу, вместе с лентой.",
       "f6.t": "Быстрый запуск", "f6.p": "Revit стартует как раньше: тяжёлое загружается только при первом нажатии.",
-      "cmd.eyebrow": "Команды", "cmd.title": "Две команды — и рутина исчезает",
-      "cmd.lead": "Обе работают серией: следующая пара или элемент — сразу, без окна, до нажатия Esc.",
+      "cmd.eyebrow": "Команды", "cmd.title": "Три плагина — и рутина исчезает",
+      "cmd.lead": "Команды с гофрой работают в серии: следующая пара или элемент — сразу, без окна, до нажатия Esc. Расстановка — два клика по границам.",
       "qfc.name": "Соединить гофрой",
       "qfc.p": "Гибкий воздуховод между двумя коннекторами за два клика.",
       "qfc.l1": "Одинаковые размеры — гофра строится сразу.", "qfc.l2": "Разные размеры — окно с размером и живым предпросмотром, переходы встают сами.",
@@ -758,17 +828,17 @@ section.seen h2::after { width: 64px; }
       "ft.name": "Врезать гофру",
       "ft.p": "Конец жёсткого воздуховода у элемента становится гибким нужной длины.",
       "ft.l1": "Работает на любых категориях: распределители, камеры, оборудование, соединительные детали.", "ft.l2": "Быстрые значения 500–2500 мм или своя длина.",
-      "ft.l3": "«Весь участок» — короткий воздуховод заменяется гофрой целиком.", "ft.l4": "Цикл: следующий элемент с той же длиной и типом — без окна.",
+      "ft.l3": "«Весь участок» — вся трасса до тройника или перехода становится гибкой.", "ft.l4": "Цикл: следующий элемент с той же длиной и типом — без окна.",
       "vid.eyebrow": "Видео", "vid.title": "Посмотрите, как это работает",
       "vid.lead": "Каждый ролик — одна функция. Пояснения на экране — сразу на трёх языках: английском, украинском, русском.",
       "vid.all": "Все", "vid.soon": "Скоро", 
       "man.eyebrow": "Руководства", "man.title": "Подробно о каждой команде", "man.pdf": "Руководство (PDF):",
-      "man.lead": "Короткий PDF на каждую команду: назначение, шаги, все опции и типичные сообщения. Три языка.",
-      "man.qfc": "Два клика, окно размера, переходы, тип гибкого, серия.", "man.ft": "Длина, «Весь участок», цикл, категории элементов.",
+      "man.lead": "Короткий PDF на каждый плагин: назначение, шаги, все опции и типовые сообщения. Три языка.",
+      "man.qfc": "Два клика, окно размера, переходы, тип гибкого, серия.", "man.ft": "Длина, отводы, точная длина, «Весь участок», цикл, категории элементов.",
       "man.note": "Руководство также открывается в Revit: наведите курсор на кнопку и нажмите F1.",
       "ins.eyebrow": "Установка", "ins.title": "Готово за минуту", "ins.lead": "Установщик сам найдёт установленные версии Revit.",
       "ins.s1": "Скачайте установщик ниже.", "ins.s2": "Закройте Revit, запустите .msi и выберите версии Revit.",
-      "ins.s3": "Запустите Revit. На вопрос о неподписанной надстройке выберите «Всегда загружать».", "ins.s4": "Вкладка «HVAC Stuff» → панель «Воздуховоды».",
+      "ins.s3": "Запустите Revit. На вопрос о неподписанной надстройке выберите «Всегда загружать».", "ins.s4": "Вкладка «HVAC Stuff» → панели «Воздуховоды» и «Расстановка».",
       "ins.single": "Только для вашей учётной записи Windows. Права администратора не нужны.", "ins.multi": "Для всех пользователей компьютера. Нужны права администратора.",
       "ins.req": "В проекте нужен тип гибкого воздуховода",
       "faq.eyebrow": "Вопросы", "faq.title": "Частые вопросы",
@@ -796,7 +866,7 @@ section.seen h2::after { width: 64px; }
   ];
   var GROUPS = { all: null, qfc: "qfc.name", ft: "ft.name", common: { uk: "Загальне", en: "General", ru: "Общее" } };
 
-  var lang = "uk", filter = "all", version = "1.1.1";
+  var lang = "uk", filter = "all", version = "1.3.0";
 
   function pickLang() {
     try { var s = localStorage.getItem("hvac-lang"); if (s && T[s]) return s; } catch (e) {}
@@ -961,16 +1031,60 @@ section.seen h2::after { width: 64px; }
     }, 2900);
     later(function () { stat.textContent = t("rb.f2s"); svg.querySelector(".mk1").classList.remove("on"); }, 3900);
   }
+  var DM = { dhg: { v: false, m: "g" }, dhc: { v: false, m: "c" }, dvg: { v: true, m: "g" }, dvc: { v: true, m: "c" } };
+  function playD(c) {
+    var svg = stage.querySelector(".stg-dist"), d = DM[c], n = 4, i, sum = 0, tgt = [], rects = "", marks = "";
+    var sz = d.v ? [30, 56, 24, 44] : [70, 120, 50, 96], st = d.v ? [60, 110, 186, 232] : [100, 230, 430, 540];
+    var A = d.v ? 40 : 70, B = d.v ? 280 : 730, L = B - A, gap, step, pos;
+    sz.forEach(function (x) { sum += x; });
+    gap = (L - sum) / (n + 1); step = L / (n + 1); pos = A + gap;
+    for (i = 0; i < n; i++) {
+      if (d.m === "g") { tgt.push(pos); pos += sz[i] + gap; } else tgt.push(A + step * (i + 1) - sz[i] / 2);
+    }
+    function seg(a, b) { /* размерная линия между двумя позициями вдоль направления */
+      return d.v ? '<path d="M292 ' + a + 'H308M292 ' + b + 'H308M300 ' + a + 'V' + b + '" />'
+                 : '<path d="M' + a + ' 92V108M' + b + ' 92V108M' + a + ' 100H' + b + '" />';
+    }
+    function line(p) { return d.v ? '<path d="M315 ' + p + 'H485" stroke-dasharray="5 4" />' : '<path d="M' + p + ' 105V215" stroke-dasharray="5 4" />'; }
+    function bord(p) { return d.v ? '<path d="M260 ' + p + 'H540" />' : '<path d="M' + p + ' 70V250" />'; }
+    for (i = 0; i < n; i++) {
+      rects += d.v ? '<rect class="dr" x="330" y="' + st[i] + '" width="140" height="' + sz[i] + '" rx="3" fill="#3f5185" stroke="#8fa3d8" stroke-width="2"/>'
+                   : '<rect class="dr" x="' + st[i] + '" y="125" width="' + sz[i] + '" height="70" rx="3" fill="#3f5185" stroke="#8fa3d8" stroke-width="2"/>';
+    }
+    if (d.m === "g") {
+      marks += seg(A, tgt[0]);
+      for (i = 0; i < n - 1; i++) marks += seg(tgt[i] + sz[i], tgt[i + 1]);
+      marks += seg(tgt[n - 1] + sz[n - 1], B);
+    } else {
+      var cc = tgt.map(function (t0, k) { return t0 + sz[k] / 2; });
+      cc.forEach(function (p) { marks += line(p); });
+      marks += seg(A, cc[0]);
+      for (i = 0; i < n - 1; i++) marks += seg(cc[i], cc[i + 1]);
+      marks += seg(cc[n - 1], B);
+    }
+    svg.innerHTML = '<g stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" opacity=".75">' + bord(A) + bord(B) + "</g>" + rects +
+      '<g class="dm" opacity="0" stroke="#F2A93B" stroke-width="2.5" fill="none" stroke-linecap="round">' + marks + "</g>";
+    stat.textContent = t("rb.d1");
+    var els = svg.querySelectorAll(".dr");
+    later(function () {
+      for (i = 0; i < n; i++) {
+        var dd = tgt[i] - st[i];
+        els[i].style.transform = d.v ? "translate(0px," + dd + "px)" : "translate(" + dd + "px,0px)";
+      }
+    }, 900);
+    later(function () { svg.querySelector(".dm").setAttribute("opacity", 1); stat.textContent = t(d.m === "g" ? "rb.d2g" : "rb.d2c"); }, 2000);
+  }
   function show(c) {
     cmd = c; stage.dataset.cmd = c;
     rv.querySelectorAll(".rv-btn").forEach(function (b) { b.classList.toggle("on", b.dataset.cmd === c); });
     stage.querySelectorAll(".stg").forEach(function (e) { e.classList.remove("on"); });
     stage.querySelectorAll(".pane").forEach(function (e) { e.classList.remove("on"); });
     document.getElementById("chips").hidden = c !== "ft";
-    document.getElementById("replay").hidden = c !== "qfc" && c !== "ft";
+    document.getElementById("replay").hidden = c !== "qfc" && c !== "ft" && !DM[c];
     reset();
     if (c === "qfc") { stage.querySelector(".stg-qfc").classList.add("on"); playQ(); }
     else if (c === "ft") { stage.querySelector(".stg-ft").classList.add("on"); playF(); }
+    else if (DM[c]) { stage.querySelector(".stg-dist").classList.add("on"); playD(c); }
     else { stage.querySelector("#pane-" + c).classList.add("on"); stat.textContent = t("rb.s0"); }
   }
   function tipShow(b) {
