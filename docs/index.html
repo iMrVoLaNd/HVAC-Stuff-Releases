@@ -140,15 +140,72 @@ footer { background: var(--navy); color: #c9d3e6; padding: 44px 0; font-size: 14
 footer .wrap { display: flex; flex-wrap: wrap; gap: 20px 40px; justify-content: space-between; }
 footer a { color: #fff; }
 
-.reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s, transform .6s; }
+/* ---------- движение ---------- */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); transition-delay: var(--d, 0s); }
+.reveal.l { transform: translateX(-48px); }
+.reveal.r { transform: translateX(48px); }
+.reveal.z { transform: scale(.92); }
 .reveal.in { opacity: 1; transform: none; }
+.progress { position: fixed; top: 0; left: 0; width: 100%; height: 3px; z-index: 40; transform-origin: 0 50%; transform: scaleX(0); background: linear-gradient(90deg, var(--amber), var(--sky)); }
+.nav a.lnk { padding: 4px 0; box-shadow: inset 0 -2px 0 transparent; transition: color .2s, box-shadow .2s; }
+.nav a.lnk.active { color: #fff; box-shadow: inset 0 -2px 0 var(--amber); }
+.dots { position: fixed; right: 12px; top: 50%; transform: translateY(-50%); z-index: 30; display: flex; flex-direction: column; gap: 4px; padding: 8px 4px; border-radius: 99px; background: rgba(20,33,61,.78); backdrop-filter: blur(8px); box-shadow: 0 8px 24px -8px rgba(0,0,0,.5); }
+.dots a { position: relative; display: grid; place-items: center; width: 22px; height: 22px; text-decoration: none; }
+.dots a::before { content: ""; width: 9px; height: 9px; border-radius: 50%; border: 2px solid #8fa0c0; transition: transform .25s, background .25s, border-color .25s; }
+.dots a:hover::before, .dots a:focus-visible::before { border-color: var(--amber); transform: scale(1.2); }
+.dots a[aria-current="true"]::before { background: var(--amber); border-color: var(--amber); transform: scale(1.35); box-shadow: 0 0 0 4px rgba(242,169,59,.25); }
+.dots a::after { content: attr(data-label); position: absolute; right: 34px; top: 50%; transform: translate(8px, -50%); background: var(--navy); color: #fff; font-size: 13px; padding: 4px 10px; border-radius: 6px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; }
+.dots a:hover::after, .dots a:focus-visible::after { opacity: 1; transform: translate(0, -50%); }
+.pager { position: fixed; right: 14px; bottom: 16px; z-index: 30; display: flex; flex-direction: column; gap: 8px; }
+.pager button { width: 44px; height: 44px; border-radius: 50%; border: 0; background: var(--navy); color: var(--amber); cursor: pointer; display: grid; place-items: center; box-shadow: 0 8px 22px -8px rgba(0,0,0,.6); transition: transform .2s, opacity .3s; }
+.pager button:hover { transform: scale(1.1); }
+.pager button svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.pager button[hidden] { display: none; }
+@media (max-width: 700px) { .wrap { width: calc(100% - 56px); margin-left: 16px; margin-right: auto; } .pager { bottom: 12px; right: 10px; } .dots { right: 6px; } }
+/* появление героя */
+.hero .grid > div:first-child > * { animation: rise .8s cubic-bezier(.2,.7,.2,1) backwards; }
+.hero .grid > div:first-child > :nth-child(2) { animation-delay: .1s; } .hero .grid > div:first-child > :nth-child(3) { animation-delay: .2s; }
+.hero .grid > div:first-child > :nth-child(4) { animation-delay: .3s; } .hero .grid > div:first-child > :nth-child(5) { animation-delay: .4s; }
+@keyframes rise { from { opacity: 0; transform: translateY(26px); } }
+.duct { animation: floaty 6s ease-in-out infinite; transform: translateY(var(--py, 0px)); }
+@keyframes floaty { 50% { translate: 0 -10px; } }
+.duct rect { animation: pop .8s cubic-bezier(.2,.7,.2,1) backwards; transform-box: fill-box; transform-origin: center; }
+.duct rect + rect { animation-delay: .25s; }
+.duct .flex { animation: dash 1.6s linear infinite, fadein 1s .5s backwards; }
+@keyframes fadein { from { opacity: 0; } }
+@keyframes pop { from { opacity: 0; transform: scale(.6); } }
+.hero::before { content: ""; position: absolute; inset: -20% -10% auto auto; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(closest-side, rgba(242,169,59,.22), transparent); animation: glow 9s ease-in-out infinite alternate; pointer-events: none; }
+.hero { position: relative; }
+.hero .wrap { position: relative; }
+@keyframes glow { to { transform: translate(-80px, 60px) scale(1.2); } }
+.btn { position: relative; overflow: hidden; }
+.btn::after { content: ""; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.55) 50%, transparent 70%); transform: translateX(-120%); }
+.btn:hover::after { transform: translateX(120%); transition: transform .7s; }
+.card { transition: transform .3s, box-shadow .3s, border-color .3s, opacity .7s cubic-bezier(.2,.7,.2,1); }
+.card.in:hover { transform: translateY(-6px); border-color: var(--amber); }
+.card:hover .ico svg { animation: wig .6s; }
+@keyframes wig { 25% { transform: rotate(-12deg) scale(1.1); } 60% { transform: rotate(8deg) scale(1.1); } }
+h2::after { content: ""; display: block; height: 4px; width: 0; border-radius: 2px; margin-top: 12px; background: var(--amber); transition: width .9s .25s cubic-bezier(.2,.7,.2,1); }
+section.seen h2::after { width: 64px; }
+.steps li.in::before { animation: pop .5s .25s backwards; }
+.demo .fl { animation: dash 1.6s linear infinite; }
+.demo .pl { animation: pulse 2.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.ribbon-strip .imgs img { animation: pop .6s cubic-bezier(.2,.7,.2,1) backwards; animation-delay: calc(var(--i, 0) * 90ms + .4s); }
+.vid { transition: transform .3s, box-shadow .3s; } .vid:hover { transform: translateY(-5px); }
+.vid:hover .play { animation: pulse 1.2s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; } .reveal { opacity: 1; transform: none; transition: none; }
-  .duct .flex, .duct .pulse { animation: none; }
+  /* остаются только мягкие появления без смещения; бесконечные циклы выключены */
+  html { scroll-behavior: auto; }
+  .reveal, .reveal.l, .reveal.r, .reveal.z { transform: none; transition: opacity .5s; }
+  .duct, .duct .flex, .duct .pulse, .demo .fl, .demo .pl, .hero::before, .hero .grid > div:first-child > * { animation: none; }
+  .btn:hover::after { transition: none; }
 }
 </style>
 </head>
 <body>
+<div class="progress" id="progress"></div>
+<nav class="dots" id="dots" aria-label="Sections"></nav>
+<div class="pager"><button id="up" type="button" hidden aria-label="Up"><svg viewBox="0 0 24 24"><path d="m6 15 6-6 6 6"/></svg></button><button id="down" type="button" aria-label="Down"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button></div>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.5"/><path d="M12 1v5M12 18v5M1 12h5M18 12h5"/></symbol>
@@ -167,10 +224,12 @@ footer a { color: #fff; }
       <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#1c2d52"/><path d="M10 44 C26 44 22 20 38 20 L54 20" fill="none" stroke="#F2A93B" stroke-width="6" stroke-dasharray="12 5 3 5" stroke-linecap="round"/></svg>
       HVAC Stuff
     </a>
+    <a class="lnk" href="#features" data-i18n="nav.features"></a>
     <a class="lnk" href="#commands" data-i18n="nav.commands"></a>
     <a class="lnk" href="#videos" data-i18n="nav.videos"></a>
     <a class="lnk" href="#manuals" data-i18n="nav.manuals"></a>
     <a class="lnk" href="#install" data-i18n="nav.install"></a>
+    <a class="lnk" href="#faq" data-i18n="nav.faq"></a>
     <div class="lang" role="group" aria-label="Language">
       <button data-lang="uk" aria-pressed="false">UA</button>
       <button data-lang="en" aria-pressed="false">EN</button>
@@ -181,7 +240,7 @@ footer a { color: #fff; }
 
 <main id="top">
 <!-- HERO -->
-<section class="hero" style="padding-bottom:0">
+<section class="hero" id="home" style="padding-bottom:0">
   <div class="wrap">
     <div class="grid">
       <div>
@@ -218,7 +277,7 @@ footer a { color: #fff; }
 </section>
 
 <!-- FEATURES -->
-<section>
+<section id="features">
   <div class="wrap">
     <p class="eyebrow" data-i18n="feat.eyebrow"></p>
     <h2 data-i18n="feat.title"></h2>
@@ -241,8 +300,8 @@ footer a { color: #fff; }
     <h2 data-i18n="cmd.title"></h2>
     <p class="lead" data-i18n="cmd.lead"></p>
 
-    <div class="cmd reveal">
-      <div class="txt">
+    <div class="cmd">
+      <div class="txt reveal l">
         <h3 data-i18n="qfc.name"></h3>
         <p class="en">Quick FlexConnect</p>
         <p data-i18n="qfc.p"></p>
@@ -251,19 +310,19 @@ footer a { color: #fff; }
         </ul>
         <div class="btns"><span data-i18n="man.pdf"></span><span class="pdfs" data-pdf="QuickFlexConnect"></span></div>
       </div>
-      <div class="shot">
+      <div class="shot demo reveal z">
         <svg viewBox="0 0 400 200" width="100%" aria-hidden="true">
           <rect x="14" y="120" width="96" height="60" rx="4" fill="none" stroke="#5BB6E8" stroke-width="4"/>
           <rect x="290" y="22" width="96" height="60" rx="4" fill="none" stroke="#5BB6E8" stroke-width="4"/>
-          <path d="M110 150 C200 150 200 52 290 52" fill="none" stroke="#F2A93B" stroke-width="6" stroke-dasharray="26 8 5 8" stroke-linecap="round"/>
-          <circle cx="110" cy="150" r="12" fill="none" stroke="#F2A93B" stroke-width="3.5"/><circle cx="290" cy="52" r="12" fill="none" stroke="#F2A93B" stroke-width="3.5"/>
+          <path class="fl" d="M110 150 C200 150 200 52 290 52" fill="none" stroke="#F2A93B" stroke-width="6" stroke-dasharray="26 8 5 8" stroke-linecap="round"/>
+          <circle class="pl" cx="110" cy="150" r="12" fill="none" stroke="#F2A93B" stroke-width="3.5"/><circle class="pl" cx="290" cy="52" r="12" fill="none" stroke="#F2A93B" stroke-width="3.5" style="animation-delay:.6s"/>
           <text x="140" y="195" fill="#9AA7BF" font-size="13" font-family="Segoe UI, Arial">1 → 2</text>
         </svg>
       </div>
     </div>
 
-    <div class="cmd reveal">
-      <div class="txt">
+    <div class="cmd">
+      <div class="txt reveal r">
         <h3 data-i18n="ft.name"></h3>
         <p class="en">Flex Tail</p>
         <p data-i18n="ft.p"></p>
@@ -272,11 +331,11 @@ footer a { color: #fff; }
         </ul>
         <div class="btns"><span data-i18n="man.pdf"></span><span class="pdfs" data-pdf="FlexTail"></span></div>
       </div>
-      <div class="shot">
+      <div class="shot demo reveal z">
         <svg viewBox="0 0 400 200" width="100%" aria-hidden="true">
           <rect x="300" y="60" width="86" height="80" rx="4" fill="none" stroke="#5BB6E8" stroke-width="4"/>
           <rect x="14" y="78" width="130" height="44" fill="none" stroke="#9AA7BF" stroke-width="4"/>
-          <path d="M144 100 C190 100 190 100 215 100 C240 100 235 118 258 100 C275 88 280 100 300 100" fill="none" stroke="#F2A93B" stroke-width="6" stroke-dasharray="26 8 5 8" stroke-linecap="round"/>
+          <path class="fl" d="M144 100 C190 100 190 100 215 100 C240 100 235 118 258 100 C275 88 280 100 300 100" fill="none" stroke="#F2A93B" stroke-width="6" stroke-dasharray="26 8 5 8" stroke-linecap="round"/>
           <path d="M144 70v60M300 70v60" stroke="#F2A93B" stroke-width="3"/>
           <text x="150" y="160" fill="#9AA7BF" font-size="13" font-family="Segoe UI, Arial">500 – 2500 mm</text>
         </svg>
@@ -366,7 +425,7 @@ footer a { color: #fff; }
   /* ---------- тексты ---------- */
   var T = {
     uk: {
-      "nav.commands": "Команди", "nav.videos": "Відео", "nav.manuals": "Посібники", "nav.install": "Встановлення",
+      "nav.home": "Головна", "nav.features": "Переваги", "nav.faq": "Питання", "nav.commands": "Команди", "nav.videos": "Відео", "nav.manuals": "Посібники", "nav.install": "Встановлення",
       "hero.eyebrow": "Надбудова Revit для вентиляції",
       "hero.title": "Гнучкі повітропроводи — <em>за два кліки</em>",
       "hero.sub": "З’єднайте два конектори гофрою або замініть кінець жорсткого повітроводу гнучким. Без ручного підбору довжин, переходів і зайвих діалогів.",
@@ -411,7 +470,7 @@ footer a { color: #fff; }
       "foot.copy": "© 2026 Maliuhin Volodymyr. Безкоштовна надбудова для Autodesk Revit.", "foot.license": "Ліцензія", "foot.third": "Сторонні компоненти", "foot.releases": "Усі релізи"
     },
     en: {
-      "nav.commands": "Commands", "nav.videos": "Videos", "nav.manuals": "Manuals", "nav.install": "Install",
+      "nav.home": "Home", "nav.features": "Features", "nav.faq": "FAQ", "nav.commands": "Commands", "nav.videos": "Videos", "nav.manuals": "Manuals", "nav.install": "Install",
       "hero.eyebrow": "Revit add-in for HVAC design",
       "hero.title": "Flex ducts in <em>two clicks</em>",
       "hero.sub": "Join two connectors with a flex duct, or turn the end of a rigid duct into a flex one. No manual lengths, transitions, or extra dialogs.",
@@ -456,7 +515,7 @@ footer a { color: #fff; }
       "foot.copy": "© 2026 Maliuhin Volodymyr. A free add-in for Autodesk Revit.", "foot.license": "License", "foot.third": "Third-party notices", "foot.releases": "All releases"
     },
     ru: {
-      "nav.commands": "Команды", "nav.videos": "Видео", "nav.manuals": "Руководства", "nav.install": "Установка",
+      "nav.home": "Главная", "nav.features": "Преимущества", "nav.faq": "Вопросы", "nav.commands": "Команды", "nav.videos": "Видео", "nav.manuals": "Руководства", "nav.install": "Установка",
       "hero.eyebrow": "Надстройка Revit для вентиляции",
       "hero.title": "Гибкие воздуховоды — <em>за два клика</em>",
       "hero.sub": "Соедините два коннектора гофрой или замените конец жёсткого воздуховода гибким. Без ручного подбора длин, переходов и лишних диалогов.",
@@ -535,7 +594,7 @@ footer a { color: #fff; }
     var names = ["QuickFlexConnect", "FlexTail", "Settings", "About", "rest"];
     var box = document.getElementById("ribbon"), sc = scheme();
     box.innerHTML = names.map(function (n) {
-      return '<img src="ribbon/img/col-' + n + "-" + lang + "-" + (sc === "dark" ? "dark" : "light") + '.svg" alt="' + n + '" loading="lazy">';
+      return '<img style="--i:' + names.indexOf(n) + '" src="ribbon/img/col-' + n + "-" + lang + "-" + (sc === "dark" ? "dark" : "light") + '.svg" alt="' + n + '" loading="lazy">';
     }).join("");
   }
   function renderPdfs() {
@@ -569,7 +628,7 @@ footer a { color: #fff; }
     document.querySelectorAll("[data-i18n-html]").forEach(function (el) { el.innerHTML = t(el.dataset.i18nHtml); });
     document.querySelectorAll(".lang button").forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.lang === l); });
     document.title = "HVAC Stuff — " + t("hero.eyebrow");
-    renderRibbon(); renderVideos(); renderPdfs();
+    renderRibbon(); renderVideos(); renderPdfs(); renderDots();
   }
 
   document.querySelectorAll(".lang button").forEach(function (b) { b.addEventListener("click", function () { applyLang(b.dataset.lang); }); });
@@ -591,11 +650,60 @@ footer a { color: #fff; }
 
   applyLang(pickLang());
 
+  /* ---------- навигация по разделам: точки справа, подсветка сверху, стрелки вверх/вниз, полоса прогресса ---------- */
+  var KEYS = ["home", "features", "commands", "videos", "manuals", "install", "faq"];
+  var secs = KEYS.map(function (k) { return document.getElementById(k); });
+  var dots = document.getElementById("dots"), cur = 0;
+  function renderDots() {
+    if (!dots) return;
+    dots.innerHTML = KEYS.map(function (k, i) {
+      return '<a href="#' + k + '" data-label="' + t("nav." + k) + '" aria-label="' + t("nav." + k) + '"' + (i === cur ? ' aria-current="true"' : "") + "></a>";
+    }).join("");
+  }
+  function goto(i) {
+    i = Math.max(0, Math.min(KEYS.length - 1, i));
+    secs[i].scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  }
+  document.getElementById("down").addEventListener("click", function () { goto(cur + 1); });
+  document.getElementById("up").addEventListener("click", function () {
+    goto(window.scrollY - secs[cur].offsetTop > 120 ? cur : cur - 1);
+  });
+  renderDots();
+  var ticking = false;
+  function onScroll() {
+    ticking = false;
+    var y = window.scrollY, h = document.documentElement.scrollHeight - innerHeight;
+    document.getElementById("progress").style.transform = "scaleX(" + (h > 0 ? y / h : 0) + ")";
+    var probe = y + innerHeight * .4, idx = 0;
+    secs.forEach(function (el, i) { if (el.offsetTop <= probe) idx = i; });
+    if (y >= h - 4) idx = KEYS.length - 1;
+    if (idx !== cur) {
+      cur = idx;
+      dots.querySelectorAll("a").forEach(function (a, i) { if (i === cur) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current"); });
+      document.querySelectorAll(".nav a.lnk").forEach(function (a) { a.classList.toggle("active", a.getAttribute("href") === "#" + KEYS[cur]); });
+    }
+    document.getElementById("up").hidden = y < 200;
+    document.getElementById("down").hidden = cur === KEYS.length - 1;
+    var d = document.querySelector(".duct");
+    if (d && y < 900) d.style.setProperty("--py", Math.round(y * .12) + "px");
+  }
+  window.addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  window.addEventListener("resize", onScroll);
+  onScroll();
+
   /* появление блоков при прокрутке */
   var io = "IntersectionObserver" in window ? new IntersectionObserver(function (es) {
     es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
   }, { threshold: .12 }) : null;
+  /* лесенка: дочерние карточки появляются по очереди */
+  document.querySelectorAll(".grid3, .man, .dl, .steps").forEach(function (g) {
+    Array.prototype.forEach.call(g.children, function (c, i) { c.style.setProperty("--d", i * 90 + "ms"); });
+  });
   document.querySelectorAll(".reveal").forEach(function (el) { if (io) io.observe(el); else el.classList.add("in"); });
+  var sio = "IntersectionObserver" in window ? new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) e.target.classList.add("seen"); });
+  }, { threshold: .15 }) : null;
+  document.querySelectorAll("section").forEach(function (el) { if (sio) sio.observe(el); else el.classList.add("seen"); });
 })();
 </script>
 </body>
