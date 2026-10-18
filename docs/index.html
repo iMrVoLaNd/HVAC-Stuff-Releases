@@ -250,7 +250,7 @@ footer a { color: #fff; }
 @keyframes spin { to { transform: rotate(360deg); } }
 .ls-ring .dash { stroke-dasharray: 34 11 6 11; }
 .ls-ring .pulse { transform-box: fill-box; transform-origin: center; animation: pulse 2.4s ease-in-out infinite; }
-.logo-disc { position: absolute; inset: 11%; border-radius: 50%; overflow: hidden; box-shadow: 0 0 0 5px rgba(242,169,59,.28), 0 36px 80px -24px rgba(0,0,0,.8); transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--py, 0px)); transition: transform .2s ease-out; will-change: transform; }
+.logo-disc { position: absolute; inset: 11%; border-radius: 50%; overflow: hidden; box-shadow: 0 0 0 5px rgba(242,169,59,.28), 0 36px 80px -24px rgba(0,0,0,.8); transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform .2s ease-out; will-change: transform; }
 .logo-disc img { width: 100%; height: 100%; display: block; animation: breathe 8s ease-in-out infinite; }
 @keyframes breathe { 50% { transform: scale(1.05); } }
 .logo-disc::after { content: ""; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 42%, rgba(255,255,255,.34) 50%, transparent 58%); background-size: 260% 100%; background-position: 130% 0; animation: sweep 6.5s ease-in-out infinite; }
@@ -910,8 +910,6 @@ section.seen h2::after { width: 64px; }
     }
     document.getElementById("up").hidden = y < 200;
     document.getElementById("down").hidden = cur === KEYS.length - 1;
-    var d = document.getElementById("logoStage");
-    if (d && y < 900) d.style.setProperty("--py", Math.round(y * .12) + "px");
   }
   window.addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
   window.addEventListener("resize", onScroll);
