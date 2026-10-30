@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet">
+<title>MEP Parameters — HVAC Stuff</title>
+<meta name="description" content="MEP Parameters — a free Revit plugin that fills the system name and the sort key of ducts, pipes and equipment from the system names.">
+<meta name="theme-color" content="#14213D">
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="img/favicon-64.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<style>
+:root {
+  --navy: #14213D; --navy-2: #1c2d52; --paper: #FBFAF6; --amber: #F2A93B; --sky: #5BB6E8;
+  --bg: #FBFAF6; --bg-2: #F3F1EA; --card: #ffffff; --text: #14213D; --muted: #5d6881; --line: #e4e0d4;
+  --amber-soft: #FDF0D6;
+  --shadow: 0 1px 2px rgba(20,33,61,.06), 0 12px 32px -12px rgba(20,33,61,.18);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1628; --bg-2: #121c33; --card: #16223d; --text: #eef1f8; --muted: #9aa7bf; --line: #26334f;
+    --amber-soft: #3A2D12;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 32px -12px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1628; --bg-2: #121c33; --card: #16223d; --text: #eef1f8; --muted: #9aa7bf; --line: #26334f;
+  --amber-soft: #3A2D12;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 32px -12px rgba(0,0,0,.6);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+img, svg { max-width: 100%; }
+.wrap { width: min(1120px, 100% - 32px); margin-inline: auto; }
+main, footer { overflow-x: clip; }
+section { padding: 72px 0; }
+.alt { background: var(--bg-2); }
+.eyebrow { color: var(--amber); font-weight: 700; letter-spacing: .16em; text-transform: uppercase; font-size: 13px; margin: 0 0 10px; }
+h2 { font-size: clamp(28px, 4vw, 40px); line-height: 1.15; margin: 0 0 14px; letter-spacing: -.01em; }
+.lead { color: var(--muted); font-size: 18px; max-width: 720px; margin: 0 0 40px; }
+
+.nav { position: sticky; top: 0; z-index: 20; background: rgba(20,33,61,.92); backdrop-filter: blur(10px); color: #fff; }
+.nav .wrap { display: flex; align-items: center; gap: 22px; height: 60px; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 700; text-decoration: none; font-size: 18px; margin-right: auto; color: #fff; }
+.nav a.lnk { color: #c9d3e6; text-decoration: none; font-size: 15px; }
+.nav a.lnk:hover { color: #fff; }
+.lang { display: flex; border: 1px solid #3a4a72; border-radius: 8px; overflow: hidden; }
+.lang button { background: none; border: 0; color: #c9d3e6; padding: 5px 10px; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; }
+.lang button[aria-pressed="true"] { background: var(--amber); color: var(--navy); }
+.btn { display: inline-flex; align-items: center; gap: 8px; background: var(--amber); color: var(--navy); text-decoration: none; padding: 12px 22px; border-radius: 10px; border: 0; cursor: pointer; font: inherit; font-weight: 700; transition: transform .15s; }
+.btn:hover { transform: translateY(-2px); }
+.btn.ghost { background: transparent; color: inherit; border: 1.5px solid currentColor; }
+@media (max-width: 960px) { .nav a.lnk { display: none; } }
+
+.hero { background: radial-gradient(900px 420px at 85% 10%, rgba(91,182,232,.22), transparent 60%), linear-gradient(180deg, var(--navy), #0f1a33); color: #fff; padding: 76px 0 72px; }
+.hero h1 { font-size: clamp(36px, 5.5vw, 58px); line-height: 1.07; margin: 0 0 18px; letter-spacing: -.02em; }
+.hero h1 em { font-style: normal; color: var(--amber); }
+.hero p.sub { font-size: 20px; color: #c9d3e6; max-width: 700px; margin: 0 0 30px; }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.meta { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font-size: 13px; padding: 4px 12px; border-radius: 99px; border: 1px solid #3a4a72; color: #c9d3e6; }
+
+.grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 26px; box-shadow: var(--shadow); }
+.card h3 { margin: 0 0 6px; font-size: 19px; }
+.card p { margin: 0; color: var(--muted); }
+
+.steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 16px; max-width: 820px; counter-reset: s; }
+.steps li { counter-increment: s; position: relative; padding: 4px 0 4px 54px; }
+.steps li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 38px; height: 38px; border-radius: 50%; background: var(--amber); color: var(--navy); font-weight: 800; display: grid; place-items: center; }
+.steps b { display: block; }
+.steps span { color: var(--muted); }
+
+.ex { display: flex; flex-wrap: wrap; gap: 10px; margin: 8px 0 20px; }
+.ex div { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 8px 14px; font-family: Consolas, "Cascadia Mono", Menlo, monospace; }
+.ex div i { font-style: normal; color: var(--amber); padding: 0 6px; }
+.ex small { display: block; font: 12px "Segoe UI", sans-serif; color: var(--muted); }
+
+.list { padding: 0; margin: 14px 0 0; list-style: none; max-width: 820px; }
+.list li { padding-left: 26px; position: relative; margin-bottom: 10px; color: var(--muted); }
+.list li::before { content: ""; position: absolute; left: 0; top: .6em; width: 14px; height: 4px; border-radius: 2px; background: var(--amber); }
+.list b { color: var(--text); }
+.note { margin-top: 24px; background: var(--amber-soft); border-radius: 12px; padding: 14px 18px; max-width: 820px; }
+figure.shot { margin: 28px 0 0; max-width: 820px; }
+figure.shot[hidden] { display: none; }
+figure.shot img { display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--line); box-shadow: var(--shadow); background: var(--card); }
+figure.shot figcaption { color: var(--muted); font-size: 14px; margin-top: 8px; }
+.shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 28px; }
+.shots figure.shot { margin: 0; max-width: none; }
+.shots:not(:has(figure:not([hidden]))) { display: none; }
+
+details { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; margin-bottom: 10px; max-width: 820px; }
+summary { cursor: pointer; font-weight: 600; }
+details p { color: var(--muted); margin: 10px 0 0; }
+
+footer { background: var(--navy); color: #c9d3e6; padding: 36px 0; font-size: 14px; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; }
+footer a { color: #c9d3e6; }
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="HVAC Stuff"><img src="img/logo-128.png" alt="" width="32" height="32">HVAC Stuff</a>
+    <a class="lnk" href="#what" data-i18n="nav.what"></a>
+    <a class="lnk" href="#how" data-i18n="nav.how"></a>
+    <a class="lnk" href="#rules" data-i18n="nav.rules"></a>
+    <a class="lnk" href="#equipment" data-i18n="nav.equip"></a>
+    <a class="lnk" href="#control" data-i18n="nav.control"></a>
+    <a class="lnk" href="#faq" data-i18n="nav.faq"></a>
+    <div class="lang" role="group" aria-label="Language">
+      <button data-lang="uk" aria-pressed="false">UA</button>
+      <button data-lang="en" aria-pressed="false">EN</button>
+      <button data-lang="ru" aria-pressed="false">RU</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow" data-i18n="hero.eyebrow"></p>
+    <h1 data-i18n-html="hero.title"></h1>
+    <p class="sub" data-i18n="hero.sub"></p>
+    <div class="cta">
+      <a class="btn" href="index.html#install" data-i18n="hero.install"></a>
+      <a class="btn ghost" href="name-parsing.html" data-i18n="hero.parsing"></a>
+    </div>
+    <div class="meta">
+      <span class="chip">Revit 2023–2027</span>
+      <span class="chip" data-i18n="hero.free"></span>
+      <span class="chip" data-i18n="hero.langs"></span>
+    </div>
+  </div>
+</section>
+
+<section id="what">
+  <div class="wrap">
+    <p class="eyebrow" data-i18n="what.eyebrow"></p>
+    <h2 data-i18n="what.title"></h2>
+    <p class="lead" data-i18n="what.lead"></p>
+    <div class="grid3">
+      <div class="card"><h3 data-i18n="c1.t"></h3><p data-i18n="c1.p"></p></div>
+      <div class="card"><h3 data-i18n="c2.t"></h3><p data-i18n="c2.p"></p></div>
+      <div class="card"><h3 data-i18n="c3.t"></h3><p data-i18n="c3.p"></p></div>
+      <div class="card"><h3 data-i18n="c4.t"></h3><p data-i18n="c4.p"></p></div>
+      <div class="card"><h3 data-i18n="c5.t"></h3><p data-i18n="c5.p"></p></div>
+      <div class="card"><h3 data-i18n="c6.t"></h3><p data-i18n="c6.p"></p></div>
+    </div>
+    <div class="note" data-i18n="param.note"></div>
+    <figure class="shot"><img src="img/mep-ribbon.png" alt="" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption data-i18n="cap.ribbon"></figcaption></figure>
+  </div>
+</section>
+
+<section class="alt" id="how">
+  <div class="wrap">
+    <p class="eyebrow" data-i18n="how.eyebrow"></p>
+    <h2 data-i18n="how.title"></h2>
+    <p class="lead" data-i18n="how.lead"></p>
+    <ol class="steps">
+      <li><b data-i18n="s1.t"></b><span data-i18n="s1.p"></span></li>
+      <li><b data-i18n="s2.t"></b><span data-i18n="s2.p"></span></li>
+      <li><b data-i18n="s3.t"></b><span data-i18n="s3.p"></span></li>
+      <li><b data-i18n="s4.t"></b><span data-i18n="s4.p"></span></li>
+      <li><b data-i18n="s5.t"></b><span data-i18n="s5.p"></span></li>
+    </ol>
+<figure class="shot"><img src="img/mep-settings.png" alt="" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption data-i18n="cap.settings"></figcaption></figure>
+    <div class="note" data-i18n="how.note"></div>
+  </div>
+</section>
+
+<section id="rules">
+  <div class="wrap">
+    <p class="eyebrow" data-i18n="rules.eyebrow"></p>
+    <h2 data-i18n="rules.title"></h2>
+    <p class="lead" data-i18n="rules.lead"></p>
+    <div class="ex">
+      <div>ПК3 <i>→</i> К3<small data-i18n="ex.simple"></small></div>
+      <div>ПК-1 1 <i>→</i> К-1<small data-i18n="ex.tail"></small></div>
+      <div>ПВ1 (п) <i>→</i> ПВ1<small data-i18n="ex.supply"></small></div>
+      <div>ТХ 3 <i>→</i> ТХ3<small data-i18n="ex.space"></small></div>
+    </div>
+    <ul class="list">
+      <li data-i18n-html="r1"></li>
+      <li data-i18n-html="r2"></li>
+      <li data-i18n-html="r3"></li>
+      <li data-i18n-html="r4"></li>
+    </ul>
+    <p style="margin-top:24px"><a class="btn" href="name-parsing.html" data-i18n="rules.open"></a></p>
+  </div>
+</section>
+
+<section class="alt" id="equipment">
+  <div class="wrap">
+    <p class="eyebrow" data-i18n="eq.eyebrow"></p>
+    <h2 data-i18n="eq.title"></h2>
+    <p class="lead" data-i18n="eq.lead"></p>
+    <ul class="list">
+      <li data-i18n-html="e1"></li>
+      <li data-i18n-html="e2"></li>
+      <li data-i18n-html="e3"></li>
+      <li data-i18n-html="e4"></li>
+    </ul>
+  </div>
+</section>
+
+<section id="control">
+  <div class="wrap">
+    <p class="eyebrow" data-i18n="ctl.eyebrow"></p>
+    <h2 data-i18n="ctl.title"></h2>
+    <p class="lead" data-i18n="ctl.lead"></p>
+    <div class="grid3">
+      <div class="card"><h3 data-i18n="k1.t"></h3><p data-i18n="k1.p"></p></div>
+      <div class="card"><h3 data-i18n="k2.t"></h3><p data-i18n="k2.p"></p></div>
+      <div class="card"><h3 data-i18n="k3.t"></h3><p data-i18n="k3.p"></p></div>
+      <div class="card"><h3 data-i18n="k4.t"></h3><p data-i18n="k4.p"></p></div>
+    </div>
+    <div class="shots">
+      <figure class="shot"><img src="img/mep-problems.png" alt="" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption data-i18n="cap.problems"></figcaption></figure>
+      <figure class="shot"><img src="img/mep-log.png" alt="" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption data-i18n="cap.log"></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="faq">
+  <div class="wrap">
+    <p class="eyebrow" data-i18n="faq.eyebrow"></p>
+    <h2 data-i18n="faq.title"></h2>
+    <details><summary data-i18n="q1.q"></summary><p data-i18n="q1.a"></p></details>
+    <details><summary data-i18n="q2.q"></summary><p data-i18n="q2.a"></p></details>
+    <details><summary data-i18n="q3.q"></summary><p data-i18n="q3.a"></p></details>
+    <details><summary data-i18n="q4.q"></summary><p data-i18n="q4.a"></p></details>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><b style="color:#fff">HVAC Stuff</b><br><span data-i18n="foot.copy"></span></div>
+    <div>
+      <a href="index.html" data-i18n="foot.home"></a> ·
+      <a href="https://github.com/iMrVoLaNd/HVAC-Stuff-Releases/releases" data-i18n="foot.releases"></a><br>
+      <a href="mailto:habrahabrtank@gmail.com">habrahabrtank@gmail.com</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var T = {
+    uk: {
+      "param.note": "ADSK_Система_Имя та «Unicode Сортування» — лише приклад (значення за замовчуванням). Можна обрати свій параметр: в «Налаштуваннях», вкладка «Системи», поля «Цільовий параметр (отримує назву)» і «Параметр сортування (отримує ключ сортування)».",
+      "cap.ribbon": "Вкладка «HVAC Stuff», панель «MEP Параметри» на стрічці Revit.", "cap.settings": "Налаштування: вкладка «Системи», вибір параметрів і правила типів систем.", "cap.problems": "Вікно проблем: назви, що не підійшли під правило.", "cap.log": "Журнал запусків з фільтром і пошуком за ID елемента.",
+      "name": "MEP Параметри",
+      "nav.what": "Можливості", "nav.how": "Як користуватись", "nav.rules": "Імена систем", "nav.equip": "Обладнання", "nav.control": "Журнал і контроль", "nav.faq": "Питання",
+      "hero.eyebrow": "Revit · Плагін · MEP Параметри",
+      "hero.title": "Назва системи у специфікації — <em>без ручного вводу</em>",
+      "hero.sub": "Плагін бере ім’я системи з моделі, перевіряє його за правилом типу системи й записує результат у текстовий параметр (за замовчуванням ADSK_Система_Имя) та ключ сортування. Повітроводи, труби, деталі, арматура й обладнання разом.",
+      "hero.install": "Встановлення", "hero.parsing": "Як розбираються імена", "hero.free": "Безкоштовно", "hero.langs": "Українська · English · Русский",
+      "what.eyebrow": "Можливості", "what.title": "Що робить плагін",
+      "what.lead": "Вкладка «HVAC Stuff», панель «MEP Параметри»: заповнювати автоматично, заповнити вручну, очистити, налаштування.",
+      "c1.t": "Назва системи в параметр", "c1.p": "Ім’я системи читається з моделі й пишеться в обраний текстовий параметр. За замовчуванням це спільний параметр ADSK_Система_Имя.",
+      "c2.t": "Ключ сортування", "c2.p": "У другий параметр (за замовчуванням «Unicode Сортування») пишеться назва з невидимими символами спереду: специфікація сортує елементи в порядку типів систем, який ви задали.",
+      "c3.t": "Автоматичний режим", "c3.p": "Новий або змінений елемент одразу отримує назву. Так само реагують зміна системи, вихід з неї й видалення системи. Значок на стрічці показує стан: увімкнено, вимкнено, не налаштовано.",
+      "c4.t": "Ручне заповнення й очищення", "c4.p": "Заповнення проходить весь проєкт і показує звіт: оброблено, записано, пропущено, помилки, час. Esc зупиняє, записане лишається. «Очистити» порожнить обидва параметри, одним кроком скасування (Ctrl+Z) усе повертається.",
+      "c5.t": "Обладнання за підключеними системами", "c5.p": "Назва обладнання збирається з усіх систем, підключених до нього, а не з однієї.",
+      "c6.t": "Журнал і вікно проблем", "c6.p": "Повний запис кожного запуску, пошук за ID елемента, експорт у CSV. Назви, що не підходять під правило, збираються в список із діями: виділити, перейменувати, залишити.",
+      "how.eyebrow": "Як користуватись", "how.title": "Налаштування проєкту за п’ять кроків",
+      "how.lead": "Налаштування зберігаються в самому проєкті. Їх можна зберегти у файл JSON і завантажити в інший проєкт.",
+      "s1.t": "Оберіть параметри", "s1.p": "Вкладка «Системи»: цільовий параметр (отримує назву) і, якщо потрібно, параметр сортування. Плагін показує лише ті, що підходять: текстові, екземпляра, не лише для читання, прив’язані до всіх категорій. Якщо параметр не підійшов, поруч видно причину.",
+      "s2.t": "Натисніть «З шаблону»", "s2.p": "Літери заповнюються для типів систем шаблону HVAC Stuff. Правила інших типів лишаються без змін.",
+      "s3.t": "Налаштуйте решту типів", "s3.p": "Впишіть літери, з яких починається ім’я системи, і літери результату. Порожнє правило — «транзит»: ім’я копіюється як є й не перевіряється. Порядок рядків — це порядок сортування, рядки перетягуються. Поле «Перевірити назву» показує результат для вашого імені.",
+      "s4.t": "Оберіть категорії та пропуски", "s4.p": "Заповнюються й відстежуються лише позначені категорії. Сімейства, назва яких починається з фрази або містить її, можна не чіпати.",
+      "s5.t": "Збережіть і запустіть", "s5.p": "«Зберегти», потім «Заповнити вручну» або «Заповнювати автоматично».",
+      "how.note": "Заповнення й автоматичний режим доступні на планах, розрізах, фасадах, 3D-видах і в специфікаціях елементів. На аркушах, у легендах і кресленнях вони вимкнені. У сімействі плагін не працює.",
+      "rules.eyebrow": "Імена систем", "rules.title": "Як ім’я стає назвою",
+      "rules.lead": "Для кожного типу системи є правило з двох полів: «Назва починається з» (літери, з яких має починатись ім’я) і «Записує» (літери результату; порожньо — ті самі).",
+      "ex.simple": "проста", "ex.tail": "число-позиція відкидається", "ex.supply": "мітка (п) не входить у назву", "ex.space": "пробіл прибирається",
+      "r1": "<b>Проста:</b> літери й номер; номер та буква після нього йдуть у результат.",
+      "r2": "<b>Лінійна:</b> позначення закінчується цифрою (Х3), тому в імені потрібна крапка: Х3.1 дає К1.",
+      "r3": "<b>Фіксована:</b> для будь-якого імені пишеться той самий текст.",
+      "r4": "<b>Транзит:</b> літер немає, ім’я копіюється як є й не перевіряється.",
+      "rules.open": "Сторінка розбору імен з перевіркою",
+      "eq.eyebrow": "Обладнання", "eq.title": "Назва обладнання з підключених систем",
+      "eq.lead": "До одного обладнання підключено кілька систем, тому в нього в імені системи список. Плагін розбирає кожну за її правилом, однакові результати зливає в одну назву.",
+      "e1": "<b>Повітроводи вирішують раніше за труби:</b> припливна установка з нагрівачем лишається припливною.",
+      "e2": "<b>Разом можуть бути лише</b> приплив і витяжка (ПВ, будь-яка кількість) та дві системи канального кондиціонера (ПК, РК).",
+      "e3": "<b>Несумісні системи не ігноруються мовчки:</b> у списку проблем плагін перелічує підключені системи з типом, причиною й прикладом, а ви обираєте «основну» систему. Вибір зберігається в проєкті для цієї комбінації.",
+      "e4": "<b>Побутова каналізація</b>, підключена разом з іншими системами, ігнорується, з підказкою про можливу помилку замість дренажу.",
+      "ctl.eyebrow": "Журнал і контроль", "ctl.title": "Видно, що змінилось і що не так",
+      "ctl.lead": "Усе, що плагін зробив у моделі, можна перевірити.",
+      "k1.t": "Журнал запусків", "k1.p": "Кожне заповнення, очищення й зміна моделі в автоматичному режимі: скільки змінено, не змінено, пропущено, проблем і помилок, час. Фільтр за видом запису, пошук за ID елемента, експорт повного запису в CSV для Excel.",
+      "k2.t": "Вікно проблем", "k2.p": "Назви, що не підходять під правило типу, копіюються як є й потрапляють у список. Для кожної пари: «Виділити все» в моделі, «Перейменувати на…» (перейменовує систему) або «Залишити як є» (більше не повідомляти).",
+      "k3.t": "Звіт і прогрес", "k3.p": "Під час заповнення видно лічильник, записані значення й час. Підсумковий звіт розбито за категоріями. Елемент, який редагує інший користувач, рахується окремо.",
+      "k4.t": "Налаштування", "k4.p": "Параметри, категорії, пропущені сімейства, типи систем з порядком, журнал (розмір файлу й строк зберігання), імпорт та експорт JSON. Вікно не блокує Revit.",
+      "faq.eyebrow": "Питання", "faq.title": "Часті питання",
+      "q1.q": "Чи сповільнює плагін Revit?", "q1.a": "Під час запуску завантажується лише стрічка. Вікна й налаштування відкриваються при першому натисканні.",
+      "q2.q": "Де зберігаються налаштування?", "q2.a": "У самому проєкті. Для переносу в інший проєкт: «Експорт» у файл JSON, потім «Імпорт» і «Зберегти».",
+      "q3.q": "Чи можна скасувати очищення?", "q3.a": "Так, одним кроком скасування (Ctrl+Z) повертається все очищене.",
+      "q4.q": "Що, якщо ім’я системи не підходить під правило?", "q4.a": "Воно копіюється як є, а пара «тип і ім’я» потрапляє у вікно проблем. Виправте ім’я в моделі, задайте «транзит» для типу або залиште як є.",
+      "foot.copy": "© 2026 Maliuhin Volodymyr. Безкоштовна надбудова для Autodesk Revit.", "foot.home": "Головна", "foot.releases": "Усі релізи"
+    },
+    en: {
+      "param.note": "ADSK_Система_Имя and “Unicode Сортування” are only an example (the defaults). You can choose your own parameter: in Settings, tab “Systems”, the fields “Target parameter (receives the name)” and “Sort parameter (receives the sort key)”.",
+      "cap.ribbon": "The “HVAC Stuff” tab, panel “MEP Parameters” on the Revit ribbon.", "cap.settings": "Settings: the “Systems” tab, choice of parameters and the rules of system types.", "cap.problems": "The problems window: names that did not fit the rule.", "cap.log": "The run log with a filter and search by element ID.",
+      "name": "MEP Parameters",
+      "nav.what": "Features", "nav.how": "How to use", "nav.rules": "System names", "nav.equip": "Equipment", "nav.control": "Log and control", "nav.faq": "FAQ",
+      "hero.eyebrow": "Revit · Plugin · MEP Parameters",
+      "hero.title": "The system name in the schedule, <em>without typing it</em>",
+      "hero.sub": "The plugin reads the system name from the model, checks it by the rule of the system type, and writes the result into a text parameter (ADSK_Система_Имя by default) and a sort key. Ducts, pipes, fittings, accessories and equipment together.",
+      "hero.install": "Installation", "hero.parsing": "How names are parsed", "hero.free": "Free", "hero.langs": "Українська · English · Русский",
+      "what.eyebrow": "Features", "what.title": "What the plugin does",
+      "what.lead": "Tab “HVAC Stuff”, panel “MEP Parameters”: fill automatically, fill manually, clear, settings.",
+      "c1.t": "System name into a parameter", "c1.p": "The system name is read from the model and written to the chosen text parameter. By default this is the shared parameter ADSK_Система_Имя.",
+      "c2.t": "Sort key", "c2.p": "A second parameter (by default “Unicode Сортування”) gets the name with invisible characters in front: a schedule sorts elements in the order of system types that you set.",
+      "c3.t": "Automatic mode", "c3.p": "A new or changed element gets its name at once. The same happens when an element changes its system, leaves it, or the system is deleted. The ribbon icon shows the state: on, off, or not configured.",
+      "c4.t": "Manual fill and clear", "c4.p": "The fill goes through the whole project and shows a report: processed, written, skipped, errors, time. Esc stops it and what is written stays. “Clear” empties both parameters, and one undo step (Ctrl+Z) brings everything back.",
+      "c5.t": "Equipment by connected systems", "c5.p": "The name of a piece of equipment is built from all the systems connected to it, not from one.",
+      "c6.t": "Run log and problems window", "c6.p": "A full record of every run, search by element ID, CSV export. Names that do not fit the rule are collected in a list with actions: select, rename, keep.",
+      "how.eyebrow": "How to use", "how.title": "Set up a project in five steps",
+      "how.lead": "The settings are stored in the project itself. They can be saved to a JSON file and loaded into another project.",
+      "s1.t": "Choose the parameters", "s1.p": "Tab “Systems”: the target parameter (receives the name) and, if needed, the sort parameter. The plugin lists only parameters that fit: text, instance, writable, bound to all categories. A parameter that does not fit shows the reason.",
+      "s2.t": "Press “From template”", "s2.p": "The letters are filled in for the system types of the HVAC Stuff template. The rules of other types stay as they are.",
+      "s3.t": "Set up the remaining types", "s3.p": "Write the letters the system name starts with and the letters of the result. An empty rule is “transit”: the name is copied as it is and is not checked. The order of rows is the sort order, rows can be dragged. The “Check a name” field shows the result for your own name.",
+      "s4.t": "Choose categories and skips", "s4.p": "Only the checked categories are filled and watched. Families whose name starts with, or contains, a phrase can be left untouched.",
+      "s5.t": "Save and run", "s5.p": "Press “Save”, then “Fill manually” or “Fill automatically”.",
+      "how.note": "Fill and the automatic mode work in plans, sections, elevations, 3D views and element schedules. They are off on sheets, in legends and in drafting views. The plugin does not work in a family.",
+      "rules.eyebrow": "System names", "rules.title": "How a name becomes a result",
+      "rules.lead": "Each system type has a rule of two fields: “Name starts with” (the letters the name must start with) and “Writes” (the letters of the result; empty means the same).",
+      "ex.simple": "simple", "ex.tail": "a position number is dropped", "ex.supply": "the mark (п) is not part of the name", "ex.space": "the space is removed",
+      "r1": "<b>Simple:</b> letters and a number; the number and the letter after it go to the result.",
+      "r2": "<b>Line:</b> the designation ends with a digit (Х3), so the name needs a dot: Х3.1 gives К1.",
+      "r3": "<b>Fixed:</b> the same text is written for any name.",
+      "r4": "<b>Transit:</b> no letters, the name is copied as it is and is not checked.",
+      "rules.open": "Name parsing page with a live tester",
+      "eq.eyebrow": "Equipment", "eq.title": "Equipment name from the connected systems",
+      "eq.lead": "Several systems are connected to one piece of equipment, so its system name is a list. The plugin parses each one by its own rule and merges equal results into one name.",
+      "e1": "<b>Ducts decide before pipes:</b> a supply unit with a heater is a supply unit.",
+      "e2": "<b>Only these can be together:</b> supply and exhaust (ПВ, any number) and the two systems of a duct air conditioner (ПК, РК).",
+      "e3": "<b>Incompatible systems are not ignored silently:</b> the problems list names every connected system with its type, the reason and an example, and you choose the main system. The choice is stored in the project for that combination.",
+      "e4": "<b>Domestic sewage</b> connected together with other systems is ignored, with a hint about a possible wrong system instead of drainage.",
+      "ctl.eyebrow": "Log and control", "ctl.title": "See what changed and what is wrong",
+      "ctl.lead": "Everything the plugin did in the model can be checked.",
+      "k1.t": "Run history", "k1.p": "Every fill, clear and model change in the automatic mode: how many changed, unchanged, skipped, problems and errors, time. Filter by kind, search by element ID, export the full record to CSV for Excel.",
+      "k2.t": "Problems window", "k2.p": "Names that do not fit the rule of the type are copied as they are and listed. For each pair: “Select all” in the model, “Rename to…” (renames the system) or “Keep as is” (not reported again).",
+      "k3.t": "Report and progress", "k3.p": "While filling you see the counter, the written values and the time. The final report is split by category. An element being edited by another user is counted separately.",
+      "k4.t": "Settings", "k4.p": "Parameters, categories, skipped families, system types with the order, the log (file size and keep period), JSON import and export. The window does not block Revit.",
+      "faq.eyebrow": "FAQ", "faq.title": "Frequently asked questions",
+      "q1.q": "Does the plugin slow Revit down?", "q1.a": "Only the ribbon loads at start. Windows and settings open on the first click.",
+      "q2.q": "Where are the settings stored?", "q2.a": "In the project itself. To move them to another project: “Export” to a JSON file, then “Import” and “Save”.",
+      "q3.q": "Can a clear be undone?", "q3.a": "Yes, one undo step (Ctrl+Z) brings back everything that was cleared.",
+      "q4.q": "What if a system name does not fit the rule?", "q4.a": "It is copied as it is, and the pair of type and name goes to the problems window. Fix the name in the model, set “transit” for the type, or keep it as is.",
+      "foot.copy": "© 2026 Maliuhin Volodymyr. Free add-in for Autodesk Revit.", "foot.home": "Home", "foot.releases": "All releases"
+    },
+    ru: {
+      "param.note": "ADSK_Система_Имя и «Unicode Сортування» — лишь пример (значения по умолчанию). Можно выбрать свой параметр: в «Настройках», вкладка «Системы», поля «Целевой параметр (получает имя)» и «Параметр сортировки (получает ключ сортировки)».",
+      "cap.ribbon": "Вкладка «HVAC Stuff», панель «MEP Параметры» на ленте Revit.", "cap.settings": "Настройки: вкладка «Системы», выбор параметров и правила типов систем.", "cap.problems": "Окно проблем: имена, не подошедшие под правило.", "cap.log": "Журнал запусков с фильтром и поиском по ID элемента.",
+      "name": "MEP Параметры",
+      "nav.what": "Возможности", "nav.how": "Как пользоваться", "nav.rules": "Имена систем", "nav.equip": "Оборудование", "nav.control": "Журнал и контроль", "nav.faq": "Вопросы",
+      "hero.eyebrow": "Revit · Плагин · MEP Параметры",
+      "hero.title": "Имя системы в спецификации — <em>без ручного ввода</em>",
+      "hero.sub": "Плагин берёт имя системы из модели, проверяет его по правилу типа системы и записывает результат в текстовый параметр (по умолчанию ADSK_Система_Имя) и ключ сортировки. Воздуховоды, трубы, детали, арматура и оборудование вместе.",
+      "hero.install": "Установка", "hero.parsing": "Как разбираются имена", "hero.free": "Бесплатно", "hero.langs": "Українська · English · Русский",
+      "what.eyebrow": "Возможности", "what.title": "Что делает плагин",
+      "what.lead": "Вкладка «HVAC Stuff», панель «MEP Параметры»: заполнять автоматически, заполнить вручную, очистить, настройки.",
+      "c1.t": "Имя системы в параметр", "c1.p": "Имя системы читается из модели и пишется в выбранный текстовый параметр. По умолчанию это общий параметр ADSK_Система_Имя.",
+      "c2.t": "Ключ сортировки", "c2.p": "Во второй параметр (по умолчанию «Unicode Сортування») пишется имя с невидимыми символами впереди: спецификация сортирует элементы в заданном вами порядке типов систем.",
+      "c3.t": "Автоматический режим", "c3.p": "Новый или изменённый элемент сразу получает имя. Так же реагируют смена системы, выход из неё и удаление системы. Значок на ленте показывает состояние: включено, выключено, не настроено.",
+      "c4.t": "Ручное заполнение и очистка", "c4.p": "Заполнение проходит весь проект и показывает отчёт: обработано, записано, пропущено, ошибки, время. Esc останавливает, записанное остаётся. «Очистить» опустошает оба параметра, одним шагом отмены (Ctrl+Z) всё возвращается.",
+      "c5.t": "Оборудование по подключённым системам", "c5.p": "Имя оборудования собирается из всех подключённых к нему систем, а не из одной.",
+      "c6.t": "Журнал и окно проблем", "c6.p": "Полная запись каждого запуска, поиск по ID элемента, экспорт в CSV. Имена, не подходящие под правило, собираются в список с действиями: выделить, переименовать, оставить.",
+      "how.eyebrow": "Как пользоваться", "how.title": "Настройка проекта за пять шагов",
+      "how.lead": "Настройки хранятся в самом проекте. Их можно сохранить в файл JSON и загрузить в другой проект.",
+      "s1.t": "Выберите параметры", "s1.p": "Вкладка «Системы»: целевой параметр (получает имя) и, при необходимости, параметр сортировки. Плагин показывает только подходящие: текстовые, экземпляра, не только для чтения, привязанные ко всем категориям. Если параметр не подошёл, рядом видна причина.",
+      "s2.t": "Нажмите «Из шаблона»", "s2.p": "Буквы заполняются для типов систем шаблона HVAC Stuff. Правила других типов остаются как есть.",
+      "s3.t": "Настройте остальные типы", "s3.p": "Впишите буквы, с которых начинается имя системы, и буквы результата. Пустое правило — «транзит»: имя копируется как есть и не проверяется. Порядок строк — это порядок сортировки, строки перетаскиваются. Поле «Проверить имя» показывает результат для вашего имени.",
+      "s4.t": "Выберите категории и пропуски", "s4.p": "Заполняются и отслеживаются только отмеченные категории. Семейства, имя которых начинается с фразы или содержит её, можно не трогать.",
+      "s5.t": "Сохраните и запустите", "s5.p": "«Сохранить», затем «Заполнить вручную» или «Заполнять автоматически».",
+      "how.note": "Заполнение и автоматический режим доступны на планах, разрезах, фасадах, 3D-видах и в спецификациях элементов. На листах, в легендах и чертёжных видах они выключены. В семействе плагин не работает.",
+      "rules.eyebrow": "Имена систем", "rules.title": "Как имя становится результатом",
+      "rules.lead": "У каждого типа системы есть правило из двух полей: «Имя начинается с» (буквы, с которых должно начинаться имя) и «Записывает» (буквы результата; пусто — те же).",
+      "ex.simple": "простая", "ex.tail": "число-позиция отбрасывается", "ex.supply": "метка (п) не входит в имя", "ex.space": "пробел убирается",
+      "r1": "<b>Простая:</b> буквы и номер; номер и буква после него идут в результат.",
+      "r2": "<b>Линейная:</b> обозначение заканчивается цифрой (Х3), поэтому в имени нужна точка: Х3.1 даёт К1.",
+      "r3": "<b>Фиксированная:</b> для любого имени пишется один и тот же текст.",
+      "r4": "<b>Транзит:</b> букв нет, имя копируется как есть и не проверяется.",
+      "rules.open": "Страница разбора имён с проверкой",
+      "eq.eyebrow": "Оборудование", "eq.title": "Имя оборудования из подключённых систем",
+      "eq.lead": "К одному оборудованию подключено несколько систем, поэтому в его имени системы список. Плагин разбирает каждую по её правилу, одинаковые результаты сливает в одно имя.",
+      "e1": "<b>Воздуховоды решают раньше труб:</b> приточная установка с нагревателем остаётся приточной.",
+      "e2": "<b>Вместе могут быть только</b> приток и вытяжка (ПВ, любое количество) и две системы канального кондиционера (ПК, РК).",
+      "e3": "<b>Несовместимые системы не игнорируются молча:</b> в списке проблем плагин перечисляет подключённые системы с типом, причиной и примером, а вы выбираете «основную» систему. Выбор сохраняется в проекте для этой комбинации.",
+      "e4": "<b>Бытовая канализация</b>, подключённая вместе с другими системами, игнорируется, с подсказкой о возможной ошибке вместо дренажа.",
+      "ctl.eyebrow": "Журнал и контроль", "ctl.title": "Видно, что изменилось и что не так",
+      "ctl.lead": "Всё, что плагин сделал в модели, можно проверить.",
+      "k1.t": "Журнал запусков", "k1.p": "Каждое заполнение, очистка и изменение модели в автоматическом режиме: сколько изменено, не изменено, пропущено, проблем и ошибок, время. Фильтр по виду записи, поиск по ID элемента, экспорт полной записи в CSV для Excel.",
+      "k2.t": "Окно проблем", "k2.p": "Имена, не подходящие под правило типа, копируются как есть и попадают в список. Для каждой пары: «Выделить все» в модели, «Переименовать в…» (переименовывает систему) или «Оставить как есть» (больше не сообщать).",
+      "k3.t": "Отчёт и прогресс", "k3.p": "Во время заполнения видны счётчик, записанные значения и время. Итоговый отчёт разбит по категориям. Элемент, который правит другой пользователь, считается отдельно.",
+      "k4.t": "Настройки", "k4.p": "Параметры, категории, пропускаемые семейства, типы систем с порядком, журнал (размер файла и срок хранения), импорт и экспорт JSON. Окно не блокирует Revit.",
+      "faq.eyebrow": "Вопросы", "faq.title": "Частые вопросы",
+      "q1.q": "Замедляет ли плагин Revit?", "q1.a": "При запуске загружается только лента. Окна и настройки открываются при первом нажатии.",
+      "q2.q": "Где хранятся настройки?", "q2.a": "В самом проекте. Чтобы перенести в другой проект: «Экспорт» в файл JSON, затем «Импорт» и «Сохранить».",
+      "q3.q": "Можно ли отменить очистку?", "q3.a": "Да, одним шагом отмены (Ctrl+Z) возвращается всё очищенное.",
+      "q4.q": "Что, если имя системы не подходит под правило?", "q4.a": "Оно копируется как есть, а пара «тип и имя» попадает в окно проблем. Исправьте имя в модели, задайте «транзит» для типа или оставьте как есть.",
+      "foot.copy": "© 2026 Maliuhin Volodymyr. Бесплатная надстройка для Autodesk Revit.", "foot.home": "Главная", "foot.releases": "Все релизы"
+    }
+  };
+  var lang = "uk";
+  function pickLang() {
+    try { var s = localStorage.getItem("hvac-lang"); if (s && T[s]) return s; } catch (e) {}
+    var n = (navigator.language || "uk").slice(0, 2).toLowerCase();
+    return T[n] ? n : "en";
+  }
+  function t(k) { return (T[lang] && T[lang][k]) || T.en[k] || k; }
+  function applyLang(l) {
+    lang = l;
+    try { localStorage.setItem("hvac-lang", l); } catch (e) {}
+    document.documentElement.lang = l;
+    document.querySelectorAll("[data-i18n]").forEach(function (el) { el.textContent = t(el.dataset.i18n); });
+    document.querySelectorAll("figure.shot").forEach(function (f) { f.querySelector("img").alt = f.querySelector("figcaption").textContent; });
+    document.querySelectorAll("[data-i18n-html]").forEach(function (el) { el.innerHTML = t(el.dataset.i18nHtml); });
+    document.querySelectorAll(".lang button").forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.lang === l); });
+    document.title = t("name") + " — HVAC Stuff";
+  }
+  document.querySelectorAll(".lang button").forEach(function (b) { b.addEventListener("click", function () { applyLang(b.dataset.lang); }); });
+  applyLang(pickLang());
+})();
+</script>
+</body>
+</html>
