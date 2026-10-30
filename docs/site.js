@@ -10,11 +10,11 @@
   var T = {
     uk: {
       "nav.plugins": "Плагіни", "nav.all": "Усі плагіни", "nav.install": "Встановлення", "nav.manuals": "Посібники", "nav.faq": "Питання", "nav.releases": "GitHub Releases", "nav.parsing": "Розбір імен", "nav.menu": "Меню", "nav.home": "HVAC Stuff — головна",
-      "qfc.name": "З’єднати гофрою", "ft.name": "Врізати гофру", "dist.name": "Розстановка", "mep.name": "MEP Параметри",
-      "qfc.p": "Гнучкий повітровід між двома конекторами за два кліки.",
-      "ft.p": "Кінець жорсткого повітроводу біля елемента стає гнучким потрібної довжини.",
+      "qfc.name": "З’єднати гнучким повітропроводом", "ft.name": "Замінити ділянку на гнучкий повітропровід", "dist.name": "Розподіл", "mep.name": "Позначення систем",
+      "qfc.p": "Гнучкий повітропровід між двома конекторами за два кліки.",
+      "ft.p": "Кінець жорсткого повітропроводу біля елемента стає гнучким потрібної довжини.",
       "dist.p": "Рівномірно розставляє виділені елементи між двома межами: рівні проміжки або рівні кроки між осями.",
-      "mep.p": "Заповнює назву системи та ключ сортування в параметрах повітроводів, труб і обладнання за правилами типу системи.",
+      "mep.p": "Заповнює назву системи та ключ сортування в параметрах повітропроводів, труб і обладнання за правилами типу системи.",
       "th.label": "Тема сайту", "th.auto": "Тема: як у системи", "th.light": "Світла тема", "th.dark": "Темна тема",
       "hero.download": "Завантажити", "hero.version": "Версія", "hero.free": "Безкоштовно", "man.pdf": "Посібник (PDF):", "man.soon": "Посібник готується — скоро з’явиться",
       "plug.more": "Докладніше →", "plug.since": "З версії", "plug.new": "Новий",
@@ -22,7 +22,7 @@
     },
     en: {
       "nav.plugins": "Plugins", "nav.all": "All plugins", "nav.install": "Install", "nav.manuals": "Manuals", "nav.faq": "FAQ", "nav.releases": "GitHub Releases", "nav.parsing": "Name parsing", "nav.menu": "Menu", "nav.home": "HVAC Stuff — home",
-      "qfc.name": "Quick FlexConnect", "ft.name": "Flex Tail", "dist.name": "Distribute", "mep.name": "MEP Parameters",
+      "qfc.name": "Connect with Flex Duct", "ft.name": "Replace Section with Flex Duct", "dist.name": "Distribute", "mep.name": "System Marks",
       "qfc.p": "A flex duct between two duct connectors in two clicks.",
       "ft.p": "The end of a rigid duct at an element becomes a flex duct of the length you need.",
       "dist.p": "Spreads the selected elements evenly between two borders: equal gaps or equal steps between centers.",
@@ -34,7 +34,7 @@
     },
     ru: {
       "nav.plugins": "Плагины", "nav.all": "Все плагины", "nav.install": "Установка", "nav.manuals": "Руководства", "nav.faq": "Вопросы", "nav.releases": "GitHub Releases", "nav.parsing": "Разбор имён", "nav.menu": "Меню", "nav.home": "HVAC Stuff — главная",
-      "qfc.name": "Соединить гофрой", "ft.name": "Врезать гофру", "dist.name": "Расстановка", "mep.name": "MEP Параметры",
+      "qfc.name": "Соединить гибким воздуховодом", "ft.name": "Заменить участок на гибкий воздуховод", "dist.name": "Распределение", "mep.name": "Обозначение систем",
       "qfc.p": "Гибкий воздуховод между двумя коннекторами за два клика.",
       "ft.p": "Конец жёсткого воздуховода у элемента становится гибким нужной длины.",
       "dist.p": "Равномерно расставляет выделенные элементы между двумя границами: равные зазоры или равные шаги между осями.",
@@ -49,7 +49,7 @@
   merge(PAGE.T);
 
   var lang = "uk", listeners = [];
-  var H = window.HVAC = { page: PAGE.key || "", version: "1.5.0", repo: REPO };
+  var H = window.HVAC = { page: PAGE.key || "", version: "1.6.0", repo: REPO };
   H.t = function (k) { return (T[lang] && T[lang][k]) || T.en[k] || k; };
   H.lang = function () { return lang; };
   H.addStrings = function (d) { merge(d); };
@@ -202,10 +202,10 @@
 
   /* ---------- иконки и карточки плагинов (главная и блок «Другие плагины») ---------- */
   var PLUG = {
-    qfc: { href: "quickflexconnect.html", en: "Quick FlexConnect", since: "1.0.0", svg: '<path stroke="#E8ECF2" d="M1 4.5H9.5M1 13.5H9.5M9.5 3V15"/><path stroke="#E8ECF2" d="M31 18.5H22.5M31 27.5H22.5M22.5 17V29"/><path stroke="#F2A93B" stroke-width="3" d="M10.5 8.5H14C19 8.5 13 23.5 18 23.5H21.5"/>' },
-    ft: { href: "flextail.html", en: "Flex Tail", since: "1.0.0", svg: '<path stroke="#E8ECF2" d="M1 11H9.5M1 21H9.5M9.5 9.5V22.5"/><path stroke="#F2A93B" stroke-width="3" d="M10.5 16q1.84-7 3.67 0t3.67 0t3.66 0"/><path stroke="#6CBDEB" d="M22.5 6V26H30V6ZM22.5 12H30M22.5 16H30M22.5 20H30"/>' },
+    qfc: { href: "quickflexconnect.html", en: "Connect with Flex Duct", since: "1.0.0", svg: '<path stroke="#E8ECF2" d="M1 4.5H9.5M1 13.5H9.5M9.5 3V15"/><path stroke="#E8ECF2" d="M31 18.5H22.5M31 27.5H22.5M22.5 17V29"/><path stroke="#F2A93B" stroke-width="3" d="M10.5 8.5H14C19 8.5 13 23.5 18 23.5H21.5"/>' },
+    ft: { href: "flextail.html", en: "Replace Section with Flex Duct", since: "1.0.0", svg: '<path stroke="#E8ECF2" d="M1 11H9.5M1 21H9.5M9.5 9.5V22.5"/><path stroke="#F2A93B" stroke-width="3" d="M10.5 16q1.84-7 3.67 0t3.67 0t3.66 0"/><path stroke="#6CBDEB" d="M22.5 6V26H30V6ZM22.5 12H30M22.5 16H30M22.5 20H30"/>' },
     dist: { href: "distribute.html", en: "Distribute", since: "1.3.0", svg: '<path stroke="#6CBDEB" d="M2 11H7V25H2ZM12 11H20V25H12ZM25 11H30V25H25Z"/><path stroke="#E8ECF2" d="M7 6V9M12 6V9M7 7.5H12M20 6V9M25 6V9M20 7.5H25"/>' },
-    mep: { href: "mep-parameter-sync.html", en: "MEP Parameters", since: "1.5.0", badge: true, svg: '<path stroke="#E8ECF2" d="M3 7H13M3 14H13M3 21H13M3 28H13"/><path stroke="#6CBDEB" d="M17 7H29M17 14H29M17 21H29M17 28H29"/><path stroke="#F2A93B" stroke-width="3" d="M14 3.5L16 5.5L14 7.5"/>' }
+    mep: { href: "mep-parameter-sync.html", en: "System Marks", since: "1.6.0", badge: true, svg: '<path stroke="#E8ECF2" d="M3 7H13M3 14H13M3 21H13M3 28H13"/><path stroke="#6CBDEB" d="M17 7H29M17 14H29M17 21H29M17 28H29"/><path stroke="#F2A93B" stroke-width="3" d="M14 3.5L16 5.5L14 7.5"/>' }
   };
   function plugCards() {
     document.querySelectorAll("[data-plugs]").forEach(function (box) {

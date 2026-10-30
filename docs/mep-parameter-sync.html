@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
 <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet">
-<title>MEP Parameters — HVAC Stuff</title>
-<meta name="description" content="MEP Parameters — a free Revit plugin that fills the system name and the sort key of ducts, pipes and equipment from the system names.">
+<title>System Marks — HVAC Stuff</title>
+<meta name="description" content="System Marks — a free Revit plugin that fills the system name and the sort key of ducts, pipes and equipment from the system names.">
 <meta name="theme-color" content="#14213D">
 <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
 <link rel="icon" type="image/png" sizes="64x64" href="img/favicon-64.png">
@@ -154,14 +154,14 @@ figure.shot figcaption { color: var(--muted); font-size: 14px; margin-top: 8px; 
 window.HVAC_PAGE = { key: "mep", title: "mep.name", T: {
     uk: {
       "param.note": "ADSK_Система_Имя та «Unicode Сортування» — лише приклад (значення за замовчуванням). Можна обрати свій параметр: в «Налаштуваннях», вкладка «Системи», поля «Цільовий параметр (отримує назву)» і «Параметр сортування (отримує ключ сортування)».",
-      "cap.ribbon": "Вкладка «HVAC Stuff», панель «MEP Параметри» на стрічці Revit.", "cap.settings": "Налаштування: вкладка «Системи», вибір параметрів і правила типів систем.", "cap.problems": "Вікно проблем: назви, що не підійшли під правило.", "cap.log": "Журнал запусків з фільтром і пошуком за ID елемента.",
-      "name": "MEP Параметри",
-      "hero.eyebrow": "Revit · Плагін · MEP Параметри",
+      "cap.ribbon": "Вкладка «HVAC Stuff», панель «Позначення систем» на стрічці Revit.", "cap.settings": "Налаштування: вкладка «Системи», вибір параметрів і правила типів систем.", "cap.problems": "Вікно проблем: назви, що не підійшли під правило.", "cap.log": "Журнал запусків з фільтром і пошуком за ID елемента.",
+      "name": "Позначення систем",
+      "hero.eyebrow": "Revit · Плагін · Позначення систем",
       "hero.title": "Назва системи у специфікації — <em>без ручного вводу</em>",
-      "hero.sub": "Плагін бере ім’я системи з моделі, перевіряє його за правилом типу системи й записує результат у текстовий параметр (за замовчуванням ADSK_Система_Имя) та ключ сортування. Повітроводи, труби, деталі, арматура й обладнання разом.",
+      "hero.sub": "Заповнює заданий параметр елементів позначенням системи з її імені за вибраними правилами, а також параметр сортування, щоб системи в специфікаціях ішли у заздалегідь заданому порядку. Вручну, автоматично, з очищенням.",
       "hero.install": "Встановлення", "hero.parsing": "Як розбираються імена", "hero.free": "Безкоштовно", "hero.langs": "Українська · English · Русский",
       "what.eyebrow": "Можливості", "what.title": "Що робить плагін",
-      "what.lead": "Вкладка «HVAC Stuff», панель «MEP Параметри»: заповнювати автоматично, заповнити вручну, очистити, налаштування.",
+      "what.lead": "Вкладка «HVAC Stuff», панель «Позначення систем»: заповнювати автоматично, заповнити вручну, очистити, налаштування.",
       "c1.t": "Назва системи в параметр", "c1.p": "Ім’я системи читається з моделі й пишеться в обраний текстовий параметр. За замовчуванням це спільний параметр ADSK_Система_Имя.",
       "c2.t": "Ключ сортування", "c2.p": "У другий параметр (за замовчуванням «Unicode Сортування») пишеться назва з невидимими символами спереду: специфікація сортує елементи в порядку типів систем, який ви задали.",
       "c3.t": "Автоматичний режим", "c3.p": "Новий або змінений елемент одразу отримує назву. Так само реагують зміна системи, вихід з неї й видалення системи. Значок на стрічці показує стан: увімкнено, вимкнено, не налаштовано.",
@@ -186,7 +186,7 @@ window.HVAC_PAGE = { key: "mep", title: "mep.name", T: {
       "rules.open": "Сторінка розбору імен з перевіркою",
       "eq.eyebrow": "Обладнання", "eq.title": "Назва обладнання з підключених систем",
       "eq.lead": "До одного обладнання підключено кілька систем, тому в нього в імені системи список. Плагін розбирає кожну за її правилом, однакові результати зливає в одну назву.",
-      "e1": "<b>Повітроводи вирішують раніше за труби:</b> припливна установка з нагрівачем лишається припливною.",
+      "e1": "<b>Повітропроводи вирішують раніше за труби:</b> припливна установка з нагрівачем лишається припливною.",
       "e2": "<b>Разом можуть бути лише</b> приплив і витяжка (ПВ, будь-яка кількість) та дві системи канального кондиціонера (ПК, РК).",
       "e3": "<b>Несумісні системи не ігноруються мовчки:</b> у списку проблем плагін перелічує підключені системи з типом, причиною й прикладом, а ви обираєте «основну» систему. Вибір зберігається в проєкті для цієї комбінації.",
       "e4": "<b>Побутова каналізація</b>, підключена разом з іншими системами, ігнорується, з підказкою про можливу помилку замість дренажу.",
@@ -204,14 +204,14 @@ window.HVAC_PAGE = { key: "mep", title: "mep.name", T: {
     },
     en: {
       "param.note": "ADSK_Система_Имя and “Unicode Сортування” are only an example (the defaults). You can choose your own parameter: in Settings, tab “Systems”, the fields “Target parameter (receives the name)” and “Sort parameter (receives the sort key)”.",
-      "cap.ribbon": "The “HVAC Stuff” tab, panel “MEP Parameters” on the Revit ribbon.", "cap.settings": "Settings: the “Systems” tab, choice of parameters and the rules of system types.", "cap.problems": "The problems window: names that did not fit the rule.", "cap.log": "The run log with a filter and search by element ID.",
-      "name": "MEP Parameters",
-      "hero.eyebrow": "Revit · Plugin · MEP Parameters",
+      "cap.ribbon": "The “HVAC Stuff” tab, panel “System Marks” on the Revit ribbon.", "cap.settings": "Settings: the “Systems” tab, choice of parameters and the rules of system types.", "cap.problems": "The problems window: names that did not fit the rule.", "cap.log": "The run log with a filter and search by element ID.",
+      "name": "System Marks",
+      "hero.eyebrow": "Revit · Plugin · System Marks",
       "hero.title": "The system name in the schedule, <em>without typing it</em>",
-      "hero.sub": "The plugin reads the system name from the model, checks it by the rule of the system type, and writes the result into a text parameter (ADSK_Система_Имя by default) and a sort key. Ducts, pipes, fittings, accessories and equipment together.",
+      "hero.sub": "Fills a chosen parameter of the elements with the system mark taken from the system name by your rules, and a sort parameter so that systems in schedules follow a set order. Manually or automatically, with a clear command.",
       "hero.install": "Installation", "hero.parsing": "How names are parsed", "hero.free": "Free", "hero.langs": "Українська · English · Русский",
       "what.eyebrow": "Features", "what.title": "What the plugin does",
-      "what.lead": "Tab “HVAC Stuff”, panel “MEP Parameters”: fill automatically, fill manually, clear, settings.",
+      "what.lead": "Tab “HVAC Stuff”, panel “System Marks”: fill automatically, fill manually, clear, settings.",
       "c1.t": "System name into a parameter", "c1.p": "The system name is read from the model and written to the chosen text parameter. By default this is the shared parameter ADSK_Система_Имя.",
       "c2.t": "Sort key", "c2.p": "A second parameter (by default “Unicode Сортування”) gets the name with invisible characters in front: a schedule sorts elements in the order of system types that you set.",
       "c3.t": "Automatic mode", "c3.p": "A new or changed element gets its name at once. The same happens when an element changes its system, leaves it, or the system is deleted. The ribbon icon shows the state: on, off, or not configured.",
@@ -254,14 +254,14 @@ window.HVAC_PAGE = { key: "mep", title: "mep.name", T: {
     },
     ru: {
       "param.note": "ADSK_Система_Имя и «Unicode Сортування» — лишь пример (значения по умолчанию). Можно выбрать свой параметр: в «Настройках», вкладка «Системы», поля «Целевой параметр (получает имя)» и «Параметр сортировки (получает ключ сортировки)».",
-      "cap.ribbon": "Вкладка «HVAC Stuff», панель «MEP Параметры» на ленте Revit.", "cap.settings": "Настройки: вкладка «Системы», выбор параметров и правила типов систем.", "cap.problems": "Окно проблем: имена, не подошедшие под правило.", "cap.log": "Журнал запусков с фильтром и поиском по ID элемента.",
-      "name": "MEP Параметры",
-      "hero.eyebrow": "Revit · Плагин · MEP Параметры",
+      "cap.ribbon": "Вкладка «HVAC Stuff», панель «Обозначение систем» на ленте Revit.", "cap.settings": "Настройки: вкладка «Системы», выбор параметров и правила типов систем.", "cap.problems": "Окно проблем: имена, не подошедшие под правило.", "cap.log": "Журнал запусков с фильтром и поиском по ID элемента.",
+      "name": "Обозначение систем",
+      "hero.eyebrow": "Revit · Плагин · Обозначение систем",
       "hero.title": "Имя системы в спецификации — <em>без ручного ввода</em>",
-      "hero.sub": "Плагин берёт имя системы из модели, проверяет его по правилу типа системы и записывает результат в текстовый параметр (по умолчанию ADSK_Система_Имя) и ключ сортировки. Воздуховоды, трубы, детали, арматура и оборудование вместе.",
+      "hero.sub": "Заполняет заданный параметр элементов обозначением системы из её имени по выбранным правилам, а также параметр сортировки, чтобы системы в спецификациях шли в заданном порядке. Вручную, автоматически, с очисткой.",
       "hero.install": "Установка", "hero.parsing": "Как разбираются имена", "hero.free": "Бесплатно", "hero.langs": "Українська · English · Русский",
       "what.eyebrow": "Возможности", "what.title": "Что делает плагин",
-      "what.lead": "Вкладка «HVAC Stuff», панель «MEP Параметры»: заполнять автоматически, заполнить вручную, очистить, настройки.",
+      "what.lead": "Вкладка «HVAC Stuff», панель «Обозначение систем»: заполнять автоматически, заполнить вручную, очистить, настройки.",
       "c1.t": "Имя системы в параметр", "c1.p": "Имя системы читается из модели и пишется в выбранный текстовый параметр. По умолчанию это общий параметр ADSK_Система_Имя.",
       "c2.t": "Ключ сортировки", "c2.p": "Во второй параметр (по умолчанию «Unicode Сортування») пишется имя с невидимыми символами впереди: спецификация сортирует элементы в заданном вами порядке типов систем.",
       "c3.t": "Автоматический режим", "c3.p": "Новый или изменённый элемент сразу получает имя. Так же реагируют смена системы, выход из неё и удаление системы. Значок на ленте показывает состояние: включено, выключено, не настроено.",

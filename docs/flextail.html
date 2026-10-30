@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
 <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet">
-<title>Flex Tail — HVAC Stuff</title>
-<meta name="description" content="Flex Tail — a free Revit plugin: the end of a rigid duct at an element becomes a flex duct of the length you need.">
+<title>Replace Section with Flex Duct — HVAC Stuff</title>
+<meta name="description" content="Replace Section with Flex Duct — a free Revit plugin: the end of a rigid duct at an element becomes a flex duct of the length you need.">
 <meta name="theme-color" content="#14213D">
 <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
 <link rel="icon" type="image/png" sizes="64x64" href="img/favicon-64.png">
@@ -31,7 +31,7 @@
     </div>
     <div class="meta">
       <span class="chip">Revit 2023–2027</span>
-      <span class="chip"><span data-i18n="hero.version"></span> <b class="verx">1.5.0</b></span>
+      <span class="chip"><span data-i18n="hero.version"></span> <b class="verx">1.6.0</b></span>
       <span class="chip" data-i18n="hero.free"></span>
       <span class="chip">UA · EN · RU</span>
     </div>
@@ -107,12 +107,12 @@
 <script>
 window.HVAC_PAGE = { key: "ft", title: "ft.name", T: {
   "uk": {
-    "pg.eyebrow": "Revit · Плагін · Flex Tail",
-    "pg.title": "Кінець жорсткого повітроводу біля елемента стає <em>гофрою</em>",
-    "pg.sub": "Кнопка «Врізати гофру» на панелі «Повітропроводи» вкладки «HVAC Stuff». Швидкі довжини 500–2500 мм або своя, уся ділянка цілком, серія елементів без вікна.",
+    "pg.eyebrow": "Revit · Плагін · Replace Section with Flex Duct",
+    "pg.title": "Кінець жорсткого повітропроводу біля елемента стає <em>гофрою</em>",
+    "pg.sub": "Інструмент замінює ділянку жорсткого повітропроводу від точки підключення на гнучкий повітропровід заданої довжини й заданого типу: цілим відрізком або вказаною довжиною в міліметрах.",
     "what.eyebrow": "Як це працює",
-    "what.title": "Виберіть елемент — кінець повітроводу гнучкий",
-    "what.lead": "Вкажіть елемент із жорстким повітроводом, оберіть довжину гофри. Команда замінює кінець повітроводу.",
+    "what.title": "Виберіть елемент — кінець повітропроводу гнучкий",
+    "what.lead": "Вкажіть елемент із жорстким повітропроводом, оберіть довжину гофри. Команда замінює кінець повітропроводу.",
     "ft.l1": "Працює на будь-яких категоріях: розподільники, камери, обладнання, деталі.",
     "ft.l2": "Швидкі значення 500–2500 мм або своя довжина.",
     "ft.l3": "«Вся ділянка» — уся траса до трійника чи переходу стає гнучкою.",
@@ -120,9 +120,9 @@ window.HVAC_PAGE = { key: "ft", title: "ft.name", T: {
     "ft.l4": "Цикл: наступний елемент з тією ж довжиною й типом — без вікна."
   },
   "en": {
-    "pg.eyebrow": "Revit · Plugin · Flex Tail",
+    "pg.eyebrow": "Revit · Plugin · Replace Section with Flex Duct",
     "pg.title": "The end of a rigid duct at an element becomes <em>a flex duct</em>",
-    "pg.sub": "The “Flex Tail” button in the “Ductwork” panel of the “HVAC Stuff” tab. Quick lengths 500–2500 mm or your own, the whole segment, a series of elements without a window.",
+    "pg.sub": "Replaces a section of rigid duct, counted from the connection point, with a flex duct of the chosen length and type: the whole segment or a length in millimeters.",
     "what.eyebrow": "How it works",
     "what.title": "Pick an element, the duct end turns flex",
     "what.lead": "Pick an element with a rigid duct and choose the length of the flex duct. The command replaces the end of the duct.",
@@ -133,9 +133,9 @@ window.HVAC_PAGE = { key: "ft", title: "ft.name", T: {
     "ft.l4": "Loop: the next element gets the same length and type, no window."
   },
   "ru": {
-    "pg.eyebrow": "Revit · Плагин · Flex Tail",
+    "pg.eyebrow": "Revit · Плагин · Replace Section with Flex Duct",
     "pg.title": "Конец жёсткого воздуховода у элемента становится <em>гофрой</em>",
-    "pg.sub": "Кнопка «Врезать гофру» на панели «Воздуховоды» вкладки «HVAC Stuff». Быстрые длины 500–2500 мм или своя, весь участок целиком, серия элементов без окна.",
+    "pg.sub": "Заменяет участок жёсткого воздуховода от точки подключения гибким воздуховодом заданной длины и типа: всем участком или длиной в миллиметрах.",
     "what.eyebrow": "Как это работает",
     "what.title": "Выберите элемент — конец воздуховода гибкий",
     "what.lead": "Укажите элемент с жёстким воздуховодом, выберите длину гофры. Команда заменяет конец воздуховода.",

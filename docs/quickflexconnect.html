@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
 <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet">
-<title>Quick FlexConnect — HVAC Stuff</title>
-<meta name="description" content="Quick FlexConnect — a free Revit plugin: a flex duct between two duct connectors in two clicks.">
+<title>Connect with Flex Duct — HVAC Stuff</title>
+<meta name="description" content="Connect with Flex Duct — a free Revit plugin: a flex duct between two duct connectors in two clicks.">
 <meta name="theme-color" content="#14213D">
 <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
 <link rel="icon" type="image/png" sizes="64x64" href="img/favicon-64.png">
@@ -31,7 +31,7 @@
     </div>
     <div class="meta">
       <span class="chip">Revit 2023–2027</span>
-      <span class="chip"><span data-i18n="hero.version"></span> <b class="verx">1.5.0</b></span>
+      <span class="chip"><span data-i18n="hero.version"></span> <b class="verx">1.6.0</b></span>
       <span class="chip" data-i18n="hero.free"></span>
       <span class="chip">UA · EN · RU</span>
     </div>
@@ -50,7 +50,7 @@
         <ul>
           <li data-i18n="qfc.l1"></li><li data-i18n="qfc.l2"></li><li data-i18n="qfc.l3"></li><li data-i18n="qfc.l4"></li><li data-i18n="qfc.l5"></li>
         </ul>
-        <div class="btns"><span data-i18n="man.pdf"></span><span class="pdfs" data-pdf="QuickFlexConnect"></span></div>
+        <div class="btns"><span data-i18n="man.pdf"></span><span class="pdfs" data-pdf="Connect with Flex Duct"></span></div>
       </div>
       <div class="demo-box">
         <svg viewBox="0 0 400 200" width="100%" aria-hidden="true">
@@ -107,9 +107,9 @@
 <script>
 window.HVAC_PAGE = { key: "qfc", title: "qfc.name", T: {
   "uk": {
-    "pg.eyebrow": "Revit · Плагін · Quick FlexConnect",
-    "pg.title": "Гнучкий повітровід між двома конекторами — <em>за два кліки</em>",
-    "pg.sub": "Кнопка «З’єднати гофрою» на панелі «Повітропроводи» вкладки «HVAC Stuff». Однакові розміри — гофра будується одразу, різні — вікно з розміром і живим переглядом; серія пар до натискання Esc.",
+    "pg.eyebrow": "Revit · Плагін · Connect with Flex Duct",
+    "pg.title": "Гнучкий повітропровід між двома конекторами — <em>за два кліки</em>",
+    "pg.sub": "Інструмент з’єднує повітропроводи, фасонні частини, арматуру, обладнання та повітророзподільники гнучким повітропроводом: швидко й точно, з живим попереднім переглядом траси. Працює на планах, розрізах і 3D-видах. Підходить будь-який тип гнучкого повітропроводу, довжину можна задати.",
     "what.eyebrow": "Як це працює",
     "what.title": "Два кліки — і гофра готова",
     "what.lead": "Виберіть перший конектор, потім другий. Інше команда робить сама.",
@@ -117,12 +117,12 @@ window.HVAC_PAGE = { key: "qfc", title: "qfc.name", T: {
     "qfc.l2": "Різні розміри — вікно з розміром і живим переглядом, переходи стають самі.",
     "qfc.l3": "Тип гнучкого: за замовчуванням, утеплений або «з зразка» у моделі.",
     "qfc.l4": "Серія пар до Esc, кожна пара — окремий крок скасування.",
-    "qfc.l5": "Експериментально: гофра заданої довжини 300–2500 мм; повітровід розтягується чи вкорочується сам, а з колінами дотягується до гофри. «Лише гофра, без колін» гне гофру між осями під будь-який зсув."
+    "qfc.l5": "Експериментально: гофра заданої довжини 300–2500 мм; повітропровід розтягується чи вкорочується сам, а з колінами дотягується до гофри. «Лише гофра, без колін» гне гофру між осями під будь-який зсув."
   },
   "en": {
-    "pg.eyebrow": "Revit · Plugin · Quick FlexConnect",
+    "pg.eyebrow": "Revit · Plugin · Connect with Flex Duct",
     "pg.title": "A flex duct between two connectors <em>in two clicks</em>",
-    "pg.sub": "The “Quick FlexConnect” button in the “Ductwork” panel of the “HVAC Stuff” tab. Equal sizes: the flex duct is built at once; different sizes: a window with the size and a live preview; a series of pairs until Esc.",
+    "pg.sub": "Connects ducts, fittings, accessories, equipment and air terminals with a flex duct: fast and exact, with a live preview of the route. Works in plans, sections and 3D views. Any flex duct type works, and the length can be set.",
     "what.eyebrow": "How it works",
     "what.title": "Two clicks and the flex duct is ready",
     "what.lead": "Pick the first connector, then the second. The command does the rest.",
@@ -133,9 +133,9 @@ window.HVAC_PAGE = { key: "qfc", title: "qfc.name", T: {
     "qfc.l5": "Experimental: a flex duct of a fixed length, 300–2500 mm; the rigid duct stretches or shortens itself, or goes round with elbows. “Flex duct only, no elbows” bends the flex duct between the axes for any offset."
   },
   "ru": {
-    "pg.eyebrow": "Revit · Плагин · Quick FlexConnect",
+    "pg.eyebrow": "Revit · Плагин · Connect with Flex Duct",
     "pg.title": "Гибкий воздуховод между двумя коннекторами — <em>за два клика</em>",
-    "pg.sub": "Кнопка «Соединить гофрой» на панели «Воздуховоды» вкладки «HVAC Stuff». Одинаковые размеры — гофра строится сразу, разные — окно с размером и живым предпросмотром; серия пар до нажатия Esc.",
+    "pg.sub": "Соединяет воздуховоды, фасонные части, арматуру, оборудование и воздухораспределители гибким воздуховодом: быстро и точно, с живым предпросмотром трассы. Работает на планах, разрезах и 3D-видах. Подходит любой тип гибкого воздуховода, длину можно задать.",
     "what.eyebrow": "Как это работает",
     "what.title": "Два клика — и гофра готова",
     "what.lead": "Выберите первый коннектор, затем второй. Остальное команда делает сама.",

@@ -8,11 +8,11 @@
 .rv-theme button[aria-pressed="true"] { background: var(--hovb); color: #fff; }
 .rv-tabs { display: flex; padding: 6px 4px 0; zoom: 1.25; }
 .rv-tab { height: 20px; line-height: 20px; padding: 0 12px; background: var(--pan); color: var(--txt); }
-.rv-ribbon { background: var(--pan); margin: 0 4px; display: flex; zoom: 1.25; height: 97px; position: relative; }
+.rv-ribbon { background: var(--pan); margin: 0 4px; display: flex; zoom: 1.25; height: 116px; position: relative; }
 .rv-group { position: relative; display: flex; padding: 0 1px; }
 .rv-group .ttl { position: absolute; left: 0; right: 0; bottom: 6px; text-align: center; white-space: nowrap; pointer-events: none; }
 .rv-sep { width: 1px; background: var(--sep); margin: 4px 0 4px; }
-.rv-btn { all: unset; box-sizing: border-box; cursor: default; display: flex; flex-direction: column; align-items: center; padding: 8px 3px 0; height: 78px; min-width: 52px; text-align: center; line-height: 12px; border: 1px solid transparent; transition: background .12s, border-color .12s; }
+.rv-btn { all: unset; box-sizing: border-box; cursor: default; display: flex; flex-direction: column; align-items: center; padding: 8px 3px 0; height: 97px; min-width: 52px; text-align: center; line-height: 12px; border: 1px solid transparent; transition: background .12s, border-color .12s; }
 .rv-btn:hover { background: var(--hov); border-color: var(--hovb); }
 .rv-btn:active, .rv-btn.on { background: var(--act); border-color: var(--hovb); }
 .rv-btn:focus-visible { outline: 2px solid #73c5ff; outline-offset: -2px; }
