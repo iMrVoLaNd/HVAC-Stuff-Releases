@@ -16,7 +16,7 @@
       "dist.p": "Рівномірно розставляє виділені елементи між двома межами: рівні проміжки або рівні кроки між осями.",
       "mep.p": "Заповнює назву системи та ключ сортування в параметрах повітроводів, труб і обладнання за правилами типу системи.",
       "th.label": "Тема сайту", "th.auto": "Тема: як у системи", "th.light": "Світла тема", "th.dark": "Темна тема",
-      "hero.download": "Завантажити", "hero.version": "Версія", "hero.free": "Безкоштовно", "man.pdf": "Посібник (PDF):",
+      "hero.download": "Завантажити", "hero.version": "Версія", "hero.free": "Безкоштовно", "man.pdf": "Посібник (PDF):", "man.soon": "Посібник готується — скоро з’явиться",
       "plug.more": "Докладніше →", "plug.since": "З версії", "plug.new": "Новий",
       "foot.copy": "© 2026 Maliuhin Volodymyr. Безкоштовна надбудова для Autodesk Revit.", "foot.license": "Ліцензія", "foot.third": "Сторонні компоненти", "foot.releases": "Усі релізи", "foot.home": "Головна"
     },
@@ -28,7 +28,7 @@
       "dist.p": "Spreads the selected elements evenly between two borders: equal gaps or equal steps between centers.",
       "mep.p": "Fills the system name and the sort key in the parameters of ducts, pipes and equipment by the rules of the system type.",
       "th.label": "Site theme", "th.auto": "Theme: same as system", "th.light": "Light theme", "th.dark": "Dark theme",
-      "hero.download": "Download", "hero.version": "Version", "hero.free": "Free", "man.pdf": "Manual (PDF):",
+      "hero.download": "Download", "hero.version": "Version", "hero.free": "Free", "man.pdf": "Manual (PDF):", "man.soon": "Manual is being updated — coming soon",
       "plug.more": "Details →", "plug.since": "Since version", "plug.new": "New",
       "foot.copy": "© 2026 Maliuhin Volodymyr. A free add-in for Autodesk Revit.", "foot.license": "License", "foot.third": "Third-party notices", "foot.releases": "All releases", "foot.home": "Home"
     },
@@ -40,7 +40,7 @@
       "dist.p": "Равномерно расставляет выделенные элементы между двумя границами: равные зазоры или равные шаги между осями.",
       "mep.p": "Заполняет имя системы и ключ сортировки в параметрах воздуховодов, труб и оборудования по правилам типа системы.",
       "th.label": "Тема сайта", "th.auto": "Тема: как в системе", "th.light": "Светлая тема", "th.dark": "Тёмная тема",
-      "hero.download": "Скачать", "hero.version": "Версия", "hero.free": "Бесплатно", "man.pdf": "Руководство (PDF):",
+      "hero.download": "Скачать", "hero.version": "Версия", "hero.free": "Бесплатно", "man.pdf": "Руководство (PDF):", "man.soon": "Руководство обновляется — скоро появится",
       "plug.more": "Подробнее →", "plug.since": "С версии", "plug.new": "Новый",
       "foot.copy": "© 2026 Maliuhin Volodymyr. Бесплатная надстройка для Autodesk Revit.", "foot.license": "Лицензия", "foot.third": "Сторонние компоненты", "foot.releases": "Все релизы", "foot.home": "Главная"
     }
@@ -160,9 +160,7 @@
 
   function renderPdfs() {
     document.querySelectorAll("[data-pdf]").forEach(function (el) {
-      el.innerHTML = ["uk", "en", "ru"].map(function (l) {
-        return '<a class="pdf" href="' + RAW + el.dataset.pdf + "-" + l + '.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>' + l.toUpperCase().replace("UK", "UA") + "</a>";
-      }).join("");
+      el.innerHTML = '<span class="pdf off">' + H.t("man.soon") + "</span>";
     });
   }
 

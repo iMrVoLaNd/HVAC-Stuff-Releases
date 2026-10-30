@@ -120,6 +120,8 @@ details p { color: var(--muted); margin: 10px 0 0; }
 .pdfs { display: flex; flex-wrap: wrap; gap: 8px; }
 .pdf { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; border: 1.5px solid var(--line); padding: 8px 14px; border-radius: 10px; font-weight: 600; font-size: 14px; background: var(--bg); }
 .pdf:hover { border-color: var(--amber); }
+.pdf.off { border-style: dashed; color: var(--muted, #6b7280); font-weight: 500; cursor: default; }
+.pdf.off:hover { border-color: var(--line); }
 .pdf svg { width: 18px; height: 18px; stroke: var(--amber); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .ico { width: 46px; height: 46px; border-radius: 12px; background: var(--navy); display: grid; place-items: center; margin-bottom: 14px; }
 .ico svg { width: 26px; height: 26px; stroke: var(--amber); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
