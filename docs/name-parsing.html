@@ -73,6 +73,8 @@ main, footer { overflow-x: clip; }
 .nav .wrap { display: flex; align-items: center; gap: 22px; height: 56px; }
 .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; text-decoration: none; font-size: 17px; white-space: nowrap; color: #fff; }
 .brand i { width: 28px; height: 28px; border-radius: 50%; background: var(--amber); color: var(--navy); display: grid; place-items: center; font: 800 14px var(--font); font-style: normal; flex: none; }
+.back { color: #c9d3e6; text-decoration: none; font-size: 14px; white-space: nowrap; border: 1px solid #3a4a72; border-radius: 8px; padding: 4px 10px; }
+.back:hover { color: #fff; border-color: #c9d3e6; }
 .links { display: flex; gap: 20px; margin-left: auto; overflow-x: auto; scrollbar-width: none; }
 .links::-webkit-scrollbar { display: none; }
 .links a { color: #c9d3e6; text-decoration: none; font-size: 15px; white-space: nowrap; padding: 4px 0; box-shadow: inset 0 -2px 0 transparent; transition: color .2s, box-shadow .2s; }
@@ -291,6 +293,7 @@ footer a { color: #fff; }
 
 <header class="nav">
   <div class="wrap">
+    <a class="back" href="index.html" data-i18n="nav.back"></a>
     <a class="brand" href="#top" data-i18n-aria="nav.top"><i>H</i><span data-i18n="nav.brand"></span></a>
     <nav class="links" id="links" data-i18n-aria="nav.sections">
       <a href="#how" data-i18n="nav.how"></a>
@@ -457,6 +460,7 @@ function L(key, ru, uk, en) { T.ru[key] = ru; T.uk[key] = uk; T.en[key] = en; }
 // navigation and hero
 L('title', 'Разбор имён систем', 'Розбір імен систем', 'System name parsing');
 L('nav.brand', 'HVAC Stuff · Разбор имён', 'HVAC Stuff · Розбір імен', 'HVAC Stuff · Name parsing');
+L('nav.back', '← HVAC Stuff', '← HVAC Stuff', '← HVAC Stuff');
 L('nav.top', 'В начало', 'На початок', 'To the top');
 L('nav.sections', 'Разделы страницы', 'Розділи сторінки', 'Page sections');
 L('nav.theme', 'Сменить тему', 'Змінити тему', 'Switch theme');

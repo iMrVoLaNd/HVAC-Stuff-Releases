@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet">
+<title>Distribute — HVAC Stuff</title>
+<meta name="description" content="Distribute — a free Revit plugin that spreads the selected elements evenly between two borders: equal gaps or equal steps between centers.">
+<meta name="theme-color" content="#14213D">
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="img/favicon-64.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<script>(function () { try { var t = localStorage.getItem("hvac-theme"); if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t); } catch (e) {} })();</script>
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="plugin.css">
+<link rel="stylesheet" href="ribbon.css">
+</head>
+<body>
+<header id="siteNav"></header>
+
+<main>
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow" data-i18n="pg.eyebrow"></p>
+    <h1 data-i18n-html="pg.title"></h1>
+    <p class="sub" data-i18n="pg.sub"></p>
+    <div class="cta">
+      <a class="btn" href="index.html#install" data-i18n="nav.install"></a>
+      <a class="btn ghost" href="#try" data-i18n="rb.eyebrow"></a>
+    </div>
+    <div class="meta">
+      <span class="chip">Revit 2023–2027</span>
+      <span class="chip"><span data-i18n="hero.version"></span> <b class="verx">1.5.0</b></span>
+      <span class="chip" data-i18n="hero.free"></span>
+      <span class="chip">UA · EN · RU</span>
+    </div>
+  </div>
+</section>
+
+<section id="what">
+  <div class="wrap">
+    <p class="eyebrow" data-i18n="what.eyebrow"></p>
+    <h2 data-i18n="what.title"></h2>
+    <p class="lead" data-i18n="what.lead"></p>
+    <div class="cmd">
+      <div>
+        <h3 data-i18n="dist.name"></h3>
+        <p data-i18n="dist.p" style="color:var(--muted);margin:0"></p>
+        <ul>
+          <li data-i18n="dist.l1"></li><li data-i18n="dist.l2"></li><li data-i18n="dist.l3"></li><li data-i18n="dist.l4"></li>
+        </ul>
+        <div class="btns"><span data-i18n="man.pdf"></span><span class="pdfs" data-pdf="Distribute"></span></div>
+      </div>
+      <div class="demo-box">
+        <svg viewBox="0 0 400 200" width="100%" aria-hidden="true">
+          <path d="M30 40V170M370 40V170" stroke="#9AA7BF" stroke-width="3"/>
+          <rect x="66" y="90" width="44" height="50" rx="3" fill="none" stroke="#5BB6E8" stroke-width="4"/>
+          <rect x="144" y="90" width="82" height="50" rx="3" fill="none" stroke="#5BB6E8" stroke-width="4"/>
+          <rect x="262" y="90" width="64" height="50" rx="3" fill="none" stroke="#5BB6E8" stroke-width="4"/>
+          <g stroke="#F2A93B" stroke-width="3" fill="none" stroke-linecap="round">
+            <path class="pl" d="M30 66H66M30 58V74M66 58V74"/><path class="pl" d="M110 66H144M110 58V74M144 58V74" style="animation-delay:.3s"/>
+            <path class="pl" d="M226 66H262M226 58V74M262 58V74" style="animation-delay:.6s"/><path class="pl" d="M326 66H370M326 58V74M370 58V74" style="animation-delay:.9s"/>
+          </g>
+          <text x="30" y="190" fill="#9AA7BF" font-size="13" font-family="Segoe UI, Arial">Shift · Ctrl · Alt</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="try">
+  <div class="wrap">
+    <p class="eyebrow" data-i18n="rb.eyebrow"></p>
+    <h2 data-i18n="rb.title"></h2>
+    <p class="lead" data-i18n="rb.lead"></p>
+    <div id="revit-mount" data-start="dhg"></div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <p class="eyebrow" data-i18n="feat.eyebrow"></p>
+    <h2 data-i18n="feat.title"></h2>
+    <p class="lead" data-i18n="feat.lead"></p>
+    <div class="grid3" data-feat="f3 f5 f6"></div>
+  </div>
+</section>
+
+<section class="alt" id="more">
+  <div class="wrap">
+    <p class="eyebrow" data-i18n="more.eyebrow"></p>
+    <h2 data-i18n="more.title"></h2>
+    <div class="plugs" data-plugs data-exclude="dist"></div>
+  </div>
+</section>
+</main>
+
+<footer id="siteFoot"></footer>
+
+<script>
+window.HVAC_PAGE = { key: "dist", title: "dist.name", T: {
+  "uk": {
+    "pg.eyebrow": "Revit · Плагін · Distribute",
+    "pg.title": "Рівномірна розстановка елементів — <em>два кліки по межах</em>",
+    "pg.sub": "Панель «Розстановка» вкладки «HVAC Stuff»: чотири кнопки для рівних проміжків або рівних кроків між осями, по горизонталі й по вертикалі.",
+    "what.eyebrow": "Як це працює",
+    "what.title": "Виділіть елементи й вкажіть дві межі",
+    "what.lead": "Проміжки між краями або кроки між осями стають рівними. Усе — одним кроком скасування.",
+    "dist.l1": "Чотири кнопки: горизонтальні й вертикальні проміжки, горизонтальні й вертикальні осі.",
+    "dist.l2": "Межі вибираються наведенням, як конектори: грань, лінія креслення, стіна зв’язаної моделі чи вісь.",
+    "dist.l3": "Shift — ставить розміри між елементами; Ctrl — вирівнює їх в одну лінію; Alt — вільні точки (підкладка PDF).",
+    "dist.l4": "З’єднані елементи (бокс із дифузором) рухаються як один; усе — одним кроком скасування."
+  },
+  "en": {
+    "pg.eyebrow": "Revit · Plugin · Distribute",
+    "pg.title": "Spread elements evenly: <em>two clicks on the borders</em>",
+    "pg.sub": "The “Distribute” panel of the “HVAC Stuff” tab: four buttons for equal gaps or equal steps between centers, horizontally and vertically.",
+    "what.eyebrow": "How it works",
+    "what.title": "Select the elements and pick two borders",
+    "what.lead": "The gaps between edges or the steps between centers become equal. Everything is one undo step.",
+    "dist.l1": "Four buttons: horizontal and vertical gaps, horizontal and vertical centers.",
+    "dist.l2": "Borders are picked by hovering, like connectors: a face, a drawing line, a linked-model wall or a grid.",
+    "dist.l3": "Shift places dimensions between the elements; Ctrl aligns them in one line; Alt picks free points (a PDF underlay).",
+    "dist.l4": "Joined elements (a box with its diffuser) move as one; everything is one undo step."
+  },
+  "ru": {
+    "pg.eyebrow": "Revit · Плагин · Distribute",
+    "pg.title": "Равномерная расстановка элементов — <em>два клика по границам</em>",
+    "pg.sub": "Панель «Расстановка» вкладки «HVAC Stuff»: четыре кнопки для равных зазоров или равных шагов между осями, по горизонтали и по вертикали.",
+    "what.eyebrow": "Как это работает",
+    "what.title": "Выделите элементы и укажите две границы",
+    "what.lead": "Зазоры между краями или шаги между осями становятся равными. Всё — одним шагом отмены.",
+    "dist.l1": "Четыре кнопки: горизонтальные и вертикальные зазоры, горизонтальные и вертикальные оси.",
+    "dist.l2": "Границы выбираются наведением, как коннекторы: грань, линия чертежа, стена связанной модели или ось.",
+    "dist.l3": "Shift — ставит размеры между элементами; Ctrl — выравнивает их в одну линию; Alt — свободные точки (подложка PDF).",
+    "dist.l4": "Соединённые элементы (бокс с диффузором) двигаются как один; всё — одним шагом отмены."
+  }
+} };
+</script>
+<script src="site.js"></script>
+<script src="plugin.js"></script>
+<script src="ribbon.js"></script>
+</body>
+</html>

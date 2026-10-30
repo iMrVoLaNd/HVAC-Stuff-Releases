@@ -1,0 +1,76 @@
+/* HVAC Stuff — интерактивный макет ленты Revit (используется ribbon.js на страницах плагинов) */
+/* лента Revit 2026 (тёмная тема): размеры и цвета сняты с живого экрана, масштаб — через zoom */
+.revit { --win: #222933; --pan: #3b4453; --txt: #f5f5f5; --sep: #485363; --hov: #4b566a; --hovb: #6a778c; --act: #2e3644; --ink: #E8ECF2; --blu: #6CBDEB; --tipbg: #2a313c; --tipb: #6d7580; --tipl: #4d535b; --f1: #9aa7bf; --canvas: #222933; --stg-ink: #E8ECF2; --stg-line: #3b4453; --stg-muted: #9aa7bf; background: var(--win); border-radius: 12px; overflow: hidden; box-shadow: 0 30px 70px -30px rgba(0,0,0,.65); font: 12px/1 "Segoe UI", system-ui, sans-serif; color: var(--txt); position: relative; max-width: 980px; margin: 0 auto; }
+.rv-bar { display: flex; gap: 6px; padding: 8px 12px 0; align-items: center; }
+.rv-bar i { width: 10px; height: 10px; border-radius: 50%; background: var(--pan); }
+.rv-theme { margin-left: auto; display: inline-flex; border: 1px solid var(--hovb); border-radius: 6px; overflow: hidden; }
+.rv-theme button { all: unset; cursor: pointer; padding: 2px 9px; font-size: 11px; color: var(--txt); }
+.rv-theme button[aria-pressed="true"] { background: var(--hovb); color: #fff; }
+.rv-tabs { display: flex; padding: 6px 4px 0; zoom: 1.25; }
+.rv-tab { height: 20px; line-height: 20px; padding: 0 12px; background: var(--pan); color: var(--txt); }
+.rv-ribbon { background: var(--pan); margin: 0 4px; display: flex; zoom: 1.25; height: 97px; position: relative; }
+.rv-group { position: relative; display: flex; padding: 0 1px; }
+.rv-group .ttl { position: absolute; left: 0; right: 0; bottom: 6px; text-align: center; white-space: nowrap; pointer-events: none; }
+.rv-sep { width: 1px; background: var(--sep); margin: 4px 0 4px; }
+.rv-btn { all: unset; box-sizing: border-box; cursor: default; display: flex; flex-direction: column; align-items: center; padding: 8px 3px 0; height: 78px; min-width: 52px; text-align: center; line-height: 12px; border: 1px solid transparent; transition: background .12s, border-color .12s; }
+.rv-btn:hover { background: var(--hov); border-color: var(--hovb); }
+.rv-btn:active, .rv-btn.on { background: var(--act); border-color: var(--hovb); }
+.rv-btn:focus-visible { outline: 2px solid #73c5ff; outline-offset: -2px; }
+.rv-btn svg { width: 32px; height: 32px; margin-bottom: 7px; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform .2s; }
+.rv-btn:hover svg { transform: translateY(-2px); }
+.rv-btn .l { display: block; }
+.rv-tip { position: absolute; z-index: 5; width: 270px; background: var(--tipbg); border: 1px solid var(--tipb); color: var(--txt); padding: 8px 10px 9px; box-shadow: 0 8px 22px rgba(0,0,0,.55); pointer-events: none; opacity: 0; transform: translateY(4px); transition: opacity .15s, transform .15s; font-size: 12px; line-height: 1.35; }
+.rv-tip.on { opacity: 1; transform: none; }
+.rv-tip b { display: block; font-size: 13px; margin-bottom: 4px; }
+.rv-tip hr { border: 0; border-top: 1px solid var(--tipl); margin: 8px 0 6px; }
+.rv-tip .f1 { color: var(--f1); }
+.rv-stage { position: relative; background: var(--canvas); margin: 4px 4px 0; min-height: 320px; color: var(--stg-ink); overflow: hidden; transition: background .3s, color .3s; }
+.stg { display: none; width: 100%; height: auto; }
+.stg.on { display: block; }
+.pane { display: none; padding: 26px; min-height: 320px; align-items: center; justify-content: center; }
+.pane.on { display: flex; }
+.win { width: min(460px, 100%); border: 1px solid #c9ced8; box-shadow: 0 18px 40px -16px rgba(20,33,61,.5); background: #FBFAF6; border-radius: 6px; overflow: hidden; animation: rise .5s backwards; }
+.win header { background: #14213D; color: #fff; padding: 10px 14px; font-size: 14px; font-weight: 600; display: flex; justify-content: space-between; }
+.win .bd { padding: 16px 18px 18px; font-size: 14px; line-height: 1.5; }
+.win .row { margin: 0 0 14px; }
+.win label { display: block; font-size: 12px; color: #5d6881; margin-bottom: 6px; }
+.win .seg { display: inline-flex; border: 1.5px solid #14213D; border-radius: 8px; overflow: hidden; }
+.win .seg button { all: unset; cursor: pointer; padding: 6px 16px; font-size: 13px; font-weight: 600; color: #14213D; }
+.win .seg button[aria-pressed="true"] { background: #F2A93B; }
+.win .sw { display: flex; gap: 8px; flex-wrap: wrap; }
+.win .sw button { all: unset; cursor: pointer; width: 26px; height: 26px; border-radius: 6px; border: 2px solid transparent; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); transition: transform .15s; }
+.win .sw button:hover { transform: scale(1.12); }
+.win .sw button[aria-pressed="true"] { border-color: #14213D; }
+.win .hint { font-size: 12.5px; color: #5d6881; margin: 0; }
+.win .upd { all: unset; cursor: pointer; background: #14213D; color: #fff; padding: 7px 14px; border-radius: 8px; font-size: 13px; font-weight: 600; }
+.win .upd:hover { background: #1c2d52; }
+.win .ok { color: #1c7c4b; font-weight: 600; margin-left: 10px; font-size: 13px; }
+.dr { transition: transform .9s cubic-bezier(.4,0,.2,1); }
+.dm { transition: opacity .4s; }
+.replay { all: unset; position: absolute; right: 12px; bottom: 12px; cursor: pointer; background: #14213D; color: #fff; font: 600 13px "Segoe UI", system-ui, sans-serif; padding: 7px 14px; border-radius: 99px; z-index: 2; box-shadow: 0 6px 16px -6px rgba(0,0,0,.5); }
+.replay:hover { background: #1c2d52; }
+.replay[hidden] { display: none; }
+.rv-status { display: flex; justify-content: space-between; padding: 5px 10px; color: var(--txt); min-height: 24px; }
+.chips2 { position: absolute; left: 14px; top: 12px; display: flex; gap: 6px; align-items: center; font-size: 12px; color: var(--stg-muted); pointer-events: none; }
+.chips2 span.c { border: 1.5px solid var(--stg-line); border-radius: 6px; padding: 3px 8px; color: var(--stg-ink); background: var(--canvas); transition: all .25s; }
+.chips2 span.c.hi { background: #F2A93B; border-color: #F2A93B; color: #14213D; font-weight: 700; transform: scale(1.1); }
+.chips2[hidden] { display: none; }
+/* сцены на холсте */
+.cur { transform: translate(60px, 260px); transition: transform .9s cubic-bezier(.5,0,.2,1), opacity .4s; }
+.ring { opacity: 0; transform-box: fill-box; transform-origin: center; }
+.ring.go { animation: ringo .5s ease-out; }
+@keyframes ringo { from { opacity: .9; transform: scale(.3); } to { opacity: 0; transform: scale(2.4); } }
+.mk { opacity: 0; transition: opacity .25s; } .mk.on { opacity: 1; }
+.clip rect { transition: width .9s cubic-bezier(.4,0,.2,1); }
+.flexcol { stroke: var(--flex, #F2A93B); }
+@media (max-width: 700px) { .rv-tabs, .rv-ribbon { zoom: 1.1; } .rv-stage { min-height: 220px; } .pane { min-height: 220px; padding: 14px; } .chips2 { display: none; } }
+.revit[data-theme="light"] { --win: #d9d9d9; --pan: #f5f5f5; --txt: #3c3c3c; --sep: #e2e2e2; --hov: #e3ecf6; --hovb: #9fb7d0; --act: #d2e1f1; --ink: #14213D; --blu: #3E9AD0; --tipbg: #f5f5f5; --tipb: #8c8c8c; --tipl: #cfcfcf; --f1: #666; --canvas: #ffffff; --stg-ink: #14213D; --stg-line: #c9ced8; --stg-muted: #5d6881; }
+.revit .ink { stroke: var(--ink); } .revit .blu { stroke: var(--blu); }
+.revit { min-width: 0; }
+@keyframes pulse { 50% { transform: scale(1.18); opacity: .6; } }
+@keyframes dash { to { stroke-dashoffset: -62; } }
+.demo-box { background: var(--navy); border-radius: 18px; padding: 28px; color: #fff; box-shadow: var(--shadow); min-height: 240px; display: grid; place-items: center; }
+.demo-box .fl { animation: dash 1.6s linear infinite; }
+.demo-box .pl { animation: pulse 2.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@media (prefers-reduced-motion: reduce) { .demo-box .fl, .demo-box .pl { animation: none; } }
+@media (max-width: 700px) { .rv-ribbon { overflow-x: auto; overflow-y: hidden; scrollbar-width: thin; } .rv-group { flex: none; } }
