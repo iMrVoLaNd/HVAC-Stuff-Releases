@@ -66,7 +66,7 @@
     var el = document.getElementById("siteNav"); if (!el) return;
     var inPlugins = PLUGINS.some(function (p) { return p[0] === PAGE.key; }) || PAGE.key === "parse";
     var items = PLUGINS.map(function (p) {
-      return '<li><a href="' + p[1] + '"' + (p[0] === PAGE.key ? ' class="here" aria-current="page"' : "") + ' data-i18n="' + p[2] + '"></a></li>';
+      return '<li><a href="' + p[1] + '"' + (p[0] === PAGE.key || (p[0] === "mep" && PAGE.key === "parse") ? ' class="here" aria-current="page"' : "") + ' data-i18n="' + p[2] + '"></a></li>';
     }).join("");
     el.className = "nav";
     el.innerHTML =
@@ -76,8 +76,7 @@
       '<div class="nav-panel" id="navPanel">' +
       '<ul class="nav-links">' +
       '<li class="dd" id="ddPlugins"><button class="dd-btn' + (inPlugins ? " here" : "") + '" type="button" aria-expanded="false" aria-haspopup="true" data-i18n="nav.plugins"></button>' +
-      '<ul class="dd-menu"><li><a href="index.html#plugins" data-i18n="nav.all"></a></li><li class="sep"></li>' + items +
-      '<li class="sep"></li><li><a href="name-parsing.html"' + (PAGE.key === "parse" ? ' class="here" aria-current="page"' : "") + ' data-i18n="nav.parsing"></a></li></ul></li>' +
+      '<ul class="dd-menu"><li><a href="index.html#plugins" data-i18n="nav.all"></a></li><li class="sep"></li>' + items + '</ul></li>' +
       '<li><a href="index.html#install" data-sec="install" data-i18n="nav.install"></a></li>' +
       '<li><a href="index.html#manuals" data-sec="manuals" data-i18n="nav.manuals"></a></li>' +
       '<li><a href="index.html#faq" data-sec="faq" data-i18n="nav.faq"></a></li>' +
