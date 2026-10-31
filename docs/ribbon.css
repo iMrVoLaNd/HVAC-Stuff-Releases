@@ -1,18 +1,18 @@
 /* HVAC Stuff — интерактивный макет ленты Revit (используется ribbon.js на страницах плагинов) */
 /* лента Revit 2026 (тёмная тема): размеры и цвета сняты с живого экрана, масштаб — через zoom */
-.revit { --win: #222933; --pan: #3b4453; --txt: #f5f5f5; --sep: #485363; --hov: #4b566a; --hovb: #6a778c; --act: #2e3644; --ink: #E8ECF2; --blu: #6CBDEB; --tipbg: #2a313c; --tipb: #6d7580; --tipl: #4d535b; --f1: #9aa7bf; --canvas: #222933; --stg-ink: #E8ECF2; --stg-line: #3b4453; --stg-muted: #9aa7bf; background: var(--win); border-radius: 12px; overflow: hidden; box-shadow: 0 30px 70px -30px rgba(0,0,0,.65); font: 12px/1 "Segoe UI", system-ui, sans-serif; color: var(--txt); position: relative; max-width: 980px; margin: 0 auto; }
+.revit { --win: #222933; --pan: #3b4453; --txt: #f5f5f5; --sep: #485363; --hov: #4b566a; --hovb: #6a778c; --act: #2e3644; --ink: #E8ECF2; --blu: #6CBDEB; --tipbg: #2a313c; --tipb: #6d7580; --tipl: #4d535b; --f1: #9aa7bf; --canvas: #222933; --stg-ink: #E8ECF2; --stg-line: #3b4453; --stg-muted: #9aa7bf; background: var(--win); border-radius: 12px; overflow: hidden; box-shadow: 0 30px 70px -30px rgba(0,0,0,.65); font: 12px/1 "Segoe UI", system-ui, sans-serif; color: var(--txt); position: relative; max-width: 1180px; margin: 0 auto; }
 .rv-bar { display: flex; gap: 6px; padding: 8px 12px 0; align-items: center; }
 .rv-bar i { width: 10px; height: 10px; border-radius: 50%; background: var(--pan); }
 .rv-theme { margin-left: auto; display: inline-flex; border: 1px solid var(--hovb); border-radius: 6px; overflow: hidden; }
 .rv-theme button { all: unset; cursor: pointer; padding: 2px 9px; font-size: 11px; color: var(--txt); }
 .rv-theme button[aria-pressed="true"] { background: var(--hovb); color: #fff; }
-.rv-tabs { display: flex; padding: 6px 4px 0; zoom: 1.25; }
+.rv-tabs { display: flex; padding: 6px 4px 0; zoom: 1; }
 .rv-tab { height: 20px; line-height: 20px; padding: 0 12px; background: var(--pan); color: var(--txt); }
-.rv-ribbon { background: var(--pan); margin: 0 4px; display: flex; zoom: 1.25; height: 116px; position: relative; }
+.rv-ribbon { background: var(--pan); margin: 0 4px; display: flex; zoom: 1; height: 132px; position: relative; overflow-x: auto; overflow-y: hidden; scrollbar-width: thin; }
 .rv-group { position: relative; display: flex; padding: 0 1px; }
 .rv-group .ttl { position: absolute; left: 0; right: 0; bottom: 6px; text-align: center; white-space: nowrap; pointer-events: none; }
 .rv-sep { width: 1px; background: var(--sep); margin: 4px 0 4px; }
-.rv-btn { all: unset; box-sizing: border-box; cursor: default; display: flex; flex-direction: column; align-items: center; padding: 8px 3px 0; height: 97px; min-width: 52px; text-align: center; line-height: 12px; border: 1px solid transparent; transition: background .12s, border-color .12s; }
+.rv-btn { all: unset; box-sizing: border-box; cursor: default; display: flex; flex-direction: column; align-items: center; padding: 8px 3px 0; height: 113px; min-width: 52px; text-align: center; line-height: 12px; border: 1px solid transparent; transition: background .12s, border-color .12s; }
 .rv-btn:hover { background: var(--hov); border-color: var(--hovb); }
 .rv-btn:active, .rv-btn.on { background: var(--act); border-color: var(--hovb); }
 .rv-btn:focus-visible { outline: 2px solid #73c5ff; outline-offset: -2px; }
@@ -74,3 +74,46 @@
 .demo-box .pl { animation: pulse 2.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
 @media (prefers-reduced-motion: reduce) { .demo-box .fl, .demo-box .pl { animation: none; } }
 @media (max-width: 700px) { .rv-ribbon { overflow-x: auto; overflow-y: hidden; scrollbar-width: thin; } .rv-group { flex: none; } }
+
+/* сцены-анимации (scenes.js): те же на шапках страниц и на кнопках ленты */
+.scene-host { position: relative; width: 100%; color: var(--s-ink); --s-ink: var(--stg-ink, #E8ECF2); --s-line: var(--stg-line, #485363); --s-muted: var(--stg-muted, #9aa7bf); --s-card: var(--pan, #2c3544); --s-chip: var(--canvas, #1f2733); }
+.scene-host[hidden] { display: none; }
+.demo-box .scene-host { --stg-ink: #E8ECF2; --stg-line: #485363; --stg-muted: #9aa7bf; --canvas: #1f2733; --pan: #2c3544; }
+.rv-stage .scene-host { min-height: 320px; display: flex; align-items: center; }
+.scn { display: block; width: 100%; height: auto; font-family: "Segoe UI", system-ui, sans-serif; }
+.scn text:not([fill]) { fill: var(--s-ink); }
+.scn text.sc-sub, .scn text.sc-note, .scn text.sc-note2 { fill: var(--s-muted); }
+.scn text.sc-win-t { fill: #14213D; }
+.scn .sc-mono { font-family: Consolas, "Cascadia Mono", monospace; }
+.scn .sc-note { font-size: 15px; }
+.scn .sc-card { fill: var(--s-card); stroke: var(--s-line); stroke-width: 1.5; transition: stroke .25s; }
+.scn .sc-chip { fill: var(--s-chip); stroke: var(--s-line); stroke-width: 1; }
+.scn .sc-ar { stroke: var(--s-muted); stroke-width: 2; fill: none; }
+.scn .sc-win { fill: #FBFAF6; stroke: #c9ced8; stroke-width: 1.5; }
+.scn .tile.act .sc-card, .scn .bx.act .sc-card { stroke: #F2A93B; stroke-width: 2.4; }
+.scn .res { transition: opacity .35s; }
+.scn .flow { fill: none; stroke: var(--s-line); stroke-width: 2.5; stroke-dasharray: 6 6; }
+.scn .flow.run { stroke: #F2A93B; animation: flowdash .8s linear infinite; }
+@keyframes flowdash { to { stroke-dashoffset: -24; } }
+.scn .tok { transition: opacity .3s; }
+.scn .tok.pop rect { transform-box: fill-box; transform-origin: center; animation: popr .45s ease-out; }
+@keyframes popr { 40% { transform: scale(1.3); } }
+.scn .upd.pulse .upd-dot { transform-box: fill-box; transform-origin: center; animation: pulse 1s ease-in-out infinite; }
+.scn .upd { transition: opacity .4s; }
+.scn .rep, .scn .jr, .scn .newb, .scn .tile { transition: opacity .45s; }
+.scn .air { stroke: #5BB6E8; }
+.scn .bd { stroke: var(--s-ink); stroke-width: 4; opacity: .75; }
+.scn .dm { stroke: #F2A93B; stroke-width: 2.5; transition: opacity .4s; }
+.scn .dr { transition: transform .9s cubic-bezier(.4, 0, .2, 1); }
+/* метка коннектора: как в плагине — тонкая полоса из колец, стрелка и крест; под курсором светлее, выбранный темнее */
+.scn .cm { opacity: 0; transition: opacity .25s; stroke: #5BB6E8; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.scn .cm.on { opacity: 1; }
+.scn .cm.sel { stroke: #2E86D6; stroke-width: 2.8; }
+.scn .cur .cp { transform-box: fill-box; transform-origin: 0 0; transition: transform .12s; }
+.scn .cur.press .cp { transform: scale(.8); }
+.scn .clipq, .scn .clipf { transition: width .9s cubic-bezier(.4, 0, .2, 1); }
+.rv-btn.off { opacity: .5; cursor: not-allowed; }
+.rv-btn.off:hover { background: transparent; border-color: transparent; }
+.rv-btn.off:hover svg { transform: none; }
+.hint-p { max-width: 380px; text-align: center; color: var(--stg-muted); font-size: 14px; line-height: 1.5; margin: 0; }
+@media (max-width: 700px) { .scn .sc-note { font-size: 18px; } }

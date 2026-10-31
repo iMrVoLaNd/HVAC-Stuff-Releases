@@ -13,6 +13,7 @@
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <script>(function () { try { var t = localStorage.getItem("hvac-theme"); if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t); } catch (e) {} })();</script>
 <link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="ribbon.css">
 <style>
 .ex { display: flex; flex-wrap: wrap; gap: 10px; margin: 8px 0 20px; }
 .ex div { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 8px 14px; font-family: Consolas, "Cascadia Mono", Menlo, monospace; }
@@ -61,12 +62,22 @@ figure.shot figcaption { color: var(--muted); font-size: 14px; margin-top: 8px; 
       <div class="card"><h3 data-i18n="c5.t"></h3><p data-i18n="c5.p"></p></div>
       <div class="card"><h3 data-i18n="c6.t"></h3><p data-i18n="c6.p"></p></div>
     </div>
+    <div class="demo-box" style="margin:0 0 22px"><div class="scene-host" data-scene="sm_fill"></div></div>
     <div class="note" data-i18n="param.note"></div>
     <figure class="shot"><img src="img/mep-ribbon.png" alt="" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption data-i18n="cap.ribbon"></figcaption></figure>
   </div>
 </section>
 
-<section class="alt" id="how">
+<section class="alt" id="try">
+  <div class="wrap">
+    <p class="eyebrow" data-i18n="rb.eyebrow"></p>
+    <h2 data-i18n="rb.title"></h2>
+    <p class="lead" data-i18n="rb.lead"></p>
+    <div id="revit-mount"></div>
+  </div>
+</section>
+
+<section id="how">
   <div class="wrap">
     <p class="eyebrow" data-i18n="how.eyebrow"></p>
     <h2 data-i18n="how.title"></h2>
@@ -169,7 +180,7 @@ window.HVAC_PAGE = { key: "mep", title: "mep.name", T: {
       "c5.t": "Обладнання за підключеними системами", "c5.p": "Назва обладнання збирається з усіх систем, підключених до нього, а не з однієї.",
       "c6.t": "Журнал і вікно проблем", "c6.p": "Повний запис кожного запуску, пошук за ID елемента, експорт у CSV. Назви, що не підходять під правило, збираються в список із діями: виділити, перейменувати, залишити.",
       "how.eyebrow": "Як користуватись", "how.title": "Налаштування проєкту за п’ять кроків",
-      "how.lead": "Налаштування зберігаються в самому проєкті. Їх можна зберегти у файл JSON і завантажити в інший проєкт.",
+      "how.lead": "Налаштування зберігаються в самому проєкті. Їх можна зберегти як шаблон у файл і завантажити в іншому проєкті.",
       "s1.t": "Оберіть параметри", "s1.p": "Вкладка «Системи»: цільовий параметр (отримує назву) і, якщо потрібно, параметр сортування. Плагін показує лише ті, що підходять: текстові, екземпляра, не лише для читання, прив’язані до всіх категорій. Якщо параметр не підійшов, поруч видно причину.",
       "s2.t": "Натисніть «З шаблону»", "s2.p": "Літери заповнюються для типів систем шаблону HVAC Stuff. Правила інших типів лишаються без змін.",
       "s3.t": "Налаштуйте решту типів", "s3.p": "Впишіть літери, з яких починається ім’я системи, і літери результату. Порожнє правило — «транзит»: ім’я копіюється як є й не перевіряється. Порядок рядків — це порядок сортування, рядки перетягуються. Поле «Перевірити назву» показує результат для вашого імені.",
@@ -195,10 +206,10 @@ window.HVAC_PAGE = { key: "mep", title: "mep.name", T: {
       "k1.t": "Журнал запусків", "k1.p": "Кожне заповнення, очищення й зміна моделі в автоматичному режимі: скільки змінено, не змінено, пропущено, проблем і помилок, час. Фільтр за видом запису, пошук за ID елемента, експорт повного запису в CSV для Excel.",
       "k2.t": "Вікно проблем", "k2.p": "Назви, що не підходять під правило типу, копіюються як є й потрапляють у список. Для кожної пари: «Виділити все» в моделі, «Перейменувати на…» (перейменовує систему) або «Залишити як є» (більше не повідомляти).",
       "k3.t": "Звіт і прогрес", "k3.p": "Під час заповнення видно лічильник, записані значення й час. Підсумковий звіт розбито за категоріями. Елемент, який редагує інший користувач, рахується окремо.",
-      "k4.t": "Налаштування", "k4.p": "Параметри, категорії, пропущені сімейства, типи систем з порядком, журнал (розмір файлу й строк зберігання), імпорт та експорт JSON. Вікно не блокує Revit.",
+      "k4.t": "Налаштування", "k4.p": "Параметри, категорії, пропущені сімейства, типи систем з порядком, шаблони (зберегти у файл і завантажити). Кожна фраза пропуску каже, чи назва «починається з», чи «містить». Журнали задаються в загальних налаштуваннях.",
       "faq.eyebrow": "Питання", "faq.title": "Часті питання",
       "q1.q": "Чи сповільнює плагін Revit?", "q1.a": "Під час запуску завантажується лише стрічка. Вікна й налаштування відкриваються при першому натисканні.",
-      "q2.q": "Де зберігаються налаштування?", "q2.a": "У самому проєкті. Для переносу в інший проєкт: «Експорт» у файл JSON, потім «Імпорт» і «Зберегти».",
+      "q2.q": "Де зберігаються налаштування?", "q2.a": "У самому проєкті. Для переносу в інший проєкт: «Зберегти як шаблон» у файл, потім «Завантажити шаблон» і «Зберегти». Дані плагіна можна прибрати з проєкту кнопкою «Видалити дані з проєкту».",
       "q3.q": "Чи можна скасувати очищення?", "q3.a": "Так, одним кроком скасування (Ctrl+Z) повертається все очищене.",
       "q4.q": "Що, якщо ім’я системи не підходить під правило?", "q4.a": "Воно копіюється як є, а пара «тип і ім’я» потрапляє у вікно проблем. Виправте ім’я в моделі, задайте «транзит» для типу або залиште як є.",
     },
@@ -219,7 +230,7 @@ window.HVAC_PAGE = { key: "mep", title: "mep.name", T: {
       "c5.t": "Equipment by connected systems", "c5.p": "The name of a piece of equipment is built from all the systems connected to it, not from one.",
       "c6.t": "Run log and problems window", "c6.p": "A full record of every run, search by element ID, CSV export. Names that do not fit the rule are collected in a list with actions: select, rename, keep.",
       "how.eyebrow": "How to use", "how.title": "Set up a project in five steps",
-      "how.lead": "The settings are stored in the project itself. They can be saved to a JSON file and loaded into another project.",
+      "how.lead": "The settings are stored in the project itself. They can be saved as a template file and loaded into another project.",
       "s1.t": "Choose the parameters", "s1.p": "Tab “Systems”: the target parameter (receives the name) and, if needed, the sort parameter. The plugin lists only parameters that fit: text, instance, writable, bound to all categories. A parameter that does not fit shows the reason.",
       "s2.t": "Press “From template”", "s2.p": "The letters are filled in for the system types of the HVAC Stuff template. The rules of other types stay as they are.",
       "s3.t": "Set up the remaining types", "s3.p": "Write the letters the system name starts with and the letters of the result. An empty rule is “transit”: the name is copied as it is and is not checked. The order of rows is the sort order, rows can be dragged. The “Check a name” field shows the result for your own name.",
@@ -245,10 +256,10 @@ window.HVAC_PAGE = { key: "mep", title: "mep.name", T: {
       "k1.t": "Run history", "k1.p": "Every fill, clear and model change in the automatic mode: how many changed, unchanged, skipped, problems and errors, time. Filter by kind, search by element ID, export the full record to CSV for Excel.",
       "k2.t": "Problems window", "k2.p": "Names that do not fit the rule of the type are copied as they are and listed. For each pair: “Select all” in the model, “Rename to…” (renames the system) or “Keep as is” (not reported again).",
       "k3.t": "Report and progress", "k3.p": "While filling you see the counter, the written values and the time. The final report is split by category. An element being edited by another user is counted separately.",
-      "k4.t": "Settings", "k4.p": "Parameters, categories, skipped families, system types with the order, the log (file size and keep period), JSON import and export. The window does not block Revit.",
+      "k4.t": "Settings", "k4.p": "Parameters, categories, skipped families, system types with the order, templates (save to a file and load). Each skipped phrase says whether the name starts with it or contains it. The logs are set in General Settings.",
       "faq.eyebrow": "FAQ", "faq.title": "Frequently asked questions",
       "q1.q": "Does the plugin slow Revit down?", "q1.a": "Only the ribbon loads at start. Windows and settings open on the first click.",
-      "q2.q": "Where are the settings stored?", "q2.a": "In the project itself. To move them to another project: “Export” to a JSON file, then “Import” and “Save”.",
+      "q2.q": "Where are the settings stored?", "q2.a": "In the project itself. To move them to another project: “Save as template” to a file, then “Load template” and “Save”. The plug-in data can be removed from the project with “Remove data from the project”.",
       "q3.q": "Can a clear be undone?", "q3.a": "Yes, one undo step (Ctrl+Z) brings back everything that was cleared.",
       "q4.q": "What if a system name does not fit the rule?", "q4.a": "It is copied as it is, and the pair of type and name goes to the problems window. Fix the name in the model, set “transit” for the type, or keep it as is.",
     },
@@ -269,7 +280,7 @@ window.HVAC_PAGE = { key: "mep", title: "mep.name", T: {
       "c5.t": "Оборудование по подключённым системам", "c5.p": "Имя оборудования собирается из всех подключённых к нему систем, а не из одной.",
       "c6.t": "Журнал и окно проблем", "c6.p": "Полная запись каждого запуска, поиск по ID элемента, экспорт в CSV. Имена, не подходящие под правило, собираются в список с действиями: выделить, переименовать, оставить.",
       "how.eyebrow": "Как пользоваться", "how.title": "Настройка проекта за пять шагов",
-      "how.lead": "Настройки хранятся в самом проекте. Их можно сохранить в файл JSON и загрузить в другой проект.",
+      "how.lead": "Настройки хранятся в самом проекте. Их можно сохранить как шаблон в файл и загрузить в другом проекте.",
       "s1.t": "Выберите параметры", "s1.p": "Вкладка «Системы»: целевой параметр (получает имя) и, при необходимости, параметр сортировки. Плагин показывает только подходящие: текстовые, экземпляра, не только для чтения, привязанные ко всем категориям. Если параметр не подошёл, рядом видна причина.",
       "s2.t": "Нажмите «Из шаблона»", "s2.p": "Буквы заполняются для типов систем шаблона HVAC Stuff. Правила других типов остаются как есть.",
       "s3.t": "Настройте остальные типы", "s3.p": "Впишите буквы, с которых начинается имя системы, и буквы результата. Пустое правило — «транзит»: имя копируется как есть и не проверяется. Порядок строк — это порядок сортировки, строки перетаскиваются. Поле «Проверить имя» показывает результат для вашего имени.",
@@ -295,15 +306,17 @@ window.HVAC_PAGE = { key: "mep", title: "mep.name", T: {
       "k1.t": "Журнал запусков", "k1.p": "Каждое заполнение, очистка и изменение модели в автоматическом режиме: сколько изменено, не изменено, пропущено, проблем и ошибок, время. Фильтр по виду записи, поиск по ID элемента, экспорт полной записи в CSV для Excel.",
       "k2.t": "Окно проблем", "k2.p": "Имена, не подходящие под правило типа, копируются как есть и попадают в список. Для каждой пары: «Выделить все» в модели, «Переименовать в…» (переименовывает систему) или «Оставить как есть» (больше не сообщать).",
       "k3.t": "Отчёт и прогресс", "k3.p": "Во время заполнения видны счётчик, записанные значения и время. Итоговый отчёт разбит по категориям. Элемент, который правит другой пользователь, считается отдельно.",
-      "k4.t": "Настройки", "k4.p": "Параметры, категории, пропускаемые семейства, типы систем с порядком, журнал (размер файла и срок хранения), импорт и экспорт JSON. Окно не блокирует Revit.",
+      "k4.t": "Настройки", "k4.p": "Параметры, категории, пропускаемые семейства, типы систем с порядком, шаблоны (сохранить в файл и загрузить). Каждая фраза пропуска говорит, «начинается с» название или «содержит». Журналы задаются в общих настройках.",
       "faq.eyebrow": "Вопросы", "faq.title": "Частые вопросы",
       "q1.q": "Замедляет ли плагин Revit?", "q1.a": "При запуске загружается только лента. Окна и настройки открываются при первом нажатии.",
-      "q2.q": "Где хранятся настройки?", "q2.a": "В самом проекте. Чтобы перенести в другой проект: «Экспорт» в файл JSON, затем «Импорт» и «Сохранить».",
+      "q2.q": "Где хранятся настройки?", "q2.a": "В самом проекте. Чтобы перенести в другой проект: «Сохранить как шаблон» в файл, затем «Загрузить шаблон» и «Сохранить». Данные плагина можно убрать из проекта кнопкой «Удалить данные из проекта».",
       "q3.q": "Можно ли отменить очистку?", "q3.a": "Да, одним шагом отмены (Ctrl+Z) возвращается всё очищенное.",
       "q4.q": "Что, если имя системы не подходит под правило?", "q4.a": "Оно копируется как есть, а пара «тип и имя» попадает в окно проблем. Исправьте имя в модели, задайте «транзит» для типа или оставьте как есть.",
     }
   } };
 </script>
 <script src="site.js"></script>
+<script src="scenes.js"></script>
+<script src="ribbon.js"></script>
 </body>
 </html>

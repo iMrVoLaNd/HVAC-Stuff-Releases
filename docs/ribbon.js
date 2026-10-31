@@ -40,6 +40,33 @@
         "rb.tip.sm_clear": "sm — Очищает целевой и сортировочный параметры у всех элементов обрабатываемых категорий.",
         "rb.sm.states": "Состояния значка автоматического режима", "rb.sm.on": "Всё в порядке", "rb.sm.att": "Есть проблемы", "rb.sm.off": "Выключено", "rb.sm.nc": "Не настроено" }
     };
+    var M = {
+      uk: { "rb.set": "Загальні<br>налаштування", "rb.set_flex": "Налаштування<br>гнучких", "rb.set_dist": "Налаштування<br>розподілу", "rb.set_sm": "Налаштування<br>позначень", "rb.sm_jrn": "Журнал<br>запусків",
+        "rb.hint": "Натисніть кнопку на стрічці, щоб побачити, що робить команда.",
+        "rb.tip.set": "Загальні налаштування — мова інтерфейсу та журнали. Відкриваються в Revit; тут кнопка лише для вигляду.",
+        "rb.tip.set_flex": "Налаштування гнучких повітропроводів — візерунок, довжини, попередній перегляд. Відкриваються в Revit; тут кнопка лише для вигляду.",
+        "rb.tip.set_dist": "Налаштування розподілу — прив’язки й попередній перегляд. Відкриваються в Revit; тут кнопка лише для вигляду.",
+        "rb.tip.set_sm": "Налаштування позначень систем — параметри, типи систем, категорії, пропуск сімейств. Відкриваються в Revit; тут кнопка лише для вигляду.",
+        "rb.tip.about": "Про програму — версія й перевірка оновлень. Відкривається в Revit; тут кнопка лише для вигляду.",
+        "rb.tip.sm_jrn": "Журнал запусків — останні автоматичні й ручні запуски проєкту." },
+      en: { "rb.set": "General<br>Settings", "rb.set_flex": "Flex Duct<br>Settings", "rb.set_dist": "Distribute<br>Settings", "rb.set_sm": "System Marks<br>Settings", "rb.sm_jrn": "Run<br>Journal",
+        "rb.hint": "Press a button on the ribbon to see what the command does.",
+        "rb.tip.set": "General Settings — the interface language and the logs. It opens in Revit; here the button is for show.",
+        "rb.tip.set_flex": "Flex Duct Settings — the pattern, the lengths, the preview. It opens in Revit; here the button is for show.",
+        "rb.tip.set_dist": "Distribute Settings — snapping and preview. It opens in Revit; here the button is for show.",
+        "rb.tip.set_sm": "System Marks Settings — parameters, system types, categories, skipped families. It opens in Revit; here the button is for show.",
+        "rb.tip.about": "About — the version and the update check. It opens in Revit; here the button is for show.",
+        "rb.tip.sm_jrn": "Run Journal — the latest automatic and manual runs of the project." },
+      ru: { "rb.set": "Общие<br>настройки", "rb.set_flex": "Настройки<br>гибких", "rb.set_dist": "Настройки<br>распределения", "rb.set_sm": "Настройки<br>обозначений", "rb.sm_jrn": "Журнал<br>запусков",
+        "rb.hint": "Нажмите кнопку на ленте, чтобы увидеть, что делает команда.",
+        "rb.tip.set": "Общие настройки — язык интерфейса и журналы. Открываются в Revit; здесь кнопка только для вида.",
+        "rb.tip.set_flex": "Настройки гибких воздуховодов — узор, длины, предпросмотр. Открываются в Revit; здесь кнопка только для вида.",
+        "rb.tip.set_dist": "Настройки распределения — привязки и предпросмотр. Открываются в Revit; здесь кнопка только для вида.",
+        "rb.tip.set_sm": "Настройки обозначений систем — параметры, типы систем, категории, пропуск семейств. Открываются в Revit; здесь кнопка только для вида.",
+        "rb.tip.about": "О программе — версия и проверка обновлений. Открывается в Revit; здесь кнопка только для вида.",
+        "rb.tip.sm_jrn": "Журнал запусков — последние автоматические и ручные запуски проекта." }
+    };
+    ["uk", "en", "ru"].forEach(function (l) { Object.keys(M[l]).forEach(function (k) { N[l][k] = M[l][k]; }); });
     H.addStrings(N);
     var mnt = document.getElementById("revit-mount");
     // четвёртая группа: те же кнопки, что в Revit
@@ -69,6 +96,30 @@
           sheet + '<circle cx="24" cy="24" r="7" fill="' + col[k] + '" stroke="var(--pan)" stroke-width="1.6"/></svg><span data-i18n="rb.sm.' + k + '"></span></span>';
       }).join("") + "</div></div></div>";
     stg.appendChild(pane);
+
+    // сцены играет общий движок scenes.js; пока кнопку не нажали, на холсте подсказка
+    var host = document.createElement("div");
+    host.className = "scene-host"; host.id = "scenehost"; host.hidden = true;
+    stg.insertBefore(host, stg.firstChild);
+    var hp = document.createElement("div");
+    hp.className = "pane on"; hp.id = "pane-hint";
+    hp.innerHTML = '<p class="hint-p" data-i18n="rb.hint"></p>';
+    stg.appendChild(hp);
+    var gearIcon = '<path class="ink" d="M4 7H16M26 7H28M4 16H6M16 16H28M4 25H14M24 25H28"/><circle stroke="#F2A93B" cx="21" cy="7" r="3.2"/><circle class="ink" cx="11" cy="16" r="3.2"/><circle class="ink" cx="19" cy="25" r="3.2"/>';
+    function addBtn(group, cmd, key, svg, off) {
+      var b = document.createElement("button");
+      b.className = "rv-btn" + (off ? " off" : ""); b.type = "button"; b.dataset.cmd = cmd;
+      b.innerHTML = '<svg viewBox="0 0 32 32" aria-hidden="true">' + svg + '</svg><span class="l" data-i18n-html="' + key + '"></span>';
+      group.insertBefore(b, group.querySelector(".ttl"));
+    }
+    var allGroups = mnt.querySelectorAll(".rv-ribbon > .rv-group");
+    addBtn(allGroups[0], "set_flex", "rb.set_flex", gearIcon, true);
+    addBtn(allGroups[1], "set_dist", "rb.set_dist", gearIcon, true);
+    addBtn(allGroups[2], "sm_jrn", "rb.sm_jrn", sheet + '<circle cx="24" cy="24" r="7" fill="#5BB6E8" stroke="var(--pan)" stroke-width="1.6"/><path d="M24 20.5V24l2.6 1.6" stroke="#14213d" stroke-width="1.6" fill="none"/>', false);
+    addBtn(allGroups[2], "set_sm", "rb.set_sm", gearIcon, true);
+    var setBtn = mnt.querySelector('[data-cmd="set"]'), aboutBtn = mnt.querySelector('[data-cmd="about"]');
+    setBtn.classList.add("off"); aboutBtn.classList.add("off");
+    var sl = setBtn.querySelector(".l"); sl.removeAttribute("data-i18n"); sl.setAttribute("data-i18n-html", "rb.set");
 
     // ---- реалистичные сцены ----
     function duct(x, y, w, h, flangeAt) {
@@ -118,7 +169,7 @@
   })();
   H.apply();
   function retip() {}
-  var rv = document.getElementById("revit"), stage = document.getElementById("stage"), START = mount.dataset.start || "qfc";
+  var rv = document.getElementById("revit"), stage = document.getElementById("stage"), START = "";
   var tip = document.getElementById("rvtip"), stat = document.getElementById("rvstatus"), timers = [], cmd = START, tipT = 0;
   var COLORS = ["#F2A93B", "#E4572E", "#2E9E6B", "#5BB6E8", "#8E6BD9", "#8C96A0"];
   function later(f, ms) { timers.push(setTimeout(f, ms)); }
@@ -200,19 +251,20 @@
     }, 900);
     later(function () { svg.querySelector(".dm").setAttribute("opacity", 1); stat.textContent = t(d.m === "g" ? "rb.d2g" : "rb.d2c"); }, 2000);
   }
+  var S = window.HVAC.scenes;
   function show(c) {
     cmd = c; stage.dataset.cmd = c;
     rv.querySelectorAll(".rv-btn").forEach(function (b) { b.classList.toggle("on", b.dataset.cmd === c); });
     stage.querySelectorAll(".stg").forEach(function (e) { e.classList.remove("on"); });
     stage.querySelectorAll(".pane").forEach(function (e) { e.classList.remove("on"); });
-    document.getElementById("chips").hidden = c !== "ft";
-    document.getElementById("replay").hidden = c !== "qfc" && c !== "ft" && !DM[c];
-    reset();
-    if (c === "qfc") { stage.querySelector(".stg-qfc").classList.add("on"); playQ(); }
-    else if (c === "ft") { stage.querySelector(".stg-ft").classList.add("on"); playF(); }
-    else if (DM[c]) { stage.querySelector(".stg-dist").classList.add("on"); playD(c); }
-    else if (c.indexOf("sm_") === 0) { stage.querySelector("#pane-sm").classList.add("on"); document.getElementById("smtitle").textContent = rv.querySelector('[data-cmd="' + c + '"] .l').textContent.replace(/\s+/g, " ").trim(); document.getElementById("smtext").textContent = t("rb.tip." + c).replace(/^[^—]+—\s*/, ""); stat.textContent = t("rb.s0"); }
-    else { stage.querySelector("#pane-" + c).classList.add("on"); stat.textContent = t("rb.s0"); }
+    document.getElementById("chips").hidden = true;
+    var sh = document.getElementById("scenehost"), isScene = S.has(c);
+    S.stop(sh);
+    sh.hidden = !isScene;
+    document.getElementById("replay").hidden = !isScene;
+    stat.textContent = t("rb.s0");
+    if (isScene) S.play(sh, c, function (txt) { stat.textContent = txt || t("rb.s0"); });
+    else stage.querySelector("#pane-hint").classList.add("on");
   }
   function tipShow(b) {
     var c = b.dataset.cmd, name = b.querySelector(".l").textContent.replace(/\s+/g, " ").trim();
@@ -230,7 +282,7 @@
     b.addEventListener("mouseleave", tipHide);
     b.addEventListener("focus", function () { tipShow(b); });
     b.addEventListener("blur", tipHide);
-    b.addEventListener("click", function () { tipHide(); show(b.dataset.cmd); });
+    b.addEventListener("click", function () { tipHide(); if (b.classList.contains("off")) return; show(b.dataset.cmd); });
   });
   function setTheme(th) {
     rv.dataset.theme = th;
@@ -256,13 +308,7 @@
     document.querySelectorAll(".verx").forEach(function (e) { e.textContent = H.version; });
     if (!timers.length || cmd === "set" || cmd === "about") stat.textContent = t("rb.s0");
   };
-  var rvio = "IntersectionObserver" in window ? new IntersectionObserver(function (es) {
-    if (es[0].isIntersecting) { rvio.disconnect(); show(START); }
-  }, { threshold: .45 }) : null;
-  if (rvio) rvio.observe(rv); else show(START);
-  H.onLang(function () { rvRefresh(); retip(); });
-  // стартовая сцена
-  stage.querySelectorAll(".stg").forEach(function (e) { e.classList.remove("on"); });
-  var s0 = stage.querySelector(".stg-" + (DM[START] ? "dist" : START)); if (s0) s0.classList.add("on");
-  rv.querySelectorAll(".rv-btn").forEach(function (b) { b.classList.toggle("on", b.dataset.cmd === START); });
+  show("hint");
+  H.onLang(function () { rvRefresh(); retip(); if (S.has(cmd)) show(cmd); });
+  rv.querySelectorAll(".rv-btn").forEach(function (b) { b.classList.remove("on"); });
 })();

@@ -49,7 +49,7 @@
   merge(PAGE.T);
 
   var lang = "uk", listeners = [];
-  var H = window.HVAC = { page: PAGE.key || "", version: "1.6.0", repo: REPO };
+  var H = window.HVAC = { page: PAGE.key || "", version: "1.7.0", repo: REPO };
   H.t = function (k) { return (T[lang] && T[lang][k]) || T.en[k] || k; };
   H.lang = function () { return lang; };
   H.addStrings = function (d) { merge(d); };
