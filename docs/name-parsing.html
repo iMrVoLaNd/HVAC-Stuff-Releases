@@ -215,6 +215,16 @@ select:focus-visible, input:focus-visible, button:focus-visible { outline: 3px s
 .s-ok { background: var(--ok-soft); color: var(--ok); }
 .s-warn { background: var(--warn-soft); color: var(--warn); }
 .s-bad { background: var(--bad-soft); color: var(--bad); }
+.s-note { background: var(--sky-soft); color: var(--ink); }
+.keydots { font-family: var(--mono); letter-spacing: 1px; color: var(--amber-ink); white-space: nowrap; }
+.gtag { display: inline-block; border: 1.5px solid var(--navy); border-radius: 7px; padding: 1px 8px; font-weight: 700; font-size: 13px; }
+.sortgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+@media (max-width: 900px) { .sortgrid { grid-template-columns: 1fr; } }
+.sortbtns { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0 0; }
+.sortbtns button { font: inherit; font-weight: 600; cursor: pointer; border: 1.5px solid var(--navy); background: var(--surface); color: var(--ink); border-radius: 9px; padding: 6px 14px; }
+.sortbtns button:disabled { opacity: .45; cursor: default; }
+.sortbtns button:hover:not(:disabled) { background: var(--sand); }
+.sepgroup td { border-top: 2px solid var(--line); }
 .note { margin: 0; color: var(--muted); font-size: 14px; max-width: 70ch; }
 .legend { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 10px; font-size: 12px; color: var(--muted); }
 .legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; }
@@ -300,6 +310,7 @@ footer a { color: #fff; }
       <a href="#try" data-i18n="nav.try"></a>
       <a href="#owner" data-i18n="nav.examples"></a>
       <a href="#groups-sec" data-i18n="nav.kinds"></a>
+      <a href="#sortkey" data-i18n="nav.sort"></a>
       <a href="#catalog" data-i18n="nav.types"></a>
       <a href="#equip" data-i18n="nav.equip"></a>
     </nav>
@@ -364,6 +375,7 @@ footer a { color: #fff; }
     <li data-i18n-html="how.b3"></li>
     <li data-i18n-html="how.b4"></li>
     <li data-i18n-html="how.b5"></li>
+    <li data-i18n-html="how.b6"></li>
   </ul>
 </div></section>
 
@@ -402,6 +414,35 @@ footer a { color: #fff; }
   <h2 data-i18n="groups.title"></h2>
   <p class="lead" data-i18n="groups.lead"></p>
   <div id="groups"></div>
+</div></section>
+
+<section id="sortkey" class="band" data-nav="nav.sort"><div class="wrap">
+  <h2 data-i18n="sk.title"></h2>
+  <p class="lead" data-i18n="sk.lead"></p>
+  <ul class="tight">
+    <li data-i18n-html="sk.b1"></li>
+    <li data-i18n-html="sk.b2"></li>
+    <li data-i18n-html="sk.b3"></li>
+    <li data-i18n-html="sk.b4"></li>
+    <li data-i18n-html="sk.b5"></li>
+  </ul>
+  <div class="panel" style="margin-top:20px">
+    <div class="sortgrid">
+      <div>
+        <h3 data-i18n="sk.types.h"></h3>
+        <div class="scroll"><table id="sortTypes"></table></div>
+        <div class="sortbtns">
+          <button type="button" id="skMerge" data-i18n="sk.merge"></button>
+          <button type="button" id="skExample" data-i18n="sk.example"></button>
+          <button type="button" id="skReset" data-i18n="sk.reset"></button>
+        </div>
+      </div>
+      <div>
+        <h3 data-i18n="sk.res.h"></h3>
+        <div class="scroll"><table id="sortResult"></table></div>
+      </div>
+    </div>
+  </div>
 </div></section>
 
 <section id="catalog" class="band" data-nav="nav.types"><div class="wrap">
@@ -469,6 +510,7 @@ L('nav.how', 'Как это работает', 'Як це працює', 'How it
 L('nav.try', 'Проверить имя', 'Перевірити ім’я', 'Try a name');
 L('nav.examples', 'Примеры', 'Приклади', 'Examples');
 L('nav.kinds', 'По видам', 'За видами', 'By kind');
+L('nav.sort', 'Группы и сортировка', 'Групи й сортування', 'Groups and sorting');
 L('nav.types', 'Все типы', 'Усі типи', 'All types');
 L('nav.equip', 'Оборудование', 'Обладнання', 'Equipment');
 L('hero.h1', 'Разбор <em>имён систем</em>', 'Розбір <em>імен систем</em>', '<em>System name</em> parsing');
@@ -512,9 +554,9 @@ L('how.s1.p',
 L('how.s1.ex', 'ADSK_05_К_Подача_ПК → ждём «ПК», пишем «К»', 'ADSK_05_К_Подача_ПК → очікуємо «ПК», пишемо «К»', 'ADSK_05_К_Подача_ПК → expect “ПК”, write “К”');
 L('how.s2.h', '2. Читаем имя', '2. Читаємо ім’я', '2. Read the name');
 L('how.s2.p',
-  'Буквы типа, затем пробелы, точка или дефис, затем первое число. Сразу после числа одна буква считается частью номера.',
-  'Літери типу, потім пробіли, крапка або дефіс, потім перше число. Одразу після числа одна літера вважається частиною номера.',
-  'The letters of the type, then spaces, a dot or a hyphen, then the first number. One letter right after the number is part of the number.');
+  'Буквы типа, затем пробелы, точка или дефис, затем первое число. Сразу после числа одна буква считается частью номера. Пометка в скобках сразу после букв («ПВ (п) 1») не мешает.',
+  'Літери типу, потім пробіли, крапка або дефіс, потім перше число. Одразу після числа одна літера вважається частиною номера. Мітка в дужках одразу після літер («ПВ (п) 1») не заважає.',
+  'The letters of the type, then spaces, a dot or a hyphen, then the first number. One letter right after the number is part of the number. A mark in brackets right after the letters (“ПВ (п) 1”) does not matter.');
 L('how.s3.h', '3. Лишнее отбрасываем', '3. Зайве відкидаємо', '3. Drop the rest');
 L('how.s3.p',
   'Всё после номера не нужно: второе число после пробела, часть после точки (блок, подсистема), название помещения.',
@@ -547,6 +589,11 @@ L('how.b5',
   '<b>Тип без правила</b> (чужие названия типов) и пустое «Имя начинается с» дают транзит: имя переносится как есть. Тот же транзит получают имена, которые не подошли правилу своего типа.',
   '<b>Тип без правила</b> (чужі назви типів) і порожнє «Ім’я починається з» дають транзит: ім’я переноситься як є. Той самий транзит отримують імена, які не підійшли правилу свого типу.',
   '<b>A type without a rule</b> (foreign type names) and an empty “Name starts with” give transit: the name is copied as is. Names that do not fit the rule of their type get the same transit.');
+
+L('how.b6',
+  '<b>Проблема и замечание — разные вещи.</b> Проблема — имя, которое нельзя прочитать (пустое, не те буквы, нет числа, нет точки у линий): оно переносится как есть, значок просит внимания, имя попадает в список проверки. <b>Замечание</b> — имя читается и результат записан, но написано нестандартно («П 1», «ПВ (п) 1»): значок внимания не просит, такие имена перечислены в отчёте и журнале, исправьте их, когда удобно. Стандартная форма: <span class="pill">П1</span>, <span class="pill">ПВ1</span>.',
+  '<b>Проблема й зауваження — різні речі.</b> Проблема — ім’я, яке не можна прочитати (порожнє, не ті літери, немає числа, немає крапки в ліній): воно переноситься як є, значок просить уваги, ім’я потрапляє до списку перевірки. <b>Зауваження</b> — ім’я читається й результат записано, але написано нестандартно («П 1», «ПВ (п) 1»): значок уваги не просить, такі імена перелічено у звіті й журналі, виправте їх, коли буде зручно. Стандартна форма: <span class="pill">П1</span>, <span class="pill">ПВ1</span>.',
+  '<b>A problem and a notice are different things.</b> A problem is a name that cannot be read (empty, wrong letters, no number, no dot for the lines): it is copied as is, the icon asks for attention, and the name goes to the list to check. A <b>notice</b> is a name that is read and the result is written, but it is written in a non-standard form (“П 1”, “ПВ (п) 1”): the icon does not ask for attention, such names are listed in the report and the log, fix them when convenient. The standard form: <span class="pill">П1</span>, <span class="pill">ПВ1</span>.');
 
 // tester
 L('try.title', 'Проверьте сами', 'Перевірте самі', 'Try it yourself');
@@ -581,6 +628,12 @@ L('st.mismatch.n', 'Для этого типа ждём «{0}», перенос�
 L('hint.fix', 'Подошло бы «{0}».', 'Підійшло б «{0}».', '“{0}” would fit.');
 L('hint.other', 'Имя подходит типу {0}: возможно, ошибка в типе, а не в имени.', 'Ім’я підходить типу {0}: можливо, помилка в типі, а не в імені.', 'The name fits the type {0}: maybe the type is wrong, not the name.');
 L('or', 'или', 'або', 'or');
+L('part.mark', 'метка', 'мітка', 'mark');
+L('st.loose', 'Разобрано, но имя нестандартное', 'Розібрано, але ім’я нестандартне', 'Parsed, but the name is not standard');
+L('st.loose.n',
+  'Результат записывается, это не проблема: значок не просит внимания. В отчёте и журнале будет замечание. Стандартная форма: «{0}».',
+  'Результат записується, це не проблема: значок не просить уваги. У звіті й журналі буде зауваження. Стандартна форма: «{0}».',
+  'The result is written, this is not a problem: the icon does not ask for attention. The report and the log will have a notice. The standard form: “{0}”.');
 
 // examples
 L('owner.title', 'Ваши примеры из описания', 'Ваші приклади з опису', 'Your examples from the description');
@@ -810,8 +863,11 @@ function parse(rawName, rule) {
   const up = s.toUpperCase();
   const prefix = [...rule.accept].sort((a, b) => b.length - a.length).find(p => up.startsWith(p));
   if (!prefix) return transit('mismatch');
-  const rest = s.slice(prefix.length);
-  if (reStartsLetter.test(rest)) return transit('mismatch');
+  const rest0 = s.slice(prefix.length);
+  if (reStartsLetter.test(rest0)) return transit('mismatch');
+  // A mark in brackets right after the letters («ПВ (п) 1») is not part of the number.
+  const markM = new RegExp('^\\s*\\(\\s*[' + LETTER + ']{1,3}\\s*\\)').exec(rest0);
+  const rest = markM ? rest0.slice(markM[0].length) : rest0;
   const m = /^([\s.\-]*)(\d+)/.exec(rest);
   if (!m) return transit('nonumber');
   const sep = m[1], num = m[2];
@@ -821,14 +877,14 @@ function parse(rawName, rule) {
   const letter = lm ? lm[0] : '';
   tail = tail.slice(letter.length);
   const hyphen = sep.includes('-') ? '-' : '';
-  const parts = [
-    { k:'prefix', t:prefix, l:'part.type' },
-    { k:'sep', t:sep || '∅', l:'part.sep' },
-    { k:'num', t:num, l:'part.num' }
-  ];
+  const parts = [{ k:'prefix', t:prefix, l:'part.type' }];
+  if (markM) parts.push({ k:'rest', t:markM[0].trim(), l:'part.mark' });
+  parts.push({ k:'sep', t:sep || '∅', l:'part.sep' }, { k:'num', t:num, l:'part.num' });
   if (letter) parts.push({ k:'letter', t:letter, l:'part.letter' });
   if (tail.trim()) parts.push({ k:'rest', t:tail, l:'part.rest' });
-  return { status:'ok', result: rule.out + hyphen + num + letter, letter, parts };
+  // Read and written, but not in the standard form: a space between the letters and the number, or a mark in brackets before the number.
+  const loose = Boolean(markM) || /\s/.test(sep);
+  return { status: loose ? 'loose' : 'ok', result: rule.out + hyphen + num + letter, letter, parts, hint: loose ? suggest(s, rule) : undefined };
 }
 
 function suggest(s, rule) {
@@ -874,6 +930,7 @@ function statusInfo(r, rule) {
     case 'fixed': return { cls:'s-ok', text:t('st.fixed'), note:t('st.fixed.n') };
     case 'empty': return { cls:'s-warn', text:t('st.empty'), note:t('st.empty.n') };
     case 'nonumber': return { cls:'s-warn', text:t('st.nonum'), note:t('st.nonum.n', esc(rule.accept[0])) + ' ' + hintText(r.hint) };
+    case 'loose': return { cls:'s-note', text:t('st.loose'), note:t('st.loose.n', esc((r.hint && r.hint.fix) || rule.accept[0] + '1')) };
     case 'needdot': return { cls:'s-warn', text:t('st.dot', esc(rule.accept[0])), note:t('st.dot.n') + ' ' + hintText(r.hint) };
     default: return { cls:'s-bad', text:t('st.mismatch'), note:t('st.mismatch.n', esc(rule.accept.join('» / «'))) + ' ' + hintText(r.hint) };
   }
@@ -936,8 +993,8 @@ inp.addEventListener('input', refresh);
 // owner's examples
 const OWNER = [
   ['ADSK_01_П_Приплив', ['П1','П1'], ['П12','П12'], ['П 1','П1'], ['П 12','П12'], ['П 1 2','П1'], ['П.1','П1'], ['П1а','П1а'], ['П12А','П12А'], ['П 1б','П1б'], ['П 1а 2','П1а'], ['П 1а2','П1а'], ['П-1','П-1'], ['П-12','П-12'], ['П-1а','П-1а'], ['П-12А','П-12А'], ['П1.1','П1'], ['П1.2','П1'], ['П12.3','П12'], ['П 1.3','П1'], ['П 12.4','П12'], ['П 1.4 2','П1'], ['П.1.1','П1']],
-  ['ADSK_03_ПВ_Приплив', ['ПВ1','ПВ1'], ['ПВ1 (п)','ПВ1'], ['ПВ11','ПВ11'], ['ПВ12А','ПВ12А'], ['ПВ-3','ПВ-3']],
-  ['ADSK_04_ПВ_Витяжка', ['ПВ1 (в)','ПВ1'], ['ПВ12 (в)','ПВ12']],
+  ['ADSK_03_ПВ_Приплив', ['ПВ1','ПВ1'], ['ПВ1 (п)','ПВ1'], ['ПВ11','ПВ11'], ['ПВ12А','ПВ12А'], ['ПВ-3','ПВ-3'], ['ПВ (п) 1','ПВ1'], ['ПВ (п) 12','ПВ12'], ['ПВ 1','ПВ1']],
+  ['ADSK_04_ПВ_Витяжка', ['ПВ1 (в)','ПВ1'], ['ПВ12 (в)','ПВ12'], ['ПВ (в) 2','ПВ2']],
   ['ADSK_05_К_Подача_ПК', ['ПК1','К1'], ['ПК11','К11'], ['ПК12 1','К12'], ['ПК12а 1','К12а'], ['ПК-1 1','К-1'], ['ПК-1а 1','К-1а'], ['ПК3.1','К3'], ['ПК.3','К3']],
   ['ADSK_14_ТХ_Технологія', ['ТХ3','ТХ3'], ['ТХ 3','ТХ3'], ['ТХ-2','ТХ-2'], ['TX1','ТХ1']],
   ['ADSK_01_К_Кондиціонування_Х3', ['Х3.1','К1'], ['Х3.1.1','К1'], ['ХЗ.1','К1']],
@@ -978,6 +1035,118 @@ function renderGroups() {
   }
   document.getElementById('groups').innerHTML = h;
 }
+
+// ===== groups and the sort key =====
+L('sk.title', 'Группы и ключ сортировки', 'Групи й ключ сортування', 'Groups and the sort key');
+L('sk.lead',
+  'Ключ сортировки пишется в отдельный параметр: невидимые метки группы и результат. Спецификация сортируется по нему, поэтому системы одной группы идут вместе, а группы идут в порядке таблицы типов.',
+  'Ключ сортування пишеться в окремий параметр: невидимі мітки групи й результат. Специфікація сортується за ним, тому системи однієї групи йдуть разом, а групи йдуть у порядку таблиці типів.',
+  'The sort key is written to a separate parameter: the invisible marks of the group and the result. The schedule sorts by it, so the systems of one group go together, and the groups go in the order of the table of types.');
+L('sk.b1',
+  '<b>Группу вы собираете сами.</b> В окне настроек выберите строки Ctrl+кликом и нажмите «Объединить выбранные в группу». Типы группы имеют одну нумерацию и один ключ сортировки, стоят вместе в общей рамке и двигаются вместе. Тип добавляют в группу, перетащив его строку в рамку, и выводят кнопкой в конце строки.',
+  '<b>Групу ви збираєте самі.</b> У вікні налаштувань виберіть рядки Ctrl+кліком і натисніть «Об’єднати вибрані в групу». Типи групи мають одну нумерацію та один ключ сортування, стоять разом у спільній рамці й рухаються разом. Тип додають до групи, перетягнувши його рядок у рамку, а виводять кнопкою в кінці рядка.',
+  '<b>You make the group yourself.</b> In the settings window select the rows with Ctrl+click and press “Group selected”. The types of a group share one numbering and one sort key, stand together in a common frame, and move together. A type is added to a group by dragging its row into the frame, and taken out with the button at the end of the row.');
+L('sk.b2',
+  '<b>Тип вне группы всегда имеет свой ключ,</b> даже если пишет те же буквы: «К1» канализации и «К1» кондиционирования — разные системы, они сортируются отдельно. По буквам результата типы сами не объединяются.',
+  '<b>Тип поза групою завжди має свій ключ,</b> навіть коли пише ті самі літери: «К1» каналізації й «К1» кондиціонування — різні системи, вони сортуються окремо. За літерами результату типи самі не об’єднуються.',
+  '<b>A type outside a group always has a key of its own,</b> even if it writes the same letters: “К1” of the sewer and “К1” of the cooling are different systems, and they are sorted apart. Types do not join by the letters of the result by themselves.');
+L('sk.b3',
+  '<b>Номер группы в ключе — число невидимых меток перед текстом:</b> у первой группы одна метка, у второй две и так далее. Чем меньше меток, тем раньше в спецификации. Ниже метки показаны точками.',
+  '<b>Номер групи в ключі — кількість невидимих міток перед текстом:</b> у першої групи одна мітка, у другої дві і так далі. Чим менше міток, тим раніше в специфікації. Нижче мітки показано крапками.',
+  '<b>The number of the group in the key is the count of invisible marks before the text:</b> the first group has one mark, the second two, and so on. The fewer the marks, the earlier in the schedule. Below, the marks are shown as dots.');
+L('sk.b4',
+  '<b>Числа внутри группы Revit сортирует сам, как числа:</b> ПВ1, ПВ2, ПВ10, а не ПВ1, ПВ10, ПВ2. Проверено в Revit 2026 на спецификации. Дополнять числа нулями не нужно, и ничего лишнего в имени не появляется.',
+  '<b>Числа всередині групи Revit сортує сам, як числа:</b> ПВ1, ПВ2, ПВ10, а не ПВ1, ПВ10, ПВ2. Перевірено в Revit 2026 на специфікації. Доповнювати числа нулями не потрібно, і нічого зайвого в імені не з’являється.',
+  '<b>Revit sorts the numbers inside a group as numbers by itself:</b> ПВ1, ПВ2, ПВ10, not ПВ1, ПВ10, ПВ2. Checked in Revit 2026 on a schedule. No zeros are added to the numbers, and nothing extra appears in the name.');
+L('sk.b5',
+  '<b>Один результат у разных систем Revit</b> («ПВ3.1» и «ПВ3.2» дают «ПВ3», «ПВ (п) 1» и «ПВ1» дают «ПВ1») не считается ошибкой: подсистемы сливаются в одну.',
+  '<b>Один результат у різних систем Revit</b> («ПВ3.1» і «ПВ3.2» дають «ПВ3», «ПВ (п) 1» і «ПВ1» дають «ПВ1») не вважається помилкою: підсистеми зливаються в одну.',
+  '<b>One result for different Revit systems</b> (“ПВ3.1” and “ПВ3.2” give “ПВ3”, “ПВ (п) 1” and “ПВ1” give “ПВ1”) is not an error: the subsystems merge into one.');
+L('sk.types.h', 'Типы в таблице настроек', 'Типи в таблиці налаштувань', 'Types in the settings table');
+L('sk.res.h', 'Порядок в спецификации', 'Порядок у специфікації', 'Order in the schedule');
+L('sk.merge', 'Объединить выбранные в группу', 'Об’єднати вибрані в групу', 'Group selected');
+L('sk.example', 'Пример: ПК, РК и Х3 в одну группу', 'Приклад: ПК, РК і Х3 в одну групу', 'Example: ПК, РК and Х3 in one group');
+L('sk.reset', 'Разобрать все группы', 'Розібрати всі групи', 'Break all groups');
+L('sk.th.pick', 'Выбор', 'Вибір', 'Pick');
+L('sk.th.group', 'Группа', 'Група', 'Group');
+L('sk.th.marks', 'Метки', 'Мітки', 'Marks');
+L('sk.th.key', 'Ключ', 'Ключ', 'Key');
+L('sk.th.name', 'Имя → результат', 'Ім’я → результат', 'Name → result');
+const SORT_ROWS_INIT = [
+  { type: 'ADSK_01_П_Приплив', names: ['П10', 'П2'] },
+  { type: 'ADSK_03_ПВ_Приплив', names: ['ПВ (п) 2'] },
+  { type: 'ADSK_04_ПВ_Витяжка', names: ['ПВ (в) 10'] },
+  { type: 'ADSK_05_К_Подача_ПК', names: ['ПК2', 'ПК10'] },
+  { type: 'ADSK_06_К_Забір_РК', names: ['РК2'] },
+  { type: 'ADSK_01_К_Кондиціонування_Х3', names: ['Х3.1'] },
+  { type: 'ADSK_15_К1_Каналізація побутова', names: ['Бытовая 1'] }
+];
+let sortRows = SORT_ROWS_INIT.slice();
+let sortGroup = {};          // type -> group number
+let sortPicked = new Set();  // types ticked in the table
+let sortSeq = 0;
+function sortBlock() {
+  const ids = new Set([...sortPicked].map(x => sortGroup[x]).filter(Boolean));
+  return sortRows.filter(r => sortPicked.has(r.type) || (sortGroup[r.type] && ids.has(sortGroup[r.type])));
+}
+function sortMerge() {
+  if (sortPicked.size < 2) return;
+  const block = sortBlock();
+  const id = [...sortPicked].map(x => sortGroup[x]).find(Boolean) || ++sortSeq;
+  block.forEach(r => { sortGroup[r.type] = id; });
+  // The group stands at the place of its top row, like in the plug-in.
+  const first = sortRows.findIndex(r => block.includes(r));
+  const before = sortRows.slice(0, first).filter(r => !block.includes(r)).length;
+  const rest = sortRows.filter(r => !block.includes(r));
+  rest.splice(before, 0, ...sortRows.filter(r => block.includes(r)));
+  sortRows = rest;
+  sortPicked.clear();
+  renderSort();
+}
+function natural(a, b) { return a.localeCompare(b, undefined, { numeric: true }); }
+function renderSort() {
+  // Ranks as the plug-in counts them: by the order of the table; a group shares the rank of its first row, a type outside a group has its own.
+  const rankByKey = {};
+  let next = 0;
+  const rank = {};
+  for (const row of sortRows) {
+    const key = sortGroup[row.type] ? 'g' + sortGroup[row.type] : 't' + row.type;
+    if (!(key in rankByKey)) rankByKey[key] = next++;
+    rank[row.type] = rankByKey[key];
+  }
+  const letter = id => String.fromCharCode(64 + id);
+  let h = '<thead><tr><th>' + t('sk.th.pick') + '</th><th>' + t('th.sys') + '</th><th>' + t('th.wait') + '</th><th>' + t('sk.th.group') + '</th><th>' + t('sk.th.marks') + '</th></tr></thead><tbody>';
+  for (const row of sortRows) {
+    const rule = byType[row.type];
+    const g = sortGroup[row.type];
+    h += '<tr><td><input type="checkbox" data-t="' + esc(row.type) + '"' + (sortPicked.has(row.type) ? ' checked' : '') + '></td><td class="m">' + esc(row.type) + '</td><td><span class="pill">' + esc(rule.accept[0]) + ' → ' + esc(rule.out) + '</span></td><td>' + (g ? '<span class="gtag">' + letter(g) + '</span>' : '—') + '</td><td><span class="keydots">' + '●'.repeat(rank[row.type] + 1) + '</span></td></tr>';
+  }
+  document.getElementById('sortTypes').innerHTML = h + '</tbody>';
+  const items = [];
+  for (const row of sortRows) for (const name of row.names) items.push({ row, name, res: parse(name, byType[row.type]).result, rank: rank[row.type] });
+  items.sort((a, b) => a.rank - b.rank || natural(a.res, b.res));
+  let r = '<thead><tr><th>' + t('sk.th.key') + '</th><th>' + t('sk.th.name') + '</th><th>' + t('th.wait') + '</th></tr></thead><tbody>';
+  let prev = -1;
+  for (const it of items) {
+    r += '<tr' + (prev >= 0 && it.rank !== prev ? ' class="sepgroup"' : '') + '><td class="m"><span class="keydots">' + '●'.repeat(it.rank + 1) + '</span> <b>' + esc(it.res) + '</b></td><td class="m">' + esc(it.name) + ' → ' + esc(it.res) + '</td><td class="m">' + esc(byType[it.row.type].accept[0]) + '</td></tr>';
+    prev = it.rank;
+  }
+  document.getElementById('sortResult').innerHTML = r + '</tbody>';
+  document.getElementById('skMerge').disabled = sortPicked.size < 2;
+}
+document.getElementById('sortTypes').addEventListener('change', e => {
+  const c = e.target.closest('input[type=checkbox]');
+  if (!c) return;
+  if (c.checked) sortPicked.add(c.dataset.t); else sortPicked.delete(c.dataset.t);
+  renderSort();
+});
+document.getElementById('skMerge').addEventListener('click', sortMerge);
+document.getElementById('skReset').addEventListener('click', () => { sortRows = SORT_ROWS_INIT.slice(); sortGroup = {}; sortPicked.clear(); sortSeq = 0; renderSort(); });
+document.getElementById('skExample').addEventListener('click', () => {
+  sortRows = SORT_ROWS_INIT.slice(); sortGroup = {}; sortSeq = 0;
+  sortPicked = new Set(['ADSK_05_К_Подача_ПК', 'ADSK_06_К_Забір_РК', 'ADSK_01_К_Кондиціонування_Х3']);
+  sortMerge();
+});
 
 // ===== equipment =====
 // Classes in order of priority. Ducts always beat pipes; inside a kind the earlier class wins. tt: title [ru, uk, en].
@@ -1257,7 +1426,7 @@ function renderAll() {
   document.querySelectorAll('.lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
   fillTypeSelect(sel);
   eqRowsEl.querySelectorAll('select').forEach(fillTypeSelect);
-  refresh(); renderOwner(); renderGroups(); renderCatalog(); renderEqPresets(); eqRefresh(); renderEqExamples(); renderDots();
+  refresh(); renderOwner(); renderGroups(); renderSort(); renderCatalog(); renderEqPresets(); eqRefresh(); renderEqExamples(); renderDots();
 }
 document.querySelectorAll('.lang button').forEach(b => b.addEventListener('click', () => {
   lang = b.dataset.lang;
