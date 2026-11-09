@@ -330,7 +330,7 @@
       "sc.ap.sup": "Приплив", "sc.ap.exh": "Витяжка", "sc.ap.kind": "Вид:",
       "sc.ap.k.sup": "Припливний", "sc.ap.k.ext": "Витяжний", "sc.ap.k.exh": "Викидний", "sc.ap.k.int": "Повітрозабірний",
       "sc.ap.s0": "Дві мережі: вентилятор, повітроводи, повітророзподільники. На кінцях без повітророзподільника поставимо Air Point",
-      "sc.ap.flow": "Витрата, м³/год", "sc.ap.flowauto": "Витрата: автоматично з мережі", "sc.ap.unit": "м³/год",
+      "sc.ap.flow": "Витрата, м³/год", "sc.ap.flowauto": "Витрата: автоматично з мережі", "sc.ap.unit": "м³/год", "sc.ap.scene": "Сцена:", "sc.ap.auto": "Авто",
       "sc.ap.s1": "Вільний кінець зі сторони вулиці: за ним немає повітророзподільників, він веде до вентилятора. Вид — повітрозабірний. Витрату вводити не треба: коннектор системний, сам підтягує суму всіх повітророзподільників: 300 + 200 = 500",
       "sc.ap.s2": "Спершу — повітророзподільник на кінці відгалуження зі сторони приміщення. Вид — припливний; вводимо витрату",
       "sc.ap.s3": "Витяжна система, кінець зі сторони вулиці (за вентилятором). Вид — викидний. Витрата автоматично: сума всіх витяжних, 300 + 200 = 500",
@@ -342,7 +342,7 @@
       "sc.ap.sup": "Supply", "sc.ap.exh": "Exhaust", "sc.ap.kind": "Kind:",
       "sc.ap.k.sup": "Supply", "sc.ap.k.ext": "Extract", "sc.ap.k.exh": "Exhaust", "sc.ap.k.int": "Outdoor air intake",
       "sc.ap.s0": "Two networks: a fan, ducts, air terminals. Air Point goes on the ends that have no terminal",
-      "sc.ap.flow": "Airflow, m³/h", "sc.ap.flowauto": "Airflow: automatic from the network", "sc.ap.unit": "m³/h",
+      "sc.ap.flow": "Airflow, m³/h", "sc.ap.flowauto": "Airflow: automatic from the network", "sc.ap.unit": "m³/h", "sc.ap.scene": "Scene:", "sc.ap.auto": "Auto",
       "sc.ap.s1": "A free end on the outdoor side: no terminals behind it, it leads to the fan. The kind is outdoor air intake. No airflow to type: the connector is a system one and takes the sum of all terminals by itself, 300 + 200 = 500",
       "sc.ap.s2": "First the terminal on the end of the branch on the room side. The kind is supply; we type the airflow",
       "sc.ap.s3": "An exhaust system, the end on the outdoor side (behind the fan). The kind is exhaust to the outside. The airflow is automatic: the sum of all extracts, 300 + 200 = 500",
@@ -354,7 +354,7 @@
       "sc.ap.sup": "Приток", "sc.ap.exh": "Вытяжка", "sc.ap.kind": "Вид:",
       "sc.ap.k.sup": "Приточный", "sc.ap.k.ext": "Вытяжной", "sc.ap.k.exh": "Выбросной", "sc.ap.k.int": "Воздухозаборный",
       "sc.ap.s0": "Две сети: вентилятор, воздуховоды, воздухораспределители. На концах без воздухораспределителя поставим Air Point",
-      "sc.ap.flow": "Расход, м³/ч", "sc.ap.flowauto": "Расход: автоматически из сети", "sc.ap.unit": "м³/ч",
+      "sc.ap.flow": "Расход, м³/ч", "sc.ap.flowauto": "Расход: автоматически из сети", "sc.ap.unit": "м³/ч", "sc.ap.scene": "Сцена:", "sc.ap.auto": "Авто",
       "sc.ap.s1": "Свободный конец со стороны улицы: за ним нет воздухораспределителей, он ведёт к вентилятору. Вид — воздухозаборный. Расход вводить не нужно: коннектор системный, сам подтягивает сумму всех воздухораспределителей: 300 + 200 = 500",
       "sc.ap.s2": "Сначала — воздухораспределитель на конце ответвления со стороны помещения. Вид — приточный; вводим расход",
       "sc.ap.s3": "Вытяжная система, конец со стороны улицы (за вентилятором). Вид — выбросной. Расход автоматически: сумма всех вытяжных, 300 + 200 = 500",
@@ -386,23 +386,32 @@
   /* расход точек: забор и выброс несут сумму всех воздухораспределителей сети (300 у настоящего + 200 у точки на ответвлении) */
   var FL = { A: "500", B: "200", C: "500", D: "200" };
   function pill(n, x, y) {
-    return '<g class="fl fl' + n + '" opacity="0"><rect x="' + x + '" y="' + y + '" width="104" height="22" rx="11" class="sc-card" style="stroke:#F2A93B"/>' +
-      '<text x="' + (x + 52) + '" y="' + (y + 16) + '" text-anchor="middle" class="sc-mono" font-size="13" font-weight="700">' + (n === "A" || n === "C" ? "Σ " : "") + FL[n] + " " + t("sc.ap.unit") + "</text></g>";
+    return '<g class="fl fl' + n + '" opacity="0"><rect x="' + x + '" y="' + y + '" width="156" height="32" rx="16" class="sc-card" style="stroke:#F2A93B;stroke-width:2"/>' +
+      '<text x="' + (x + 78) + '" y="' + (y + 23) + '" text-anchor="middle" class="sc-mono" font-size="19" font-weight="700">' + (n === "A" || n === "C" ? "Σ " : "") + FL[n] + " " + t("sc.ap.unit") + "</text></g>";
   }
+  /* какие точки показывает режим: авто — все по очереди, остальные — одна точка (для забора и выброса остальные точки сети уже стоят) */
+  var AP_MODES = { auto: ["B", "A", "D", "C"], sup: ["B"], int: ["A"], ext: ["D"], exh: ["C"] };
+  var AP_PRE = { int: ["B"], exh: ["D"] };
   SCENES.ap = function (c) {
-    var id = c.id, supCy = 88, exhCy = 262, air;
-    /* окно ввода расхода, общее для всех точек: заголовок и поле перерисовываются перед показом */
+    var id = c.id, supCy = 88, exhCy = 262, air, mode = c.host.__apMode || "auto", list = AP_MODES[mode] || AP_MODES.auto;
     function branchV(x, y0, y1) {
       return '<rect x="' + x + '" y="' + y0 + '" width="40" height="' + (y1 - y0) + '" fill="url(#' + id + 'dg)" stroke="#4b5563" stroke-width="1.4"/>';
     }
+    /* точки сцены: куда щёлкаем, какой вид, какой из двух видов нажат, расход набирается или берётся из сети */
+    var VIS = {
+      B: { x: 390, y: 20, s: "sc.ap.s2", a: "sup", b: "int", hi: 0, auto: false },
+      A: { x: 70, y: supCy, s: "sc.ap.s1", a: "sup", b: "int", hi: 1, auto: true },
+      D: { x: 390, y: 332, s: "sc.ap.s4", a: "ext", b: "exh", hi: 0, auto: false },
+      C: { x: 70, y: exhCy, s: "sc.ap.s3", a: "ext", b: "exh", hi: 1, auto: true }
+    };
     /* стрелки потока: приток вправо и вверх по ответвлению, вытяжка влево и вверх по ответвлению */
     air = '<g class="air" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">' + arrow(92, supCy, 1, 0, 42) + arrow(262, supCy, 1, 0, 50) + arrow(460, supCy, 1, 0, 50) + arrow(390, 56, 0, -1, 24) + "</g>" +
       '<g class="air ex" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">' + arrow(138, exhCy, -1, 0, 42) + arrow(330, exhCy, -1, 0, 50) + arrow(500, exhCy, -1, 0, 50) + arrow(390, 322, 0, -1, 30) + "</g>";
     c.draw(
-      '<text x="70" y="44" class="sc-sub" font-size="15" font-weight="700">' + t("sc.ap.sup") + "</text>" +
+      '<text x="70" y="40" class="sc-sub" font-size="21" font-weight="700">' + t("sc.ap.sup") + "</text>" +
       duct(70, supCy - 20, 80, 40, "l", id) + fan(150, supCy - 28, 1, id) + duct(230, supCy - 20, 300, 40, "r", id) + branchV(370, 20, supCy - 20) +
       '<rect x="367" y="20" width="46" height="8" rx="2" fill="url(#' + id + 'dg)" stroke="#3b4350" stroke-width="1.4"/>' + diffuser(532, supCy - 30, 60, 60, id) +
-      '<text x="70" y="218" class="sc-sub" font-size="15" font-weight="700">' + t("sc.ap.exh") + "</text>" +
+      '<text x="70" y="214" class="sc-sub" font-size="21" font-weight="700">' + t("sc.ap.exh") + "</text>" +
       duct(70, exhCy - 20, 80, 40, "l", id) + fan(150, exhCy - 28, -1, id) + duct(230, exhCy - 20, 300, 40, "r", id) + branchV(370, exhCy + 20, 332) +
       '<rect x="367" y="324" width="46" height="8" rx="2" fill="url(#' + id + 'dg)" stroke="#3b4350" stroke-width="1.4"/>' + diffuser(532, exhCy - 30, 60, 60, id) +
       air +
@@ -411,18 +420,30 @@
       ugo("pv pC", 70, exhCy, -1, 0, true) + ugo("fn fC", 70, exhCy, -1, 0, true) +
       ugo("pv pD", 390, 332, 0, 1, false) + ugo("fn fD", 390, 332, 0, 1, false) +
       /* расход настоящих воздухораспределителей и подписи расхода у точек */
-      '<text x="562" y="' + (supCy + 50) + '" text-anchor="middle" class="sc-note" font-size="13">300 ' + t("sc.ap.unit") + '</text>' +
-      '<text x="562" y="' + (exhCy + 50) + '" text-anchor="middle" class="sc-note" font-size="13">300 ' + t("sc.ap.unit") + '</text>' +
-      pill("A", 14, supCy + 26) + pill("B", 424, -6) + pill("C", 14, exhCy + 26) + pill("D", 424, 346) +
-      /* окно ввода расхода */
-      '<g class="fw" opacity="0"><rect x="300" y="122" width="210" height="84" rx="9" class="sc-card" style="stroke:#F2A93B;stroke-width:2.4"/><text x="314" y="146" class="sc-sub fwt" font-size="12.5">' + t("sc.ap.flow") + '</text>' +
-      '<rect x="314" y="156" width="118" height="32" rx="6" class="sc-chip fwf"/><text class="fwv sc-mono" x="324" y="179" font-size="18" font-weight="700"></text>' +
-      '<rect class="fwok" x="446" y="156" width="50" height="32" rx="6" fill="#14213D" stroke="#F2A93B" stroke-width="1.5"/><text x="471" y="177" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">OK</text></g>' +
-      '<g class="aptag" opacity="0"><rect x="14" y="134" width="680" height="38" rx="6" class="sc-card"/><text x="28" y="159" class="sc-note" font-size="18" font-weight="600">' + t("sc.ap.tag") + "</text></g>" +
+      '<text x="562" y="' + (supCy + 68) + '" text-anchor="middle" class="sc-note" font-size="18" font-weight="600">300 ' + t("sc.ap.unit") + '</text>' +
+      '<text x="562" y="' + (exhCy + 68) + '" text-anchor="middle" class="sc-note" font-size="18" font-weight="600">300 ' + t("sc.ap.unit") + '</text>' +
+      pill("A", 14, supCy + 30) + pill("B", 424, -12) + pill("C", 14, exhCy + 30) + pill("D", 424, 344) +
+      /* окно ввода расхода: одно на все точки, заголовок и поле меняются перед показом */
+      '<g class="fw" opacity="0"><rect x="176" y="106" width="330" height="118" rx="10" class="sc-card" style="stroke:#F2A93B;stroke-width:2.6"/><text x="196" y="138" class="sc-sub fwt" font-size="17" font-weight="600">' + t("sc.ap.flow") + '</text>' +
+      '<rect x="196" y="152" width="180" height="52" rx="7" class="sc-chip fwf"/><text class="fwv sc-mono" x="210" y="188" font-size="27" font-weight="700"></text>' +
+      '<rect class="fwok" x="392" y="152" width="90" height="52" rx="7" fill="#14213D" stroke="#F2A93B" stroke-width="2"/><text x="437" y="186" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">OK</text></g>' +
       CUR, "0 -56 800 468");
     c.host.insertAdjacentHTML("beforeend", '<div class="apcap"></div>');
-    /* виды-кнопки стоят полосой над рисунком, а не поверх него */
+    /* виды-кнопки и выбор сцены стоят полосами над рисунком, а не поверх него */
     c.host.insertAdjacentHTML("afterbegin", '<div class="chips2 bar"><span>' + t("sc.ap.kind") + '</span><span class="c k0">&nbsp;</span><span class="c k1">&nbsp;</span></div>');
+    if (!c.host.closest(".rv-stage")) {
+      var sel = '<div class="apsel"><span>' + t("sc.ap.scene") + "</span>";
+      [["auto", "sc.ap.auto"], ["sup", "sc.ap.k.sup"], ["int", "sc.ap.k.int"], ["ext", "sc.ap.k.ext"], ["exh", "sc.ap.k.exh"]].forEach(function (m) {
+        sel += '<button type="button" class="apb' + (m[0] === mode ? " on" : "") + '" data-m="' + m[0] + '">' + t(m[1]) + "</button>";
+      });
+      c.host.insertAdjacentHTML("afterbegin", sel + "</div>");
+      c.host.querySelectorAll(".apsel .apb").forEach(function (b) {
+        b.addEventListener("click", function () {
+          c.host.__apMode = b.dataset.m;
+          c.host.dispatchEvent(new Event("scenerestart"));
+        });
+      });
+    }
     var k0 = c.q(".chips2 .k0"), k1 = c.q(".chips2 .k1"), chips = c.q(".chips2");
     function kinds(a, b, hi) {
       k0.textContent = t("sc.ap.k." + a); k1.textContent = t("sc.ap.k." + b);
@@ -431,32 +452,35 @@
     chips.style.opacity = 0;
     var cap = c.q(".apcap");
     function say(k) { cap.textContent = t(k); c.status(k); }
+    function placed(n) { c.on(".f" + n, "on"); c.q(".fl" + n).setAttribute("opacity", 1); }
     /* клик по концу → окно с видом и вводом расхода (набор цифр, OK) → точка с подписью расхода */
-    function visit(n, x, y, t0, sKey, a, b, hi, auto) {
-      var flow = FL[n], fwv = c.q(".fwv"), fwt = c.q(".fwt"), fwf = c.q(".fwf");
-      c.at(t0, function () { c.go(".cur", x, y); });
-      c.at(t0 + 900, function () { c.on(".p" + n, "on"); kinds(a, b, hi); chips.style.opacity = 1; say(sKey); });
+    function visit(n, t0) {
+      var v = VIS[n], flow = FL[n], fwv = c.q(".fwv"), fwt = c.q(".fwt"), fwf = c.q(".fwf");
+      c.at(t0, function () { c.go(".cur", v.x, v.y); });
+      c.at(t0 + 900, function () { c.on(".p" + n, "on"); kinds(v.a, v.b, v.hi); chips.style.opacity = 1; say(v.s); });
       c.at(t0 + 2300, function () {
-        c.press(); fwv.textContent = ""; fwv.setAttribute("font-size", auto ? 15 : 18);
-        fwt.textContent = t(auto ? "sc.ap.flowauto" : "sc.ap.flow"); fwf.style.opacity = auto ? 0.45 : 1;
+        c.press(); fwv.textContent = ""; fwv.setAttribute("font-size", v.auto ? 21 : 27);
+        fwt.textContent = t(v.auto ? "sc.ap.flowauto" : "sc.ap.flow"); fwf.style.opacity = v.auto ? 0.45 : 1;
         c.q(".fw").setAttribute("opacity", 1); c.q(".fwok").setAttribute("fill", "#14213D");
       });
-      c.at(t0 + 2700, function () { c.go(".cur", 330, 210); });
+      c.at(t0 + 2700, function () { c.go(".cur", 300, 214); });
       /* забор и выброс: поле заблокировано, сумма подтягивается сама; у остальных точек расход набирается */
-      if (auto) c.at(t0 + 3000, function () { fwv.textContent = "Σ 300 + 200"; });
+      if (v.auto) c.at(t0 + 3000, function () { fwv.textContent = "Σ 300 + 200"; });
       else flow.split("").forEach(function (ch, i) { c.at(t0 + 3000 + i * 220, function () { fwv.textContent = flow.slice(0, i + 1); }); });
-      c.at(t0 + 3800, function () { c.go(".cur", 471, 172); });
+      c.at(t0 + 3800, function () { c.go(".cur", 437, 180); });
       c.at(t0 + 4400, function () { c.press(); c.q(".fwok").setAttribute("fill", "#F2A93B"); });
-      c.at(t0 + 4800, function () { c.q(".fw").setAttribute("opacity", 0); c.on(".p" + n, "on", false); c.on(".f" + n, "on"); c.q(".fl" + n).setAttribute("opacity", 1); });
+      c.at(t0 + 4800, function () { c.q(".fw").setAttribute("opacity", 0); c.on(".p" + n, "on", false); placed(n); });
     }
     say("sc.ap.s0"); c.go(".cur", 430, 190);
-    /* сначала воздухораспределители с вводом расхода, потом забор и выброс с суммой, подтянутой автоматически */
-    visit("B", 390, 20, 700, "sc.ap.s2", "sup", "int", 0, false);
-    visit("A", 70, supCy, 6000, "sc.ap.s1", "sup", "int", 1, true);
-    visit("D", 390, 332, 11300, "sc.ap.s4", "ext", "exh", 0, false);
-    visit("C", 70, exhCy, 16600, "sc.ap.s3", "ext", "exh", 1, true);
-    c.at(22000, function () { c.go(".cur", 640, 190); chips.style.opacity = 0; c.q(".aptag").setAttribute("opacity", 1); say("sc.ap.s5"); });
-    c.total = 25500;
+    (AP_PRE[mode] || []).forEach(placed);
+    /* авто: сначала воздухораспределители с вводом расхода, потом забор и выброс с суммой, подтянутой автоматически */
+    list.forEach(function (n, i) { visit(n, 700 + i * 5300); });
+    if (list.length > 1) {
+      c.at(700 + list.length * 5300, function () { c.go(".cur", 640, 190); chips.style.opacity = 0; say("sc.ap.s5"); });
+      c.total = 700 + list.length * 5300 + 3500;
+    } else {
+      c.total = 700 + 5300 + 2000;
+    }
   };
 
   /* ---------- по кругу, пока блок виден ---------- */
@@ -476,6 +500,8 @@
       }, { threshold: 0.35 }).observe(host);
     } else { visible = true; run(); }
     H.onLang(function () { if (visible) { off(); run(); } });
+    /* сцена просит начать заново (например, выбран другой режим) */
+    host.addEventListener("scenerestart", function () { if (visible) { off(); run(); } });
   }
   document.querySelectorAll(".scene-host[data-scene]").forEach(function (h) { mount(h, h.dataset.scene); });
 

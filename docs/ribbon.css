@@ -134,9 +134,16 @@
 .scn .aptag { transition: opacity .5s; }
 .scn .fw, .scn .fl { transition: opacity .35s; }
 /* виды-кнопки Air Point стоят полосой над рисунком, а не поверх него */
-.chips2.bar { position: static; margin: 8px 14px 4px; justify-content: flex-end; }
+.chips2.bar { position: static; margin: 4px 14px 4px; justify-content: flex-end; font-size: 15px; min-height: 34px; }
+.chips2.bar span.c { padding: 4px 10px; }
+/* выбор сцены: авто или один из четырёх видов */
+.apsel { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 10px 14px 0; font-size: 15px; color: var(--stg-muted, var(--s-muted)); }
+.apsel .apb { font: inherit; color: var(--s-ink); background: var(--s-chip, transparent); border: 1.5px solid var(--s-line); border-radius: 7px; padding: 4px 12px; cursor: pointer; }
+.apsel .apb:hover { border-color: #F2A93B; }
+.apsel .apb.on { background: #F2A93B; border-color: #F2A93B; color: #14213D; font-weight: 700; }
 .rv-stage .scene-host:has(> .chips2.bar) { flex-direction: column; align-items: stretch; justify-content: center; }
 .chips2 { transition: opacity .3s; }
-.scn + .apcap { margin: 6px 12px 12px; min-height: 2.6em; font-size: 14px; line-height: 1.35; color: var(--s-ink); text-align: center; }
+/* подпись занимает всегда одно и то же место, чтобы блок не прыгал при смене текста */
+.scn + .apcap { margin: 6px 14px 14px; min-height: 7.4em; font-size: 17px; line-height: 1.4; color: var(--s-ink); text-align: center; }
 .rv-stage .apcap { display: none; }
 .scn .aptag text { font-size: 18px; fill: var(--s-ink); }
