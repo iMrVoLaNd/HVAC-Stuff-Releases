@@ -117,3 +117,22 @@
 .rv-btn.off:hover svg { transform: none; }
 .hint-p { max-width: 380px; text-align: center; color: var(--stg-muted); font-size: 14px; line-height: 1.5; margin: 0; }
 @media (max-width: 700px) { .scn .sc-note { font-size: 18px; } }
+
+/* Air Point: вентилятор с вращающейся крыльчаткой, условные обозначения на свободных концах */
+.scn .imp { transform-box: fill-box; transform-origin: center; animation: apspin 1.5s linear infinite; }
+.scn .imp.ccw { animation-direction: reverse; }
+@keyframes apspin { to { transform: rotate(360deg); } }
+.scn .air.ex { stroke: #F2A93B; }
+.scn .ugo { opacity: 0; transition: opacity .3s; stroke-width: 2.6; }
+.scn .ugo.on { opacity: 1; }
+.scn .ugo.pv { stroke: #F2A93B; }
+.scn .ugo.fn { stroke: var(--s-ink); }
+.scn .ugo .plate { stroke-width: 4; }
+.scn .ugo .dot { stroke: none; }
+.scn .ugo.pv .dot { fill: #F2A93B; }
+.scn .ugo.fn .dot { fill: var(--s-ink); }
+.scn .aptag { transition: opacity .5s; }
+.chips2 { transition: opacity .3s; }
+.scn + .apcap { margin: 6px 12px 12px; min-height: 2.6em; font-size: 14px; line-height: 1.35; color: var(--s-ink); text-align: center; }
+.rv-stage .apcap { display: none; }
+.scn .aptag text { font-size: 18px; fill: var(--s-ink); }

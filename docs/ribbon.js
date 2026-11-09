@@ -9,7 +9,8 @@
   /* ---- 1.6: нові назви, четверта група «Позначення систем», реалістичні сцени ---- */
   (function () {
     var N = {
-      uk: { "rb.g1": "Гнучкі повітропроводи", "rb.g3": "Розподіл", "rb.g4": "Позначення систем",
+      uk: { "rb.g1": "Кінці повітроводів", "rb.g3": "Розподіл", "rb.g4": "Позначення систем",
+        "rb.ap": "Точка<br>повітря", "rb.tip.ap": "ap — Ставить умовний повітророзподільник на вільний кінець повітропроводу, гнучкого повітропроводу, фасонної частини, арматури чи обладнання. Вид (припливний, витяжний, викидний, повітрозабірний, рециркуляційний) підбирається за мережею, витрату вводять або беруть з елемента.",
         "rb.qfc": "З’єднати гнучким<br>повітропроводом", "rb.ft": "Замінити ділянку<br>на гнучкий<br>повітропровід",
         "rb.dhg": "Проміжки між<br>елементами<br>по горизонталі", "rb.dhc": "Осі між<br>елементами<br>по горизонталі",
         "rb.dvg": "Проміжки між<br>елементами<br>по вертикалі", "rb.dvc": "Осі між<br>елементами<br>по вертикалі",
@@ -19,7 +20,8 @@
         "rb.tip.sm_fill": "sm — Заповнює цільовий параметр і параметр сортування в усіх елементах проєкту й показує звіт.",
         "rb.tip.sm_clear": "sm — Очищає цільовий і сортувальний параметри в усіх елементах оброблюваних категорій.",
         "rb.sm.states": "Стани значка автоматичного режиму", "rb.sm.on": "Усе гаразд", "rb.sm.att": "Є проблеми", "rb.sm.off": "Вимкнено", "rb.sm.nc": "Не налаштовано" },
-      en: { "rb.g1": "Flex Duct", "rb.g3": "Distribute", "rb.g4": "System Marks",
+      en: { "rb.g1": "Duct Ends", "rb.g3": "Distribute", "rb.g4": "System Marks",
+        "rb.ap": "Air<br>Point", "rb.tip.ap": "ap — Places a placeholder air terminal on a free end of a duct, a flex duct, a fitting, an accessory or equipment. The kind (supply, extract, exhaust, intake, recirculation) follows the network; the airflow is typed or taken from an element.",
         "rb.qfc": "Connect with<br>Flex Duct", "rb.ft": "Replace Section<br>with<br>Flex Duct",
         "rb.dhg": "Gaps Between<br>Elements<br>Horizontally", "rb.dhc": "Centers Between<br>Elements<br>Horizontally",
         "rb.dvg": "Gaps Between<br>Elements<br>Vertically", "rb.dvc": "Centers Between<br>Elements<br>Vertically",
@@ -29,7 +31,8 @@
         "rb.tip.sm_fill": "sm — Fills the target parameter and the sort parameter of all elements of the project and shows a report.",
         "rb.tip.sm_clear": "sm — Clears the target and sort parameters of all elements of the processed categories.",
         "rb.sm.states": "States of the automatic mode icon", "rb.sm.on": "All good", "rb.sm.att": "Problems", "rb.sm.off": "Off", "rb.sm.nc": "Not set up" },
-      ru: { "rb.g1": "Гибкие воздуховоды", "rb.g3": "Распределение", "rb.g4": "Обозначение систем",
+      ru: { "rb.g1": "Концы воздуховодов", "rb.g3": "Распределение", "rb.g4": "Обозначение систем",
+        "rb.ap": "Точка<br>воздуха", "rb.tip.ap": "ap — Ставит условный воздухораспределитель на свободный конец воздуховода, гибкого воздуховода, фасонной части, арматуры или оборудования. Вид (приточный, вытяжной, выбросной, воздухозаборный, рециркуляционный) подбирается по сети, расход вводят или берут с элемента.",
         "rb.qfc": "Соединить гибким<br>воздуховодом", "rb.ft": "Заменить участок<br>на гибкий<br>воздуховод",
         "rb.dhg": "Промежутки<br>между элементами<br>по горизонтали", "rb.dhc": "Оси между<br>элементами<br>по горизонтали",
         "rb.dvg": "Промежутки<br>между элементами<br>по вертикали", "rb.dvc": "Оси между<br>элементами<br>по вертикали",
@@ -113,6 +116,8 @@
       group.insertBefore(b, group.querySelector(".ttl"));
     }
     var allGroups = mnt.querySelectorAll(".rv-ribbon > .rv-group");
+    var apIcon = '<path class="ink" d="M3 16H12M12 6V26"/><path stroke="#F2A93B" stroke-width="2.6" d="M16 16H20M20 8V24L29 16Z"/><circle cx="12" cy="16" r="2.2" fill="#5BB6E8" stroke="none"/>';
+    addBtn(allGroups[0], "ap", "rb.ap", apIcon, false);
     addBtn(allGroups[0], "set_flex", "rb.set_flex", gearIcon, true);
     addBtn(allGroups[1], "set_dist", "rb.set_dist", gearIcon, true);
     addBtn(allGroups[2], "sm_jrn", "rb.sm_jrn", sheet + '<circle cx="24" cy="24" r="7" fill="#5BB6E8" stroke="var(--pan)" stroke-width="1.6"/><path d="M24 20.5V24l2.6 1.6" stroke="#14213d" stroke-width="1.6" fill="none"/>', false);

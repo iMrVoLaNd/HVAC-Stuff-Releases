@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet">
+<title>Air Point — HVAC Stuff</title>
+<meta name="description" content="Air Point — a free Revit plugin: a placeholder air terminal on a free duct end, with the kind chosen from the network.">
+<meta name="theme-color" content="#14213D">
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="img/favicon-64.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<script>(function () { try { var t = localStorage.getItem("hvac-theme"); if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t); } catch (e) {} })();</script>
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="plugin.css">
+<link rel="stylesheet" href="ribbon.css">
+</head>
+<body>
+<header id="siteNav"></header>
+
+<main>
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow" data-i18n="pg.eyebrow"></p>
+    <h1 data-i18n-html="pg.title"></h1>
+    <p class="sub" data-i18n="pg.sub"></p>
+    <div class="cta">
+      <a class="btn" href="index.html#install" data-i18n="nav.install"></a>
+      <a class="btn ghost" href="#try" data-i18n="rb.eyebrow"></a>
+    </div>
+    <div class="meta">
+      <span class="chip">Revit 2024–2027</span>
+      <span class="chip"><span data-i18n="hero.version"></span> <b class="verx">1.8.0</b></span>
+      <span class="chip" data-i18n="hero.free"></span>
+      <span class="chip">UA · EN · RU</span>
+    </div>
+  </div>
+</section>
+
+<section id="what">
+  <div class="wrap">
+    <p class="eyebrow" data-i18n="what.eyebrow"></p>
+    <h2 data-i18n="what.title"></h2>
+    <p class="lead" data-i18n="what.lead"></p>
+    <div class="cmd">
+      <div>
+        <h3 data-i18n="ap.name"></h3>
+        <p data-i18n="ap.p" style="color:var(--muted);margin:0"></p>
+        <ul>
+          <li data-i18n="ap.l1"></li><li data-i18n="ap.l2"></li><li data-i18n="ap.l3"></li><li data-i18n="ap.l4"></li><li data-i18n="ap.l5"></li>
+        </ul>
+        <div class="btns"><span data-i18n="man.pdf"></span><span class="pdfs" data-pdf="Air Point"></span></div>
+      </div>
+      <div class="demo-box"><div class="scene-host" data-scene="ap"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="try">
+  <div class="wrap">
+    <p class="eyebrow" data-i18n="rb.eyebrow"></p>
+    <h2 data-i18n="rb.title"></h2>
+    <p class="lead" data-i18n="rb.lead"></p>
+    <div id="revit-mount" data-start="ap"></div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <p class="eyebrow" data-i18n="feat.eyebrow"></p>
+    <h2 data-i18n="apf.title"></h2>
+    <p class="lead" data-i18n="apf.lead"></p>
+    <div class="grid3">
+      <div class="card"><div class="ico"><svg><use href="#i-target"/></svg></div><h3 data-i18n="apf1.t"></h3><p data-i18n="apf1.p"></p></div>
+      <div class="card"><div class="ico"><svg><use href="#i-chat"/></svg></div><h3 data-i18n="apf2.t"></h3><p data-i18n="apf2.p"></p></div>
+      <div class="card"><div class="ico"><svg><use href="#i-bolt"/></svg></div><h3 data-i18n="apf3.t"></h3><p data-i18n="apf3.p"></p></div>
+      <div class="card"><div class="ico"><svg><use href="#i-layers"/></svg></div><h3 data-i18n="apf4.t"></h3><p data-i18n="apf4.p"></p></div>
+      <div class="card"><div class="ico"><svg><use href="#i-eye"/></svg></div><h3 data-i18n="apf5.t"></h3><p data-i18n="apf5.p"></p></div>
+      <div class="card"><div class="ico"><svg><use href="#i-globe"/></svg></div><h3 data-i18n="apf6.t"></h3><p data-i18n="apf6.p"></p></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="more">
+  <div class="wrap">
+    <p class="eyebrow" data-i18n="more.eyebrow"></p>
+    <h2 data-i18n="more.title"></h2>
+    <div class="plugs" data-plugs data-exclude="ap"></div>
+  </div>
+</section>
+</main>
+
+<footer id="siteFoot"></footer>
+
+<script>
+window.HVAC_PAGE = { key: "ap", title: "ap.name", T: {
+  "uk": {
+    "pg.eyebrow": "Revit · Плагін · Air Point",
+    "pg.title": "Точка витрати на вільному кінці повітропроводу — <em>вид підбирається сам</em>",
+    "pg.sub": "Умовний повітророзподільник ставиться на відкритий кінець повітропроводу, гнучкого повітропроводу, фасонної частини, арматури чи обладнання: з розворотом, з’єднанням, витратою й системою на коннекторі. Він замінює справжній повітророзподільник, поки той не вибраний або лежить в іншій моделі, і не потрапляє в специфікації.",
+    "what.eyebrow": "Як це працює",
+    "what.title": "Клацніть кінець — і точка витрати стоїть",
+    "what.lead": "Надбудова йде по мережі від кінця й сама підбирає вид: кінець біля вентилятора без повітророзподільників — повітрозабір чи викид, кінець, за яким повітророзподільники, — припливний чи витяжний.",
+    "ap.l1": "П’ять видів, круглі й прямокутні: припливний, витяжний, викидний, повітрозабірний, рециркуляційний.",
+    "ap.l2": "Вид — кнопки у вікні, натиснута вже правильна; вид, що не підходить системі, вибрати не можна.",
+    "ap.l3": "Витрата обов’язкова: «ОК» неактивна без неї. Кнопка «З елемента» бере витрату з повітророзподільника в моделі.",
+    "ap.l4": "Під курсором — умовне позначення з крапкою на коннекторі: видно, куди піде повітря. Один перемикач екземпляра вимикає його на планах, розрізах і в 3D.",
+    "ap.l5": "Серія до Esc; Shift+клік знову відкриває вікно. Форма й розмір на кінці жорсткого повітропроводу можуть відрізнятися від кінця.",
+    "apf.title": "Вид, витрата й позначення без зайвих кроків",
+    "apf.lead": "Умовний повітророзподільник ставиться за кілька секунд і не псує специфікацію.",
+    "apf1.t": "Вид за мережею", "apf1.p": "Кінець зі сторони приміщення дає припливний чи витяжний за класифікацією системи, кінець зі сторони вулиці — повітрозабір чи викид. Зворотна система завжди рециркуляція.",
+    "apf2.t": "Види кнопками", "apf2.p": "Замість випадного списку — кнопки одним поглядом. Підібраний вид уже натиснутий, а підказка пояснює чому.",
+    "apf3.t": "Витрата без помилок", "apf3.p": "Старе значення не підставляється, «ОК» чекає на нове. Або клацніть повітророзподільник у моделі, щоб узяти його витрату.",
+    "apf4.t": "Позначення скрізь", "apf4.p": "Лінія й трикутник на плані, боці, розрізі та в 3D, один перемикач «Показувати УГО» в екземплярі вимикає все одразу.",
+    "apf5.t": "Не в специфікації", "apf5.p": "Назва «!Не учитывать», марка порожня: точка не потрапляє у відомості й легко замінюється справжнім повітророзподільником.",
+    "apf6.t": "Серія й скасування", "apf6.p": "Кінець за кінцем поспіль, кожна точка — окремий крок скасування. Налаштування — вкладка «Точка повітря» в налаштуваннях панелі."
+  },
+  "en": {
+    "pg.eyebrow": "Revit · Plugin · Air Point",
+    "pg.title": "A flow point on a free duct end — <em>the kind picks itself</em>",
+    "pg.sub": "A placeholder air terminal goes on the open end of a duct, a flex duct, a fitting, an accessory or equipment: turned to the end, joined, with the airflow and the system on its connector. It stands for the real terminal until that is chosen or when it lives in another model, and it stays out of the schedules.",
+    "what.eyebrow": "How it works",
+    "what.title": "Click an end and the flow point is there",
+    "what.lead": "The add-in walks the network from the end and picks the kind itself: an end near a fan with no terminals behind it is an intake or a discharge; an end with terminals behind it is a supply or an extract.",
+    "ap.l1": "Five kinds, round and rectangular: supply, extract, exhaust to the outside, outdoor air intake, recirculation.",
+    "ap.l2": "The kind is buttons in the window and the right one is already pressed; a kind that does not fit the system cannot be chosen.",
+    "ap.l3": "The airflow is required: OK stays off without it. The “From element” button takes the airflow from an air terminal in the model.",
+    "ap.l4": "Under the pointer a symbol with a dot on the connector shows where the air goes. One switch of the instance turns it off in plans, sections, and 3D.",
+    "ap.l5": "A series until Esc; Shift+click opens the window again. On a rigid duct end the shape and the size may differ from the end.",
+    "apf.title": "The kind, the airflow and the symbol with no extra steps",
+    "apf.lead": "A placeholder terminal is placed in seconds and does not spoil the schedule.",
+    "apf1.t": "The kind from the network", "apf1.p": "An end on the room side gives supply or extract by the system classification, an end on the outdoor side gives intake or discharge. A return system is always recirculation.",
+    "apf2.t": "Kinds as buttons", "apf2.p": "Instead of a drop-down list, buttons at a glance. The suggested kind is already pressed, and a hint says why.",
+    "apf3.t": "Airflow without mistakes", "apf3.p": "The old value is not filled in, OK waits for a new one. Or click an air terminal in the model to take its airflow.",
+    "apf4.t": "The symbol everywhere", "apf4.p": "A line and a triangle in plans, sides, sections and 3D; one “Show symbol” switch of the instance turns them all off at once.",
+    "apf5.t": "Out of the schedules", "apf5.p": "The name is “!Не учитывать” and the mark is empty: the point stays out of the lists and is easy to replace with a real terminal.",
+    "apf6.t": "A series and undo", "apf6.p": "End after end, each point its own undo step. The settings are the “Air Point” tab in the settings of the panel."
+  },
+  "ru": {
+    "pg.eyebrow": "Revit · Плагин · Air Point",
+    "pg.title": "Точка расхода на свободном конце воздуховода — <em>вид подбирается сам</em>",
+    "pg.sub": "Условный воздухораспределитель ставится на открытый конец воздуховода, гибкого воздуховода, фасонной части, арматуры или оборудования: с разворотом, соединением, расходом и системой на коннекторе. Он заменяет настоящий воздухораспределитель, пока тот не выбран или лежит в другой модели, и не попадает в спецификации.",
+    "what.eyebrow": "Как это работает",
+    "what.title": "Щёлкните конец — и точка расхода стоит",
+    "what.lead": "Надстройка идёт по сети от конца и сама подбирает вид: конец у вентилятора без воздухораспределителей — воздухозабор или выброс, конец, за которым воздухораспределители, — приточный или вытяжной.",
+    "ap.l1": "Пять видов, круглые и прямоугольные: приточный, вытяжной, выбросной, воздухозаборный, рециркуляционный.",
+    "ap.l2": "Вид — кнопки в окне, нажата уже правильная; вид, который не подходит системе, выбрать нельзя.",
+    "ap.l3": "Расход обязателен: «ОК» недоступна без него. Кнопка «С элемента» берёт расход с воздухораспределителя в модели.",
+    "ap.l4": "Под курсором — условное обозначение с точкой на коннекторе: видно, куда пойдёт воздух. Один переключатель экземпляра отключает его на планах, разрезах и в 3D.",
+    "ap.l5": "Серия до Esc; Shift+щелчок снова открывает окно. Форма и размер на конце жёсткого воздуховода могут отличаться от конца.",
+    "apf.title": "Вид, расход и обозначение без лишних шагов",
+    "apf.lead": "Условный воздухораспределитель ставится за секунды и не портит спецификацию.",
+    "apf1.t": "Вид по сети", "apf1.p": "Конец со стороны помещения даёт приточный или вытяжной по классификации системы, конец со стороны улицы — воздухозабор или выброс. Возвратная система всегда рециркуляция.",
+    "apf2.t": "Виды кнопками", "apf2.p": "Вместо выпадающего списка — кнопки на виду. Подобранный вид уже нажат, а подсказка объясняет почему.",
+    "apf3.t": "Расход без ошибок", "apf3.p": "Старое значение не подставляется, «ОК» ждёт новое. Или щёлкните воздухораспределитель в модели, чтобы взять его расход.",
+    "apf4.t": "Обозначение везде", "apf4.p": "Линия и треугольник на плане, боку, разрезе и в 3D, один переключатель «Показывать УГО» в экземпляре отключает всё сразу.",
+    "apf5.t": "Не в спецификации", "apf5.p": "Наименование «!Не учитывать», марка пустая: точка не попадает в ведомости и легко заменяется настоящим воздухораспределителем.",
+    "apf6.t": "Серия и отмена", "apf6.p": "Конец за концом подряд, каждая точка — отдельный шаг отмены. Настройки — вкладка «Точка воздуха» в настройках панели."
+  }
+} };
+</script>
+<script src="site.js"></script>
+<script src="scenes.js"></script>
+<script src="plugin.js"></script>
+<script src="ribbon.js"></script>
+</body>
+</html>

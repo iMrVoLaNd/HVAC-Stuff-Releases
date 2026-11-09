@@ -324,6 +324,109 @@
     c.total = 5000;
   };
 
+  /* ---------- Air Point: вид воздухораспределителя подбирается по сети ---------- */
+  H.addStrings({
+    uk: {
+      "sc.ap.sup": "Приплив", "sc.ap.exh": "Витяжка", "sc.ap.kind": "Вид:",
+      "sc.ap.k.sup": "Припливний", "sc.ap.k.ext": "Витяжний", "sc.ap.k.exh": "Викидний", "sc.ap.k.int": "Повітрозабірний",
+      "sc.ap.s0": "Дві мережі: вентилятор, повітроводи, повітророзподільники. На кінцях без повітророзподільника поставимо Air Point",
+      "sc.ap.s1": "Вільний кінець зі сторони вулиці: за ним немає повітророзподільників, він веде до вентилятора. Вид — повітрозабірний",
+      "sc.ap.s2": "Вільний кінець зі сторони приміщення: за ним повітророзподільники. Вид — припливний",
+      "sc.ap.s3": "Витяжна система, кінець зі сторони вулиці (за вентилятором). Вид — викидний",
+      "sc.ap.s4": "Витяжна система, кінець зі сторони приміщення. Вид — витяжний",
+      "sc.ap.s5": "Умовне позначення показує напрямок повітря. Розподільники можна замінити справжніми пізніше",
+      "sc.ap.tag": "Точка витрати: умовний повітророзподільник, а не справжній"
+    },
+    en: {
+      "sc.ap.sup": "Supply", "sc.ap.exh": "Exhaust", "sc.ap.kind": "Kind:",
+      "sc.ap.k.sup": "Supply", "sc.ap.k.ext": "Extract", "sc.ap.k.exh": "Exhaust", "sc.ap.k.int": "Outdoor air intake",
+      "sc.ap.s0": "Two networks: a fan, ducts, air terminals. Air Point goes on the ends that have no terminal",
+      "sc.ap.s1": "A free end on the outdoor side: no terminals behind it, it leads to the fan. The kind is outdoor air intake",
+      "sc.ap.s2": "A free end on the room side: the terminals are behind it. The kind is supply",
+      "sc.ap.s3": "An exhaust system, the end on the outdoor side (behind the fan). The kind is exhaust to the outside",
+      "sc.ap.s4": "An exhaust system, the end on the room side. The kind is extract",
+      "sc.ap.s5": "The symbol shows the way of the air. The points can be replaced with real terminals later",
+      "sc.ap.tag": "A flow point: a placeholder, not a real terminal"
+    },
+    ru: {
+      "sc.ap.sup": "Приток", "sc.ap.exh": "Вытяжка", "sc.ap.kind": "Вид:",
+      "sc.ap.k.sup": "Приточный", "sc.ap.k.ext": "Вытяжной", "sc.ap.k.exh": "Выбросной", "sc.ap.k.int": "Воздухозаборный",
+      "sc.ap.s0": "Две сети: вентилятор, воздуховоды, воздухораспределители. На концах без воздухораспределителя поставим Air Point",
+      "sc.ap.s1": "Свободный конец со стороны улицы: за ним нет воздухораспределителей, он ведёт к вентилятору. Вид — воздухозаборный",
+      "sc.ap.s2": "Свободный конец со стороны помещения: за ним воздухораспределители. Вид — приточный",
+      "sc.ap.s3": "Вытяжная система, конец со стороны улицы (за вентилятором). Вид — выбросной",
+      "sc.ap.s4": "Вытяжная система, конец со стороны помещения. Вид — вытяжной",
+      "sc.ap.s5": "Условное обозначение показывает направление воздуха. Точки можно заменить настоящими воздухораспределителями позже",
+      "sc.ap.tag": "Точка расхода: условный воздухораспределитель, а не настоящий"
+    }
+  });
+  /* вентилятор в плане: корпус, крыльчатка (вращается), стрелка потока над корпусом */
+  function fan(x, y, flowDir, id) {
+    var cx = x + 40, cy = y + 28, blades = "", k, ccw = flowDir < 0, ar = "";
+    for (k = 0; k < 6; k++) blades += '<path d="M0 0Q9 -2 16 -12" transform="rotate(' + (k * 60) + ')" stroke="#4a5d82" stroke-width="2.4" fill="none" stroke-linecap="round"/>';
+    ar = flowDir > 0 ? "M" + (x + 22) + " " + (y - 9) + "H" + (x + 58) + "M" + (x + 51) + " " + (y - 14) + "L" + (x + 58) + " " + (y - 9) + "L" + (x + 51) + " " + (y - 4) :
+      "M" + (x + 58) + " " + (y - 9) + "H" + (x + 22) + "M" + (x + 29) + " " + (y - 14) + "L" + (x + 22) + " " + (y - 9) + "L" + (x + 29) + " " + (y - 4);
+    return '<g class="fan"><rect x="' + x + '" y="' + y + '" width="80" height="56" rx="8" fill="url(#' + id + 'eq)" stroke="#4a5d82" stroke-width="2"/>' +
+      '<circle cx="' + cx + '" cy="' + cy + '" r="23" fill="#eef2f9" stroke="#4a5d82" stroke-width="1.6"/>' +
+      '<g class="imp' + (ccw ? " ccw" : "") + '"><g transform="translate(' + cx + " " + cy + ')"><circle r="18" fill="none" stroke="none"/>' + blades + '<circle r="3.4" fill="#4a5d82"/></g></g>' +
+      '<g class="air' + (ccw ? " ex" : "") + '" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="' + ar + '"/></g></g>';
+  }
+  /* условное обозначение на свободном конце: линия, треугольник (основание у линии, если воздух уходит из воздуховода) и точка на коннекторе */
+  function ugo(cls, x, y, ox, oy, leaves) {
+    var S = 12, W = 17, Hh = 30, px = -oy, py = ox, e1x = x + ox * S, e1y = y + oy * S, bx = leaves ? e1x : e1x + ox * Hh, by = leaves ? e1y : e1y + oy * Hh,
+      ax = leaves ? e1x + ox * Hh : e1x, ay = leaves ? e1y + oy * Hh : e1y;
+    return '<g class="ugo ' + cls + '" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M' + x + " " + y + "L" + e1x + " " + e1y +
+      "M" + (bx - px * W) + " " + (by - py * W) + "L" + (bx + px * W) + " " + (by + py * W) +
+      "M" + (bx - px * W) + " " + (by - py * W) + "L" + ax + " " + ay + "L" + (bx + px * W) + " " + (by + py * W) + '"/>' +
+      '<path class="plate" d="M' + (x - px * 21) + " " + (y - py * 21) + "L" + (x + px * 21) + " " + (y + py * 21) + '"/><circle cx="' + x + '" cy="' + y + '" r="2.8" class="dot"/></g>';
+  }
+  SCENES.ap = function (c) {
+    var id = c.id, supCy = 88, exhCy = 262, air;
+    function branchV(x, y0, y1) {
+      return '<rect x="' + x + '" y="' + y0 + '" width="40" height="' + (y1 - y0) + '" fill="url(#' + id + 'dg)" stroke="#4b5563" stroke-width="1.4"/>';
+    }
+    /* стрелки потока: приток вправо и вверх по ответвлению, вытяжка влево и вверх по ответвлению */
+    air = '<g class="air" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">' + arrow(92, supCy, 1, 0, 42) + arrow(262, supCy, 1, 0, 50) + arrow(460, supCy, 1, 0, 50) + arrow(390, 56, 0, -1, 24) + "</g>" +
+      '<g class="air ex" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">' + arrow(138, exhCy, -1, 0, 42) + arrow(330, exhCy, -1, 0, 50) + arrow(500, exhCy, -1, 0, 50) + arrow(390, 322, 0, -1, 30) + "</g>";
+    c.draw(
+      '<text x="70" y="44" class="sc-sub" font-size="15" font-weight="700">' + t("sc.ap.sup") + "</text>" +
+      duct(70, supCy - 20, 80, 40, "l", id) + fan(150, supCy - 28, 1, id) + duct(230, supCy - 20, 300, 40, "r", id) + branchV(370, 20, supCy - 20) +
+      '<rect x="367" y="20" width="46" height="8" rx="2" fill="url(#' + id + 'dg)" stroke="#3b4350" stroke-width="1.4"/>' + diffuser(532, supCy - 30, 60, 60, id) +
+      '<text x="70" y="218" class="sc-sub" font-size="15" font-weight="700">' + t("sc.ap.exh") + "</text>" +
+      duct(70, exhCy - 20, 80, 40, "l", id) + fan(150, exhCy - 28, -1, id) + duct(230, exhCy - 20, 300, 40, "r", id) + branchV(370, exhCy + 20, 332) +
+      '<rect x="367" y="324" width="46" height="8" rx="2" fill="url(#' + id + 'dg)" stroke="#3b4350" stroke-width="1.4"/>' + diffuser(532, exhCy - 30, 60, 60, id) +
+      air +
+      ugo("pv pA", 70, supCy, -1, 0, false) + ugo("fn fA", 70, supCy, -1, 0, false) +
+      ugo("pv pB", 390, 20, 0, -1, true) + ugo("fn fB", 390, 20, 0, -1, true) +
+      ugo("pv pC", 70, exhCy, -1, 0, true) + ugo("fn fC", 70, exhCy, -1, 0, true) +
+      ugo("pv pD", 390, 332, 0, 1, false) + ugo("fn fD", 390, 332, 0, 1, false) +
+      '<g class="aptag" opacity="0"><rect x="14" y="134" width="680" height="38" rx="6" class="sc-card"/><text x="28" y="159" class="sc-note" font-size="18" font-weight="600">' + t("sc.ap.tag") + "</text></g>" +
+      CUR, "0 -56 800 468");
+    c.host.insertAdjacentHTML("beforeend", '<div class="apcap"></div>');
+    c.host.insertAdjacentHTML("beforeend", '<div class="chips2" style="left:auto;right:14px"><span>' + t("sc.ap.kind") + '</span><span class="c k0">&nbsp;</span><span class="c k1">&nbsp;</span></div>');
+    var k0 = c.q(".chips2 .k0"), k1 = c.q(".chips2 .k1"), chips = c.q(".chips2");
+    function kinds(a, b, hi) {
+      k0.textContent = t("sc.ap.k." + a); k1.textContent = t("sc.ap.k." + b);
+      k0.classList.toggle("hi", hi === 0); k1.classList.toggle("hi", hi === 1);
+    }
+    chips.style.opacity = 0;
+    var cap = c.q(".apcap");
+    function say(k) { cap.textContent = t(k); c.status(k); }
+    function visit(n, x, y, t0, sKey, a, b, hi) {
+      c.at(t0, function () { c.go(".cur", x, y); });
+      c.at(t0 + 900, function () { c.on(".p" + n, "on"); kinds(a, b, hi); chips.style.opacity = 1; say(sKey); });
+      c.at(t0 + 2300, function () { c.press(); c.on(".p" + n, "on", false); c.on(".f" + n, "on"); });
+    }
+    say("sc.ap.s0"); c.go(".cur", 430, 190);
+    visit("A", 70, supCy, 700, "sc.ap.s1", "sup", "int", 1);
+    c.at(3300, function () { c.q(".aptag").setAttribute("opacity", 1); });
+    visit("B", 390, 20, 4000, "sc.ap.s2", "sup", "int", 0);
+    visit("C", 70, exhCy, 7300, "sc.ap.s3", "ext", "exh", 1);
+    visit("D", 390, 332, 10600, "sc.ap.s4", "ext", "exh", 0);
+    c.at(13600, function () { c.go(".cur", 640, 190); chips.style.opacity = 0; say("sc.ap.s5"); });
+    c.total = 17000;
+  };
+
   /* ---------- по кругу, пока блок виден ---------- */
   function mount(host, name) {
     var visible = false, timer = 0, c;
