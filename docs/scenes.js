@@ -327,40 +327,40 @@
   /* ---------- Air Point: вид воздухораспределителя подбирается по сети ---------- */
   H.addStrings({
     uk: {
-      "sc.ap.sup": "Приплив", "sc.ap.exh": "Витяжка", "sc.ap.kind": "Вид:",
+      "sc.ap.sup": "Приплив", "sc.ap.exh": "Витяжка", "sc.ap.kind": "Вид:", "sc.ap.scene": "Сцена:", "sc.ap.auto": "Авто",
       "sc.ap.k.sup": "Припливний", "sc.ap.k.ext": "Витяжний", "sc.ap.k.exh": "Викидний", "sc.ap.k.int": "Повітрозабірний",
-      "sc.ap.s0": "Дві мережі: вентилятор, повітроводи, повітророзподільники. На кінцях без повітророзподільника поставимо Air Point",
-      "sc.ap.flow": "Витрата, м³/год", "sc.ap.flowauto": "Витрата: автоматично з мережі", "sc.ap.unit": "м³/год", "sc.ap.scene": "Сцена:", "sc.ap.auto": "Авто",
-      "sc.ap.s1": "Вільний кінець зі сторони вулиці: за ним немає повітророзподільників, він веде до вентилятора. Вид — повітрозабірний. Витрату вводити не треба: коннектор системний, сам підтягує суму всіх повітророзподільників: 300 + 200 = 500",
-      "sc.ap.s2": "Спершу — повітророзподільник на кінці відгалуження зі сторони приміщення. Вид — припливний; вводимо витрату",
-      "sc.ap.s3": "Витяжна система, кінець зі сторони вулиці (за вентилятором). Вид — викидний. Витрата автоматично: сума всіх витяжних, 300 + 200 = 500",
-      "sc.ap.s4": "Витяжна система, кінець зі сторони приміщення. Вид — витяжний; вводимо витрату",
-      "sc.ap.s5": "Умовне позначення показує напрямок повітря. Розподільники можна замінити справжніми пізніше",
-      "sc.ap.tag": "Точка витрати: умовний повітророзподільник, а не справжній"
+      "sc.ap.m.sup": "Приплив", "sc.ap.m.int": "Забір", "sc.ap.m.ext": "Витяжка", "sc.ap.m.exh": "Викид",
+      "sc.ap.flow": "Витрата, м³/год", "sc.ap.flowauto": "Витрата: з мережі автоматично", "sc.ap.unit": "м³/год",
+      "sc.ap.s0": "Дві мережі: вентилятор, повітроводи, повітророзподільники. На вільні кінці поставимо Air Point",
+      "sc.ap.s1": "Кінець зі сторони вулиці, за ним вентилятор. Вид — повітрозабірний. Витрата сама: сума всіх повітророзподільників, 300 + 200 = 500",
+      "sc.ap.s2": "Спершу — кінець відгалуження зі сторони приміщення. Вид — припливний, вводимо витрату",
+      "sc.ap.s3": "Витяжна система, кінець за вентилятором зі сторони вулиці. Вид — викидний. Витрата сама: 300 + 200 = 500",
+      "sc.ap.s4": "Витяжна система, кінець зі сторони приміщення. Вид — витяжний, вводимо витрату",
+      "sc.ap.s5": "Умовне позначення показує напрямок повітря. Точки можна замінити справжніми повітророзподільниками пізніше"
     },
     en: {
-      "sc.ap.sup": "Supply", "sc.ap.exh": "Exhaust", "sc.ap.kind": "Kind:",
+      "sc.ap.sup": "Supply", "sc.ap.exh": "Exhaust", "sc.ap.kind": "Kind:", "sc.ap.scene": "Scene:", "sc.ap.auto": "Auto",
       "sc.ap.k.sup": "Supply", "sc.ap.k.ext": "Extract", "sc.ap.k.exh": "Exhaust", "sc.ap.k.int": "Outdoor air intake",
-      "sc.ap.s0": "Two networks: a fan, ducts, air terminals. Air Point goes on the ends that have no terminal",
-      "sc.ap.flow": "Airflow, m³/h", "sc.ap.flowauto": "Airflow: automatic from the network", "sc.ap.unit": "m³/h", "sc.ap.scene": "Scene:", "sc.ap.auto": "Auto",
-      "sc.ap.s1": "A free end on the outdoor side: no terminals behind it, it leads to the fan. The kind is outdoor air intake. No airflow to type: the connector is a system one and takes the sum of all terminals by itself, 300 + 200 = 500",
-      "sc.ap.s2": "First the terminal on the end of the branch on the room side. The kind is supply; we type the airflow",
-      "sc.ap.s3": "An exhaust system, the end on the outdoor side (behind the fan). The kind is exhaust to the outside. The airflow is automatic: the sum of all extracts, 300 + 200 = 500",
-      "sc.ap.s4": "An exhaust system, the end on the room side. The kind is extract; we type the airflow",
-      "sc.ap.s5": "The symbol shows the way of the air. The points can be replaced with real terminals later",
-      "sc.ap.tag": "A flow point: a placeholder, not a real terminal"
+      "sc.ap.m.sup": "Supply", "sc.ap.m.int": "Intake", "sc.ap.m.ext": "Extract", "sc.ap.m.exh": "Exhaust",
+      "sc.ap.flow": "Airflow, m³/h", "sc.ap.flowauto": "Airflow: from the network", "sc.ap.unit": "m³/h",
+      "sc.ap.s0": "Two networks: a fan, ducts, air terminals. Air Point goes on the free ends",
+      "sc.ap.s1": "An end on the outdoor side, a fan behind it. The kind is intake. The airflow fills itself: the sum of all terminals, 300 + 200 = 500",
+      "sc.ap.s2": "First the end of the branch on the room side. The kind is supply, we type the airflow",
+      "sc.ap.s3": "An exhaust system, the end behind the fan on the outdoor side. The kind is exhaust. The airflow fills itself: 300 + 200 = 500",
+      "sc.ap.s4": "An exhaust system, the end on the room side. The kind is extract, we type the airflow",
+      "sc.ap.s5": "The symbol shows the way of the air. The points can be replaced with real terminals later"
     },
     ru: {
-      "sc.ap.sup": "Приток", "sc.ap.exh": "Вытяжка", "sc.ap.kind": "Вид:",
+      "sc.ap.sup": "Приток", "sc.ap.exh": "Вытяжка", "sc.ap.kind": "Вид:", "sc.ap.scene": "Сцена:", "sc.ap.auto": "Авто",
       "sc.ap.k.sup": "Приточный", "sc.ap.k.ext": "Вытяжной", "sc.ap.k.exh": "Выбросной", "sc.ap.k.int": "Воздухозаборный",
-      "sc.ap.s0": "Две сети: вентилятор, воздуховоды, воздухораспределители. На концах без воздухораспределителя поставим Air Point",
-      "sc.ap.flow": "Расход, м³/ч", "sc.ap.flowauto": "Расход: автоматически из сети", "sc.ap.unit": "м³/ч", "sc.ap.scene": "Сцена:", "sc.ap.auto": "Авто",
-      "sc.ap.s1": "Свободный конец со стороны улицы: за ним нет воздухораспределителей, он ведёт к вентилятору. Вид — воздухозаборный. Расход вводить не нужно: коннектор системный, сам подтягивает сумму всех воздухораспределителей: 300 + 200 = 500",
-      "sc.ap.s2": "Сначала — воздухораспределитель на конце ответвления со стороны помещения. Вид — приточный; вводим расход",
-      "sc.ap.s3": "Вытяжная система, конец со стороны улицы (за вентилятором). Вид — выбросной. Расход автоматически: сумма всех вытяжных, 300 + 200 = 500",
-      "sc.ap.s4": "Вытяжная система, конец со стороны помещения. Вид — вытяжной; вводим расход",
-      "sc.ap.s5": "Условное обозначение показывает направление воздуха. Точки можно заменить настоящими воздухораспределителями позже",
-      "sc.ap.tag": "Точка расхода: условный воздухораспределитель, а не настоящий"
+      "sc.ap.m.sup": "Приток", "sc.ap.m.int": "Забор", "sc.ap.m.ext": "Вытяжка", "sc.ap.m.exh": "Выброс",
+      "sc.ap.flow": "Расход, м³/ч", "sc.ap.flowauto": "Расход: из сети автоматически", "sc.ap.unit": "м³/ч",
+      "sc.ap.s0": "Две сети: вентилятор, воздуховоды, воздухораспределители. На свободные концы поставим Air Point",
+      "sc.ap.s1": "Конец со стороны улицы, за ним вентилятор. Вид — воздухозаборный. Расход сам: сумма всех воздухораспределителей, 300 + 200 = 500",
+      "sc.ap.s2": "Сначала — конец ответвления со стороны помещения. Вид — приточный, вводим расход",
+      "sc.ap.s3": "Вытяжная система, конец за вентилятором со стороны улицы. Вид — выбросной. Расход сам: 300 + 200 = 500",
+      "sc.ap.s4": "Вытяжная система, конец со стороны помещения. Вид — вытяжной, вводим расход",
+      "sc.ap.s5": "Условное обозначение показывает направление воздуха. Точки можно заменить настоящими воздухораспределителями позже"
     }
   });
   /* вентилятор в плане: корпус, крыльчатка (вращается), стрелка потока над корпусом */
@@ -386,8 +386,8 @@
   /* расход точек: забор и выброс несут сумму всех воздухораспределителей сети (300 у настоящего + 200 у точки на ответвлении) */
   var FL = { A: "500", B: "200", C: "500", D: "200" };
   function pill(n, x, y) {
-    return '<g class="fl fl' + n + '" opacity="0"><rect x="' + x + '" y="' + y + '" width="156" height="32" rx="16" class="sc-card" style="stroke:#F2A93B;stroke-width:2"/>' +
-      '<text x="' + (x + 78) + '" y="' + (y + 23) + '" text-anchor="middle" class="sc-mono" font-size="19" font-weight="700">' + (n === "A" || n === "C" ? "Σ " : "") + FL[n] + " " + t("sc.ap.unit") + "</text></g>";
+    return '<g class="fl fl' + n + '" opacity="0"><rect x="' + x + '" y="' + y + '" width="146" height="30" rx="15" class="sc-card" style="stroke:#F2A93B;stroke-width:2"/>' +
+      '<text x="' + (x + 73) + '" y="' + (y + 21) + '" text-anchor="middle" class="sc-mono" font-size="16" font-weight="700">' + (n === "A" || n === "C" ? "Σ " : "") + FL[n] + " " + t("sc.ap.unit") + "</text></g>";
   }
   /* какие точки показывает режим: авто — все по очереди, остальные — одна точка (для забора и выброса остальные точки сети уже стоят) */
   var AP_MODES = { auto: ["B", "A", "D", "C"], sup: ["B"], int: ["A"], ext: ["D"], exh: ["C"] };
@@ -408,10 +408,10 @@
     air = '<g class="air" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">' + arrow(92, supCy, 1, 0, 42) + arrow(262, supCy, 1, 0, 50) + arrow(460, supCy, 1, 0, 50) + arrow(390, 56, 0, -1, 24) + "</g>" +
       '<g class="air ex" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">' + arrow(138, exhCy, -1, 0, 42) + arrow(330, exhCy, -1, 0, 50) + arrow(500, exhCy, -1, 0, 50) + arrow(390, 322, 0, -1, 30) + "</g>";
     c.draw(
-      '<text x="70" y="40" class="sc-sub" font-size="21" font-weight="700">' + t("sc.ap.sup") + "</text>" +
+      '<text x="70" y="40" class="sc-sub" font-size="18" font-weight="700">' + t("sc.ap.sup") + "</text>" +
       duct(70, supCy - 20, 80, 40, "l", id) + fan(150, supCy - 28, 1, id) + duct(230, supCy - 20, 300, 40, "r", id) + branchV(370, 20, supCy - 20) +
       '<rect x="367" y="20" width="46" height="8" rx="2" fill="url(#' + id + 'dg)" stroke="#3b4350" stroke-width="1.4"/>' + diffuser(532, supCy - 30, 60, 60, id) +
-      '<text x="70" y="214" class="sc-sub" font-size="21" font-weight="700">' + t("sc.ap.exh") + "</text>" +
+      '<text x="70" y="214" class="sc-sub" font-size="18" font-weight="700">' + t("sc.ap.exh") + "</text>" +
       duct(70, exhCy - 20, 80, 40, "l", id) + fan(150, exhCy - 28, -1, id) + duct(230, exhCy - 20, 300, 40, "r", id) + branchV(370, exhCy + 20, 332) +
       '<rect x="367" y="324" width="46" height="8" rx="2" fill="url(#' + id + 'dg)" stroke="#3b4350" stroke-width="1.4"/>' + diffuser(532, exhCy - 30, 60, 60, id) +
       air +
@@ -420,20 +420,20 @@
       ugo("pv pC", 70, exhCy, -1, 0, true) + ugo("fn fC", 70, exhCy, -1, 0, true) +
       ugo("pv pD", 390, 332, 0, 1, false) + ugo("fn fD", 390, 332, 0, 1, false) +
       /* расход настоящих воздухораспределителей и подписи расхода у точек */
-      '<text x="562" y="' + (supCy + 68) + '" text-anchor="middle" class="sc-note" font-size="18" font-weight="600">300 ' + t("sc.ap.unit") + '</text>' +
-      '<text x="562" y="' + (exhCy + 68) + '" text-anchor="middle" class="sc-note" font-size="18" font-weight="600">300 ' + t("sc.ap.unit") + '</text>' +
+      '<text x="562" y="' + (supCy + 66) + '" text-anchor="middle" class="sc-note" font-size="15" font-weight="600">300 ' + t("sc.ap.unit") + '</text>' +
+      '<text x="562" y="' + (exhCy + 66) + '" text-anchor="middle" class="sc-note" font-size="15" font-weight="600">300 ' + t("sc.ap.unit") + '</text>' +
       pill("A", 14, supCy + 30) + pill("B", 424, -12) + pill("C", 14, exhCy + 30) + pill("D", 424, 344) +
       /* окно ввода расхода: одно на все точки, заголовок и поле меняются перед показом */
-      '<g class="fw" opacity="0"><rect x="176" y="106" width="330" height="118" rx="10" class="sc-card" style="stroke:#F2A93B;stroke-width:2.6"/><text x="196" y="138" class="sc-sub fwt" font-size="17" font-weight="600">' + t("sc.ap.flow") + '</text>' +
-      '<rect x="196" y="152" width="180" height="52" rx="7" class="sc-chip fwf"/><text class="fwv sc-mono" x="210" y="188" font-size="27" font-weight="700"></text>' +
-      '<rect class="fwok" x="392" y="152" width="90" height="52" rx="7" fill="#14213D" stroke="#F2A93B" stroke-width="2"/><text x="437" y="186" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">OK</text></g>' +
-      CUR, "0 -56 800 468");
+      '<g class="fw" opacity="0"><rect x="176" y="106" width="330" height="118" rx="10" class="sc-card" style="stroke:#F2A93B;stroke-width:2.6"/><text x="196" y="136" class="sc-sub fwt" font-size="14" font-weight="600">' + t("sc.ap.flow") + '</text>' +
+      '<rect x="196" y="150" width="180" height="50" rx="7" class="sc-chip fwf"/><text class="fwv sc-mono" x="210" y="184" font-size="24" font-weight="700"></text>' +
+      '<rect class="fwok" x="392" y="150" width="90" height="50" rx="7" fill="#14213D" stroke="#F2A93B" stroke-width="2"/><text x="437" y="183" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">OK</text></g>' +
+      CUR, "0 -34 630 424");
     c.host.insertAdjacentHTML("beforeend", '<div class="apcap"></div>');
     /* виды-кнопки и выбор сцены стоят полосами над рисунком, а не поверх него */
     c.host.insertAdjacentHTML("afterbegin", '<div class="chips2 bar"><span>' + t("sc.ap.kind") + '</span><span class="c k0">&nbsp;</span><span class="c k1">&nbsp;</span></div>');
     if (!c.host.closest(".rv-stage")) {
       var sel = '<div class="apsel"><span>' + t("sc.ap.scene") + "</span>";
-      [["auto", "sc.ap.auto"], ["sup", "sc.ap.k.sup"], ["int", "sc.ap.k.int"], ["ext", "sc.ap.k.ext"], ["exh", "sc.ap.k.exh"]].forEach(function (m) {
+      [["auto", "sc.ap.auto"], ["sup", "sc.ap.m.sup"], ["int", "sc.ap.m.int"], ["ext", "sc.ap.m.ext"], ["exh", "sc.ap.m.exh"]].forEach(function (m) {
         sel += '<button type="button" class="apb' + (m[0] === mode ? " on" : "") + '" data-m="' + m[0] + '">' + t(m[1]) + "</button>";
       });
       c.host.insertAdjacentHTML("afterbegin", sel + "</div>");
@@ -459,7 +459,7 @@
       c.at(t0, function () { c.go(".cur", v.x, v.y); });
       c.at(t0 + 900, function () { c.on(".p" + n, "on"); kinds(v.a, v.b, v.hi); chips.style.opacity = 1; say(v.s); });
       c.at(t0 + 2300, function () {
-        c.press(); fwv.textContent = ""; fwv.setAttribute("font-size", v.auto ? 21 : 27);
+        c.press(); fwv.textContent = ""; fwv.setAttribute("font-size", v.auto ? 19 : 24);
         fwt.textContent = t(v.auto ? "sc.ap.flowauto" : "sc.ap.flow"); fwf.style.opacity = v.auto ? 0.45 : 1;
         c.q(".fw").setAttribute("opacity", 1); c.q(".fwok").setAttribute("fill", "#14213D");
       });
@@ -476,7 +476,7 @@
     /* авто: сначала воздухораспределители с вводом расхода, потом забор и выброс с суммой, подтянутой автоматически */
     list.forEach(function (n, i) { visit(n, 700 + i * 5300); });
     if (list.length > 1) {
-      c.at(700 + list.length * 5300, function () { c.go(".cur", 640, 190); chips.style.opacity = 0; say("sc.ap.s5"); });
+      c.at(700 + list.length * 5300, function () { c.go(".cur", 580, 190); chips.style.opacity = 0; say("sc.ap.s5"); });
       c.total = 700 + list.length * 5300 + 3500;
     } else {
       c.total = 700 + 5300 + 2000;

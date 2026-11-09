@@ -134,16 +134,20 @@
 .scn .aptag { transition: opacity .5s; }
 .scn .fw, .scn .fl { transition: opacity .35s; }
 /* виды-кнопки Air Point стоят полосой над рисунком, а не поверх него */
-.chips2.bar { position: static; margin: 4px 14px 4px; justify-content: flex-end; font-size: 15px; min-height: 34px; }
-.chips2.bar span.c { padding: 4px 10px; }
-/* выбор сцены: авто или один из четырёх видов */
-.apsel { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 10px 14px 0; font-size: 15px; color: var(--stg-muted, var(--s-muted)); }
-.apsel .apb { font: inherit; color: var(--s-ink); background: var(--s-chip, transparent); border: 1.5px solid var(--s-line); border-radius: 7px; padding: 4px 12px; cursor: pointer; }
+/* узкий экран: колонка со сценой не растягивается под строку кнопок, строка прокручивается внутри себя */
+.demo-box, .demo-box .scene-host { min-width: 0; max-width: 100%; }
+/* у каждой полосы своя высота: ничего не сдвигается при смене текста и языка */
+.chips2.bar { display: flex; position: static; height: 30px; margin: 4px 16px 0; justify-content: flex-start; flex-wrap: nowrap; white-space: nowrap; overflow: hidden; font-size: 13px; }
+.chips2.bar span.c { padding: 3px 9px; }
+/* выбор сцены: авто или один из четырёх видов, одна строка */
+.apsel { display: flex; flex-wrap: nowrap; gap: 6px; align-items: center; height: 34px; margin: 12px 16px 0; overflow-x: auto; white-space: nowrap; font-size: 13px; color: var(--stg-muted, var(--s-muted)); }
+.apsel .apb { font: inherit; color: var(--s-ink); background: var(--s-chip, transparent); border: 1.5px solid var(--s-line); border-radius: 7px; padding: 3px 10px; cursor: pointer; }
 .apsel .apb:hover { border-color: #F2A93B; }
 .apsel .apb.on { background: #F2A93B; border-color: #F2A93B; color: #14213D; font-weight: 700; }
 .rv-stage .scene-host:has(> .chips2.bar) { flex-direction: column; align-items: stretch; justify-content: center; }
 .chips2 { transition: opacity .3s; }
 /* подпись занимает всегда одно и то же место, чтобы блок не прыгал при смене текста */
-.scn + .apcap { margin: 6px 14px 14px; min-height: 7.4em; font-size: 17px; line-height: 1.4; color: var(--s-ink); text-align: center; }
+.scn + .apcap { margin: 4px 16px 16px; min-height: 5.6em; font-size: 15px; line-height: 1.4; color: var(--s-ink); text-align: center; }
+@media (max-width: 520px) { .scn + .apcap { min-height: 8.4em; } }
 .rv-stage .apcap { display: none; }
 .scn .aptag text { font-size: 18px; fill: var(--s-ink); }
