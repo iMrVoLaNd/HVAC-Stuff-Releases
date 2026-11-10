@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
 <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet">
-<title>Air Point — HVAC Stuff</title>
-<meta name="description" content="Air Point — a free Revit plugin: a placeholder air terminal on a free duct end, with the kind chosen from the network.">
+<title>Conditional Air Terminal — HVAC Stuff</title>
+<meta name="description" content="Conditional Air Terminal — a free Revit plugin: a placeholder air terminal on a free duct end, with the kind chosen from the network.">
 <meta name="theme-color" content="#14213D">
 <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
 <link rel="icon" type="image/png" sizes="64x64" href="img/favicon-64.png">
@@ -96,7 +96,7 @@
 <script>
 window.HVAC_PAGE = { key: "ap", title: "ap.name", T: {
   "uk": {
-    "pg.eyebrow": "Revit · Плагін · Air Point",
+    "pg.eyebrow": "Revit · Плагін · Умовний повітророзподільник",
     "pg.title": "Точка витрати на вільному кінці повітропроводу — <em>вид підбирається сам</em>",
     "pg.sub": "Умовний повітророзподільник ставиться на відкритий кінець повітропроводу, гнучкого повітропроводу, фасонної частини, арматури чи обладнання: він сам стає в напрямку кінця, під’єднується до нього й бере систему з коннектора, а витрату повітря ви вводите у вікні. Він замінює справжній повітророзподільник, поки той не вибраний або лежить в іншій моделі, і не потрапляє в специфікації.",
     "what.eyebrow": "Як це працює",
@@ -114,10 +114,10 @@ window.HVAC_PAGE = { key: "ap", title: "ap.name", T: {
     "apf3.t": "Витрата без помилок", "apf3.p": "Старе значення не підставляється, «ОК» чекає на нове. Або клацніть повітророзподільник у моделі, щоб узяти його витрату.",
     "apf4.t": "Позначення скрізь", "apf4.p": "Лінія й трикутник на плані, боці, розрізі та в 3D, один перемикач «Показувати УГО» в екземплярі вимикає все одразу.",
     "apf5.t": "Не в специфікації", "apf5.p": "Назва «!Не учитывать», марка порожня: точка не потрапляє у відомості й легко замінюється справжнім повітророзподільником.",
-    "apf6.t": "Серія й скасування", "apf6.p": "Кінець за кінцем поспіль, кожна точка — окремий крок скасування. Налаштування — вкладка «Точка повітря» в налаштуваннях панелі."
+    "apf6.t": "Серія й скасування", "apf6.p": "Кінець за кінцем поспіль, кожна точка — окремий крок скасування. Налаштування — вкладка «Умовний повітророзподільник» в налаштуваннях панелі."
   },
   "en": {
-    "pg.eyebrow": "Revit · Plugin · Air Point",
+    "pg.eyebrow": "Revit · Plugin · Conditional Air Terminal",
     "pg.title": "A flow point on a free duct end — <em>the kind picks itself</em>",
     "pg.sub": "A placeholder air terminal goes on the open end of a duct, a flex duct, a fitting, an accessory or equipment: it lines up with the end by itself, connects to it, takes the system from the connector, and you type the airflow in its window. It stands for the real terminal until that is chosen or when it lives in another model, and it stays out of the schedules.",
     "what.eyebrow": "How it works",
@@ -135,10 +135,10 @@ window.HVAC_PAGE = { key: "ap", title: "ap.name", T: {
     "apf3.t": "Airflow without mistakes", "apf3.p": "The old value is not filled in, OK waits for a new one. Or click an air terminal in the model to take its airflow.",
     "apf4.t": "The symbol everywhere", "apf4.p": "A line and a triangle in plans, sides, sections and 3D; one “Show symbol” switch of the instance turns them all off at once.",
     "apf5.t": "Out of the schedules", "apf5.p": "The name is “!Не учитывать” and the mark is empty: the point stays out of the lists and is easy to replace with a real terminal.",
-    "apf6.t": "A series and undo", "apf6.p": "End after end, each point its own undo step. The settings are the “Air Point” tab in the settings of the panel."
+    "apf6.t": "A series and undo", "apf6.p": "End after end, each point its own undo step. The settings are the “Conditional Air Terminal” tab in the settings of the panel."
   },
   "ru": {
-    "pg.eyebrow": "Revit · Плагин · Air Point",
+    "pg.eyebrow": "Revit · Плагин · Условный воздухораспределитель",
     "pg.title": "Точка расхода на свободном конце воздуховода — <em>вид подбирается сам</em>",
     "pg.sub": "Условный воздухораспределитель ставится на открытый конец воздуховода, гибкого воздуховода, фасонной части, арматуры или оборудования: он сам встаёт по направлению конца, подключается к нему и берёт систему с коннектора, а расход воздуха вы вводите в окне. Он заменяет настоящий воздухораспределитель, пока тот не выбран или лежит в другой модели, и не попадает в спецификации.",
     "what.eyebrow": "Как это работает",
@@ -156,7 +156,7 @@ window.HVAC_PAGE = { key: "ap", title: "ap.name", T: {
     "apf3.t": "Расход без ошибок", "apf3.p": "Старое значение не подставляется, «ОК» ждёт новое. Или щёлкните воздухораспределитель в модели, чтобы взять его расход.",
     "apf4.t": "Обозначение везде", "apf4.p": "Линия и треугольник на плане, боку, разрезе и в 3D, один переключатель «Показывать УГО» в экземпляре отключает всё сразу.",
     "apf5.t": "Не в спецификации", "apf5.p": "Наименование «!Не учитывать», марка пустая: точка не попадает в ведомости и легко заменяется настоящим воздухораспределителем.",
-    "apf6.t": "Серия и отмена", "apf6.p": "Конец за концом подряд, каждая точка — отдельный шаг отмены. Настройки — вкладка «Точка воздуха» в настройках панели."
+    "apf6.t": "Серия и отмена", "apf6.p": "Конец за концом подряд, каждая точка — отдельный шаг отмены. Настройки — вкладка «Условный воздухораспределитель» в настройках панели."
   }
 } };
 </script>

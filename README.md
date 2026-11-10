@@ -11,12 +11,12 @@
 
 <!-- ribbon:start -->
 <p align="center">
-<a href="manuals/QuickFlexConnect-uk.pdf" title="З’єднати гофрою — гнучкий повітропровід між двома конекторами за два кліки. Однакові розміри — одразу, різні — вікно з розміром і живим переглядом. Серія пар до Esc.  [Посібник (PDF)]"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/ribbon/img/col-QuickFlexConnect-uk-dark.svg"><img src="docs/ribbon/img/col-QuickFlexConnect-uk-light.svg" alt="З’єднати гофрою"></picture></a><a href="manuals/FlexTail-uk.pdf" title="Врізати гофру — кінець жорсткого повітроводу біля елемента стає гнучким. Швидкі значення 500–2500 мм, «Вся ділянка», серія елементів.  [Посібник (PDF)]"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/ribbon/img/col-FlexTail-uk-dark.svg"><img src="docs/ribbon/img/col-FlexTail-uk-light.svg" alt="Врізати гофру"></picture></a><a href="https://github.com/iMrVoLaNd/HVAC-Stuff-Releases/releases/latest" title="Налаштування — мова інтерфейсу, колір і вигляд гнучкого повітроводу при попередньому перегляді, параметри кожної команди."><picture><source media="(prefers-color-scheme: dark)" srcset="docs/ribbon/img/col-Settings-uk-dark.svg"><img src="docs/ribbon/img/col-Settings-uk-light.svg" alt="Налаштування"></picture></a><a href="https://github.com/iMrVoLaNd/HVAC-Stuff-Releases/releases/latest" title="Про програму — версія й перевірка оновлень, посібники, папка з налаштуваннями й журналами, автор, ліцензія та подяки."><picture><source media="(prefers-color-scheme: dark)" srcset="docs/ribbon/img/col-About-uk-dark.svg"><img src="docs/ribbon/img/col-About-uk-light.svg" alt="Про програму"></picture></a><picture><source media="(prefers-color-scheme: dark)" srcset="docs/ribbon/img/col-rest-uk-dark.svg"><img src="docs/ribbon/img/col-rest-uk-light.svg" alt="Скоро більше кнопок"></picture>
+<a href="manuals/QuickFlexConnect-uk.pdf" title="З’єднати гофрою — гнучкий повітропровід між двома конекторами за два кліки. Однакові розміри — одразу, різні — вікно з розміром і живим переглядом. Серія пар до Esc.  [Посібник (PDF)]"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/ribbon/img/col-QuickFlexConnect-uk-dark.svg"><img src="docs/ribbon/img/col-QuickFlexConnect-uk-light.svg" alt="З’єднати гофрою"></picture></a><a href="manuals/FlexTail-uk.pdf" title="Врізати гофру — кінець жорсткого повітропроводу біля елемента стає гнучким. Швидкі значення 500–2500 мм, «Вся ділянка», серія елементів.  [Посібник (PDF)]"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/ribbon/img/col-FlexTail-uk-dark.svg"><img src="docs/ribbon/img/col-FlexTail-uk-light.svg" alt="Врізати гофру"></picture></a><a href="https://github.com/iMrVoLaNd/HVAC-Stuff-Releases/releases/latest" title="Налаштування — мова інтерфейсу, колір і вигляд гнучкого повітропроводу при попередньому перегляді, параметри кожної команди."><picture><source media="(prefers-color-scheme: dark)" srcset="docs/ribbon/img/col-Settings-uk-dark.svg"><img src="docs/ribbon/img/col-Settings-uk-light.svg" alt="Налаштування"></picture></a><a href="https://github.com/iMrVoLaNd/HVAC-Stuff-Releases/releases/latest" title="Про програму — версія й перевірка оновлень, посібники, папка з налаштуваннями й журналами, автор, ліцензія та подяки."><picture><source media="(prefers-color-scheme: dark)" srcset="docs/ribbon/img/col-About-uk-dark.svg"><img src="docs/ribbon/img/col-About-uk-light.svg" alt="Про програму"></picture></a><picture><source media="(prefers-color-scheme: dark)" srcset="docs/ribbon/img/col-rest-uk-dark.svg"><img src="docs/ribbon/img/col-rest-uk-light.svg" alt="Скоро більше кнопок"></picture>
 </p>
 <!-- ribbon:end -->
 
 **HVAC Stuff** — набір плагінів Revit для спеціалістів систем опалення, вентиляції та кондиціонування. Набір росте; зараз у ньому
-два плагіни для гнучких повітроводів: один з’єднує конектори гофрою за два кліки, інший перетворює кінець жорсткого повітроводу
+два плагіни для гнучких повітропроводів: один з’єднує конектори гофрою за два кліки, інший перетворює кінець жорсткого повітропроводу
 на гнучку ділянку одним кліком. Інтерфейс — українською, англійською та російською.
 
 **[⬇ Завантажити останню версію](https://github.com/iMrVoLaNd/HVAC-Stuff-Releases/releases/latest)**
@@ -27,9 +27,9 @@
 
 | Команда | Що робить | Посібник |
 |---|---|---|
-| **З’єднати гофрою**<br><sub>Quick FlexConnect</sub> | Гнучкий повітропровід між двома конекторами за два кліки. Однакові розміри — одразу, різні — вікно з розміром і живим переглядом; переходи стають на жорсткому повітроводі. Серія пар до Esc. | [UA](manuals/QuickFlexConnect-uk.pdf) · [EN](manuals/QuickFlexConnect-en.pdf) · [RU](manuals/QuickFlexConnect-ru.pdf) |
-| **Врізати гофру**<br><sub>Flex Tail</sub> | Кінець жорсткого повітроводу біля обладнання, арматури чи повітророзподільника стає гнучким потрібної довжини. Швидкі значення 500–2500 мм, «Вся ділянка», серія елементів. | [UA](manuals/FlexTail-uk.pdf) · [EN](manuals/FlexTail-en.pdf) · [RU](manuals/FlexTail-ru.pdf) |
-| **Точка повітря**<br><sub>Air Point</sub> | Умовний повітророзподільник на вільному кінці повітропроводу, гнучкого повітропроводу, фасонної частини, арматури чи обладнання. Вид (припливний, витяжний, викидний, повітрозабірний, рециркуляційний) підбирається за мережею за кінцем, витрату вводять або беруть з елемента. Умовне позначення видно на планах, розрізах і в 3D. | на сайті |
+| **З’єднати гофрою**<br><sub>Quick FlexConnect</sub> | Гнучкий повітропровід між двома конекторами за два кліки. Однакові розміри — одразу, різні — вікно з розміром і живим переглядом; переходи стають на жорсткому повітропроводі. Серія пар до Esc. | [UA](manuals/QuickFlexConnect-uk.pdf) · [EN](manuals/QuickFlexConnect-en.pdf) · [RU](manuals/QuickFlexConnect-ru.pdf) |
+| **Врізати гофру**<br><sub>Flex Tail</sub> | Кінець жорсткого повітропроводу біля обладнання, арматури чи повітророзподільника стає гнучким потрібної довжини. Швидкі значення 500–2500 мм, «Вся ділянка», серія елементів. | [UA](manuals/FlexTail-uk.pdf) · [EN](manuals/FlexTail-en.pdf) · [RU](manuals/FlexTail-ru.pdf) |
+| **Умовний повітророзподільник**<br><sub>Conditional Air Terminal</sub> | Умовний повітророзподільник на вільному кінці повітропроводу, гнучкого повітропроводу, фасонної частини, арматури чи обладнання. Вид (припливний, витяжний, викидний, повітрозабірний, рециркуляційний) підбирається за мережею за кінцем, витрату вводять або беруть з елемента. Умовне позначення видно на планах, розрізах і в 3D. | на сайті |
 | **Розподіл**<br><sub>Distribute</sub> | Рівномірно розставляє виділені елементи між двома межами: рівні проміжки або рівні кроки між осями, по горизонталі чи вертикалі. | [UA](manuals/Distribute-uk.pdf) · [EN](manuals/Distribute-en.pdf) · [RU](manuals/Distribute-ru.pdf) |
 | **Позначення систем**<br><sub>System Marks</sub> | Заповнює назву системи й ключ сортування в параметрах повітропроводів, труб і обладнання за правилами типу системи; групи типів, автоматичний режим, журнал запусків. | на сайті |
 
@@ -51,7 +51,7 @@
 
 2. Закрийте Revit, запустіть інсталятор і виберіть версії Revit (2023–2027).
 3. Запустіть Revit. На питання про непідписану надбудову натисніть **Завжди завантажувати**.
-4. Знайдіть вкладку **HVAC Stuff** → панелі **Кінці повітроводів**, **Розподіл**, **Позначення систем**. Мову змініть у **Загальних налаштуваннях** — вона діє одразу, разом зі стрічкою.
+4. Знайдіть вкладку **HVAC Stuff** → панелі **Швидкі підключення**, **Розподіл**, **Позначення систем**. Мову змініть у **Загальних налаштуваннях** — вона діє одразу, разом зі стрічкою.
 5. Кожен плагін можна сховати: перший запуск створює `%AppData%\HVAC Stuff\plugins.json` з усіма панелями й плагінами; змініть `true` на `false` і перезапустіть Revit.
 
 ## Довідка
@@ -77,7 +77,7 @@
 |---|---|
 | Revit | 2023, 2024, 2025, 2026, 2027 |
 | Windows | 10 або 11, 64-біт |
-| Проєкт | хоча б один тип гнучкого повітроводу потрібної форми |
+| Проєкт | хоча б один тип гнучкого повітропроводу потрібної форми |
 
 ## Якщо щось пішло не так
 

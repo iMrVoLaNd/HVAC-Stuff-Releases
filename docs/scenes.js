@@ -324,14 +324,14 @@
     c.total = 5000;
   };
 
-  /* ---------- Air Point: вид воздухораспределителя подбирается по сети ---------- */
+  /* ---------- Conditional Air Terminal: вид воздухораспределителя подбирается по сети ---------- */
   H.addStrings({
     uk: {
       "sc.ap.sup": "Приплив", "sc.ap.exh": "Витяжка", "sc.ap.kind": "Вид:", "sc.ap.scene": "Сцена:", "sc.ap.auto": "Авто",
       "sc.ap.k.sup": "Припливний", "sc.ap.k.ext": "Витяжний", "sc.ap.k.exh": "Викидний", "sc.ap.k.int": "Повітрозабірний",
       "sc.ap.m.sup": "Приплив", "sc.ap.m.int": "Забір", "sc.ap.m.ext": "Витяжка", "sc.ap.m.exh": "Викид",
       "sc.ap.flow": "Витрата, м³/год", "sc.ap.flowauto": "Витрата: з мережі автоматично", "sc.ap.unit": "м³/год",
-      "sc.ap.s0": "Дві мережі: вентилятор, повітроводи, повітророзподільники. На вільні кінці поставимо Air Point",
+      "sc.ap.s0": "Дві мережі: вентилятор, повітропроводи, повітророзподільники. На вільні кінці поставимо умовний повітророзподільник",
       "sc.ap.s1": "Кінець зі сторони вулиці, за ним вентилятор. Вид — повітрозабірний. Витрата сама: сума всіх повітророзподільників, 300 + 200 = 500",
       "sc.ap.s2": "Спершу — кінець відгалуження зі сторони приміщення. Вид — припливний, вводимо витрату",
       "sc.ap.s3": "Витяжна система, кінець за вентилятором зі сторони вулиці. Вид — викидний. Витрата сама: 300 + 200 = 500",
@@ -343,7 +343,7 @@
       "sc.ap.k.sup": "Supply", "sc.ap.k.ext": "Extract", "sc.ap.k.exh": "Exhaust", "sc.ap.k.int": "Outdoor air intake",
       "sc.ap.m.sup": "Supply", "sc.ap.m.int": "Intake", "sc.ap.m.ext": "Extract", "sc.ap.m.exh": "Exhaust",
       "sc.ap.flow": "Airflow, m³/h", "sc.ap.flowauto": "Airflow: from the network", "sc.ap.unit": "m³/h",
-      "sc.ap.s0": "Two networks: a fan, ducts, air terminals. Air Point goes on the free ends",
+      "sc.ap.s0": "Two networks: a fan, ducts, air terminals. Conditional Air Terminal goes on the free ends",
       "sc.ap.s1": "An end on the outdoor side, a fan behind it. The kind is intake. The airflow fills itself: the sum of all terminals, 300 + 200 = 500",
       "sc.ap.s2": "First the end of the branch on the room side. The kind is supply, we type the airflow",
       "sc.ap.s3": "An exhaust system, the end behind the fan on the outdoor side. The kind is exhaust. The airflow fills itself: 300 + 200 = 500",
@@ -355,7 +355,7 @@
       "sc.ap.k.sup": "Приточный", "sc.ap.k.ext": "Вытяжной", "sc.ap.k.exh": "Выбросной", "sc.ap.k.int": "Воздухозаборный",
       "sc.ap.m.sup": "Приток", "sc.ap.m.int": "Забор", "sc.ap.m.ext": "Вытяжка", "sc.ap.m.exh": "Выброс",
       "sc.ap.flow": "Расход, м³/ч", "sc.ap.flowauto": "Расход: из сети автоматически", "sc.ap.unit": "м³/ч",
-      "sc.ap.s0": "Две сети: вентилятор, воздуховоды, воздухораспределители. На свободные концы поставим Air Point",
+      "sc.ap.s0": "Две сети: вентилятор, воздуховоды, воздухораспределители. На свободные концы поставим условный воздухораспределитель",
       "sc.ap.s1": "Конец со стороны улицы, за ним вентилятор. Вид — воздухозаборный. Расход сам: сумма всех воздухораспределителей, 300 + 200 = 500",
       "sc.ap.s2": "Сначала — конец ответвления со стороны помещения. Вид — приточный, вводим расход",
       "sc.ap.s3": "Вытяжная система, конец за вентилятором со стороны улицы. Вид — выбросной. Расход сам: 300 + 200 = 500",
