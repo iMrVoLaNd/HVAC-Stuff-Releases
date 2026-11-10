@@ -9,7 +9,7 @@
   /* ---- 1.6: нові назви, четверта група «Позначення систем», реалістичні сцени ---- */
   (function () {
     var N = {
-      uk: { "rb.g1": "Кінці повітропроводів", "rb.g3": "Розподіл", "rb.g4": "Позначення систем",
+      uk: { "rb.g1": "Гнучкі повітропроводи", "rb.g3": "Розподіл", "rb.g4": "Позначення систем",
         "rb.ap": "Умовний<br>повітро-<br>розподільник", "rb.tip.ap": "ap — Ставить умовний повітророзподільник на вільний кінець повітропроводу, гнучкого повітропроводу, фасонної частини, арматури чи обладнання. Вид (припливний, витяжний, викидний, повітрозабірний, рециркуляційний) підбирається за мережею, витрату вводять або беруть з елемента.",
         "rb.qfc": "З’єднати гнучким<br>повітропроводом", "rb.ft": "Замінити ділянку<br>на гнучкий<br>повітропровід",
         "rb.dhg": "Проміжки між<br>елементами<br>по горизонталі", "rb.dhc": "Осі між<br>елементами<br>по горизонталі",
@@ -20,7 +20,7 @@
         "rb.tip.sm_fill": "sm — Заповнює цільовий параметр і параметр сортування в усіх елементах проєкту й показує звіт.",
         "rb.tip.sm_clear": "sm — Очищає цільовий і сортувальний параметри в усіх елементах оброблюваних категорій.",
         "rb.sm.states": "Стани значка автоматичного режиму", "rb.sm.on": "Усе гаразд", "rb.sm.att": "Є проблеми", "rb.sm.off": "Вимкнено", "rb.sm.nc": "Не налаштовано" },
-      en: { "rb.g1": "Duct Ends", "rb.g3": "Distribute", "rb.g4": "System Marks",
+      en: { "rb.g1": "Flex Duct", "rb.g3": "Distribute", "rb.g4": "System Marks",
         "rb.ap": "Conditional<br>Air Terminal", "rb.tip.ap": "ap — Places a placeholder air terminal on a free end of a duct, a flex duct, a fitting, an accessory or equipment. The kind (supply, extract, exhaust, intake, recirculation) follows the network; the airflow is typed or taken from an element.",
         "rb.qfc": "Connect with<br>Flex Duct", "rb.ft": "Replace Section<br>with<br>Flex Duct",
         "rb.dhg": "Gaps Between<br>Elements<br>Horizontally", "rb.dhc": "Centers Between<br>Elements<br>Horizontally",
@@ -31,7 +31,7 @@
         "rb.tip.sm_fill": "sm — Fills the target parameter and the sort parameter of all elements of the project and shows a report.",
         "rb.tip.sm_clear": "sm — Clears the target and sort parameters of all elements of the processed categories.",
         "rb.sm.states": "States of the automatic mode icon", "rb.sm.on": "All good", "rb.sm.att": "Problems", "rb.sm.off": "Off", "rb.sm.nc": "Not set up" },
-      ru: { "rb.g1": "Концы воздуховодов", "rb.g3": "Распределение", "rb.g4": "Обозначение систем",
+      ru: { "rb.g1": "Гибкие воздуховоды", "rb.g3": "Распределение", "rb.g4": "Обозначение систем",
         "rb.ap": "Условный<br>воздухо-<br>распределитель", "rb.tip.ap": "ap — Ставит условный воздухораспределитель на свободный конец воздуховода, гибкого воздуховода, фасонной части, арматуры или оборудования. Вид (приточный, вытяжной, выбросной, воздухозаборный, рециркуляционный) подбирается по сети, расход вводят или берут с элемента.",
         "rb.qfc": "Соединить гибким<br>воздуховодом", "rb.ft": "Заменить участок<br>на гибкий<br>воздуховод",
         "rb.dhg": "Промежутки<br>между элементами<br>по горизонтали", "rb.dhc": "Оси между<br>элементами<br>по горизонтали",
