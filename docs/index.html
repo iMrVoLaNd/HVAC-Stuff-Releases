@@ -7,7 +7,7 @@
 <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet">
 <title>HVAC Stuff — Revit add-in</title>
 <meta name="description" content="HVAC Stuff — a growing set of free Revit plugins for specialists in heating, ventilation, and air conditioning systems.">
-<meta name="theme-color" content="#14213D">
+<meta name="theme-color" content="#DDEEFA">
 <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
 <link rel="icon" type="image/png" sizes="64x64" href="img/favicon-64.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -46,6 +46,18 @@
 .logo-disc img { width: 100%; height: 100%; display: block; animation: breathe 8s ease-in-out infinite; }
 .logo-disc::after { content: ""; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 42%, rgba(255,255,255,.34) 50%, transparent 58%); background-size: 260% 100%; background-position: 130% 0; animation: sweep 6.5s ease-in-out infinite; }
 @media (max-width: 860px) { .hero .grid { grid-template-columns: 1fr; } .logo-stage { order: -1; width: min(170px, 48vw); } .hero { padding: 40px 0 56px; } }
+
+.shot-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 22px; }
+.shot-tabs button { font: inherit; font-size: 14px; font-weight: 600; padding: 8px 16px; border-radius: 10px; border: 1.5px solid var(--line); background: var(--card); color: var(--text); cursor: pointer; }
+.shot-tabs button:hover { border-color: var(--sky); }
+.shot-tabs button[aria-pressed="true"] { background: var(--head-soft, #D7F0FC); border-color: var(--sky); }
+:root[data-theme="dark"] .shot-tabs button[aria-pressed="true"] { background: #12385A; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .shot-tabs button[aria-pressed="true"] { background: #12385A; } }
+.shot { margin: 0 0 40px; }
+.shot-stage { display: grid; place-items: center; min-height: 220px; padding: 28px 16px; border-radius: 20px; border: 1px solid var(--line); background: linear-gradient(135deg, var(--bg), var(--bg-2)); }
+.shot-stage img { max-width: 100%; height: auto; width: auto; filter: drop-shadow(0 18px 28px rgba(13,24,48,.28)); }
+.shot figcaption { margin-top: 12px; color: var(--muted); font-size: 15px; max-width: 820px; }
+.setg .card h3 { font-size: 18px; }
 
 .parse-link { display: inline-block; margin-top: 26px; font-weight: 600; text-decoration: none; border-bottom: 2px solid var(--amber); }
 .man { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 22px; }
@@ -86,7 +98,7 @@ details[open] summary::after { content: "−"; }
           <a class="btn ghost" href="#plugins" data-i18n="hero.plugins"></a>
         </div>
         <div class="meta">
-          <span class="chip"><span data-i18n="hero.version"></span> <b class="verx">1.8.0</b></span>
+          <span class="chip"><span data-i18n="hero.version"></span> <b class="verx">1.9.0</b></span>
           <span class="chip">Revit <b>2023–2027</b></span>
           <span class="chip">UA · EN · RU</span>
           <span class="chip" data-i18n="hero.free"></span>
@@ -113,6 +125,30 @@ details[open] summary::after { content: "−"; }
     <p class="lead" data-i18n="plug.lead"></p>
     <div class="plugs" data-plugs></div>
     <a class="parse-link" href="name-parsing.html" data-i18n="plug.parse"></a>
+  </div>
+</section>
+
+<section class="alt" id="look">
+  <div class="wrap">
+    <p class="eyebrow" data-i18n="look.eyebrow"></p>
+    <h2 data-i18n="look.title"></h2>
+    <p class="lead" data-i18n="look.lead"></p>
+    <div class="shot-tabs" id="shotTabs" role="group">
+      <button type="button" data-shot="settings" aria-pressed="true" data-i18n="look.t.settings"></button>
+      <button type="button" data-shot="qfc" aria-pressed="false" data-i18n="look.t.qfc"></button>
+      <button type="button" data-shot="ap" aria-pressed="false" data-i18n="look.t.ap"></button>
+      <button type="button" data-shot="logs" aria-pressed="false" data-i18n="look.t.logs"></button>
+      <button type="button" data-shot="msg" aria-pressed="false" data-i18n="look.t.msg"></button>
+    </div>
+    <figure class="shot"><div class="shot-stage"><img id="shotImg" alt="" width="560" height="420"></div><figcaption id="shotCap"></figcaption></figure>
+    <div class="grid3 setg">
+      <div class="card"><h3 data-i18n="look.s1.t"></h3><p data-i18n="look.s1.p"></p></div>
+      <div class="card"><h3 data-i18n="look.s2.t"></h3><p data-i18n="look.s2.p"></p></div>
+      <div class="card"><h3 data-i18n="look.s3.t"></h3><p data-i18n="look.s3.p"></p></div>
+      <div class="card"><h3 data-i18n="look.s4.t"></h3><p data-i18n="look.s4.p"></p></div>
+      <div class="card"><h3 data-i18n="look.s5.t"></h3><p data-i18n="look.s5.p"></p></div>
+      <div class="card"><h3 data-i18n="look.s6.t"></h3><p data-i18n="look.s6.p"></p></div>
+    </div>
   </div>
 </section>
 
@@ -160,6 +196,7 @@ details[open] summary::after { content: "−"; }
     <details><summary data-i18n="q4.q"></summary><p data-i18n="q4.a"></p></details>
     <details><summary data-i18n="q5.q"></summary><p data-i18n="q5.a"></p></details>
     <details><summary data-i18n="q6.q"></summary><p data-i18n="q6.a"></p></details>
+    <details><summary data-i18n="q7.q"></summary><p data-i18n="q7.a"></p></details>
   </div>
 </section>
 </main>
@@ -184,7 +221,7 @@ window.HVAC_PAGE = { key: "home", docTitle: "home.title", T: {
     "ins.s1": "Завантажте інсталятор нижче: SingleUser або MultiUser.",
     "ins.s2": "Закрийте Revit і запустіть .msi, виберіть версії Revit.",
     "ins.s3": "Запустіть Revit. На питання про непідписану надбудову виберіть «Завжди завантажувати».",
-    "ins.s4": "Вкладка «HVAC Stuff» → панелі «Гнучкі повітропроводи», «Розподіл» та «Позначення систем».",
+    "ins.s4": "Вкладка «HVAC Stuff» → панелі «Гнучкі повітропроводи», «Умовні повітророзподільники», «Розподіл» та «Позначення систем».",
     "ins.single": "Лише для поточного користувача. Установка в",
     "ins.single2": "Права адміністратора не потрібні.",
     "ins.multi": "Для всіх користувачів комп’ютера. Установка в",
@@ -210,7 +247,34 @@ window.HVAC_PAGE = { key: "home", docTitle: "home.title", T: {
     "q5.q": "Надбудова впливає на швидкість запуску Revit?",
     "q5.a": "Ні: при старті завантажується лише стрічка. Вікна й налаштування — при першому натисканні.",
     "q6.q": "Чи будуть нові плагіни?",
-    "q6.a": "Так: набір поповнюється. Новий плагін з’являється в тому ж інсталяторі, на вкладці «HVAC Stuff». Оновлення приходить звичайним оновленням надбудови. Ідеї можна надіслати на пошту з підвалу сторінки."
+    "q6.a": "Так: набір поповнюється. Новий плагін з’являється в тому ж інсталяторі, на вкладці «HVAC Stuff». Оновлення приходить звичайним оновленням надбудови. Ідеї можна надіслати на пошту з підвалу сторінки.",
+    "look.eyebrow": "Вікна й налаштування",
+    "look.title": "Один вигляд: світла й темна тема",
+    "look.lead": "Усі вікна плагінів мають однаковий вигляд і самі перефарбовуються: тема вікон обирається в загальних налаштуваннях — світла, темна або «Авто», що повторює тему Revit. Нижче — справжні вікна; картинка йде за темою сайту.",
+    "look.t.settings": "Загальні налаштування",
+    "look.t.qfc": "Гнучкий повітропровід",
+    "look.t.ap": "Умовний повітророзподільник",
+    "look.t.logs": "Журнали",
+    "look.t.msg": "Повідомлення",
+    "look.c.settings": "Загальні налаштування, вкладка «Інтерфейс»: мова, тема вікон і запам’ятовування положення вікон.",
+    "look.c.qfc": "Вікно «Новий гнучкий повітропровід»: розмір, тип гофри, серія й гофра заданої довжини.",
+    "look.c.ap": "Вікно умовного повітророзподільника: вид кнопками, форма, розмір і витрата повітря.",
+    "look.c.logs": "Загальні налаштування, вкладка «Журнали»: які журнали вести, скільки днів зберігати, розмір файлу.",
+    "look.c.msg": "Усі повідомлення, попередження й помилки — в одному вікні: клікніть посилання, щоб виділити елемент у моделі, або скопіюйте текст.",
+    "look.s1.t": "Мова інтерфейсу",
+    "look.s1.p": "English, Українська або Русский. Діє одразу у вікнах і на стрічці.",
+    "look.s2.t": "Тема вікон",
+    "look.s2.p": "Світла, темна або «Авто» — за темою Revit 2024 і новіших. Вибір одразу перефарбовує всі відкриті вікна.",
+    "look.s3.t": "Положення вікон",
+    "look.s3.p": "Вікно відкривається біля елемента. Перемикач запам’ятовує, де ви його поставили, між запусками команд.",
+    "look.s4.t": "Журнали",
+    "look.s4.p": "Окремий журнал для кожного плагіна: що вести, скільки днів зберігати, розмір файлу.",
+    "look.s5.t": "Налаштування панелей",
+    "look.s5.p": "У кожної панелі своя кнопка: гнучкі (конфігурація, серія, довжина гофри, колір перегляду), умовні повітророзподільники, розподіл, позначення систем.",
+    "look.s6.t": "Вмикання плагінів",
+    "look.s6.p": "Файл plugins.json у %AppData%\\HVAC Stuff показує або ховає панелі й окремі плагіни. Плагін, що ще не готовий (зараз «Обсяги робіт»), прихований за замовчуванням.",
+    "q7.q": "Чи є темна тема?",
+    "q7.a": "Так. Загальні налаштування → вкладка «Інтерфейс» → «Тема вікон»: світла, темна або «Авто» (за темою Revit 2024 і новіших). Вибір одразу перефарбовує всі відкриті вікна; «Скасувати» повертає стару тему."
   },
   "en": {
     "home.title": "HVAC Stuff — Revit plugins for HVAC design",
@@ -228,7 +292,7 @@ window.HVAC_PAGE = { key: "home", docTitle: "home.title", T: {
     "ins.s1": "Download an installer below: SingleUser or MultiUser.",
     "ins.s2": "Close Revit, run the .msi, and pick the Revit versions.",
     "ins.s3": "Start Revit. When asked about an unsigned add-in, choose “Always Load”.",
-    "ins.s4": "The “HVAC Stuff” tab → the “Flex Duct”, “Distribute” and “System Marks” panels.",
+    "ins.s4": "The “HVAC Stuff” tab → the “Flex Duct”, “Conditional Air Terminals”, “Distribute” and “System Marks” panels.",
     "ins.single": "For the current user only. Installs to",
     "ins.single2": "No administrator rights needed.",
     "ins.multi": "For every user of the computer. Installs to",
@@ -254,7 +318,34 @@ window.HVAC_PAGE = { key: "home", docTitle: "home.title", T: {
     "q5.q": "Does it slow down Revit startup?",
     "q5.a": "No: only the ribbon loads at startup. Windows and settings load on the first click.",
     "q6.q": "Will there be more plugins?",
-    "q6.a": "Yes: the set keeps growing. A new plugin comes in the same installer, on the “HVAC Stuff” tab. It arrives as a regular add-in update. Ideas can be sent to the email in the page footer."
+    "q6.a": "Yes: the set keeps growing. A new plugin comes in the same installer, on the “HVAC Stuff” tab. It arrives as a regular add-in update. Ideas can be sent to the email in the page footer.",
+    "look.eyebrow": "Windows and settings",
+    "look.title": "One look, in a light and a dark theme",
+    "look.lead": "All plugin windows share one look and repaint themselves: the window theme is chosen in the general settings: light, dark, or Auto, which follows the Revit theme. Below are the real windows; the picture follows the theme of the site.",
+    "look.t.settings": "General settings",
+    "look.t.qfc": "Flex duct",
+    "look.t.ap": "Conditional air terminal",
+    "look.t.logs": "Logs",
+    "look.t.msg": "Messages",
+    "look.c.settings": "General settings, the Interface tab: the language, the window theme, and remembering the window positions.",
+    "look.c.qfc": "The New flex duct window: the size, the flex type, the series, and the flex duct of a fixed length.",
+    "look.c.ap": "The window of the conditional air terminal: the kind as buttons, the shape, the size, and the airflow.",
+    "look.c.logs": "General settings, the Logs tab: which logs to write, how many days to keep them, the size of a file.",
+    "look.c.msg": "Every message, warning, and error is in one window: click a link to select the element in the model, or copy the text.",
+    "look.s1.t": "Interface language",
+    "look.s1.p": "English, Українська or Русский. Applies at once in the windows and on the ribbon.",
+    "look.s2.t": "Window theme",
+    "look.s2.p": "Light, dark, or Auto, which follows the theme of Revit 2024 and later. A choice repaints every open window at once.",
+    "look.s3.t": "Window positions",
+    "look.s3.p": "A window opens beside the element. The switch remembers where you put it between starts of the commands.",
+    "look.s4.t": "Logs",
+    "look.s4.p": "Its own log for each plugin: what to write, how many days to keep, the size of a file.",
+    "look.s5.t": "Panel settings",
+    "look.s5.p": "Every panel has its own button: flex ducts (the pattern, the series, the flex length, the preview color), conditional air terminals, distribute, system marks.",
+    "look.s6.t": "Turning plugins on and off",
+    "look.s6.p": "The plugins.json file in %AppData%\\HVAC Stuff shows or hides panels and single plugins. A plugin that is not ready (now Scope of Work) is hidden by default.",
+    "q7.q": "Is there a dark theme?",
+    "q7.a": "Yes. General settings → the Interface tab → Window theme: light, dark, or Auto (follows the Revit 2024+ theme). A choice repaints every open window at once; Cancel brings the old theme back."
   },
   "ru": {
     "home.title": "HVAC Stuff — плагины Revit для проектирования ОВК",
@@ -272,7 +363,7 @@ window.HVAC_PAGE = { key: "home", docTitle: "home.title", T: {
     "ins.s1": "Скачайте установщик ниже: SingleUser или MultiUser.",
     "ins.s2": "Закройте Revit, запустите .msi и выберите версии Revit.",
     "ins.s3": "Запустите Revit. На вопрос о неподписанной надстройке выберите «Всегда загружать».",
-    "ins.s4": "Вкладка «HVAC Stuff» → панели «Гибкие воздуховоды», «Распределение» и «Обозначение систем».",
+    "ins.s4": "Вкладка «HVAC Stuff» → панели «Гибкие воздуховоды», «Условные воздухораспределители», «Распределение» и «Обозначение систем».",
     "ins.single": "Только для текущего пользователя. Установка в",
     "ins.single2": "Права администратора не нужны.",
     "ins.multi": "Для всех пользователей компьютера. Установка в",
@@ -298,10 +389,53 @@ window.HVAC_PAGE = { key: "home", docTitle: "home.title", T: {
     "q5.q": "Влияет ли надстройка на скорость запуска Revit?",
     "q5.a": "Нет: при старте загружается только лента. Окна и настройки — при первом нажатии.",
     "q6.q": "Будут ли новые плагины?",
-    "q6.a": "Да: набор пополняется. Новый плагин приходит в том же установщике, на вкладке «HVAC Stuff». Он появляется обычным обновлением надстройки. Идеи можно прислать на почту из подвала страницы."
+    "q6.a": "Да: набор пополняется. Новый плагин приходит в том же установщике, на вкладке «HVAC Stuff». Он появляется обычным обновлением надстройки. Идеи можно прислать на почту из подвала страницы.",
+    "look.eyebrow": "Окна и настройки",
+    "look.title": "Одно оформление: светлая и тёмная тема",
+    "look.lead": "Все окна плагинов выглядят одинаково и сами перекрашиваются: тема окон выбирается в общих настройках — светлая, тёмная или «Авто», которая повторяет тему Revit. Ниже — настоящие окна; картинка идёт за темой сайта.",
+    "look.t.settings": "Общие настройки",
+    "look.t.qfc": "Гибкий воздуховод",
+    "look.t.ap": "Условный воздухораспределитель",
+    "look.t.logs": "Журналы",
+    "look.t.msg": "Сообщения",
+    "look.c.settings": "Общие настройки, вкладка «Интерфейс»: язык, тема окон и запоминание положения окон.",
+    "look.c.qfc": "Окно «Новый гибкий воздуховод»: размер, тип гофры, серия и гофра заданной длины.",
+    "look.c.ap": "Окно условного воздухораспределителя: вид кнопками, форма, размер и расход воздуха.",
+    "look.c.logs": "Общие настройки, вкладка «Журналы»: какие журналы вести, сколько дней хранить, размер файла.",
+    "look.c.msg": "Все сообщения, предупреждения и ошибки — в одном окне: щёлкните ссылку, чтобы выделить элемент в модели, или скопируйте текст.",
+    "look.s1.t": "Язык интерфейса",
+    "look.s1.p": "English, Українська или Русский. Действует сразу в окнах и на ленте.",
+    "look.s2.t": "Тема окон",
+    "look.s2.p": "Светлая, тёмная или «Авто» — по теме Revit 2024 и новее. Выбор сразу перекрашивает все открытые окна.",
+    "look.s3.t": "Положение окон",
+    "look.s3.p": "Окно открывается рядом с элементом. Переключатель запоминает, где вы его поставили, между запусками команд.",
+    "look.s4.t": "Журналы",
+    "look.s4.p": "Отдельный журнал для каждого плагина: что вести, сколько дней хранить, размер файла.",
+    "look.s5.t": "Настройки панелей",
+    "look.s5.p": "У каждой панели своя кнопка: гибкие (конфигурация, серия, длина гофры, цвет предпросмотра), условные воздухораспределители, распределение, обозначение систем.",
+    "look.s6.t": "Включение плагинов",
+    "look.s6.p": "Файл plugins.json в %AppData%\\HVAC Stuff показывает или прячет панели и отдельные плагины. Плагин, который ещё не готов (сейчас «Объём работ»), по умолчанию скрыт.",
+    "q7.q": "Есть ли тёмная тема?",
+    "q7.a": "Да. Общие настройки → вкладка «Интерфейс» → «Тема окон»: светлая, тёмная или «Авто» (по теме Revit 2024 и новее). Выбор сразу перекрашивает все открытые окна; «Отмена» возвращает прежнюю тему."
   }
 } };
 </script>
 <script src="site.js"></script>
+<script>
+(function () {
+  var H = window.HVAC, cur = "settings";
+  var img = document.getElementById("shotImg"), cap = document.getElementById("shotCap"), tabs = document.querySelectorAll("#shotTabs button");
+  function render() {
+    img.onload = function () { img.style.width = Math.round(img.naturalWidth / 2) + "px"; };
+    img.src = "img/win/" + cur + "-" + H.lang() + "-" + H.scheme() + ".png";
+    cap.textContent = H.t("look.c." + cur);
+    tabs.forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.shot === cur); });
+  }
+  tabs.forEach(function (b) { b.addEventListener("click", function () { cur = b.dataset.shot; render(); }); });
+  H.onLang(render);
+  new MutationObserver(render).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+  if (window.matchMedia) matchMedia("(prefers-color-scheme: dark)").addEventListener("change", render);
+})();
+</script>
 </body>
 </html>

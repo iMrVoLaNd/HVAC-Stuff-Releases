@@ -7,7 +7,7 @@
 <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet">
 <title>Conditional Air Terminal — HVAC Stuff</title>
 <meta name="description" content="Conditional Air Terminal — a free Revit plugin: a placeholder air terminal on a free duct end, with the kind chosen from the network.">
-<meta name="theme-color" content="#14213D">
+<meta name="theme-color" content="#DDEEFA">
 <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
 <link rel="icon" type="image/png" sizes="64x64" href="img/favicon-64.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -31,7 +31,7 @@
     </div>
     <div class="meta">
       <span class="chip">Revit 2024–2027</span>
-      <span class="chip"><span data-i18n="hero.version"></span> <b class="verx">1.8.0</b></span>
+      <span class="chip"><span data-i18n="hero.version"></span> <b class="verx">1.9.0</b></span>
       <span class="chip" data-i18n="hero.free"></span>
       <span class="chip">UA · EN · RU</span>
     </div>
@@ -48,7 +48,7 @@
         <h3 data-i18n="ap.name"></h3>
         <p data-i18n="ap.p" style="color:var(--muted);margin:0"></p>
         <ul>
-          <li data-i18n="ap.l1"></li><li data-i18n="ap.l2"></li><li data-i18n="ap.l3"></li><li data-i18n="ap.l4"></li><li data-i18n="ap.l5"></li>
+          <li data-i18n="ap.l1"></li><li data-i18n="ap.l2"></li><li data-i18n="ap.l3"></li><li data-i18n="ap.l4"></li><li data-i18n="ap.l5"></li><li data-i18n="ap.l6"></li>
         </ul>
         <div class="btns"><span data-i18n="man.pdf"></span><span class="pdfs" data-pdf="Air Point"></span></div>
       </div>
@@ -107,6 +107,7 @@ window.HVAC_PAGE = { key: "ap", title: "ap.name", T: {
     "ap.l3": "Витрата обов’язкова: «ОК» неактивна без неї; кнопка «З елемента» бере її з повітророзподільника в моделі. Для повітрозабору й викиду витрату вводити не треба: коннектор системний і сам бере суму з мережі (коефіцієнт витрати 1, його можна змінити).",
     "ap.l4": "Під курсором — умовне позначення з крапкою на коннекторі: видно, куди піде повітря. Один перемикач екземпляра вимикає його на планах, розрізах і в 3D.",
     "ap.l5": "Серія до Esc; Shift+клік знову відкриває вікно. Форма й розмір на кінці жорсткого повітропроводу можуть відрізнятися від кінця.",
+    "ap.l6": "Ctrl+клік на повітропроводі або гнучкому повітропроводі ставить повітророзподільник на сам повітропровід, на грань під курсором, без фасонної частини; перегляд показує хрестик на грані та лінію від осі.",
     "apf.title": "Вид, витрата й позначення без зайвих кроків",
     "apf.lead": "Умовний повітророзподільник ставиться за кілька секунд і не псує специфікацію.",
     "apf1.t": "Вид за мережею", "apf1.p": "Кінець зі сторони приміщення дає припливний чи витяжний за класифікацією системи, кінець зі сторони вулиці — повітрозабір чи викид. Зворотна система завжди рециркуляція.",
@@ -114,7 +115,7 @@ window.HVAC_PAGE = { key: "ap", title: "ap.name", T: {
     "apf3.t": "Витрата без помилок", "apf3.p": "Старе значення не підставляється, «ОК» чекає на нове. Або клацніть повітророзподільник у моделі, щоб узяти його витрату.",
     "apf4.t": "Позначення скрізь", "apf4.p": "Лінія й трикутник на плані, боці, розрізі та в 3D, один перемикач «Показувати УГО» в екземплярі вимикає все одразу.",
     "apf5.t": "Не в специфікації", "apf5.p": "Назва «!Не учитывать», марка порожня: точка не потрапляє у відомості й легко замінюється справжнім повітророзподільником.",
-    "apf6.t": "Серія й скасування", "apf6.p": "Кінець за кінцем поспіль, кожна точка — окремий крок скасування. Налаштування — вкладка «Умовний повітророзподільник» в налаштуваннях панелі."
+    "apf6.t": "Серія й скасування", "apf6.p": "Кінець за кінцем поспіль, кожна точка — окремий крок скасування. Налаштування — кнопка «Налаштування умовних» на власній панелі «Умовні повітророзподільники»."
   },
   "en": {
     "pg.eyebrow": "Revit · Plugin · Conditional Air Terminal",
@@ -128,6 +129,7 @@ window.HVAC_PAGE = { key: "ap", title: "ap.name", T: {
     "ap.l3": "The airflow is required: OK stays off without it; the “From element” button takes it from an air terminal in the model. For an intake and a discharge there is nothing to type: the connector is a system one and takes the sum from the network (flow factor 1, which can be changed).",
     "ap.l4": "Under the pointer a symbol with a dot on the connector shows where the air goes. One switch of the instance turns it off in plans, sections, and 3D.",
     "ap.l5": "A series until Esc; Shift+click opens the window again. On a rigid duct end the shape and the size may differ from the end.",
+    "ap.l6": "Ctrl+click on a duct or a flex duct places the terminal on the duct itself, on the face under the pointer, with no fitting; the preview shows a cross on the face and a line from the axis.",
     "apf.title": "The kind, the airflow and the symbol with no extra steps",
     "apf.lead": "A placeholder terminal is placed in seconds and does not spoil the schedule.",
     "apf1.t": "The kind from the network", "apf1.p": "An end on the room side gives supply or extract by the system classification, an end on the outdoor side gives intake or discharge. A return system is always recirculation.",
@@ -135,7 +137,7 @@ window.HVAC_PAGE = { key: "ap", title: "ap.name", T: {
     "apf3.t": "Airflow without mistakes", "apf3.p": "The old value is not filled in, OK waits for a new one. Or click an air terminal in the model to take its airflow.",
     "apf4.t": "The symbol everywhere", "apf4.p": "A line and a triangle in plans, sides, sections and 3D; one “Show symbol” switch of the instance turns them all off at once.",
     "apf5.t": "Out of the schedules", "apf5.p": "The name is “!Не учитывать” and the mark is empty: the point stays out of the lists and is easy to replace with a real terminal.",
-    "apf6.t": "A series and undo", "apf6.p": "End after end, each point its own undo step. The settings are the “Conditional Air Terminal” tab in the settings of the panel."
+    "apf6.t": "A series and undo", "apf6.p": "End after end, each point its own undo step. The settings are the “Conditional settings” button on its own panel, “Conditional Air Terminals”."
   },
   "ru": {
     "pg.eyebrow": "Revit · Плагин · Условный воздухораспределитель",
@@ -149,6 +151,7 @@ window.HVAC_PAGE = { key: "ap", title: "ap.name", T: {
     "ap.l3": "Расход обязателен: «ОК» недоступна без него; кнопка «С элемента» берёт его с воздухораспределителя в модели. Для воздухозабора и выброса расход вводить не нужно: коннектор системный и сам берёт сумму из сети (коэффициент расхода 1, его можно изменить).",
     "ap.l4": "Под курсором — условное обозначение с точкой на коннекторе: видно, куда пойдёт воздух. Один переключатель экземпляра отключает его на планах, разрезах и в 3D.",
     "ap.l5": "Серия до Esc; Shift+щелчок снова открывает окно. Форма и размер на конце жёсткого воздуховода могут отличаться от конца.",
+    "ap.l6": "Ctrl+щелчок на воздуховоде или гибком воздуховоде ставит воздухораспределитель на сам воздуховод, на грань под курсором, без фасонной части; предпросмотр показывает крестик на грани и линию от оси.",
     "apf.title": "Вид, расход и обозначение без лишних шагов",
     "apf.lead": "Условный воздухораспределитель ставится за секунды и не портит спецификацию.",
     "apf1.t": "Вид по сети", "apf1.p": "Конец со стороны помещения даёт приточный или вытяжной по классификации системы, конец со стороны улицы — воздухозабор или выброс. Возвратная система всегда рециркуляция.",
@@ -156,7 +159,7 @@ window.HVAC_PAGE = { key: "ap", title: "ap.name", T: {
     "apf3.t": "Расход без ошибок", "apf3.p": "Старое значение не подставляется, «ОК» ждёт новое. Или щёлкните воздухораспределитель в модели, чтобы взять его расход.",
     "apf4.t": "Обозначение везде", "apf4.p": "Линия и треугольник на плане, боку, разрезе и в 3D, один переключатель «Показывать УГО» в экземпляре отключает всё сразу.",
     "apf5.t": "Не в спецификации", "apf5.p": "Наименование «!Не учитывать», марка пустая: точка не попадает в ведомости и легко заменяется настоящим воздухораспределителем.",
-    "apf6.t": "Серия и отмена", "apf6.p": "Конец за концом подряд, каждая точка — отдельный шаг отмены. Настройки — вкладка «Условный воздухораспределитель» в настройках панели."
+    "apf6.t": "Серия и отмена", "apf6.p": "Конец за концом подряд, каждая точка — отдельный шаг отмены. Настройки — кнопка «Настройки условных» на собственной панели «Условные воздухораспределители»."
   }
 } };
 </script>

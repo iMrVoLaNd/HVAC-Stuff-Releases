@@ -29,22 +29,31 @@
 .stg.on { display: block; }
 .pane { display: none; padding: 26px; min-height: 320px; align-items: center; justify-content: center; }
 .pane.on { display: flex; }
-.win { width: min(460px, 100%); border: 1px solid #c9ced8; box-shadow: 0 18px 40px -16px rgba(20,33,61,.5); background: #FBFAF6; border-radius: 6px; overflow: hidden; animation: rise .5s backwards; }
-.win header { background: #14213D; color: #fff; padding: 10px 14px; font-size: 14px; font-weight: 600; display: flex; justify-content: space-between; }
+/* окно плагина в теме Aero: светлая голубая шапка с янтарной линией, скруглённая рамка; в тёмном Revit окно тёмное (как «Авто») */
+.win { width: min(460px, 100%); border: 1.5px solid #C9DCEE; box-shadow: 0 18px 40px -16px rgba(13,24,48,.45); background: #F8FBFE; color: #0D1830; border-radius: 14px; overflow: hidden; animation: rise .5s backwards; }
+.win header { background: #DDEEFA; color: #0D1830; border-bottom: 3px solid #F5A623; padding: 10px 14px; font-size: 14px; font-weight: 600; display: flex; justify-content: space-between; }
 .win .bd { padding: 16px 18px 18px; font-size: 14px; line-height: 1.5; }
 .win .row { margin: 0 0 14px; }
-.win label { display: block; font-size: 12px; color: #5d6881; margin-bottom: 6px; }
-.win .seg { display: inline-flex; border: 1.5px solid #14213D; border-radius: 8px; overflow: hidden; }
-.win .seg button { all: unset; cursor: pointer; padding: 6px 16px; font-size: 13px; font-weight: 600; color: #14213D; }
-.win .seg button[aria-pressed="true"] { background: #F2A93B; }
+.win label { display: block; font-size: 12px; color: #5A6882; margin-bottom: 6px; }
+.win .seg { display: inline-flex; border: 1.5px solid #C9DCEE; border-radius: 10px; overflow: hidden; background: #fff; }
+.win .seg button { all: unset; cursor: pointer; padding: 6px 16px; font-size: 13px; font-weight: 600; color: #0D1830; }
+.win .seg button[aria-pressed="true"] { background: #D7F0FC; box-shadow: inset 0 0 0 1.5px #38B6F0; }
 .win .sw { display: flex; gap: 8px; flex-wrap: wrap; }
-.win .sw button { all: unset; cursor: pointer; width: 26px; height: 26px; border-radius: 6px; border: 2px solid transparent; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); transition: transform .15s; }
+.win .sw button { all: unset; cursor: pointer; width: 26px; height: 26px; border-radius: 8px; border: 2px solid transparent; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); transition: transform .15s; }
 .win .sw button:hover { transform: scale(1.12); }
-.win .sw button[aria-pressed="true"] { border-color: #14213D; }
-.win .hint { font-size: 12.5px; color: #5d6881; margin: 0; }
-.win .upd { all: unset; cursor: pointer; background: #14213D; color: #fff; padding: 7px 14px; border-radius: 8px; font-size: 13px; font-weight: 600; }
-.win .upd:hover { background: #1c2d52; }
+.win .sw button[aria-pressed="true"] { border-color: #F5A623; }
+.win .hint { font-size: 12.5px; color: #5A6882; margin: 0; }
+.win .upd { all: unset; cursor: pointer; background: #F5A623; color: #4A2F00; padding: 7px 16px; border-radius: 10px; font-size: 13px; font-weight: 600; }
+.win .upd:hover { background: #F8B64A; }
 .win .ok { color: #1c7c4b; font-weight: 600; margin-left: 10px; font-size: 13px; }
+.revit[data-theme="dark"] .win { background: #0E1930; color: #E8EEFB; border-color: #4F6CB0; box-shadow: 0 18px 40px -16px rgba(0,0,0,.7); }
+.revit[data-theme="dark"] .win header { background: #0B1530; color: #E8EEFB; }
+.revit[data-theme="dark"] .win label, .revit[data-theme="dark"] .win .hint { color: #8F9EC0; }
+.revit[data-theme="dark"] .win .seg { background: #0A1328; border-color: #2A3F73; }
+.revit[data-theme="dark"] .win .seg button { color: #E8EEFB; }
+.revit[data-theme="dark"] .win .seg button[aria-pressed="true"] { background: #12385A; box-shadow: inset 0 0 0 1.5px #4CC9FF; }
+.revit[data-theme="dark"] .win .upd { background: #FFB93D; color: #2B1A00; }
+.revit[data-theme="dark"] .win .ok { color: #3DD598; }
 .dr { transition: transform .9s cubic-bezier(.4,0,.2,1); }
 .dm { transition: opacity .4s; }
 .replay { all: unset; position: absolute; right: 12px; bottom: 12px; cursor: pointer; background: #14213D; color: #fff; font: 600 13px "Segoe UI", system-ui, sans-serif; padding: 7px 14px; border-radius: 99px; z-index: 2; box-shadow: 0 6px 16px -6px rgba(0,0,0,.5); }
@@ -53,7 +62,7 @@
 .rv-status { display: flex; justify-content: space-between; padding: 5px 10px; color: var(--txt); min-height: 24px; }
 .chips2 { position: absolute; left: 14px; top: 12px; display: flex; gap: 6px; align-items: center; font-size: 12px; color: var(--stg-muted); pointer-events: none; }
 .chips2 span.c { border: 1.5px solid var(--stg-line); border-radius: 6px; padding: 3px 8px; color: var(--stg-ink); background: var(--canvas); transition: all .25s; }
-.chips2 span.c.hi { background: #F2A93B; border-color: #F2A93B; color: #14213D; font-weight: 700; transform: scale(1.1); }
+.chips2 span.c.hi { background: #F5A623; border-color: #F5A623; color: #14213D; font-weight: 700; transform: scale(1.1); }
 .chips2[hidden] { display: none; }
 /* сцены на холсте */
 .cur { transform: translate(60px, 260px); transition: transform .9s cubic-bezier(.5,0,.2,1), opacity .4s; }
@@ -62,7 +71,7 @@
 @keyframes ringo { from { opacity: .9; transform: scale(.3); } to { opacity: 0; transform: scale(2.4); } }
 .mk { opacity: 0; transition: opacity .25s; } .mk.on { opacity: 1; }
 .clip rect { transition: width .9s cubic-bezier(.4,0,.2,1); }
-.flexcol { stroke: var(--flex, #F2A93B); }
+.flexcol { stroke: var(--flex, #F5A623); }
 @media (max-width: 700px) { .rv-tabs, .rv-ribbon { zoom: 1.1; } .rv-stage { min-height: 220px; } .pane { min-height: 220px; padding: 14px; } .chips2 { display: none; } }
 .revit[data-theme="light"] { --win: #d9d9d9; --pan: #f5f5f5; --txt: #3c3c3c; --sep: #e2e2e2; --hov: #e3ecf6; --hovb: #9fb7d0; --act: #d2e1f1; --ink: #14213D; --blu: #3E9AD0; --tipbg: #f5f5f5; --tipb: #8c8c8c; --tipl: #cfcfcf; --f1: #666; --canvas: #ffffff; --stg-ink: #14213D; --stg-line: #c9ced8; --stg-muted: #5d6881; }
 .revit .ink { stroke: var(--ink); } .revit .blu { stroke: var(--blu); }
@@ -83,17 +92,17 @@
 .scn { display: block; width: 100%; height: auto; font-family: "Segoe UI", system-ui, sans-serif; }
 .scn text:not([fill]) { fill: var(--s-ink); }
 .scn text.sc-sub, .scn text.sc-note, .scn text.sc-note2 { fill: var(--s-muted); }
-.scn text.sc-win-t { fill: #14213D; }
+.scn text.sc-win-t { fill: #0D1830; }
 .scn .sc-mono { font-family: Consolas, "Cascadia Mono", monospace; }
 .scn .sc-note { font-size: 15px; }
 .scn .sc-card { fill: var(--s-card); stroke: var(--s-line); stroke-width: 1.5; transition: stroke .25s; }
 .scn .sc-chip { fill: var(--s-chip); stroke: var(--s-line); stroke-width: 1; }
 .scn .sc-ar { stroke: var(--s-muted); stroke-width: 2; fill: none; }
-.scn .sc-win { fill: #FBFAF6; stroke: #c9ced8; stroke-width: 1.5; }
-.scn .tile.act .sc-card, .scn .bx.act .sc-card { stroke: #F2A93B; stroke-width: 2.4; }
+.scn .sc-win { fill: #F8FBFE; stroke: #C9DCEE; stroke-width: 1.5; }
+.scn .tile.act .sc-card, .scn .bx.act .sc-card { stroke: #F5A623; stroke-width: 2.4; }
 .scn .res { transition: opacity .35s; }
 .scn .flow { fill: none; stroke: var(--s-line); stroke-width: 2.5; stroke-dasharray: 6 6; }
-.scn .flow.run { stroke: #F2A93B; animation: flowdash .8s linear infinite; }
+.scn .flow.run { stroke: #F5A623; animation: flowdash .8s linear infinite; }
 @keyframes flowdash { to { stroke-dashoffset: -24; } }
 .scn .tok { transition: opacity .3s; }
 .scn .tok.pop rect { transform-box: fill-box; transform-origin: center; animation: popr .45s ease-out; }
@@ -103,7 +112,7 @@
 .scn .rep, .scn .jr, .scn .newb, .scn .tile { transition: opacity .45s; }
 .scn .air { stroke: #5BB6E8; }
 .scn .bd { stroke: var(--s-ink); stroke-width: 4; opacity: .75; }
-.scn .dm { stroke: #F2A93B; stroke-width: 2.5; transition: opacity .4s; }
+.scn .dm { stroke: #F5A623; stroke-width: 2.5; transition: opacity .4s; }
 .scn .dr { transition: transform .9s cubic-bezier(.4, 0, .2, 1); }
 /* метка коннектора: как в плагине — тонкая полоса из колец, стрелка и крест; под курсором светлее, выбранный темнее */
 .scn .cm { opacity: 0; transition: opacity .25s; stroke: #5BB6E8; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
@@ -122,14 +131,14 @@
 .scn .imp { transform-box: fill-box; transform-origin: center; animation: apspin 1.5s linear infinite; }
 .scn .imp.ccw { animation-direction: reverse; }
 @keyframes apspin { to { transform: rotate(360deg); } }
-.scn .air.ex { stroke: #F2A93B; }
+.scn .air.ex { stroke: #F5A623; }
 .scn .ugo { opacity: 0; transition: opacity .3s; stroke-width: 2.6; }
 .scn .ugo.on { opacity: 1; }
-.scn .ugo.pv { stroke: #F2A93B; }
+.scn .ugo.pv { stroke: #F5A623; }
 .scn .ugo.fn { stroke: var(--s-ink); }
 .scn .ugo .plate { stroke-width: 4; }
 .scn .ugo .dot { stroke: none; }
-.scn .ugo.pv .dot { fill: #F2A93B; }
+.scn .ugo.pv .dot { fill: #F5A623; }
 .scn .ugo.fn .dot { fill: var(--s-ink); }
 .scn .aptag { transition: opacity .5s; }
 .scn .fw, .scn .fl { transition: opacity .35s; }
@@ -142,8 +151,8 @@
 /* выбор сцены: авто или один из четырёх видов, одна строка */
 .apsel { display: flex; flex-wrap: nowrap; gap: 6px; align-items: center; height: 34px; margin: 12px 16px 0; overflow-x: auto; white-space: nowrap; font-size: 13px; color: var(--stg-muted, var(--s-muted)); }
 .apsel .apb { font: inherit; color: var(--s-ink); background: var(--s-chip, transparent); border: 1.5px solid var(--s-line); border-radius: 7px; padding: 3px 10px; cursor: pointer; }
-.apsel .apb:hover { border-color: #F2A93B; }
-.apsel .apb.on { background: #F2A93B; border-color: #F2A93B; color: #14213D; font-weight: 700; }
+.apsel .apb:hover { border-color: #F5A623; }
+.apsel .apb.on { background: #F5A623; border-color: #F5A623; color: #14213D; font-weight: 700; }
 .rv-stage .scene-host:has(> .chips2.bar) { flex-direction: column; align-items: stretch; justify-content: center; }
 .chips2 { transition: opacity .3s; }
 /* подпись занимает всегда одно и то же место, чтобы блок не прыгал при смене текста */

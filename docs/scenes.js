@@ -214,7 +214,7 @@
       tiles += '<g class="tile tile' + i + '"><rect x="8" y="' + y + '" width="196" height="58" rx="9" class="sc-card"/>' + glyph(r[0], 18, y + 11) +
         '<text x="62" y="' + (y + 24) + '" class="sc-t" font-size="13.5" font-weight="600">' + t("sc.el." + r[0]) + "</text>" +
         '<rect x="62" y="' + (y + 31) + '" width="' + (r[1].length * 9 + 14) + '" height="19" rx="5" class="sc-chip"/><text x="69" y="' + (y + 45) + '" class="sc-mono" font-size="13">' + r[1] + "</text>" +
-        '<g class="res" opacity="' + (filled ? 1 : 0) + '"><path d="M150 ' + (y + 40) + 'h6" class="sc-ar"/><rect x="160" y="' + (y + 31) + '" width="' + (r[2].length * 9 + 14) + '" height="19" rx="5" fill="#14213D" stroke="#F2A93B" stroke-width="1.4"/><text x="167" y="' + (y + 45) + '" class="sc-mono" font-size="13" fill="#fff">' + r[2] + "</text></g></g>";
+        '<g class="res" opacity="' + (filled ? 1 : 0) + '"><path d="M150 ' + (y + 40) + 'h6" class="sc-ar"/><rect x="160" y="' + (y + 31) + '" width="' + (r[2].length * 9 + 14) + '" height="19" rx="5" fill="#1E3A70" stroke="#F5A623" stroke-width="1.4"/><text x="167" y="' + (y + 45) + '" class="sc-mono" font-size="13" fill="#fff">' + r[2] + "</text></g></g>";
     }
     var box = function (cls, x, y, w, h, title, body) {
       return '<g class="bx ' + cls + '"><rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="10" class="sc-card"/><text x="' + (x + 12) + '" y="' + (y + 22) + '" class="sc-sub" font-size="12">' + title + "</text>" + body + "</g>";
@@ -223,12 +223,12 @@
       '<path class="flow f1" d="M208 ' + (TILE_Y[0] + 29) + 'C232 ' + (TILE_Y[0] + 29) + ' 236 160 262 160"/>' +
       box("b-src", 262, 124, 132, 72, t("sc.src"), '<rect x="274" y="154" width="92" height="30" rx="6" class="sc-chip"/><text x="284" y="175" class="sc-mono val" font-size="15" font-weight="700">' + (extra && extra.src || "ПК3") + "</text>") +
       '<path class="flow f2" d="M396 160H432"/>' +
-      box("b-str", 432, 124, 150, 72, t("sc.strat"), '<text x="444" y="168" class="sc-t" font-size="14" font-weight="700">' + t("sc.simple") + '</text><text x="444" y="188" class="sc-mono" font-size="14" fill="#F2A93B">ПК → К</text>') +
+      box("b-str", 432, 124, 150, 72, t("sc.strat"), '<text x="444" y="168" class="sc-t" font-size="14" font-weight="700">' + t("sc.simple") + '</text><text x="444" y="188" class="sc-mono" font-size="14" fill="#F5A623">ПК → К</text>') +
       '<path class="flow f3 up" d="M584 160C610 160 614 94 640 94"/><path class="flow f3 dn" d="M584 160C610 160 614 244 640 244"/>' +
       box("b-tgt", 640, 56, 152, 76, t("sc.target"), '<text x="652" y="97" class="sc-mono" font-size="11.5">ADSK_Система_Имя</text><rect x="652" y="104" width="92" height="24" rx="6" class="sc-chip"/><text x="662" y="121" class="sc-mono val" font-size="15" font-weight="700">' + (filled ? "К3" : "") + "</text>") +
       box("b-srt", 640, 206, 152, 76, t("sc.sort"), '<text x="652" y="247" class="sc-mono" font-size="11.5">Unicode Сортування</text><rect x="652" y="254" width="92" height="24" rx="6" class="sc-chip"/><text x="662" y="271" class="sc-mono val" font-size="15" font-weight="700">' + (filled ? "▯К3" : "") + "</text>") +
-      '<g class="tok" opacity="0"><rect x="-26" y="-13" width="52" height="26" rx="13" fill="#F2A93B"/><text x="0" y="5" text-anchor="middle" font-size="13" font-weight="700" fill="#14213D" class="sc-mono tt">ПК3</text></g>' +
-      '<g class="tok tok2" opacity="0"><rect x="-26" y="-13" width="52" height="26" rx="13" fill="#F2A93B"/><text x="0" y="5" text-anchor="middle" font-size="13" font-weight="700" fill="#14213D" class="sc-mono tt2">К3</text></g>';
+      '<g class="tok" opacity="0"><rect x="-26" y="-13" width="52" height="26" rx="13" fill="#F5A623"/><text x="0" y="5" text-anchor="middle" font-size="13" font-weight="700" fill="#14213D" class="sc-mono tt">ПК3</text></g>' +
+      '<g class="tok tok2" opacity="0"><rect x="-26" y="-13" width="52" height="26" rx="13" fill="#F5A623"/><text x="0" y="5" text-anchor="middle" font-size="13" font-weight="700" fill="#14213D" class="sc-mono tt2">К3</text></g>';
     return out;
   }
   function tok(c, sel, x, y, dur, op) {
@@ -238,11 +238,11 @@
   }
   function setText(c, sel, v) { var e = c.q(sel); if (e) e.textContent = v; }
   function panel(c, title, rows, x, y, w) {
-    var h = 62 + rows.length * 26, s = '<g class="rep" opacity="0"><rect x="0" y="0" width="800" height="340" fill="#000" fill-opacity=".5"/>' +
-      '<g transform="translate(' + (x) + " " + y + ')"><rect width="' + w + '" height="' + h + '" rx="8" class="sc-win"/><path d="M0 8a8 8 0 0 1 8-8H' + (w - 8) + 'a8 8 0 0 1 8 8V34H0Z" fill="#14213D"/>' +
-      '<text x="16" y="23" fill="#fff" font-size="14" font-weight="700">' + title + "</text>";
+    var h = 66 + rows.length * 26, s = '<g class="rep" opacity="0"><rect x="0" y="0" width="800" height="340" fill="#000" fill-opacity=".5"/>' +
+      '<g transform="translate(' + (x) + " " + y + ')"><rect width="' + w + '" height="' + h + '" rx="14" class="sc-win"/><path d="M0 14a14 14 0 0 1 14-14H' + (w - 14) + 'a14 14 0 0 1 14 14V34H0Z" fill="#DDEEFA"/><rect y="34" width="' + w + '" height="3" fill="#F5A623"/>' +
+      '<text x="16" y="23" fill="#0D1830" font-size="14" font-weight="700">' + title + "</text>";
     rows.forEach(function (r, i) {
-      s += '<text x="18" y="' + (60 + i * 26) + '" class="sc-win-t" font-size="13">' + r[0] + '</text><text x="' + (w - 18) + '" y="' + (60 + i * 26) + '" text-anchor="end" class="sc-win-t" font-size="14" font-weight="700">' + r[1] + "</text>";
+      s += '<text x="18" y="' + (64 + i * 26) + '" class="sc-win-t" font-size="13">' + r[0] + '</text><text x="' + (w - 18) + '" y="' + (64 + i * 26) + '" text-anchor="end" class="sc-win-t" font-size="14" font-weight="700">' + r[1] + "</text>";
     });
     return s + "</g></g>";
   }
@@ -310,7 +310,7 @@
 
   /* журнал запусков */
   SCENES.sm_jrn = function (c) {
-    var rows = [["17:42:05", "sc.jrn.auto", "1", "#2f9e5f"], ["17:41:12", "sc.jrn.auto", "3", "#2f9e5f"], ["17:30:48", "sc.jrn.manual", "128", "#F2A93B"], ["17:12:30", "sc.jrn.clear", "128", "#e5484d"], ["16:58:03", "sc.jrn.manual", "126", "#F2A93B"]], s = "", i;
+    var rows = [["17:42:05", "sc.jrn.auto", "1", "#2f9e5f"], ["17:41:12", "sc.jrn.auto", "3", "#2f9e5f"], ["17:30:48", "sc.jrn.manual", "128", "#F5A623"], ["17:12:30", "sc.jrn.clear", "128", "#e5484d"], ["16:58:03", "sc.jrn.manual", "126", "#F5A623"]], s = "", i;
     for (i = 0; i < rows.length; i++) {
       var y = 74 + i * 46;
       s += '<g class="jr" opacity="0"><rect x="120" y="' + y + '" width="560" height="38" rx="9" class="sc-card"/><circle cx="146" cy="' + (y + 19) + '" r="6" fill="' + rows[i][3] + '"/>' +
@@ -386,7 +386,7 @@
   /* расход точек: забор и выброс несут сумму всех воздухораспределителей сети (300 у настоящего + 200 у точки на ответвлении) */
   var FL = { A: "500", B: "200", C: "500", D: "200" };
   function pill(n, x, y) {
-    return '<g class="fl fl' + n + '" opacity="0"><rect x="' + x + '" y="' + y + '" width="146" height="30" rx="15" class="sc-card" style="stroke:#F2A93B;stroke-width:2"/>' +
+    return '<g class="fl fl' + n + '" opacity="0"><rect x="' + x + '" y="' + y + '" width="146" height="30" rx="15" class="sc-card" style="stroke:#F5A623;stroke-width:2"/>' +
       '<text x="' + (x + 73) + '" y="' + (y + 21) + '" text-anchor="middle" class="sc-mono" font-size="16" font-weight="700">' + (n === "A" || n === "C" ? "Σ " : "") + FL[n] + " " + t("sc.ap.unit") + "</text></g>";
   }
   /* какие точки показывает режим: авто — все по очереди, остальные — одна точка (для забора и выброса остальные точки сети уже стоят) */
@@ -424,9 +424,9 @@
       '<text x="562" y="' + (exhCy + 66) + '" text-anchor="middle" class="sc-note" font-size="15" font-weight="600">300 ' + t("sc.ap.unit") + '</text>' +
       pill("A", 14, supCy + 30) + pill("B", 424, -12) + pill("C", 14, exhCy + 30) + pill("D", 424, 344) +
       /* окно ввода расхода: одно на все точки, заголовок и поле меняются перед показом */
-      '<g class="fw" opacity="0"><rect x="176" y="106" width="330" height="118" rx="10" class="sc-card" style="stroke:#F2A93B;stroke-width:2.6"/><text x="196" y="136" class="sc-sub fwt" font-size="14" font-weight="600">' + t("sc.ap.flow") + '</text>' +
+      '<g class="fw" opacity="0"><rect x="176" y="106" width="330" height="118" rx="10" class="sc-card" style="stroke:#F5A623;stroke-width:2.6"/><text x="196" y="136" class="sc-sub fwt" font-size="14" font-weight="600">' + t("sc.ap.flow") + '</text>' +
       '<rect x="196" y="150" width="180" height="50" rx="7" class="sc-chip fwf"/><text class="fwv sc-mono" x="210" y="184" font-size="24" font-weight="700"></text>' +
-      '<rect class="fwok" x="392" y="150" width="90" height="50" rx="7" fill="#14213D" stroke="#F2A93B" stroke-width="2"/><text x="437" y="183" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">OK</text></g>' +
+      '<rect class="fwok" x="392" y="150" width="90" height="50" rx="7" fill="#1E3A70" stroke="#F5A623" stroke-width="2"/><text x="437" y="183" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">OK</text></g>' +
       CUR, "0 -34 630 424");
     c.host.insertAdjacentHTML("beforeend", '<div class="apcap"></div>');
     /* виды-кнопки и выбор сцены стоят полосами над рисунком, а не поверх него */
@@ -468,7 +468,7 @@
       if (v.auto) c.at(t0 + 3000, function () { fwv.textContent = "Σ 300 + 200"; });
       else flow.split("").forEach(function (ch, i) { c.at(t0 + 3000 + i * 220, function () { fwv.textContent = flow.slice(0, i + 1); }); });
       c.at(t0 + 3800, function () { c.go(".cur", 437, 180); });
-      c.at(t0 + 4400, function () { c.press(); c.q(".fwok").setAttribute("fill", "#F2A93B"); });
+      c.at(t0 + 4400, function () { c.press(); c.q(".fwok").setAttribute("fill", "#F5A623"); });
       c.at(t0 + 4800, function () { c.q(".fw").setAttribute("opacity", 0); c.on(".p" + n, "on", false); placed(n); });
     }
     say("sc.ap.s0"); c.go(".cur", 430, 190);

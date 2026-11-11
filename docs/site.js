@@ -52,7 +52,7 @@
   merge(PAGE.T);
 
   var lang = "uk", listeners = [];
-  var H = window.HVAC = { page: PAGE.key || "", version: "1.8.0", repo: REPO };
+  var H = window.HVAC = { page: PAGE.key || "", version: "1.9.0", repo: REPO };
   H.t = function (k) { return (T[lang] && T[lang][k]) || T.en[k] || k; };
   H.lang = function () { return lang; };
   H.addStrings = function (d) { merge(d); };
@@ -117,7 +117,7 @@
   function buildFooter() {
     var el = document.getElementById("siteFoot"); if (!el) return;
     el.innerHTML =
-      '<div class="wrap"><div><img class="foot-logo" src="img/logo-128.png" alt="" width="44" height="44"><b style="color:#fff">HVAC Stuff</b><br><span data-i18n="foot.copy"></span></div>' +
+      '<div class="wrap"><div><img class="foot-logo" src="img/logo-128.png" alt="" width="44" height="44"><b style="color:var(--foot-link)">HVAC Stuff</b><br><span data-i18n="foot.copy"></span></div>' +
       '<div><a href="index.html" data-i18n="foot.home"></a> · ' +
       '<a href="https://github.com/' + REPO + '/blob/main/LICENSE.md" data-i18n="foot.license"></a> · ' +
       '<a href="https://github.com/' + REPO + '/blob/main/THIRD-PARTY-NOTICES.md" data-i18n="foot.third"></a> · ' +
