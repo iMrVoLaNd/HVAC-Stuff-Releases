@@ -7,6 +7,7 @@
 
   H.addStrings({
     uk: {
+      "sc.qfc.same": "Однакові діаметри: гнучкий повітропровід будується одразу", "sc.qfc.diff": "Різні діаметри: вікно з розміром, а на жорсткому повітропроводі одразу будується перехід",
       "sc.el.duct": "Повітропровід", "sc.el.elbow": "Відвід", "sc.el.tee": "Трійник", "sc.el.diff": "Розподільник",
       "sc.src": "Ім’я системи", "sc.strat": "Стратегія", "sc.simple": "Проста", "sc.target": "Цільовий параметр", "sc.sort": "Параметр сортування",
       "sc.new": "новий", "sc.updater": "Оновлювач", "sc.rank": "невидимі символи рангу",
@@ -18,6 +19,7 @@
       "sc.jrn.t": "Журнал запусків", "sc.jrn.auto": "Автоматично", "sc.jrn.manual": "Вручну", "sc.jrn.clear": "Очищення", "sc.jrn.n": "елементів", "sc.jrn1": "Останні запуски проєкту: автоматичні й ручні"
     },
     en: {
+      "sc.qfc.same": "Same diameters: the flex duct is built at once", "sc.qfc.diff": "Different diameters: a window with the size, and a transition is built on the rigid duct at once",
       "sc.el.duct": "Duct", "sc.el.elbow": "Elbow", "sc.el.tee": "Tee", "sc.el.diff": "Diffuser",
       "sc.src": "System Name", "sc.strat": "Strategy", "sc.simple": "Simple", "sc.target": "Target parameter", "sc.sort": "Sort parameter",
       "sc.new": "new", "sc.updater": "Updater", "sc.rank": "invisible rank characters",
@@ -29,6 +31,7 @@
       "sc.jrn.t": "Run journal", "sc.jrn.auto": "Automatic", "sc.jrn.manual": "Manual", "sc.jrn.clear": "Clearing", "sc.jrn.n": "elements", "sc.jrn1": "Latest runs of the project: automatic and manual"
     },
     ru: {
+      "sc.qfc.same": "Одинаковые диаметры: гибкий воздуховод строится сразу", "sc.qfc.diff": "Разные диаметры: окно с размером, а на жёстком воздуховоде сразу строится переход",
       "sc.el.duct": "Воздуховод", "sc.el.elbow": "Отвод", "sc.el.tee": "Тройник", "sc.el.diff": "Воздухораспределитель",
       "sc.src": "Имя системы", "sc.strat": "Стратегия", "sc.simple": "Простая", "sc.target": "Целевой параметр", "sc.sort": "Параметр сортировки",
       "sc.new": "новый", "sc.updater": "Апдейтер", "sc.rank": "невидимые символы ранга",
@@ -86,6 +89,8 @@
     return '<g class="cm ' + cls + '"><path d="M' + (x - 3) + " " + (y - len / 2) + "V" + (y + len / 2) + "M" + x + " " + (y - len / 2) + "V" + (y + len / 2) + "M" + (x + 3) + " " + (y - len / 2) + "V" + (y + len / 2) + '"/>' +
       '<path d="M' + x + " " + y + "H" + ex + "M" + (ex - dir * 9) + " " + (y - 5.5) + "L" + ex + " " + y + "L" + (ex - dir * 9) + " " + (y + 5.5) + '"/></g>';
   }
+  /* подставляет {0}, {1}… в строки плагина */
+  function fmt(str) { var a = arguments; return str.replace(/\{(\d)\}/g, function (m, i) { return a[+i + 1] === undefined ? m : a[+i + 1]; }); }
   var CUR = '<g class="cur"><g class="cp"><path d="M0 0V17L4.5 13 8 20.5 10.7 19.3 7.2 12H13Z" fill="#fff" stroke="#111" stroke-width="1.2" stroke-linejoin="round"/></g></g>';
 
   /* ---------- проигрыватель ---------- */
@@ -98,6 +103,7 @@
     stop(host);
     var S = SCENES[name]; if (!S) return null;
     var c = { host: host, id: "s" + (++uid), timers: [], dead: false, total: 6000, name: name };
+    c.say = function (txt) { if (!c.dead && onStatus) onStatus(txt); };
     c.status = function (k) { if (!c.dead && onStatus) onStatus(k ? t(k) : ""); };
     c.at = function (ms, fn) { c.timers.push(setTimeout(function () { if (!c.dead) fn(); }, ms)); };
     c.q = function (s) { return host.querySelector(s); };
@@ -112,25 +118,66 @@
     return c;
   }
 
-  /* ---------- соединение гофрой: воздуховод → воздухораспределитель ---------- */
+  /* ---------- соединение гибким воздуховодом: два случая — одинаковые диаметры и разные ---------- */
   SCENES.qfc = function (c) {
-    var id = c.id, D = "M250 172 C380 172 470 96 596 96";
-    c.draw('<clipPath id="' + id + 'cq"><rect class="clipq" x="240" y="40" width="0" height="260"/></clipPath>' +
-      duct(30, 150, 220, 44, "r", id) + '<ellipse cx="253" cy="172" rx="6" ry="20" fill="#252c35"/>' +
-      diffuser(626, 38, 120, 116, id) + '<rect x="598" y="82" width="28" height="28" fill="url(#' + id + 'dg)" stroke="#4b5563" stroke-width="1.4"/><ellipse cx="597" cy="96" rx="5" ry="14" fill="#252c35"/>' +
-      '<g clip-path="url(#' + id + 'cq)">' + flex(D, 30) + collar(256, 172, 34) + collar(592, 96, 26) + "</g>" +
-      conn("m1", 250, 172, 44, 1) + conn("m2", 597, 96, 28, -1) +
-      '<text x="40" y="228" class="sc-note">Ø250</text><text x="596" y="140" class="sc-note">Ø160</text>' + CUR);
-    c.status("rb.q1"); c.go(".cur", 70, 300);
-    c.at(350, function () { c.go(".cur", 250, 172); });
-    c.at(900, function () { c.on(".m1", "on"); });
-    c.at(1400, function () { c.press(); c.on(".m1", "sel"); c.status("rb.q2"); });
-    c.at(1800, function () { c.go(".cur", 597, 96); });
-    c.at(2350, function () { c.on(".m2", "on"); });
-    c.at(2850, function () { c.press(); c.on(".m2", "sel"); });
-    c.at(3250, function () { c.q(".clipq").setAttribute("width", 380); c.q(".cur").style.opacity = 0; });
-    c.at(4300, function () { c.on(".m1", "on", false); c.on(".m2", "on", false); c.on(".m1", "sel", false); c.on(".m2", "sel", false); c.status("rb.q3"); });
-    c.total = 7500;
+    var id = c.id, TA = 7600, esc = function () { return t("rx.QfcEscCancel"); };
+    function first() { return fmt(t("rx.QfcPromptFirst"), "", esc()); }
+    function cap(k) { return '<text class="sc-cap" x="40" y="34">' + t(k) + "</text>"; }
+    function clip() { return '<clipPath id="' + id + 'cq"><rect class="clipq" x="240" y="40" width="0" height="260"/></clipPath>'; }
+    function caps(x, y, d) { return '<ellipse cx="' + x + '" cy="' + y + '" rx="6" ry="' + d / 2 + '" fill="#252c35"/>'; }
+    /* случай 1: оба воздуховода Ø200, гибкий строится сразу */
+    function partA() {
+      var D = "M250 170 C380 170 430 90 560 90";
+      c.draw(cap("sc.qfc.same") + clip() + duct(30, 150, 220, 40, "r", id) + caps(253, 170, 40) + duct(560, 70, 210, 40, "l", id) + caps(557, 90, 40) +
+        '<g clip-path="url(#' + id + 'cq)">' + flex(D, 34) + collar(256, 170, 34) + collar(554, 90, 34) + "</g>" +
+        conn("m1", 250, 170, 44, 1) + conn("m2", 560, 90, 44, -1) +
+        '<text x="40" y="222" class="sc-note">Ø200</text><text x="700" y="140" class="sc-note">Ø200</text>' + CUR);
+      c.say(first()); c.go(".cur", 70, 300);
+      c.at(350, function () { c.go(".cur", 250, 170); });
+      c.at(900, function () { c.on(".m1", "on"); });
+      c.at(1400, function () { c.press(); c.on(".m1", "sel"); c.say(fmt(t("rx.QfcPromptSecond"), "", "Ø200", esc())); });
+      c.at(1800, function () { c.go(".cur", 560, 90); });
+      c.at(2350, function () { c.on(".m2", "on"); });
+      c.at(2850, function () { c.press(); c.on(".m2", "sel"); });
+      c.at(3250, function () { c.q(".clipq").setAttribute("width", 330); c.q(".cur").style.opacity = 0; });
+      c.at(4300, function () { c.on(".m1", "on", false); c.on(".m2", "on", false); c.on(".m1", "sel", false); c.on(".m2", "sel", false); c.say(first()); });
+    }
+    /* случай 2: Ø250 и Ø160, открывается окно, на жёстком воздуховоде сразу строится переход, дальше гибкий Ø160 */
+    function partB() {
+      var D = "M300 170 C400 170 450 90 560 90", wx = 270, wy = 196, ww = 340;
+      var chip1 = fmt(t("rx.QfcFirstChip"), "Ø250"), chip2 = fmt(t("rx.QfcSecondChip"), "Ø160");
+      var win = '<g class="qw"><rect class="qw-bg" x="' + wx + '" y="' + wy + '" width="' + ww + '" height="136" rx="12"/>' +
+        '<path class="qw-hd" d="M' + wx + " " + (wy + 26) + "V" + (wy + 12) + "a12 12 0 0 1 12 -12H" + (wx + ww - 12) + "a12 12 0 0 1 12 12V" + (wy + 26) + 'Z"/><rect x="' + wx + '" y="' + (wy + 26) + '" width="' + ww + '" height="3" fill="#F5A623"/>' +
+        '<text class="qw-tx" x="' + (wx + 14) + '" y="' + (wy + 18) + '" font-size="13" font-weight="600">' + t("rx.QfcConfirmTitle") + "</text>" +
+        '<text class="qw-tx" x="' + (wx + 14) + '" y="' + (wy + 50) + '" font-size="12">' + t("rx.QfcSizeLabel") + "</text>" +
+        '<rect class="qw-chip c1 sel" x="' + (wx + 14) + '" y="' + (wy + 58) + '" width="112" height="26" rx="8"/><text class="qw-tx" x="' + (wx + 70) + '" y="' + (wy + 76) + '" font-size="12.5" text-anchor="middle">' + chip1 + "</text>" +
+        '<rect class="qw-chip c2" x="' + (wx + 134) + '" y="' + (wy + 58) + '" width="112" height="26" rx="8"/><text class="qw-tx" x="' + (wx + 190) + '" y="' + (wy + 76) + '" font-size="12.5" text-anchor="middle">' + chip2 + "</text>" +
+        '<text class="qw-tx" x="' + (wx + 14) + '" y="' + (wy + 120) + '" font-size="11.5">' + t("rx.QfcWillCreate") + "</text>" +
+        '<rect x="' + (wx + ww - 82) + '" y="' + (wy + 102) + '" width="68" height="24" rx="8" fill="#F5A623"/><text x="' + (wx + ww - 48) + '" y="' + (wy + 119) + '" font-size="12.5" font-weight="700" text-anchor="middle" fill="#4A2F00">' + t("rx.Ok") + "</text></g>";
+      c.draw(cap("sc.qfc.diff") + clip() + duct(30, 146, 220, 48, "r", id) + caps(253, 170, 48) + duct(560, 75, 210, 30, "l", id) + caps(557, 90, 30) +
+        '<path class="tr" opacity="0" d="M250 146L300 155V185L250 194Z" fill="url(#' + id + 'dg)" stroke="#4b5563" stroke-width="1.4" stroke-linejoin="round"/>' +
+        '<g clip-path="url(#' + id + 'cq)">' + flex(D, 24) + collar(300, 170, 24) + collar(554, 90, 24) + "</g>" +
+        conn("m1", 250, 170, 48, 1) + conn("m2", 560, 90, 30, -1) +
+        '<text x="40" y="222" class="sc-note">Ø250</text><text x="700" y="132" class="sc-note">Ø160</text>' + win + CUR);
+      c.say(first()); c.go(".cur", 70, 300);
+      c.at(350, function () { c.go(".cur", 250, 170); });
+      c.at(900, function () { c.on(".m1", "on"); });
+      c.at(1400, function () { c.press(); c.on(".m1", "sel"); c.say(fmt(t("rx.QfcPromptSecond"), "", "Ø250", esc())); });
+      c.at(1800, function () { c.go(".cur", 560, 90); });
+      c.at(2350, function () { c.on(".m2", "on"); });
+      c.at(2850, function () { c.press(); c.on(".m2", "sel"); });
+      c.at(3350, function () { c.on(".qw", "on"); c.go(".cur", wx + 190, wy + 71); });
+      c.at(4200, function () { c.press(); c.on(".c1", "sel", false); c.on(".c2", "sel"); });
+      c.at(5000, function () { c.go(".cur", wx + ww - 48, wy + 114); });
+      c.at(5700, function () {
+        c.press(); c.on(".qw", "on", false); c.q(".tr").setAttribute("opacity", 1); c.q(".clipq").setAttribute("width", 330);
+        c.q(".cur").style.opacity = 0; c.on(".m1", "on", false); c.on(".m2", "on", false); c.on(".m1", "sel", false); c.on(".m2", "sel", false);
+      });
+      c.at(6800, function () { c.say(first()); });
+    }
+    partA();
+    c.at(TA, partB);
+    c.total = TA + 8000;
   };
 
   /* ---------- замена конца жёсткого воздуховода гибким ---------- */
@@ -143,9 +190,9 @@
       '<rect x="620" y="92" width="110" height="116" rx="4" fill="url(#' + id + 'eq)" stroke="#4a5d82" stroke-width="2"/><rect x="636" y="106" width="78" height="88" rx="3" fill="none" stroke="#4a5d82" stroke-opacity=".6" stroke-width="1.5"/>' +
       '<path d="M642 122H708M642 138H708M642 154H708M642 170H708" stroke="#4a5d82" stroke-opacity=".55" stroke-width="2"/>' +
       conn("m1", 620, 150, 40, -1) + CUR);
-    c.host.insertAdjacentHTML("beforeend", '<div class="chips2"><span>' + t("rb.len") + '</span><span class="c">500</span><span class="c">1000</span><span class="c">1500</span><span class="c">2000</span><span class="c">2500</span></div>');
+    c.host.insertAdjacentHTML("beforeend", '<div class="chips2"><span>' + t("rx.FlexTailLengthLabel") + '</span><span class="c">500</span><span class="c">1000</span><span class="c">1500</span><span class="c">2000</span><span class="c">2500</span><span class="c">' + t("rx.FlexTailWhole") + '</span></div>');
     var ch = c.host.querySelectorAll(".chips2 .c");
-    c.status("rb.f1s"); c.go(".cur", 70, 300);
+    c.say(t("rx.FlexTailPrompt")); c.go(".cur", 70, 300);
     c.at(350, function () { c.go(".cur", 620, 150); });
     c.at(900, function () { c.on(".m1", "on"); });
     c.at(1400, function () { c.press(); c.on(".m1", "sel"); });
@@ -156,7 +203,7 @@
       var r2 = c.q(".rigid2"); r2.style.transformOrigin = "620px 150px"; r2.style.transition = "transform .9s cubic-bezier(.4,0,.2,1)"; r2.style.transform = "scaleX(0)";
       c.q(".clipf").setAttribute("width", 220); c.q(".cur").style.opacity = 0; c.q(".dim").setAttribute("opacity", 1);
     });
-    c.at(4000, function () { c.on(".m1", "on", false); c.on(".m1", "sel", false); c.status("rb.f2s"); });
+    c.at(4000, function () { c.on(".m1", "on", false); c.on(".m1", "sel", false); c.say(fmt(t("rx.FlexTailPromptNext"), 1)); });
     c.total = 7000;
   };
 
@@ -186,7 +233,10 @@
         marks += seg(cc[n - 1], B);
       }
       c.draw('<g class="bd" fill="none" stroke-linecap="round">' + bord(A) + bord(B) + "</g>" + rects + '<g class="dm" opacity="0" fill="none" stroke-linecap="round">' + marks + "</g>", d.v ? "230 0 340 340" : "40 56 720 208");
-      c.status("rb.d1");
+      var dn = t("rx.RibbonDistribute" + { dhg: "HGaps", dhc: "HCenters", dvg: "VGaps", dvc: "VCenters" }[k]).replace(/<br>/g, " "), dk = t("rx.QfcEscCancel");
+      c.say(fmt(t("rx.DistributePickElements"), dn));
+      c.at(500, function () { c.say(fmt(t("rx.DistributePickFirst"), dn, dk)); });
+      c.at(1100, function () { c.say(fmt(t("rx.DistributePickSecond"), dn, dk)); });
       var els = c.host.querySelectorAll(".dr");
       c.at(900, function () {
         for (i = 0; i < n; i++) { var dd = tgt[i] - st[i]; els[i].style.transform = d.v ? "translate(0px," + dd + "px)" : "translate(" + dd + "px,0px)"; }

@@ -8,11 +8,11 @@
 .rv-theme button[aria-pressed="true"] { background: var(--hovb); color: #fff; }
 .rv-tabs { display: flex; padding: 6px 4px 0; zoom: 1; }
 .rv-tab { height: 20px; line-height: 20px; padding: 0 12px; background: var(--pan); color: var(--txt); }
-.rv-ribbon { background: var(--pan); margin: 0 4px; display: flex; zoom: 1; height: 132px; position: relative; overflow-x: auto; overflow-y: hidden; scrollbar-width: thin; }
+.rv-ribbon { background: var(--pan); margin: 0 4px; display: flex; zoom: 1; height: 142px; position: relative; overflow-x: auto; overflow-y: hidden; scrollbar-width: thin; }
 .rv-group { position: relative; display: flex; padding: 0 1px; }
 .rv-group .ttl { position: absolute; left: 0; right: 0; bottom: 6px; text-align: center; white-space: nowrap; pointer-events: none; }
 .rv-sep { width: 1px; background: var(--sep); margin: 4px 0 4px; }
-.rv-btn { all: unset; box-sizing: border-box; cursor: default; display: flex; flex-direction: column; align-items: center; padding: 8px 3px 0; height: 113px; min-width: 52px; text-align: center; line-height: 12px; border: 1px solid transparent; transition: background .12s, border-color .12s; }
+.rv-btn { all: unset; box-sizing: border-box; cursor: default; display: flex; flex-direction: column; align-items: center; padding: 8px 3px 0; height: 123px; min-width: 52px; text-align: center; line-height: 12px; border: 1px solid transparent; transition: background .12s, border-color .12s; }
 .rv-btn:hover { background: var(--hov); border-color: var(--hovb); }
 .rv-btn:active, .rv-btn.on { background: var(--act); border-color: var(--hovb); }
 .rv-btn:focus-visible { outline: 2px solid #73c5ff; outline-offset: -2px; }
@@ -160,3 +160,23 @@
 @media (max-width: 520px) { .scn + .apcap { min-height: 8.4em; } }
 .rv-stage .apcap { display: none; }
 .scn .aptag text { font-size: 18px; fill: var(--s-ink); }
+
+/* значки на кнопках ленты: PNG из плагина (светлые и тёмные) */
+.rv-btn img { width: 32px; height: 32px; margin-bottom: 7px; display: block; transition: transform .2s; }
+.rv-btn:hover img { transform: translateY(-2px); }
+.rv-btn.off:hover img { transform: none; }
+/* сцена «соединить гибким»: подпись случая и окно плагина (тёмное в тёмном Revit, светлое в светлом) */
+.scn text.sc-cap { font-size: 16px; font-weight: 600; }
+.scn .qw { opacity: 0; transition: opacity .3s; }
+.scn .qw.on { opacity: 1; }
+.scn .qw-bg { fill: #0E1930; stroke: #4F6CB0; stroke-width: 1.5; }
+.scn .qw-hd { fill: #0B1530; }
+.scn .qw-chip { fill: #0A1328; stroke: #2A3F73; stroke-width: 1.5; transition: fill .2s, stroke .2s; }
+.scn .qw-chip.sel { fill: #12385A; stroke: #4CC9FF; }
+.scn text.qw-tx { fill: #E8EEFB; }
+.revit[data-theme="light"] .scn .qw-bg { fill: #F8FBFE; stroke: #C9DCEE; }
+.revit[data-theme="light"] .scn .qw-hd { fill: #DDEEFA; }
+.revit[data-theme="light"] .scn .qw-chip { fill: #fff; stroke: #C9DCEE; }
+.revit[data-theme="light"] .scn .qw-chip.sel { fill: #D7F0FC; stroke: #38B6F0; }
+.revit[data-theme="light"] .scn text.qw-tx { fill: #0D1830; }
+.scn .tr { transition: opacity .4s; }

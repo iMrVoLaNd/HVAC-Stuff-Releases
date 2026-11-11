@@ -205,11 +205,11 @@
 
   /* ---------- иконки и карточки плагинов (главная и блок «Другие плагины») ---------- */
   var PLUG = {
-    qfc: { href: "quickflexconnect.html", en: "Connect with Flex Duct", since: "1.0.0", svg: '<path stroke="#E8ECF2" d="M1 4.5H9.5M1 13.5H9.5M9.5 3V15"/><path stroke="#E8ECF2" d="M31 18.5H22.5M31 27.5H22.5M22.5 17V29"/><path stroke="#F2A93B" stroke-width="3" d="M10.5 8.5H14C19 8.5 13 23.5 18 23.5H21.5"/>' },
-    ft: { href: "flextail.html", en: "Replace Section with Flex Duct", since: "1.0.0", svg: '<path stroke="#E8ECF2" d="M1 11H9.5M1 21H9.5M9.5 9.5V22.5"/><path stroke="#F2A93B" stroke-width="3" d="M10.5 16q1.84-7 3.67 0t3.67 0t3.66 0"/><path stroke="#6CBDEB" d="M22.5 6V26H30V6ZM22.5 12H30M22.5 16H30M22.5 20H30"/>' },
-    ap: { href: "airpoint.html", en: "Conditional Air Terminal", since: "1.8.0", badge: true, svg: '<path stroke="#E8ECF2" d="M3 16H12M12 7V25"/><path stroke="#F2A93B" stroke-width="2.4" d="M16 16H20M20 8V24L28 16Z"/><circle cx="12" cy="16" r="2" fill="#6CBDEB" stroke="none"/>' },
-    dist: { href: "distribute.html", en: "Distribute", since: "1.3.0", svg: '<path stroke="#6CBDEB" d="M2 11H7V25H2ZM12 11H20V25H12ZM25 11H30V25H25Z"/><path stroke="#E8ECF2" d="M7 6V9M12 6V9M7 7.5H12M20 6V9M25 6V9M20 7.5H25"/>' },
-    mep: { href: "mep-parameter-sync.html", en: "System Marks", since: "1.6.0", svg: '<path stroke="#E8ECF2" d="M3 7H13M3 14H13M3 21H13M3 28H13"/><path stroke="#6CBDEB" d="M17 7H29M17 14H29M17 21H29M17 28H29"/><path stroke="#F2A93B" stroke-width="3" d="M14 3.5L16 5.5L14 7.5"/>' }
+    qfc: { href: "quickflexconnect.html", en: "Connect with Flex Duct", since: "1.0.0", icon: "QuickFlexConnect" },
+    ft: { href: "flextail.html", en: "Replace Section with Flex Duct", since: "1.0.0", icon: "FlexTail" },
+    ap: { href: "airpoint.html", en: "Conditional Air Terminal", since: "1.8.0", badge: true, icon: "AirPoint" },
+    dist: { href: "distribute.html", en: "Distribute", since: "1.3.0", icon: "DistributeHGaps" },
+    mep: { href: "mep-parameter-sync.html", en: "System Marks", since: "1.6.0", icon: "Sync-On" }
   };
   function plugCards() {
     document.querySelectorAll("[data-plugs]").forEach(function (box) {
@@ -217,7 +217,7 @@
       box.innerHTML = Object.keys(PLUG).filter(function (k) { return k !== ex; }).map(function (k) {
         var p = PLUG[k];
         return '<article class="card plug">' + (p.badge ? '<span class="badge" data-i18n="plug.new"></span>' : "") +
-          '<div class="tile"><svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + p.svg + "</svg></div>" +
+          '<div class="tile"><img class="ic-l" src="img/icons/' + p.icon + '-Light.png" alt="" width="44" height="44"><img class="ic-d" src="img/icons/' + p.icon + '-Dark.png" alt="" width="44" height="44"></div>' +
           '<h3 data-i18n="' + k + '.name"></h3><p class="en" lang="en">' + p.en + "</p>" +
           '<p data-i18n="' + k + '.p"></p><a class="go" href="' + p.href + '" data-i18n="plug.more"></a>' +
           '<span class="since"><span data-i18n="plug.since"></span> ' + p.since + "</span></article>";

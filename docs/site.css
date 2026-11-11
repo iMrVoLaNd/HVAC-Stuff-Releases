@@ -156,8 +156,18 @@ footer .foot-logo { width: 44px; height: 44px; border-radius: 50%; vertical-alig
 .plugs { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 20px; }
 .plug { position: relative; display: flex; flex-direction: column; gap: 10px; transition: transform .3s, border-color .3s; }
 .plug:hover { transform: translateY(-5px); border-color: var(--amber); }
-.plug .tile { width: 64px; height: 64px; border-radius: 16px; background: var(--navy); display: grid; place-items: center; box-shadow: 0 10px 24px -10px rgba(20,33,61,.7); transition: transform .35s; }
-.plug .tile svg { width: 44px; height: 44px; }
+.plug .tile { width: 64px; height: 64px; border-radius: 16px; background: #F5F5F5; border: 1.5px solid var(--line); display: grid; place-items: center; box-shadow: 0 10px 24px -14px rgba(13,24,48,.45); transition: transform .35s; }
+.plug .tile img { width: 44px; height: 44px; }
+/* значки как в плагине: светлые на светлой ленте Revit, тёмные на тёмной */
+.plug .tile .ic-d { display: none; }
+:root[data-theme="dark"] .plug .tile { background: #3B4453; border-color: #4B566A; }
+:root[data-theme="dark"] .plug .tile .ic-l { display: none; }
+:root[data-theme="dark"] .plug .tile .ic-d { display: block; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .plug .tile { background: #3B4453; border-color: #4B566A; }
+  :root:not([data-theme="light"]) .plug .tile .ic-l { display: none; }
+  :root:not([data-theme="light"]) .plug .tile .ic-d { display: block; }
+}
 .plug:hover .tile { transform: rotate(-6deg) scale(1.06); }
 .plug h3 { margin: 4px 0 0; font-size: 21px; }
 .plug .en { color: var(--muted); font-size: 14px; margin: -6px 0 0; }
